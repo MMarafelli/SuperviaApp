@@ -7,9 +7,9 @@ const manifestForPlugIn : Partial<VitePWAOptions> = {
   registerType:'prompt',
   includeAssets:['favicon.ico', "apple-touc-icon.png", "masked-icon.svg"],
   manifest:{
-    name:"SuperViaApp",
-    short_name:"SuperViaApp",
-    description:"A SuperViaApp.",
+    name:"Super Via App",
+    short_name:"Super Via App",
+    description:"A Super Via App.",
     theme_color:'#171717',
     background_color:'#f0e7db',
     display:"standalone",
