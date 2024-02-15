@@ -33,9 +33,9 @@
     size: 15px;
     padding: 2.1em 1.5em 1.5em 1.5em;
   }
-  .logo:hover, .header > nav {
+  .logo:hover, .header > nav > p {
     filter: drop-shadow(0 0 2em #fffc64b7);
   }
-  .logo.react:hover, .header > nav {
+  .logo.react:hover, .header > nav > p {
     filter: drop-shadow(0 0 2em #fffc64b7);
   }
