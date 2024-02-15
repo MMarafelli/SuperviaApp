@@ -1,4 +1,6 @@
 .header {
+
+    position: fixed;
     max-height: 70px;
     width: 100vw;
 
@@ -10,6 +12,8 @@
     background-color: #282c34;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     align-items: center;
+
+    color: white;
   }
 
   .divLogoHeader {

@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import type { FC } from 'react';
 import NProgress from 'nprogress';
-import { Box } from '@mui/material';
+import './LoadingScreen.css';
+import logo from '../../../public/assets/icons/logo-sv.png';
 
 const LoadingScreen: FC = () => {
   useEffect(() => {
@@ -13,12 +14,9 @@ const LoadingScreen: FC = () => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        backgroundColor: 'background.paper',
-        minHeight: '100%',
-      }}
-    />
+    <div className="divLoader">
+        <img src={logo} className="logo" alt="logo"></img>
+    </div>
   );
 };
 
