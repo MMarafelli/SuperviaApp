@@ -1,36 +1,81 @@
-import { useState } from 'react'
+import {
+  Link,
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import MainLayout from '../src/layout/MainLayout'
 
-function App() {
-  const [count, setCount] = useState(0)
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLayout />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "about",
+        // Single route in lazy file
+        lazy: () => import("./pages/About"),
+      },
+      {
+        path: "dashboard",
+        async lazy() {
+          // Multiple routes in lazy file
+          const { DashboardLayout } = await import("./pages/Dashboard");
+          return { Component: DashboardLayout };
+        },
+        children: [
+          {
+            index: true,
+            async lazy() {
+              const { DashboardIndex } = await import("./pages/Dashboard");
+              return { Component: DashboardIndex };
+            },
+          },
+          {
+            path: "messages",
+            async lazy() {
+              const { dashboardMessagesLoader, DashboardMessages } = await import(
+                "./pages/Dashboard"
+              );
+              return {
+                loader: dashboardMessagesLoader,
+                Component: DashboardMessages,
+              };
+            },
+          },
+        ],
+      },
+      {
+        path: "*",
+        element: <NoMatch />,
+      },
+    ],
+  },
+]);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}> 
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+export default function App() {
+  return <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />;
 }
 
-export default App
+function Home() {
+  return (
+    <div>
+      <h2>Home</h2>
+    </div>
+  );
+}
+
+function NoMatch() {
+  return (
+    <div>
+      <h2>Nothing to see here!</h2>
+      <p>
+        <Link to="/">Go to the home page</Link>
+      </p>
+    </div>
+  );
+}

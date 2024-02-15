@@ -1,0 +1,41 @@
+.header {
+    max-height: 70px;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: row;
+    flex-flow: row nowrap;
+  
+    grid-template-areas: "logo nav";
+    background-color: #282c34;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    align-items: center;
+  }
+
+  .divLogoHeader {
+    will-change: filter;
+    transition: filter 300ms;
+    max-width: 20vw;
+  }
+
+  .divFillerHeader{
+    width: 20vw
+  }
+
+  .header > nav {
+    text-align: end;
+    width: 60vw;
+    padding: 1.5em;
+  }
+  
+  .logo {
+    height: 15px;
+    size: 15px;
+    padding: 2.1em 1.5em 1.5em 1.5em;
+  }
+  .logo:hover, .header > nav {
+    filter: drop-shadow(0 0 2em #fffc64b7);
+  }
+  .logo.react:hover, .header > nav {
+    filter: drop-shadow(0 0 2em #fffc64b7);
+  }
