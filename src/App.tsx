@@ -58,6 +58,7 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
+  console.log(router);
   return <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />;
 }
 
