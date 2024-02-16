@@ -12,6 +12,19 @@ const NavBar = () => {
     function toggleTheme() {
       const current = document.getElementsByClassName('navbar');
       console.log(current)
+      // Itera sobre a coleção de elementos
+      for (let i = 0; i < current.length; i++) {
+      const elemento = current[i];
+      
+      // Obtém as classes do elemento usando classList
+      const classes = elemento.classList;
+      
+      // Converte as classes para um array (opcional, dependendo do que você quer fazer)
+      const classesArray = Array.from(classes);
+      
+      // Exibe as classes no console (ou faça o que precisar com elas)
+      console.log("Classes do elemento:", classesArray);
+  }
       //const next = themeMap[current];
     }
     

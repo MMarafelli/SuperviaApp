@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 
 import MainLayout from '../src/layout/MainLayout'
+import LoadingScreen from "./components/loading/LoadingScreen";
 
 const router = createBrowserRouter([
   {
@@ -58,8 +59,8 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
-  console.log(router);
-  return <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />;
+  //console.log(router);
+  return <RouterProvider router={router} fallbackElement={<LoadingScreen></LoadingScreen>} />;
 }
 
 function Home() {

@@ -15,7 +15,7 @@ const LoadingScreen: FC = () => {
 
   return (
     <div className="divLoader">
-        <img src={logo} className="logo" alt="logo"></img>
+        <img src={logo} className="logoLoader" alt="logo"></img>
     </div>
   );
 };

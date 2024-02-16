@@ -14,6 +14,22 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute("theme", "dark");
+        //console.log("1");
+        //console.log(document.documentElement.getAttribute('theme'));
+      } else {
+        document.documentElement.setAttribute("theme", "light");
+        //console.log("2");
+        //console.log(document.documentElement.getAttribute('theme'));
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+        const newColorScheme = event.matches ? "dark" : "light";
+        //console.log("3");
+        //console.log(document.documentElement.getAttribute('theme'));
+      });
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
