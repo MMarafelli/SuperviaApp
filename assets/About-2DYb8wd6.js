@@ -1,0 +1,1 @@
+import{u as o,j as e}from"./index-D-xPTCVa.js";async function r(){return await new Promise(t=>setTimeout(t,500)),"I came from the About.tsx loader function!"}function n(){const t=o();return e.jsxs("div",{children:[e.jsx("h2",{children:"About"}),e.jsx("p",{children:t})]})}n.displayName="AboutPage";export{n as Component,r as loader};
