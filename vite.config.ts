@@ -46,6 +46,6 @@ const manifestForPlugIn : Partial<VitePWAOptions> = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/SuperViaApp/',
+  base: './',
   plugins: [react(), VitePWA(manifestForPlugIn)],
 })
