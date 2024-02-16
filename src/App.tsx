@@ -64,7 +64,7 @@ export default function App() {
 function Home() {
   return (
     <div>
-      <h2>Home</h2>
+      <h2>Home welcome</h2>
     </div>
   );
 }
