@@ -6,7 +6,7 @@ export async function loader() {
 }
 
 export function Component() {
-  let data = useLoaderData() as string;
+  const data = useLoaderData() as string;
 
   return (
     <div>

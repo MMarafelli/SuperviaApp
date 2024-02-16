@@ -5,8 +5,9 @@ import {
 } from "react-router-dom";
 
 import Header from "../components/header/Header";
-import LoadingScreen from '../components/loading/LoadingScreen';
+import NavBar from "../components/navbar/NavBar";
 
+import LoadingScreen from '../components/loading/LoadingScreen';
 
 function MainLayout() {
   const navigation = useNavigation();
@@ -20,6 +21,7 @@ function MainLayout() {
           </div>
           <Outlet />
       </div>
+      <NavBar></NavBar>
     </div>
   );
 }

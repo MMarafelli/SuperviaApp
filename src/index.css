@@ -11,6 +11,8 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --transition-speed: 600ms;
 }
 
 #base {
@@ -22,6 +24,19 @@ body {
 
 #content {
   margin-top: 70px;
+}
+
+/* Small screens */
+@media only screen and (max-width: 600px) {
+  #content {
+    margin-bottom: 6rem;
+  }
+}
+/* Large screens */
+@media only screen and (min-width: 600px) {
+  #content {
+    margin-left: 6rem;
+  }
 }
 
 a {
