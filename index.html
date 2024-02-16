@@ -11,10 +11,26 @@
     <link rel="manifest" href="manifest.json" />
 
     <title>Super Via</title>
-    <script type="module" crossorigin src="/SuperViaApp/assets/index-Bu6gn0qc.js"></script>
-    <link rel="stylesheet" crossorigin href="/SuperViaApp/assets/index-qtlJT--b.css">
+    <script type="module" crossorigin src="/SuperViaApp/assets/index-DcDG21iy.js"></script>
+    <link rel="stylesheet" crossorigin href="/SuperViaApp/assets/index-BwapjfA9.css">
   <link rel="manifest" href="/SuperViaApp/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/SuperViaApp/registerSW.js"></script></head>
   <body>
     <div id="root"></div>
+    <script>
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute("theme", "dark");
+        //console.log("1");
+        //console.log(document.documentElement.getAttribute('theme'));
+      } else {
+        document.documentElement.setAttribute("theme", "light");
+        //console.log("2");
+        //console.log(document.documentElement.getAttribute('theme'));
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+        const newColorScheme = event.matches ? "dark" : "light";
+        //console.log("3");
+        //console.log(document.documentElement.getAttribute('theme'));
+      });
+    </script>
   </body>
 </html>
