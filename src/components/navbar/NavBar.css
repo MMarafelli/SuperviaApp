@@ -2,7 +2,7 @@
   position: fixed;
   background-color: var(--bg-primary);
   transition: width 600ms ease;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .navbar-nav {
@@ -120,7 +120,8 @@
   .navbar {
     top: 70px;
     width: 5rem;
-    height: 100vh;
+    height: calc(100vh - 70px);
+    box-sizing: border-box;
   }
 
   .navbar:hover {
