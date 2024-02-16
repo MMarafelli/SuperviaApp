@@ -5,6 +5,8 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import App from './App';
 
+console.log(import.meta.env.BASE_URL);
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
