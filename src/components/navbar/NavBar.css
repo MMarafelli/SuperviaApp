@@ -16,7 +16,9 @@
 }
 
 .nav-item {
+  all: initial;
   width: 100%;
+  size: 15px;
 }
 
 .nav-item:last-child {

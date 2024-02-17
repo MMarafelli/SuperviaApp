@@ -63,13 +63,13 @@ export default MainLayout;
           <nav>
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/SuperViaApp/">Home</Link>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <Link to="/SuperViaApp/about">About</Link>
               </li>
               <li>
-                <Link to="/dashboard/messages">Messages (Dashboard)</Link>
+                <Link to="/SuperViaApp/dashboard/messages">Messages (Dashboard)</Link>
               </li>
             </ul>
           </nav>

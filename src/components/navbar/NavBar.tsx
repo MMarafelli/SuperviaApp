@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./NavBar.css"
 
 
@@ -8,30 +9,30 @@ const NavBar = () => {
     //     light: "solar",
     //     solar: "dark"
     // };
-    
+
     function toggleTheme() {
-      const current = document.getElementsByClassName('navbar');
-      console.log(current)
-      // Itera sobre a coleção de elementos
-      for (let i = 0; i < current.length; i++) {
-      const elemento = current[i];
-      
-      // Obtém as classes do elemento usando classList
-      const classes = elemento.classList;
-      
-      // Converte as classes para um array (opcional, dependendo do que você quer fazer)
-      const classesArray = Array.from(classes);
-      
-      // Exibe as classes no console (ou faça o que precisar com elas)
-      console.log("Classes do elemento:", classesArray);
-  }
-      //const next = themeMap[current];
+        const current = document.getElementsByClassName('navbar');
+        console.log(current)
+        // Itera sobre a coleção de elementos
+        for (let i = 0; i < current.length; i++) {
+            const elemento = current[i];
+
+            // Obtém as classes do elemento usando classList
+            const classes = elemento.classList;
+
+            // Converte as classes para um array (opcional, dependendo do que você quer fazer)
+            const classesArray = Array.from(classes);
+
+            // Exibe as classes no console (ou faça o que precisar com elas)
+            console.log("Classes do elemento:", classesArray);
+        }
+        //const next = themeMap[current];
     }
-    
+
     const botao = document.getElementById('themeButton');
     if (botao !== null) {
         botao.onclick = toggleTheme;
-     }
+    }
 
     return (
         <nav className="navbar dark">
@@ -66,7 +67,7 @@ const NavBar = () => {
                 </li>
 
                 <li className="nav-item">
-                    <a href="#" className="nav-link">
+                    <Link to="/SuperViaApp/dashboard" className="nav-link">
                         <svg
                             aria-hidden="true"
                             focusable="false"
@@ -91,11 +92,11 @@ const NavBar = () => {
                             </g>
                         </svg>
                         <span className="link-text">Cats</span>
-                    </a>
+                    </Link>
                 </li>
 
                 <li className="nav-item">
-                    <a href="#" className="nav-link">
+                    <Link to="/SuperViaApp/CalcTintaEsfera" className="nav-link">
                         <svg
                             aria-hidden="true"
                             focusable="false"
@@ -120,7 +121,8 @@ const NavBar = () => {
                             </g>
                         </svg>
                         <span className="link-text">Aliens</span>
-                    </a>
+
+                    </Link>
                 </li>
 
                 <li className="nav-item">
