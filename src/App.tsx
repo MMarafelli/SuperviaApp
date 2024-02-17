@@ -7,6 +7,8 @@ import {
 import MainLayout from '../src/layout/MainLayout'
 import LoadingScreen from "./components/loading/LoadingScreen";
 
+import CalcTintaEsfera from "./pages/calcTintaEsfera/CalcTintaEsfera";
+
 const router = createBrowserRouter([
   {
     path: "/SuperViaApp/",
@@ -15,6 +17,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "CalcTintaEsfera",
+        element: <CalcTintaEsfera></CalcTintaEsfera>,
       },
       {
         path: "about",

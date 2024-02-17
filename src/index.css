@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
 }
@@ -29,13 +33,13 @@ body {
 /* Small screens */
 @media only screen and (max-width: 600px) {
   #content {
-    margin-bottom: 6rem;
+    margin-bottom: 5rem;
   }
 }
 /* Large screens */
 @media only screen and (min-width: 600px) {
   #content {
-    margin-left: 6rem;
+    margin-left: 5rem;
   }
 }
 
