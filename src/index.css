@@ -83,6 +83,10 @@ button:focus-visible {
     background-color:hsl(300, 1%, 30%);
     color: white;
   }
+  input,
+  select {
+    color: black;
+  }
 
 }
 
