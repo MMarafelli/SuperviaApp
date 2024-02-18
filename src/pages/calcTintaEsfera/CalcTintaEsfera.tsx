@@ -1,10 +1,10 @@
 // Formulario.js
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 
 const Formulario = () => {
     const [sentido, setSentido] = useState('');
     const [kmInicial, setKmInicial] = useState('');
-    const [mesDiaAno, setMesDiaAno] = useState('');
+    const [diaMesAno, setDiaMesAno] = useState('');
     const [kmFinal, setKmFinal] = useState('');
     const [esquerdoX, setEsquerdoX] = useState('0.10');
     const [esquerdoY, setEsquerdoY] = useState('');
@@ -23,12 +23,22 @@ const Formulario = () => {
     const calcularM2 = (x: string, y: string): number => {
         const xNumber = parseFloat(x);
         const yNumber = parseFloat(y);
-      
+
         if (isNaN(xNumber) || isNaN(yNumber)) {
-          return 0; // ou outra lógica apropriada se os valores não forem números válidos
+            return 0; // ou outra lógica apropriada se os valores não forem números válidos
         }
-      
-        return xNumber * yNumber;
+
+        const result = xNumber * yNumber;
+        const roundedResult = Math.ceil(result * 100) / 100; // Arredonda para cima com duas casas decimais
+        return roundedResult;
+    };
+
+    const handleInputChange = (
+        inputValue: string,
+        setFunction: React.Dispatch<React.SetStateAction<string>>
+    ) => {
+        const numericValue = inputValue.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+        setFunction(numericValue);
     };
 
     const gerarLevantamento = () => {
@@ -36,7 +46,7 @@ const Formulario = () => {
       Sentido: ${sentido},
       KM Inicial: ${kmInicial},
       KM Final: ${kmFinal},
-      mesDiaAno: ${mesDiaAno},
+      Data: ${diaMesAno},
       BORDO DIREITO - X: ${direitoX}, Y: ${direitoY}, Z: ${calcularM2(direitoX, direitoY)},
       BORDO ESQUERDO - X: ${esquerdoX}, Y: ${esquerdoY}, Z: ${calcularM2(esquerdoX, esquerdoY)},
       EIXO 4X4 - X: ${eixo4x4X}, Y: ${eixo4x4Y}, Z: ${calcularM2(eixo4x4X, eixo4x4Y)},
@@ -52,6 +62,7 @@ const Formulario = () => {
         setSentido('');
         setKmInicial('');
         setKmFinal('');
+        setDiaMesAno('')
         setEsquerdoX('0.10');
         setEsquerdoY('');
         setDireitoX('0.10');
@@ -99,11 +110,10 @@ const Formulario = () => {
                     />
 
                     <input
-                        type="text"
+                        type="date"
                         className="p-2 border border-gray-300 rounded-md mb-2 lg:mr-2"
-                        placeholder="mesDiaAno"
-                        value={mesDiaAno}
-                        onChange={(e) => setMesDiaAno(e.target.value)}
+                        value={diaMesAno}
+                        onChange={(e) => setDiaMesAno(e.target.value)}
                     />
                 </div>
             </div>
@@ -132,7 +142,8 @@ const Formulario = () => {
                                 <input
                                     type="text"
                                     value={direitoY}
-                                    onChange={(e) => setDireitoY(e.target.value)}
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                        handleInputChange(e.target.value, setDireitoY)}
                                 />
                             </td>
                             <td className="border p-2">{calcularM2(direitoX, direitoY)}</td>
@@ -166,7 +177,8 @@ const Formulario = () => {
                                 <input
                                     type="text"
                                     value={eixo4x4Y}
-                                    onChange={(e) => setEixo4x4Y(e.target.value)}
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                        handleInputChange(e.target.value, setEixo4x4Y)}
                                 />
                             </td>
                             <td className="border p-2">{calcularM2(eixo4x4X, eixo4x4Y)}</td>
@@ -183,7 +195,8 @@ const Formulario = () => {
                                 <input
                                     type="text"
                                     value={eixo2x2Y}
-                                    onChange={(e) => setEixo2x2Y(e.target.value)}
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                        handleInputChange(e.target.value, setEixo2x2Y)}
                                 />
                             </td>
                             <td className="border p-2">{calcularM2(eixo2x2X, eixo2x2Y)}</td>
@@ -197,7 +210,10 @@ const Formulario = () => {
                                 </select>
                             </td>
                             <td className="border p-2">
-                                <input type="text" value={alcaY} onChange={(e) => setAlcaY(e.target.value)} />
+                                <input type="text" value={alcaY}
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                        handleInputChange(e.target.value, setAlcaY)}
+                                />
                             </td>
                             <td className="border p-2">{calcularM2(alcaX, alcaY)}</td>
                         </tr>
