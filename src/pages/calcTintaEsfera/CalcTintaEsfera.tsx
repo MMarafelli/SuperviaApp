@@ -249,7 +249,7 @@ const Formulario = () => {
             </div>
 
             {levantamento && (
-                <div className="mt-5 p-4 bg-gray-100 rounded-md">
+                <div className="mt-5 p-4 rounded-md">
                     <label className="text-lg font-bold">Levantamento Gerado:</label>
                     <pre className="mt-2 whitespace-pre-line">{levantamento}</pre>
                 </div>
