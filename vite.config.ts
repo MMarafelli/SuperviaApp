@@ -13,8 +13,8 @@ const manifestForPlugIn : Partial<VitePWAOptions> = {
     theme_color:'#171717',
     background_color:'#f0e7db',
     display:"standalone",
-    scope:'/',
-    start_url:"/",
+    scope: "/SuperViaApp",
+    start_url: "/SuperViaApp",
     orientation:'portrait',
     icons:[{
       src: 'public/icons/sv_192x192.png',
@@ -46,6 +46,6 @@ const manifestForPlugIn : Partial<VitePWAOptions> = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/SuperViaApp/',
+  base: '/SuperViaApp',
   plugins: [react(), VitePWA(manifestForPlugIn)],
 })

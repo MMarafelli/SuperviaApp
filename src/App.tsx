@@ -11,7 +11,7 @@ import CalcTintaEsfera from "./pages/calcTintaEsfera/CalcTintaEsfera";
 
 const router = createBrowserRouter([
   {
-    path: "/SuperViaApp/",
+    path: "/SuperViaApp",
     element: <MainLayout />,
     children: [
       {
@@ -82,7 +82,7 @@ function NoMatch() {
     <div>
       <h2>Nothing to see here!</h2>
       <p>
-        <Link to="/SuperViaApp/">Go to the home page</Link>
+        <Link to="/SuperViaApp">Go to the home page</Link>
       </p>
     </div>
   );

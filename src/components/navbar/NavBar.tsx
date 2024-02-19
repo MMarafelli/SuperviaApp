@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import "./NavBar.css"
 
-
 const NavBar = () => {
 
     // const themeMap = {
@@ -67,7 +66,7 @@ const NavBar = () => {
                 </li>
 
                 <li className="nav-item">
-                    <Link to="/SuperViaApp/dashboard" className="nav-link">
+                    <Link to={`${import.meta.env.BASE_URL}/dashboard`} className="nav-link">
                         <svg
                             aria-hidden="true"
                             focusable="false"
