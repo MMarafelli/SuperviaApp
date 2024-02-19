@@ -22,15 +22,15 @@ const Formulario = () => {
     const [kmInicial, setKmInicial] = useState('');
     const [diaMesAno, setDiaMesAno] = useState('');
     const [kmFinal, setKmFinal] = useState('');
-    const [esquerdoX, setEsquerdoX] = useState('0.10');
+    const [esquerdoX, setEsquerdoX] = useState('');
     const [esquerdoY, setEsquerdoY] = useState('');
-    const [direitoX, setDireitoX] = useState('0.10');
+    const [direitoX, setDireitoX] = useState('');
     const [direitoY, setDireitoY] = useState('');
-    const [eixo4x4X, setEixo4x4X] = useState('0.10');
+    const [eixo4x4X, setEixo4x4X] = useState('');
     const [eixo4x4Y, setEixo4x4Y] = useState('');
-    const [eixo2x2X, setEixo2x2X] = useState('0.10');
+    const [eixo2x2X, setEixo2x2X] = useState('');
     const [eixo2x2Y, setEixo2x2Y] = useState('');
-    const [alcaX, setAlcaX] = useState('0.10');
+    const [alcaX, setAlcaX] = useState('');
     const [alcaY, setAlcaY] = useState('');
     const [esfera, setEsfera] = useState('');
     const [tinta, setTinta] = useState('');
@@ -56,6 +56,12 @@ const Formulario = () => {
         const numericValue = inputValue.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
         setFunction(numericValue);
     };
+
+    const opcoesDeSelect = [
+        { valor: '', label: 'Selecione...' },
+        { valor: '0.10', label: '0.10' },
+        { valor: '0.15', label: '0.15' },
+    ];
 
     const gerarLevantamento = () => {
         const textoLevantamento = `
@@ -147,8 +153,11 @@ const Formulario = () => {
                                 <div className="border p-2">ESPESSURA</div>
                                 <div className="border p-2">
                                     <select value={direitoX} onChange={(e) => setDireitoX(e.target.value)}>
-                                        <option value="0.10">0.10</option>
-                                        <option value="0.15">0.15</option>
+                                        {opcoesDeSelect.map((opcao) => (
+                                            <option key={opcao.valor} value={opcao.valor}>
+                                                {opcao.label}
+                                            </option>
+                                        ))}
                                     </select>
                                 </div>
                                 <div className="border p-2">COMPRIMENTO (m)</div>
@@ -170,8 +179,11 @@ const Formulario = () => {
                                 <div className="border p-2">ESPESSURA</div>
                                 <div className="border p-2">
                                     <select value={esquerdoX} onChange={(e) => setEsquerdoX(e.target.value)}>
-                                        <option value="0.10">0.10</option>
-                                        <option value="0.15">0.15</option>
+                                        {opcoesDeSelect.map((opcao) => (
+                                            <option key={opcao.valor} value={opcao.valor}>
+                                                {opcao.label}
+                                            </option>
+                                        ))}
                                     </select>
                                 </div>
                                 <div className="border p-2">COMPRIMENTO (m)</div>
@@ -193,8 +205,11 @@ const Formulario = () => {
                                 <div className="border p-2">ESPESSURA</div>
                                 <div className="border p-2">
                                     <select value={eixo4x4X} onChange={(e) => setEixo4x4X(e.target.value)}>
-                                        <option value="0.10">0.10</option>
-                                        <option value="0.15">0.15</option>
+                                        {opcoesDeSelect.map((opcao) => (
+                                            <option key={opcao.valor} value={opcao.valor}>
+                                                {opcao.label}
+                                            </option>
+                                        ))}
                                     </select>
                                 </div>
                                 <div className="border p-2">COMPRIMENTO (m)</div>
@@ -216,8 +231,11 @@ const Formulario = () => {
                                 <div className="border p-2">ESPESSURA</div>
                                 <div className="border p-2">
                                     <select value={eixo2x2X} onChange={(e) => setEixo2x2X(e.target.value)}>
-                                        <option value="0.10">0.10</option>
-                                        <option value="0.15">0.15</option>
+                                        {opcoesDeSelect.map((opcao) => (
+                                            <option key={opcao.valor} value={opcao.valor}>
+                                                {opcao.label}
+                                            </option>
+                                        ))}
                                     </select>
                                 </div>
                                 <div className="border p-2">COMPRIMENTO (m)</div>
@@ -239,8 +257,11 @@ const Formulario = () => {
                                 <div className="border p-2">ESPESSURA</div>
                                 <div className="border p-2">
                                     <select value={alcaX} onChange={(e) => setAlcaX(e.target.value)}>
-                                        <option value="0.10">0.10</option>
-                                        <option value="0.15">0.15</option>
+                                        {opcoesDeSelect.map((opcao) => (
+                                            <option key={opcao.valor} value={opcao.valor}>
+                                                {opcao.label}
+                                            </option>
+                                        ))}
                                     </select>
                                 </div>
                                 <div className="border p-2">COMPRIMENTO (m)</div>
@@ -273,8 +294,11 @@ const Formulario = () => {
                                 <td className="border p-2">BORDO DIREITO</td>
                                 <td className="border p-2">
                                     <select value={direitoX} onChange={(e) => setDireitoX(e.target.value)}>
-                                        <option value="0.10">0.10</option>
-                                        <option value="0.15">0.15</option>
+                                        {opcoesDeSelect.map((opcao) => (
+                                            <option key={opcao.valor} value={opcao.valor}>
+                                                {opcao.label}
+                                            </option>
+                                        ))}
                                     </select>
                                 </td>
                                 <td className="border p-2">
@@ -291,8 +315,11 @@ const Formulario = () => {
                                 <td className="border p-2">BORDO ESQUERDO</td>
                                 <td className="border p-2">
                                     <select value={esquerdoX} onChange={(e) => setEsquerdoX(e.target.value)}>
-                                        <option value="0.10">0.10</option>
-                                        <option value="0.15">0.15</option>
+                                        {opcoesDeSelect.map((opcao) => (
+                                            <option key={opcao.valor} value={opcao.valor}>
+                                                {opcao.label}
+                                            </option>
+                                        ))}
                                     </select>
                                 </td>
                                 <td className="border p-2">
@@ -308,8 +335,11 @@ const Formulario = () => {
                                 <td className="border p-2">EIXO 4X4:</td>
                                 <td className="border p-2">
                                     <select value={eixo4x4X} onChange={(e) => setEixo4x4X(e.target.value)}>
-                                        <option value="0.10">0.10</option>
-                                        <option value="0.15">0.15</option>
+                                        {opcoesDeSelect.map((opcao) => (
+                                            <option key={opcao.valor} value={opcao.valor}>
+                                                {opcao.label}
+                                            </option>
+                                        ))}
                                     </select>
                                 </td>
                                 <td className="border p-2">
@@ -326,8 +356,11 @@ const Formulario = () => {
                                 <td className="border p-2">EIXO 2X2:</td>
                                 <td className="border p-2">
                                     <select value={eixo2x2X} onChange={(e) => setEixo2x2X(e.target.value)}>
-                                        <option value="0.10">0.10</option>
-                                        <option value="0.15">0.15</option>
+                                        {opcoesDeSelect.map((opcao) => (
+                                            <option key={opcao.valor} value={opcao.valor}>
+                                                {opcao.label}
+                                            </option>
+                                        ))}
                                     </select>
                                 </td>
                                 <td className="border p-2">
@@ -344,8 +377,11 @@ const Formulario = () => {
                                 <td className="border p-2">ALÇA:</td>
                                 <td className="border p-2">
                                     <select value={alcaX} onChange={(e) => setAlcaX(e.target.value)}>
-                                        <option value="0.10">0.10</option>
-                                        <option value="0.15">0.15</option>
+                                        {opcoesDeSelect.map((opcao) => (
+                                            <option key={opcao.valor} value={opcao.valor}>
+                                                {opcao.label}
+                                            </option>
+                                        ))}
                                     </select>
                                 </td>
                                 <td className="border p-2">
@@ -364,8 +400,9 @@ const Formulario = () => {
             {/* Terceiro quadro */}
             <div className="border-gray-300 border p-4 mb-4">
                 <div
-                    className="cursor-pointer flex justify-between items-center"
+                    className="cursor-pointer flex justify-between items-center transition-all duration-300"
                     onClick={() => setMostrarConteudo(!mostrarConteudo)}
+                    style={{ marginBottom: mostrarConteudo ? '16px' : '0' }}
                 >
                     <label className="text-lg font-bold">Quadro 3</label>
                     <svg
@@ -384,7 +421,10 @@ const Formulario = () => {
                     </svg>
                 </div>
 
-                {mostrarConteudo && (
+                <div
+                    className={`transition-all duration-300 overflow-hidden ${mostrarConteudo ? 'max-h-96' : 'max-h-0'
+                        }`}
+                >
                     <div className="flex flex-col lg:flex-row mt-2">
                         <label>Consumo:</label>
                         <div className="flex flex-col lg:flex-row mt-2">
@@ -404,7 +444,7 @@ const Formulario = () => {
                             />
                         </div>
                     </div>
-                )}
+                </div>
             </div>
 
 
