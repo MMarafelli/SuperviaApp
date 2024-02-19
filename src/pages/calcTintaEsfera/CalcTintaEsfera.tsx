@@ -1,7 +1,21 @@
 // Formulario.js
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
 
 const Formulario = () => {
+    const [larguraDaJanela, setLarguraDaJanela] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setLarguraDaJanela(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     const [sentido, setSentido] = useState('');
     const [kmInicial, setKmInicial] = useState('');
     const [diaMesAno, setDiaMesAno] = useState('');
@@ -121,7 +135,7 @@ const Formulario = () => {
             <div className="border-gray-300 border p-4 mb-4">
                 <label className="text-lg font-bold">Segundo Quadro:</label>
 
-                {window.innerWidth <= 600 ? (
+                {larguraDaJanela <= 600 ? (
                     <>
                         <div className="mt-2">
                             <label className="text-lg font-bold">BORDO DIREITO:</label>
@@ -141,7 +155,7 @@ const Formulario = () => {
                                         onChange={(e) => handleInputChange(e.target.value, setDireitoY)}
                                     />
                                 </div>
-                                <div className="border p-2">M²</div>
+                                <div className="border p-2">m²</div>
                                 <div className="border p-2">{calcularM2(direitoX, direitoY)}</div>
                             </div>
                         </div>
@@ -164,7 +178,7 @@ const Formulario = () => {
                                         onChange={(e) => handleInputChange(e.target.value, setEsquerdoY)}
                                     />
                                 </div>
-                                <div className="border p-2">M²</div>
+                                <div className="border p-2">m²</div>
                                 <div className="border p-2">{calcularM2(esquerdoX, esquerdoY)}</div>
                             </div>
                         </div>
@@ -187,7 +201,7 @@ const Formulario = () => {
                                         onChange={(e) => handleInputChange(e.target.value, setEixo4x4Y)}
                                     />
                                 </div>
-                                <div className="border p-2">M²</div>
+                                <div className="border p-2">m²</div>
                                 <div className="border p-2">{calcularM2(eixo4x4X, eixo4x4Y)}</div>
                             </div>
                         </div>
@@ -210,7 +224,7 @@ const Formulario = () => {
                                         onChange={(e) => handleInputChange(e.target.value, setEixo2x2Y)}
                                     />
                                 </div>
-                                <div className="border p-2">M²</div>
+                                <div className="border p-2">m²</div>
                                 <div className="border p-2">{calcularM2(eixo2x2X, eixo2x2Y)}</div>
                             </div>
                         </div>
@@ -233,7 +247,7 @@ const Formulario = () => {
                                         onChange={(e) => handleInputChange(e.target.value, setAlcaY)}
                                     />
                                 </div>
-                                <div className="border p-2">M²</div>
+                                <div className="border p-2">m²</div>
                                 <div className="border p-2">{calcularM2(alcaX, alcaY)}</div>
                             </div>
                         </div>
@@ -247,7 +261,7 @@ const Formulario = () => {
                                 <th className="border p-2">branco</th>
                                 <th className="border p-2">ESPESSURA</th>
                                 <th className="border p-2">COMPRIMENTO (m)</th>
-                                <th className="border p-2">M²</th>
+                                <th className="border p-2">m²</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -346,24 +360,22 @@ const Formulario = () => {
             <div className="border-gray-300 border p-4 mb-4 flex flex-col lg:flex-row">
                 <label className="text-lg font-bold">Terceiro Quadro:</label>
 
-                <div className="mt-2 flex flex-col lg:flex-row">
+                <div className="flex flex-col lg:flex-row mt-2">
                     <label>Consumo:</label>
 
-                    <div className="mt-2 lg:ml-4">
-                        <label>Esfera(Kg)</label>
+                    <div className="flex flex-col lg:flex-row mt-2">
                         <input
                             type="text"
-                            className="p-2 border border-gray-300 rounded-md"
+                            className="p-2 border border-gray-300 rounded-md mb-2 lg:mr-2"
+                            placeholder="Esfera(Kg)"
                             value={esfera}
                             onChange={(e) => setEsfera(e.target.value)}
                         />
-                    </div>
 
-                    <div className="mt-2 lg:ml-4">
-                        <label>TINTA (baldes)</label>
                         <input
                             type="text"
-                            className="p-2 border border-gray-300 rounded-md"
+                            className="p-2 border border-gray-300 rounded-md mb-2 lg:mr-2"
+                            placeholder="TINTA (baldes)"
                             value={tinta}
                             onChange={(e) => setTinta(e.target.value)}
                         />
