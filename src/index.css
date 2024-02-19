@@ -34,6 +34,7 @@ body {
 @media only screen and (max-width: 600px) {
   #content {
     margin-bottom: 5rem;
+    padding-bottom: 5rem;
   }
 }
 /* Large screens */

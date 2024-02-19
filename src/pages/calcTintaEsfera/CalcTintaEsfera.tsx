@@ -16,6 +16,8 @@ const Formulario = () => {
         };
     }, []);
 
+    const [mostrarConteudo, setMostrarConteudo] = useState(false);
+
     const [sentido, setSentido] = useState('');
     const [kmInicial, setKmInicial] = useState('');
     const [diaMesAno, setDiaMesAno] = useState('');
@@ -95,6 +97,7 @@ const Formulario = () => {
     return (
         <div className="rounded-md">
 
+            {/* Primeiro quadro */}
             <div className="border-gray-300 border p-4 mb-4 flex flex-col lg:flex-row">
                 <label className="text-lg font-bold">Primeiro Quadro:</label>
 
@@ -132,6 +135,7 @@ const Formulario = () => {
                 </div>
             </div>
 
+            {/* Segundo quadro */}
             <div className="border-gray-300 border p-4 mb-4">
                 <label className="text-lg font-bold">Segundo Quadro:</label>
 
@@ -357,30 +361,50 @@ const Formulario = () => {
                 )}
             </div>
 
-            <div className="border-gray-300 border p-4 mb-4 flex flex-col lg:flex-row">
-                <label className="text-lg font-bold">Terceiro Quadro:</label>
-
-                <div className="flex flex-col lg:flex-row mt-2">
-                    <label>Consumo:</label>
-
-                    <div className="flex flex-col lg:flex-row mt-2">
-                        <input
-                            type="text"
-                            className="p-2 border border-gray-300 rounded-md mb-2 lg:mr-2"
-                            placeholder="Esfera(Kg)"
-                            value={esfera}
-                            onChange={(e) => setEsfera(e.target.value)}
+            {/* Terceiro quadro */}
+            <div className="border-gray-300 border p-4 mb-4">
+                <div
+                    className="cursor-pointer flex justify-between items-center"
+                    onClick={() => setMostrarConteudo(!mostrarConteudo)}
+                >
+                    <label className="text-lg font-bold">Quadro 3</label>
+                    <svg
+                        className={`w-6 h-6 ${mostrarConteudo ? 'transform rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M19 9l-7 7-7-7"
                         />
-
-                        <input
-                            type="text"
-                            className="p-2 border border-gray-300 rounded-md mb-2 lg:mr-2"
-                            placeholder="TINTA (baldes)"
-                            value={tinta}
-                            onChange={(e) => setTinta(e.target.value)}
-                        />
-                    </div>
+                    </svg>
                 </div>
+
+                {mostrarConteudo && (
+                    <div className="flex flex-col lg:flex-row mt-2">
+                        <label>Consumo:</label>
+                        <div className="flex flex-col lg:flex-row mt-2">
+                            <input
+                                type="text"
+                                className="p-2 border border-gray-300 rounded-md mb-2 lg:mr-2"
+                                placeholder="Esfera(Kg)"
+                                value={esfera}
+                                onChange={(e) => setEsfera(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                className="p-2 border border-gray-300 rounded-md mb-2 lg:mr-2"
+                                placeholder="TINTA (baldes)"
+                                value={tinta}
+                                onChange={(e) => setTinta(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                )}
             </div>
 
 
