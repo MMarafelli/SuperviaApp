@@ -81,6 +81,19 @@ const Formulario = () => {
         setLevantamento(textoLevantamento);
     };
 
+    const compartilharTexto = () => {
+        if (navigator.share) {
+            navigator.share({
+                title: 'Compartilhar Levantamento',
+                text: levantamento,
+            })
+                .then(() => console.log('Levantamento compartilhado com sucesso!'))
+                .catch((error) => console.error('Erro ao compartilhar levantamento:', error));
+        } else {
+            alert('A funcionalidade de compartilhamento não é suportada neste navegador.');
+        }
+    };
+
     const resetarFormulario = () => {
         setSentido('');
         setKmInicial('');
@@ -491,16 +504,23 @@ const Formulario = () => {
             <div className="mt-5 flex space-x-4">
                 <button
                     className="bg-green-500 text-white p-2 rounded-md"
-                    onClick={() => gerarLevantamento()}
+                    onClick={gerarLevantamento}
                 >
                     Gerar Levantamento
                 </button>
 
                 <button
                     className="bg-red-500 text-white p-2 rounded-md"
-                    onClick={() => resetarFormulario()}
+                    onClick={resetarFormulario}
                 >
                     Resetar
+                </button>
+
+                <button
+                    className="bg-blue-500 text-white p-2 rounded-md"
+                    onClick={compartilharTexto}
+                >
+                    Compartilhar Levantamento
                 </button>
             </div>
 
