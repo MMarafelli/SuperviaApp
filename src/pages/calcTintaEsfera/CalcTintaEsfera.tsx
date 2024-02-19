@@ -120,133 +120,257 @@ const Formulario = () => {
 
             <div className="border-gray-300 border p-4 mb-4">
                 <label className="text-lg font-bold">Segundo Quadro:</label>
-                <table className="w-full border border-collapse mt-2">
-                    <thead>
-                        <tr>
-                            <th className="border p-2">branco</th>
-                            <th className="border p-2">ESPESSURA</th>
-                            <th className="border p-2">COMPRIMENTO (m)</th>
-                            <th className="border p-2">M²</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td className="border p-2">BORDO DIREITO</td>
-                            <td className="border p-2">
-                                <select value={direitoX} onChange={(e) => setDireitoX(e.target.value)}>
-                                    <option value="0.10">0.10</option>
-                                    <option value="0.15">0.15</option>
-                                </select>
-                            </td>
-                            <td className="border p-2">
-                                <input
-                                    type="text"
-                                    value={direitoY}
-                                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                        handleInputChange(e.target.value, setDireitoY)}
-                                />
-                            </td>
-                            <td className="border p-2">{calcularM2(direitoX, direitoY)}</td>
-                        </tr>
-                        <tr>
-                            <td className="border p-2">BORDO ESQUERDO(estático)</td>
-                            <td className="border p-2">
-                                <select value={esquerdoX} onChange={(e) => setEsquerdoX(e.target.value)}>
-                                    <option value="0.10">0.10</option>
-                                    <option value="0.15">0.15</option>
-                                </select>
-                            </td>
-                            <td className="border p-2">
-                                <input
-                                    type="text"
-                                    value={esquerdoY}
-                                    onChange={(e) => setEsquerdoY(e.target.value)}
-                                />
-                            </td>
-                            <td className="border p-2">{calcularM2(esquerdoX, esquerdoY)}</td>
-                        </tr>
-                        <tr>
-                            <td className="border p-2">EIXO 4X4(estático)</td>
-                            <td className="border p-2">
-                                <select value={eixo4x4X} onChange={(e) => setEixo4x4X(e.target.value)}>
-                                    <option value="0.10">0.10</option>
-                                    <option value="0.15">0.15</option>
-                                </select>
-                            </td>
-                            <td className="border p-2">
-                                <input
-                                    type="text"
-                                    value={eixo4x4Y}
-                                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                        handleInputChange(e.target.value, setEixo4x4Y)}
-                                />
-                            </td>
-                            <td className="border p-2">{calcularM2(eixo4x4X, eixo4x4Y)}</td>
-                        </tr>
-                        <tr>
-                            <td className="border p-2">EIXO 2X2(estático)</td>
-                            <td className="border p-2">
-                                <select value={eixo2x2X} onChange={(e) => setEixo2x2X(e.target.value)}>
-                                    <option value="0.10">0.10</option>
-                                    <option value="0.15">0.15</option>
-                                </select>
-                            </td>
-                            <td className="border p-2">
-                                <input
-                                    type="text"
-                                    value={eixo2x2Y}
-                                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                        handleInputChange(e.target.value, setEixo2x2Y)}
-                                />
-                            </td>
-                            <td className="border p-2">{calcularM2(eixo2x2X, eixo2x2Y)}</td>
-                        </tr>
-                        <tr>
-                            <td className="border p-2">ALÇA(estático)</td>
-                            <td className="border p-2">
-                                <select value={alcaX} onChange={(e) => setAlcaX(e.target.value)}>
-                                    <option value="0.10">0.10</option>
-                                    <option value="0.15">0.15</option>
-                                </select>
-                            </td>
-                            <td className="border p-2">
-                                <input type="text" value={alcaY}
-                                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                        handleInputChange(e.target.value, setAlcaY)}
-                                />
-                            </td>
-                            <td className="border p-2">{calcularM2(alcaX, alcaY)}</td>
-                        </tr>
-                    </tbody>
-                </table>
+
+                {window.innerWidth <= 600 ? (
+                    <>
+                        <div className="mt-2">
+                            <label className="text-lg font-bold">BORDO DIREITO:</label>
+                            <div className="border border-collapse mt-2">
+                                <div className="border p-2">ESPESSURA</div>
+                                <div className="border p-2">
+                                    <select value={direitoX} onChange={(e) => setDireitoX(e.target.value)}>
+                                        <option value="0.10">0.10</option>
+                                        <option value="0.15">0.15</option>
+                                    </select>
+                                </div>
+                                <div className="border p-2">COMPRIMENTO (m)</div>
+                                <div className="border p-2">
+                                    <input
+                                        type="text"
+                                        value={direitoY}
+                                        onChange={(e) => handleInputChange(e.target.value, setDireitoY)}
+                                    />
+                                </div>
+                                <div className="border p-2">M²</div>
+                                <div className="border p-2">{calcularM2(direitoX, direitoY)}</div>
+                            </div>
+                        </div>
+
+                        <div className="mt-2">
+                            <label className="text-lg font-bold">BORDO ESQUERDO:</label>
+                            <div className="border border-collapse mt-2">
+                                <div className="border p-2">ESPESSURA</div>
+                                <div className="border p-2">
+                                    <select value={direitoX} onChange={(e) => setEsquerdoX(e.target.value)}>
+                                        <option value="0.10">0.10</option>
+                                        <option value="0.15">0.15</option>
+                                    </select>
+                                </div>
+                                <div className="border p-2">COMPRIMENTO (m)</div>
+                                <div className="border p-2">
+                                    <input
+                                        type="text"
+                                        value={direitoY}
+                                        onChange={(e) => handleInputChange(e.target.value, setEsquerdoY)}
+                                    />
+                                </div>
+                                <div className="border p-2">M²</div>
+                                <div className="border p-2">{calcularM2(esquerdoX, esquerdoY)}</div>
+                            </div>
+                        </div>
+
+                        <div className="mt-2">
+                            <label className="text-lg font-bold">EIXO 4X4:</label>
+                            <div className="border border-collapse mt-2">
+                                <div className="border p-2">ESPESSURA</div>
+                                <div className="border p-2">
+                                    <select value={direitoX} onChange={(e) => setEixo4x4X(e.target.value)}>
+                                        <option value="0.10">0.10</option>
+                                        <option value="0.15">0.15</option>
+                                    </select>
+                                </div>
+                                <div className="border p-2">COMPRIMENTO (m)</div>
+                                <div className="border p-2">
+                                    <input
+                                        type="text"
+                                        value={direitoY}
+                                        onChange={(e) => handleInputChange(e.target.value, setEixo4x4Y)}
+                                    />
+                                </div>
+                                <div className="border p-2">M²</div>
+                                <div className="border p-2">{calcularM2(eixo4x4X, eixo4x4Y)}</div>
+                            </div>
+                        </div>
+
+                        <div className="mt-2">
+                            <label className="text-lg font-bold">EIXO 2X2:</label>
+                            <div className="border border-collapse mt-2">
+                                <div className="border p-2">ESPESSURA</div>
+                                <div className="border p-2">
+                                    <select value={direitoX} onChange={(e) => setEixo2x2X(e.target.value)}>
+                                        <option value="0.10">0.10</option>
+                                        <option value="0.15">0.15</option>
+                                    </select>
+                                </div>
+                                <div className="border p-2">COMPRIMENTO (m)</div>
+                                <div className="border p-2">
+                                    <input
+                                        type="text"
+                                        value={direitoY}
+                                        onChange={(e) => handleInputChange(e.target.value, setEixo2x2Y)}
+                                    />
+                                </div>
+                                <div className="border p-2">M²</div>
+                                <div className="border p-2">{calcularM2(eixo2x2X, eixo2x2Y)}</div>
+                            </div>
+                        </div>
+
+                        <div className="mt-2">
+                            <label className="text-lg font-bold">ALÇA:</label>
+                            <div className="border border-collapse mt-2">
+                                <div className="border p-2">ESPESSURA</div>
+                                <div className="border p-2">
+                                    <select value={direitoX} onChange={(e) => setAlcaX(e.target.value)}>
+                                        <option value="0.10">0.10</option>
+                                        <option value="0.15">0.15</option>
+                                    </select>
+                                </div>
+                                <div className="border p-2">COMPRIMENTO (m)</div>
+                                <div className="border p-2">
+                                    <input
+                                        type="text"
+                                        value={direitoY}
+                                        onChange={(e) => handleInputChange(e.target.value, setAlcaY)}
+                                    />
+                                </div>
+                                <div className="border p-2">M²</div>
+                                <div className="border p-2">{calcularM2(alcaX, alcaY)}</div>
+                            </div>
+                        </div>
+
+                    </>
+                ) : (
+
+                    <table className="w-full border border-collapse mt-2">
+                        <thead>
+                            <tr>
+                                <th className="border p-2">branco</th>
+                                <th className="border p-2">ESPESSURA</th>
+                                <th className="border p-2">COMPRIMENTO (m)</th>
+                                <th className="border p-2">M²</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className="border p-2">BORDO DIREITO</td>
+                                <td className="border p-2">
+                                    <select value={direitoX} onChange={(e) => setDireitoX(e.target.value)}>
+                                        <option value="0.10">0.10</option>
+                                        <option value="0.15">0.15</option>
+                                    </select>
+                                </td>
+                                <td className="border p-2">
+                                    <input
+                                        type="text"
+                                        value={direitoY}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                            handleInputChange(e.target.value, setDireitoY)}
+                                    />
+                                </td>
+                                <td className="border p-2">{calcularM2(direitoX, direitoY)}</td>
+                            </tr>
+                            <tr>
+                                <td className="border p-2">BORDO ESQUERDO</td>
+                                <td className="border p-2">
+                                    <select value={esquerdoX} onChange={(e) => setEsquerdoX(e.target.value)}>
+                                        <option value="0.10">0.10</option>
+                                        <option value="0.15">0.15</option>
+                                    </select>
+                                </td>
+                                <td className="border p-2">
+                                    <input
+                                        type="text"
+                                        value={esquerdoY}
+                                        onChange={(e) => setEsquerdoY(e.target.value)}
+                                    />
+                                </td>
+                                <td className="border p-2">{calcularM2(esquerdoX, esquerdoY)}</td>
+                            </tr>
+                            <tr>
+                                <td className="border p-2">EIXO 4X4:</td>
+                                <td className="border p-2">
+                                    <select value={eixo4x4X} onChange={(e) => setEixo4x4X(e.target.value)}>
+                                        <option value="0.10">0.10</option>
+                                        <option value="0.15">0.15</option>
+                                    </select>
+                                </td>
+                                <td className="border p-2">
+                                    <input
+                                        type="text"
+                                        value={eixo4x4Y}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                            handleInputChange(e.target.value, setEixo4x4Y)}
+                                    />
+                                </td>
+                                <td className="border p-2">{calcularM2(eixo4x4X, eixo4x4Y)}</td>
+                            </tr>
+                            <tr>
+                                <td className="border p-2">EIXO 2X2:</td>
+                                <td className="border p-2">
+                                    <select value={eixo2x2X} onChange={(e) => setEixo2x2X(e.target.value)}>
+                                        <option value="0.10">0.10</option>
+                                        <option value="0.15">0.15</option>
+                                    </select>
+                                </td>
+                                <td className="border p-2">
+                                    <input
+                                        type="text"
+                                        value={eixo2x2Y}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                            handleInputChange(e.target.value, setEixo2x2Y)}
+                                    />
+                                </td>
+                                <td className="border p-2">{calcularM2(eixo2x2X, eixo2x2Y)}</td>
+                            </tr>
+                            <tr>
+                                <td className="border p-2">ALÇA:</td>
+                                <td className="border p-2">
+                                    <select value={alcaX} onChange={(e) => setAlcaX(e.target.value)}>
+                                        <option value="0.10">0.10</option>
+                                        <option value="0.15">0.15</option>
+                                    </select>
+                                </td>
+                                <td className="border p-2">
+                                    <input type="text" value={alcaY}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                            handleInputChange(e.target.value, setAlcaY)}
+                                    />
+                                </td>
+                                <td className="border p-2">{calcularM2(alcaX, alcaY)}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                )}
             </div>
 
-            <div className="border-gray-300 border p-4 mb-4">
+            <div className="border-gray-300 border p-4 mb-4 flex flex-col lg:flex-row">
                 <label className="text-lg font-bold">Terceiro Quadro:</label>
-                <div className="mt-2">
+
+                <div className="mt-2 flex flex-col lg:flex-row">
                     <label>Consumo:</label>
-                    <div className="flex space-x-4 mt-2">
-                        <div>
-                            <label>Esfera(Kg)</label>
-                            <input
-                                type="text"
-                                className="p-2 border border-gray-300 rounded-md"
-                                value={esfera}
-                                onChange={(e) => setEsfera(e.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <label>TINTA (baldes)</label>
-                            <input
-                                type="text"
-                                className="p-2 border border-gray-300 rounded-md"
-                                value={tinta}
-                                onChange={(e) => setTinta(e.target.value)}
-                            />
-                        </div>
+
+                    <div className="mt-2 lg:ml-4">
+                        <label>Esfera(Kg)</label>
+                        <input
+                            type="text"
+                            className="p-2 border border-gray-300 rounded-md"
+                            value={esfera}
+                            onChange={(e) => setEsfera(e.target.value)}
+                        />
+                    </div>
+
+                    <div className="mt-2 lg:ml-4">
+                        <label>TINTA (baldes)</label>
+                        <input
+                            type="text"
+                            className="p-2 border border-gray-300 rounded-md"
+                            value={tinta}
+                            onChange={(e) => setTinta(e.target.value)}
+                        />
                     </div>
                 </div>
             </div>
+
 
             <div className="mt-5 flex space-x-4">
                 <button

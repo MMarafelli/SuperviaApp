@@ -66,7 +66,7 @@ const NavBar = () => {
                 </li>
 
                 <li className="nav-item">
-                    <Link to={`${import.meta.env.BASE_URL}/dashboard`} className="nav-link">
+                    <Link to={`${import.meta.env.BASE_URL}dashboard`} className="nav-link">
                         <svg
                             aria-hidden="true"
                             focusable="false"
@@ -95,7 +95,7 @@ const NavBar = () => {
                 </li>
 
                 <li className="nav-item">
-                    <Link to={`${import.meta.env.BASE_URL}/CalcTintaEsfera`} className="nav-link">
+                    <Link to={`${import.meta.env.BASE_URL}CalcTintaEsfera`} className="nav-link">
                         <svg
                             aria-hidden="true"
                             focusable="false"
