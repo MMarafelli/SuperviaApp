@@ -67,7 +67,7 @@ const NavBar = () => {
                 </li>
 
                 <li className="nav-item">
-                    <Link to="/SuperViaApp/dashboard" className="nav-link">
+                    <Link to={`${process.env.PUBLIC_URL}/dashboard`} className="nav-link">
                         <svg
                             aria-hidden="true"
                             focusable="false"
@@ -96,7 +96,7 @@ const NavBar = () => {
                 </li>
 
                 <li className="nav-item">
-                    <Link to="/SuperViaApp/CalcTintaEsfera" className="nav-link">
+                    <Link to={`${process.env.PUBLIC_URL}/CalcTintaEsfera`} className="nav-link">
                         <svg
                             aria-hidden="true"
                             focusable="false"
