@@ -17,8 +17,9 @@ const Formulario = () => {
     }, []);
 
     const [mostrarConteudo, setMostrarConteudo] = useState(false);
-
+    const [estado, setEstado] = useState('');
     const [sentido, setSentido] = useState('');
+    const [nomeEstrada, setNomeEstrada] = useState('');
     const [kmInicial, setKmInicial] = useState('');
     const [diaMesAno, setDiaMesAno] = useState('');
     const [kmFinal, setKmFinal] = useState('');
@@ -137,6 +138,54 @@ const Formulario = () => {
                         className="p-2 border border-gray-300 rounded-md mb-2 lg:mr-2"
                         value={diaMesAno}
                         onChange={(e) => setDiaMesAno(e.target.value)}
+                    />
+
+                    {/* Novo campo de seleção para estados */}
+                    <select
+                        className="p-2 border border-gray-300 rounded-md mb-2 lg:mr-2"
+                        value={estado}
+                        onChange={(e) => setEstado(e.target.value)}
+                    >
+                        <option value="" disabled selected>
+                            Selecione um estado
+                        </option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+
+
+                    {/* Novo campo de texto para o nome da estrada */}
+                    <input
+                        type="text"
+                        className="p-2 border border-gray-300 rounded-md mb-2 lg:mr-2"
+                        placeholder="Nome da Estrada"
+                        value={nomeEstrada}
+                        onChange={(e) => setNomeEstrada(e.target.value)}
                     />
                 </div>
             </div>
@@ -412,19 +461,10 @@ const Formulario = () => {
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                     >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M19 9l-7 7-7-7"
-                        />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                     </svg>
                 </div>
-
-                <div
-                    className={`transition-all duration-300 overflow-hidden ${mostrarConteudo ? 'max-h-96' : 'max-h-0'
-                        }`}
-                >
+                <div className={`transition-all duration-300 overflow-hidden ${mostrarConteudo ? 'max-h-96' : 'max-h-0'}`}>
                     <div className="flex flex-col lg:flex-row mt-2">
                         <label>Consumo:</label>
                         <div className="flex flex-col lg:flex-row mt-2">
