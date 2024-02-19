@@ -165,7 +165,7 @@ const Formulario = () => {
                             <div className="border border-collapse mt-2">
                                 <div className="border p-2">ESPESSURA</div>
                                 <div className="border p-2">
-                                    <select value={direitoX} onChange={(e) => setEsquerdoX(e.target.value)}>
+                                    <select value={esquerdoX} onChange={(e) => setEsquerdoX(e.target.value)}>
                                         <option value="0.10">0.10</option>
                                         <option value="0.15">0.15</option>
                                     </select>
@@ -174,7 +174,7 @@ const Formulario = () => {
                                 <div className="border p-2">
                                     <input
                                         type="text"
-                                        value={direitoY}
+                                        value={esquerdoY}
                                         onChange={(e) => handleInputChange(e.target.value, setEsquerdoY)}
                                     />
                                 </div>
@@ -188,7 +188,7 @@ const Formulario = () => {
                             <div className="border border-collapse mt-2">
                                 <div className="border p-2">ESPESSURA</div>
                                 <div className="border p-2">
-                                    <select value={direitoX} onChange={(e) => setEixo4x4X(e.target.value)}>
+                                    <select value={eixo4x4X} onChange={(e) => setEixo4x4X(e.target.value)}>
                                         <option value="0.10">0.10</option>
                                         <option value="0.15">0.15</option>
                                     </select>
@@ -197,7 +197,7 @@ const Formulario = () => {
                                 <div className="border p-2">
                                     <input
                                         type="text"
-                                        value={direitoY}
+                                        value={eixo4x4Y}
                                         onChange={(e) => handleInputChange(e.target.value, setEixo4x4Y)}
                                     />
                                 </div>
@@ -211,7 +211,7 @@ const Formulario = () => {
                             <div className="border border-collapse mt-2">
                                 <div className="border p-2">ESPESSURA</div>
                                 <div className="border p-2">
-                                    <select value={direitoX} onChange={(e) => setEixo2x2X(e.target.value)}>
+                                    <select value={eixo2x2X} onChange={(e) => setEixo2x2X(e.target.value)}>
                                         <option value="0.10">0.10</option>
                                         <option value="0.15">0.15</option>
                                     </select>
@@ -220,7 +220,7 @@ const Formulario = () => {
                                 <div className="border p-2">
                                     <input
                                         type="text"
-                                        value={direitoY}
+                                        value={eixo2x2Y}
                                         onChange={(e) => handleInputChange(e.target.value, setEixo2x2Y)}
                                     />
                                 </div>
@@ -234,7 +234,7 @@ const Formulario = () => {
                             <div className="border border-collapse mt-2">
                                 <div className="border p-2">ESPESSURA</div>
                                 <div className="border p-2">
-                                    <select value={direitoX} onChange={(e) => setAlcaX(e.target.value)}>
+                                    <select value={alcaX} onChange={(e) => setAlcaX(e.target.value)}>
                                         <option value="0.10">0.10</option>
                                         <option value="0.15">0.15</option>
                                     </select>
@@ -243,7 +243,7 @@ const Formulario = () => {
                                 <div className="border p-2">
                                     <input
                                         type="text"
-                                        value={direitoY}
+                                        value={alcaY}
                                         onChange={(e) => handleInputChange(e.target.value, setAlcaY)}
                                     />
                                 </div>
