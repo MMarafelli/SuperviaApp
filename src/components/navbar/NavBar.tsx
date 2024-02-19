@@ -95,7 +95,7 @@ const NavBar = () => {
                 </li>
 
                 <li className="nav-item">
-                    <Link to="/SuperViaApp/CalcTintaEsfera" className="nav-link">
+                    <Link to={`${import.meta.env.BASE_URL}/CalcTintaEsfera`} className="nav-link">
                         <svg
                             aria-hidden="true"
                             focusable="false"
