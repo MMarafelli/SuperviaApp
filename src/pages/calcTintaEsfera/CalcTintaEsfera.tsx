@@ -104,8 +104,8 @@ const Formulario = () => {
         <div className="rounded-md">
 
             {/* Primeiro quadro */}
-            <div className="border-gray-300 border p-4 mb-4 flex flex-col lg:flex-row">
-                <label className="text-lg font-bold">Primeiro Quadro:</label>
+            <div className="border-gray-300 border p-4 mb-4 flex flex-col">
+                <label className="text-lg font-bold mb-2 lg:mb-0 lg:mr-2 lg:w-full">Primeiro Quadro:</label>
 
                 <div className="flex flex-col lg:flex-row mt-2">
                     <input
