@@ -82,13 +82,15 @@ const Formulario = () => {
     };
 
     const compartilharTexto = () => {
-        if (navigator.share) {
+        if (levantamento && navigator.share) {
             navigator.share({
                 title: 'Compartilhar Levantamento',
                 text: levantamento,
             })
                 .then(() => console.log('Levantamento compartilhado com sucesso!'))
                 .catch((error) => console.error('Erro ao compartilhar levantamento:', error));
+        } else if (!levantamento) {
+            alert('O levantamento precisa ser gerado antes de compartilhar.');
         } else {
             alert('A funcionalidade de compartilhamento não é suportada neste navegador.');
         }
@@ -501,28 +503,36 @@ const Formulario = () => {
             </div>
 
 
-            <div className="mt-5 flex space-x-4">
+            <div className="flex items-center justify-center h-16 m-2">
                 <button
-                    className="bg-green-500 text-white p-2 rounded-md"
+                    className="flex-grow bg-green-500 text-white p-2 m-2 rounded-md"
                     onClick={gerarLevantamento}
                 >
-                    Gerar Levantamento
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+                    </svg>
                 </button>
 
                 <button
-                    className="bg-red-500 text-white p-2 rounded-md"
+                    className="flex-grow bg-red-500 text-white p-2 m-2 rounded-md"
                     onClick={resetarFormulario}
                 >
-                    Resetar
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
                 </button>
 
                 <button
-                    className="bg-blue-500 text-white p-2 rounded-md"
+                    className="flex-grow bg-blue-500 text-white p-2 m-2 rounded-md"
                     onClick={compartilharTexto}
                 >
-                    Compartilhar Levantamento
+                    <svg fill="#ffffff" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                        <path d="M12,10c-.6012,0-1.13403,.27069-1.50067,.69055l-4.54468-2.27234c.02881-.13507,.04535-.2746,.04535-.41821,0-.14368-.01654-.28314-.04535-.41821l4.54468-2.2724c.36664,.4198,.89954,.69061,1.50067,.69061,1.10455,0,2-.89545,2-2,0-1.10461-.89545-2-2-2s-2,.89539-2,2c0,.14362,.01654,.28314,.04535,.41821l-4.54468,2.27234c-.36664-.41986-.89948-.69055-1.50067-.69055-1.10455,0-2,.89539-2,2,0,1.10455,.89545,2,2,2,.60114,0,1.13403-.27081,1.50067-.69061l4.54468,2.2724c-.02881,.13507-.04535,.27454-.04535,.41821,0,1.10455,.89545,2,2,2s2-.89545,2-2c0-1.10461-.89545-2-2-2Z">
+                        </path>
+                    </svg>
                 </button>
             </div>
+
 
             {levantamento && (
                 <div className="mt-5 p-4 rounded-md">
