@@ -1,5 +1,5 @@
 // Formulario.js
-import { useState, ChangeEvent, useEffect } from 'react';
+import { useRef, useState, ChangeEvent, useEffect } from 'react';
 
 const Formulario = () => {
     const [larguraDaJanela, setLarguraDaJanela] = useState(window.innerWidth);
@@ -95,6 +95,15 @@ const Formulario = () => {
             alert('A funcionalidade de compartilhamento não é suportada neste navegador.');
         }
     };
+
+    const levantamentoRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        // Verifica se levantamento é verdadeiro e se a referência existe
+        if (levantamento && levantamentoRef.current) {
+            levantamentoRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+    }, [levantamento]);
 
     const resetarFormulario = () => {
         setSentido('');
@@ -503,44 +512,46 @@ const Formulario = () => {
             </div>
 
 
-            <div className="flex items-center justify-center h-16 m-2">
-                <button
-                    className="flex-grow bg-green-500 text-white p-2 m-2 rounded-md"
-                    onClick={gerarLevantamento}
-                >
-                    <svg fill="#ffffff" stroke-width="0.05" height="24" width="24" stroke="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                        <path className="cls-1" d="M11,5H5A2,2,0,0,1,7,3H7V2A1,1,0,0,1,9,2V3H9a2,2,0,0,1,2,2Zm1-2v9H4V3H3A1,1,0,0,0,2,4v9a1,1,0,0,0,1,1H13a1,1,0,0,0,1-1V4a1,1,0,0,0-1-1ZM10,7H5V8h5ZM8,9H5v1H8Z">
-                        </path>
-                    </svg>
-                </button>
+            <div>
+                {/* Se levantamento existe, mostra a div */}
+                {levantamento && (
+                    <div className="mt-5 p-4 rounded-md" ref={levantamentoRef}>
+                        <label className="text-lg font-bold">Levantamento Gerado:</label>
+                        <pre className="mt-2 whitespace-pre-line">{levantamento}</pre>
+                    </div>
+                )}
 
-                <button
-                    className="flex-grow bg-red-500 text-white p-2 m-2 rounded-md"
-                    onClick={resetarFormulario}
-                >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
+                <div className="flex items-center justify-center h-16 m-2">
+                    <button
+                        className="flex-grow bg-green-500 text-white p-2 m-2 rounded-md"
+                        onClick={gerarLevantamento}
+                    >
+                        <svg fill="#ffffff" stroke-width="0.05" height="24" width="24" stroke="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                            <path className="cls-1" d="M11,5H5A2,2,0,0,1,7,3H7V2A1,1,0,0,1,9,2V3H9a2,2,0,0,1,2,2Zm1-2v9H4V3H3A1,1,0,0,0,2,4v9a1,1,0,0,0,1,1H13a1,1,0,0,0,1-1V4a1,1,0,0,0-1-1ZM10,7H5V8h5ZM8,9H5v1H8Z">
+                            </path>
+                        </svg>
+                    </button>
 
-                <button
-                    className="flex-grow bg-blue-500 text-white p-2 m-2 rounded-md"
-                    onClick={compartilharTexto}
-                >
-                    <svg fill="#ffffff" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                        <path d="M12,10c-.6012,0-1.13403,.27069-1.50067,.69055l-4.54468-2.27234c.02881-.13507,.04535-.2746,.04535-.41821,0-.14368-.01654-.28314-.04535-.41821l4.54468-2.2724c.36664,.4198,.89954,.69061,1.50067,.69061,1.10455,0,2-.89545,2-2,0-1.10461-.89545-2-2-2s-2,.89539-2,2c0,.14362,.01654,.28314,.04535,.41821l-4.54468,2.27234c-.36664-.41986-.89948-.69055-1.50067-.69055-1.10455,0-2,.89539-2,2,0,1.10455,.89545,2,2,2,.60114,0,1.13403-.27081,1.50067-.69061l4.54468,2.2724c-.02881,.13507-.04535,.27454-.04535,.41821,0,1.10455,.89545,2,2,2s2-.89545,2-2c0-1.10461-.89545-2-2-2Z">
-                        </path>
-                    </svg>
-                </button>
-            </div>
+                    <button
+                        className="flex-grow bg-red-500 text-white p-2 m-2 rounded-md"
+                        onClick={resetarFormulario}
+                    >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
 
-
-            {levantamento && (
-                <div className="mt-5 p-4 rounded-md">
-                    <label className="text-lg font-bold">Levantamento Gerado:</label>
-                    <pre className="mt-2 whitespace-pre-line">{levantamento}</pre>
+                    <button
+                        className="flex-grow bg-blue-500 text-white p-2 m-2 rounded-md"
+                        onClick={compartilharTexto}
+                    >
+                        <svg fill="#ffffff" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                            <path d="M12,10c-.6012,0-1.13403,.27069-1.50067,.69055l-4.54468-2.27234c.02881-.13507,.04535-.2746,.04535-.41821,0-.14368-.01654-.28314-.04535-.41821l4.54468-2.2724c.36664,.4198,.89954,.69061,1.50067,.69061,1.10455,0,2-.89545,2-2,0-1.10461-.89545-2-2-2s-2,.89539-2,2c0,.14362,.01654,.28314,.04535,.41821l-4.54468,2.27234c-.36664-.41986-.89948-.69055-1.50067-.69055-1.10455,0-2,.89539-2,2,0,1.10455,.89545,2,2,2,.60114,0,1.13403-.27081,1.50067-.69061l4.54468,2.2724c-.02881,.13507-.04535,.27454-.04535,.41821,0,1.10455,.89545,2,2,2s2-.89545,2-2c0-1.10461-.89545-2-2-2Z">
+                            </path>
+                        </svg>
+                    </button>
                 </div>
-            )}
+            </div>
         </div>
     );
 };
