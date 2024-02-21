@@ -4,6 +4,7 @@ import { useRef, useState, ChangeEvent, useEffect } from 'react';
 const Formulario = () => {
     const [larguraDaJanela, setLarguraDaJanela] = useState(window.innerWidth);
 
+    //Controle do tamanho da tela, para responsividade
     useEffect(() => {
         const handleResize = () => {
             setLarguraDaJanela(window.innerWidth);
@@ -25,18 +26,28 @@ const Formulario = () => {
     const [kmFinal, setKmFinal] = useState('');
     const [esquerdoX, setEsquerdoX] = useState('');
     const [esquerdoY, setEsquerdoY] = useState('');
+    const [esquerdoZ, setEsquerdoZ] = useState('');
     const [direitoX, setDireitoX] = useState('');
     const [direitoY, setDireitoY] = useState('');
+    const [direitoZ, setDireitoZ] = useState('');
     const [eixo4x4X, setEixo4x4X] = useState('');
     const [eixo4x4Y, setEixo4x4Y] = useState('');
+    const [eixo4x4Z, setEixo4x4Z] = useState('');
     const [eixo2x2X, setEixo2x2X] = useState('');
     const [eixo2x2Y, setEixo2x2Y] = useState('');
+    const [eixo2x2Z, setEixo2x2Z] = useState('');
     const [alcaX, setAlcaX] = useState('');
     const [alcaY, setAlcaY] = useState('');
+    const [alcaZ, setAlcaZ] = useState('');
     const [esfera, setEsfera] = useState('');
+    const [resultadoEsferas, setResultadoEsferas] = useState('');
+    const [editarEsferas, setEditarEsferas] = useState(false);
     const [tinta, setTinta] = useState('');
+    const [resultadoTinta, setResultadoTinta] = useState('');
+    const [editarTinta, setEditarTinta] = useState(false);
     const [levantamento, setLevantamento] = useState('');
 
+    // Calcula metro quadro para a tabela 
     const calcularM2 = (x: string, y: string): number => {
         const xNumber = parseFloat(x);
         const yNumber = parseFloat(y);
@@ -50,7 +61,8 @@ const Formulario = () => {
         return roundedResult;
     };
 
-    const handleInputChange = (
+    // Controla o campo para só aceitar valor numérico
+    const handleInputChangeNumeric = (
         inputValue: string,
         setFunction: React.Dispatch<React.SetStateAction<string>>
     ) => {
@@ -58,11 +70,125 @@ const Formulario = () => {
         setFunction(numericValue);
     };
 
+    const handleEditEsfera = () => {
+        setEditarEsferas(!editarEsferas);
+    };
+
+    const handleEditTinta = () => {
+        setEditarTinta(!editarTinta);
+    };
+
+    // opções de espeçura da faixa
     const opcoesDeSelect = [
         { valor: '', label: 'Selecione...' },
         { valor: '0.10', label: '0.10' },
         { valor: '0.15', label: '0.15' },
     ];
+
+    useEffect(() => {
+        const novoDireitoZ = calcularM2(direitoX, direitoY).toString(); // Converta o número para string
+        setDireitoZ(novoDireitoZ);
+    }, [direitoX, direitoY]);
+
+    useEffect(() => {
+        const novoEsquerdoZ = calcularM2(esquerdoX, esquerdoY).toString(); // Converta o número para string
+        setEsquerdoZ(novoEsquerdoZ);
+    }, [esquerdoX, esquerdoY]);
+
+    useEffect(() => {
+        const novoEixo4x4Z = calcularM2(eixo4x4X, eixo4x4Y).toString(); // Converta o número para string
+        setEixo4x4Z(novoEixo4x4Z);
+    }, [eixo4x4X, eixo4x4Y]);
+
+    useEffect(() => {
+        const novoEixo2x2Z = calcularM2(eixo2x2X, eixo2x2Y).toString(); // Converta o número para string
+        setEixo2x2Z(novoEixo2x2Z);
+    }, [eixo2x2X, eixo2x2Y]);
+
+    useEffect(() => {
+        const novoAlcaZ = calcularM2(alcaX, alcaY).toString(); // Converta o número para string
+        setAlcaZ(novoAlcaZ);
+    }, [alcaX, alcaY]);
+
+    useEffect(() => {
+        const novoAlcaZ = calcularM2(alcaX, alcaY).toString(); // Converta o número para string
+        setAlcaZ(novoAlcaZ);
+    }, [alcaX, alcaY]);
+
+
+    useEffect(() => {
+        const calcularResultadoEsferas = () => {
+            const direitoZNumber = parseFloat(direitoZ);
+            const esquerdoZNumber = parseFloat(esquerdoZ);
+            const eixo2x2ZNumber = parseFloat(eixo2x2Z);
+            const eixo4x4ZNumber = parseFloat(eixo4x4Z);
+            const alcaZNumber = parseFloat(alcaZ);
+            const esferaNumber = parseFloat(esfera);
+
+            if (
+                isNaN(direitoZNumber) ||
+                isNaN(esquerdoZNumber) ||
+                isNaN(eixo2x2ZNumber) ||
+                isNaN(eixo4x4ZNumber) ||
+                isNaN(alcaZNumber) ||
+                isNaN(esferaNumber)
+            ) {
+                setResultadoEsferas('');
+                return;
+            }
+
+            const denominador =
+                direitoZNumber + esquerdoZNumber + eixo2x2ZNumber + eixo4x4ZNumber + alcaZNumber;
+
+            if (denominador === 0) {
+                setResultadoEsferas('');
+                return;
+            }
+
+            const resultado = esferaNumber / denominador;
+            const roundedResultado = Math.ceil(resultado * 100) / 100;
+            setResultadoEsferas(roundedResultado.toString());
+        };
+
+        calcularResultadoEsferas();
+    }, [direitoZ, esquerdoZ, eixo2x2Z, eixo4x4Z, alcaZ, esfera]);
+
+    useEffect(() => {
+        const calcularResultadoTinta = () => {
+            const direitoZNumber = parseFloat(direitoZ);
+            const esquerdoZNumber = parseFloat(esquerdoZ);
+            const eixo2x2ZNumber = parseFloat(eixo2x2Z);
+            const eixo4x4ZNumber = parseFloat(eixo4x4Z);
+            const alcaZNumber = parseFloat(alcaZ);
+            const tintaNumber = parseFloat(tinta);
+
+            if (
+                isNaN(direitoZNumber) ||
+                isNaN(esquerdoZNumber) ||
+                isNaN(eixo2x2ZNumber) ||
+                isNaN(eixo4x4ZNumber) ||
+                isNaN(alcaZNumber) ||
+                isNaN(tintaNumber)
+            ) {
+                setResultadoTinta('');
+                return;
+            }
+
+            const numerador =
+                direitoZNumber + esquerdoZNumber + eixo2x2ZNumber + eixo4x4ZNumber + alcaZNumber;
+
+            if (numerador === 0) {
+                setResultadoTinta('');
+                return;
+            }
+
+            const resultado = numerador / tintaNumber;
+            const roundedResultado = Math.ceil(resultado * 100) / 100;
+            setResultadoTinta(roundedResultado.toString());
+        };
+
+        calcularResultadoTinta();
+    }, [direitoZ, esquerdoZ, eixo2x2Z, eixo4x4Z, alcaZ, tinta]);
 
     const gerarLevantamento = () => {
         const textoLevantamento = `
@@ -70,11 +196,11 @@ const Formulario = () => {
       KM Inicial: ${kmInicial},
       KM Final: ${kmFinal},
       Data: ${diaMesAno},
-      BORDO DIREITO - X: ${direitoX}, Y: ${direitoY}, Z: ${calcularM2(direitoX, direitoY)},
-      BORDO ESQUERDO - X: ${esquerdoX}, Y: ${esquerdoY}, Z: ${calcularM2(esquerdoX, esquerdoY)},
-      EIXO 4X4 - X: ${eixo4x4X}, Y: ${eixo4x4Y}, Z: ${calcularM2(eixo4x4X, eixo4x4Y)},
-      EIXO 2X2 - X: ${eixo2x2X}, Y: ${eixo2x2Y}, Z: ${calcularM2(eixo2x2X, eixo2x2Y)},
-      ALÇA - X: ${alcaX}, Y: ${alcaY}, Z: ${calcularM2(alcaX, alcaY)},
+      Bordo Direito - X: ${direitoX}, Y: ${direitoY}, Z: ${calcularM2(direitoX, direitoY)},
+      Bordo Esquerdo - X: ${esquerdoX}, Y: ${esquerdoY}, Z: ${calcularM2(esquerdoX, esquerdoY)},
+      Eixo 4X4 - X: ${eixo4x4X}, Y: ${eixo4x4Y}, Z: ${calcularM2(eixo4x4X, eixo4x4Y)},
+      Eixo 2X2 - X: ${eixo2x2X}, Y: ${eixo2x2Y}, Z: ${calcularM2(eixo2x2X, eixo2x2Y)},
+      Alça - X: ${alcaX}, Y: ${alcaY}, Z: ${calcularM2(alcaX, alcaY)},
       Esfera(Kg): ${esfera},
       TINTA (baldes): ${tinta}
     `;
@@ -106,22 +232,29 @@ const Formulario = () => {
     }, [levantamento]);
 
     const resetarFormulario = () => {
+        setMostrarConteudo(false);
+        setEstado('');
         setSentido('');
+        setNomeEstrada('');
         setKmInicial('');
         setKmFinal('');
         setDiaMesAno('')
-        setEsquerdoX('0.10');
+        setEsquerdoX('');
         setEsquerdoY('');
-        setDireitoX('0.10');
+        setDireitoX('');
         setDireitoY('');
-        setEixo4x4X('0.10');
+        setEixo4x4X('');
         setEixo4x4Y('');
-        setEixo2x2X('0.10');
+        setEixo2x2X('');
         setEixo2x2Y('');
-        setAlcaX('0.10');
+        setAlcaX('');
         setAlcaY('');
         setEsfera('');
+        setResultadoEsferas('');
+        setEditarEsferas(false);
         setTinta('');
+        setResultadoTinta('');
+        setEditarTinta(false);
         setLevantamento('');
     };
 
@@ -135,7 +268,7 @@ const Formulario = () => {
                 <div className="flex flex-col lg:flex-row mt-2">
                     <input
                         type="text"
-                        className="p-2 border border-gray-300 rounded-md mb-2 lg:mr-2"
+                        className="p-4 border border-gray-300 rounded-md mb-2 lg:mr-2"
                         placeholder="Sentido"
                         value={sentido}
                         onChange={(e) => setSentido(e.target.value)}
@@ -143,7 +276,7 @@ const Formulario = () => {
 
                     <input
                         type="text"
-                        className="p-2 border border-gray-300 rounded-md mb-2 lg:mr-2"
+                        className="p-4 border border-gray-300 rounded-md mb-2 lg:mr-2"
                         placeholder="KM Inicial"
                         value={kmInicial}
                         onChange={(e) => setKmInicial(e.target.value)}
@@ -151,7 +284,7 @@ const Formulario = () => {
 
                     <input
                         type="text"
-                        className="p-2 border border-gray-300 rounded-md mb-2 lg:mr-2"
+                        className="p-4 border border-gray-300 rounded-md mb-2 lg:mr-2"
                         placeholder="KM Final"
                         value={kmFinal}
                         onChange={(e) => setKmFinal(e.target.value)}
@@ -159,14 +292,14 @@ const Formulario = () => {
 
                     <input
                         type="date"
-                        className="p-2 border border-gray-300 rounded-md mb-2 lg:mr-2"
+                        className="p-4 border border-gray-300 rounded-md mb-2 lg:mr-2"
                         value={diaMesAno}
                         onChange={(e) => setDiaMesAno(e.target.value)}
                     />
 
                     {/* Novo campo de seleção para estados */}
                     <select
-                        className="p-2 border border-gray-300 rounded-md mb-2 lg:mr-2"
+                        className="p-4 border border-gray-300 rounded-md mb-2 lg:mr-2"
                         value={estado}
                         onChange={(e) => setEstado(e.target.value)}
                     >
@@ -206,7 +339,7 @@ const Formulario = () => {
                     {/* Novo campo de texto para o nome da estrada */}
                     <input
                         type="text"
-                        className="p-2 border border-gray-300 rounded-md mb-2 lg:mr-2"
+                        className="p-4 border border-gray-300 rounded-md mb-2 lg:mr-2"
                         placeholder="Nome da Estrada"
                         value={nomeEstrada}
                         onChange={(e) => setNomeEstrada(e.target.value)}
@@ -215,17 +348,17 @@ const Formulario = () => {
             </div>
 
             {/* Segundo quadro */}
-            <div className="border-gray-300 border p-4 mb-4">
-                <label className="text-lg font-bold">Segundo Quadro:</label>
+            <div className="border-gray-300 border mb-4">
+                <label className="text-lg p-4 font-bold">Segundo Quadro:</label>
 
                 {larguraDaJanela <= 600 ? (
                     <>
                         <div className="mt-2">
-                            <label className="text-lg font-bold">BORDO DIREITO:</label>
+                            <label className="text-lg p-4 font-bold">Bordo direito:</label>
                             <div className="border border-collapse mt-2">
-                                <div className="border p-2">ESPESSURA</div>
-                                <div className="border p-2">
-                                    <select value={direitoX} onChange={(e) => setDireitoX(e.target.value)}>
+                                <div className="border p-4">Espessura</div>
+                                <div className="border p-4">
+                                    <select className='w-full' value={direitoX} onChange={(e) => setDireitoX(e.target.value)}>
                                         {opcoesDeSelect.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
@@ -233,25 +366,25 @@ const Formulario = () => {
                                         ))}
                                     </select>
                                 </div>
-                                <div className="border p-2">COMPRIMENTO (m)</div>
-                                <div className="border p-2">
+                                <div className="border p-4">Comprimento (m)</div>
+                                <div className="border p-4">
                                     <input
+                                        className='w-full'
                                         type="text"
                                         value={direitoY}
-                                        onChange={(e) => handleInputChange(e.target.value, setDireitoY)}
+                                        onChange={(e) => handleInputChangeNumeric(e.target.value, setDireitoY)}
                                     />
                                 </div>
-                                <div className="border p-2">m²</div>
-                                <div className="border p-2">{calcularM2(direitoX, direitoY)}</div>
+                                <div className="border p-4">{direitoZ} m²</div>
                             </div>
                         </div>
 
                         <div className="mt-2">
-                            <label className="text-lg font-bold">BORDO ESQUERDO:</label>
+                            <label className="text-lg p-4 font-bold">Bordo Esquerdo:</label>
                             <div className="border border-collapse mt-2">
-                                <div className="border p-2">ESPESSURA</div>
-                                <div className="border p-2">
-                                    <select value={esquerdoX} onChange={(e) => setEsquerdoX(e.target.value)}>
+                                <div className="border p-4">Espessura</div>
+                                <div className="border p-4">
+                                    <select className='w-full' value={esquerdoX} onChange={(e) => setEsquerdoX(e.target.value)}>
                                         {opcoesDeSelect.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
@@ -259,25 +392,24 @@ const Formulario = () => {
                                         ))}
                                     </select>
                                 </div>
-                                <div className="border p-2">COMPRIMENTO (m)</div>
-                                <div className="border p-2">
-                                    <input
+                                <div className="border p-4">Comprimento (m)</div>
+                                <div className="border p-4">
+                                    <input className='w-full'
                                         type="text"
                                         value={esquerdoY}
-                                        onChange={(e) => handleInputChange(e.target.value, setEsquerdoY)}
+                                        onChange={(e) => handleInputChangeNumeric(e.target.value, setEsquerdoY)}
                                     />
                                 </div>
-                                <div className="border p-2">m²</div>
-                                <div className="border p-2">{calcularM2(esquerdoX, esquerdoY)}</div>
+                                <div className="border p-4">{esquerdoZ} m²</div>
                             </div>
                         </div>
 
                         <div className="mt-2">
-                            <label className="text-lg font-bold">EIXO 4X4:</label>
+                            <label className="text-lg p-4 font-bold">Eixo 4X4:</label>
                             <div className="border border-collapse mt-2">
-                                <div className="border p-2">ESPESSURA</div>
-                                <div className="border p-2">
-                                    <select value={eixo4x4X} onChange={(e) => setEixo4x4X(e.target.value)}>
+                                <div className="border p-4">Espessura</div>
+                                <div className="border p-4">
+                                    <select className='w-full' value={eixo4x4X} onChange={(e) => setEixo4x4X(e.target.value)}>
                                         {opcoesDeSelect.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
@@ -285,25 +417,24 @@ const Formulario = () => {
                                         ))}
                                     </select>
                                 </div>
-                                <div className="border p-2">COMPRIMENTO (m)</div>
-                                <div className="border p-2">
-                                    <input
+                                <div className="border p-4">Comprimento (m)</div>
+                                <div className="border p-4">
+                                    <input className='w-full'
                                         type="text"
                                         value={eixo4x4Y}
-                                        onChange={(e) => handleInputChange(e.target.value, setEixo4x4Y)}
+                                        onChange={(e) => handleInputChangeNumeric(e.target.value, setEixo4x4Y)}
                                     />
                                 </div>
-                                <div className="border p-2">m²</div>
-                                <div className="border p-2">{calcularM2(eixo4x4X, eixo4x4Y)}</div>
+                                <div className="border p-4">{eixo4x4Z} m²</div>
                             </div>
                         </div>
 
                         <div className="mt-2">
-                            <label className="text-lg font-bold">EIXO 2X2:</label>
+                            <label className="text-lg p-4 font-bold">Eixo 2X2:</label>
                             <div className="border border-collapse mt-2">
-                                <div className="border p-2">ESPESSURA</div>
-                                <div className="border p-2">
-                                    <select value={eixo2x2X} onChange={(e) => setEixo2x2X(e.target.value)}>
+                                <div className="border p-4">Espessura</div>
+                                <div className="border p-4">
+                                    <select className='w-full' value={eixo2x2X} onChange={(e) => setEixo2x2X(e.target.value)}>
                                         {opcoesDeSelect.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
@@ -311,25 +442,24 @@ const Formulario = () => {
                                         ))}
                                     </select>
                                 </div>
-                                <div className="border p-2">COMPRIMENTO (m)</div>
-                                <div className="border p-2">
-                                    <input
+                                <div className="border p-4">Comprimento (m)</div>
+                                <div className="border p-4">
+                                    <input className='w-full'
                                         type="text"
                                         value={eixo2x2Y}
-                                        onChange={(e) => handleInputChange(e.target.value, setEixo2x2Y)}
+                                        onChange={(e) => handleInputChangeNumeric(e.target.value, setEixo2x2Y)}
                                     />
                                 </div>
-                                <div className="border p-2">m²</div>
-                                <div className="border p-2">{calcularM2(eixo2x2X, eixo2x2Y)}</div>
+                                <div className="border p-4">{eixo2x2Z} m²</div>
                             </div>
                         </div>
 
                         <div className="mt-2">
-                            <label className="text-lg font-bold">ALÇA:</label>
+                            <label className="text-lg p-4 font-bold">Alça:</label>
                             <div className="border border-collapse mt-2">
-                                <div className="border p-2">ESPESSURA</div>
-                                <div className="border p-2">
-                                    <select value={alcaX} onChange={(e) => setAlcaX(e.target.value)}>
+                                <div className="border p-4">Espessura</div>
+                                <div className="border p-4">
+                                    <select className='w-full' value={alcaX} onChange={(e) => setAlcaX(e.target.value)}>
                                         {opcoesDeSelect.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
@@ -337,16 +467,15 @@ const Formulario = () => {
                                         ))}
                                     </select>
                                 </div>
-                                <div className="border p-2">COMPRIMENTO (m)</div>
-                                <div className="border p-2">
-                                    <input
+                                <div className="border p-4">Comprimento (m)</div>
+                                <div className="border p-4">
+                                    <input className='w-full'
                                         type="text"
                                         value={alcaY}
-                                        onChange={(e) => handleInputChange(e.target.value, setAlcaY)}
+                                        onChange={(e) => handleInputChangeNumeric(e.target.value, setAlcaY)}
                                     />
                                 </div>
-                                <div className="border p-2">m²</div>
-                                <div className="border p-2">{calcularM2(alcaX, alcaY)}</div>
+                                <div className="border p-4">{alcaZ} m²</div>
                             </div>
                         </div>
 
@@ -356,16 +485,16 @@ const Formulario = () => {
                     <table className="w-full border border-collapse mt-2">
                         <thead>
                             <tr>
-                                <th className="border p-2">branco</th>
-                                <th className="border p-2">ESPESSURA</th>
-                                <th className="border p-2">COMPRIMENTO (m)</th>
-                                <th className="border p-2">m²</th>
+                                <th className="border p-4">branco</th>
+                                <th className="border p-4">Espessura</th>
+                                <th className="border p-4">Comprimento (m)</th>
+                                <th className="border p-4">m²</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td className="border p-2">BORDO DIREITO</td>
-                                <td className="border p-2">
+                                <td className="border p-4">Bordo Direito</td>
+                                <td className="border p-4">
                                     <select value={direitoX} onChange={(e) => setDireitoX(e.target.value)}>
                                         {opcoesDeSelect.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
@@ -374,19 +503,19 @@ const Formulario = () => {
                                         ))}
                                     </select>
                                 </td>
-                                <td className="border p-2">
+                                <td className="border p-4">
                                     <input
                                         type="text"
                                         value={direitoY}
                                         onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                            handleInputChange(e.target.value, setDireitoY)}
+                                            handleInputChangeNumeric(e.target.value, setDireitoY)}
                                     />
                                 </td>
-                                <td className="border p-2">{calcularM2(direitoX, direitoY)}</td>
+                                <td className="border p-4">{direitoZ}</td>
                             </tr>
                             <tr>
-                                <td className="border p-2">BORDO ESQUERDO</td>
-                                <td className="border p-2">
+                                <td className="border p-4">Bordo Esquerdo</td>
+                                <td className="border p-4">
                                     <select value={esquerdoX} onChange={(e) => setEsquerdoX(e.target.value)}>
                                         {opcoesDeSelect.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
@@ -395,18 +524,18 @@ const Formulario = () => {
                                         ))}
                                     </select>
                                 </td>
-                                <td className="border p-2">
+                                <td className="border p-4">
                                     <input
                                         type="text"
                                         value={esquerdoY}
                                         onChange={(e) => setEsquerdoY(e.target.value)}
                                     />
                                 </td>
-                                <td className="border p-2">{calcularM2(esquerdoX, esquerdoY)}</td>
+                                <td className="border p-4">{esquerdoZ}</td>
                             </tr>
                             <tr>
-                                <td className="border p-2">EIXO 4X4:</td>
-                                <td className="border p-2">
+                                <td className="border p-4">Eixo 4X4:</td>
+                                <td className="border p-4">
                                     <select value={eixo4x4X} onChange={(e) => setEixo4x4X(e.target.value)}>
                                         {opcoesDeSelect.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
@@ -415,19 +544,19 @@ const Formulario = () => {
                                         ))}
                                     </select>
                                 </td>
-                                <td className="border p-2">
+                                <td className="border p-4">
                                     <input
                                         type="text"
                                         value={eixo4x4Y}
                                         onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                            handleInputChange(e.target.value, setEixo4x4Y)}
+                                            handleInputChangeNumeric(e.target.value, setEixo4x4Y)}
                                     />
                                 </td>
-                                <td className="border p-2">{calcularM2(eixo4x4X, eixo4x4Y)}</td>
+                                <td className="border p-4">{eixo4x4Z}</td>
                             </tr>
                             <tr>
-                                <td className="border p-2">EIXO 2X2:</td>
-                                <td className="border p-2">
+                                <td className="border p-4">Eixo 2X2:</td>
+                                <td className="border p-4">
                                     <select value={eixo2x2X} onChange={(e) => setEixo2x2X(e.target.value)}>
                                         {opcoesDeSelect.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
@@ -436,19 +565,19 @@ const Formulario = () => {
                                         ))}
                                     </select>
                                 </td>
-                                <td className="border p-2">
+                                <td className="border p-4">
                                     <input
                                         type="text"
                                         value={eixo2x2Y}
                                         onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                            handleInputChange(e.target.value, setEixo2x2Y)}
+                                            handleInputChangeNumeric(e.target.value, setEixo2x2Y)}
                                     />
                                 </td>
-                                <td className="border p-2">{calcularM2(eixo2x2X, eixo2x2Y)}</td>
+                                <td className="border p-4">{eixo2x2Z}</td>
                             </tr>
                             <tr>
-                                <td className="border p-2">ALÇA:</td>
-                                <td className="border p-2">
+                                <td className="border p-4">Alça:</td>
+                                <td className="border p-4">
                                     <select value={alcaX} onChange={(e) => setAlcaX(e.target.value)}>
                                         {opcoesDeSelect.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
@@ -457,13 +586,13 @@ const Formulario = () => {
                                         ))}
                                     </select>
                                 </td>
-                                <td className="border p-2">
+                                <td className="border p-4">
                                     <input type="text" value={alcaY}
                                         onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                            handleInputChange(e.target.value, setAlcaY)}
+                                            handleInputChangeNumeric(e.target.value, setAlcaY)}
                                     />
                                 </td>
-                                <td className="border p-2">{calcularM2(alcaX, alcaY)}</td>
+                                <td className="border p-4">{alcaZ}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -471,11 +600,10 @@ const Formulario = () => {
             </div>
 
             {/* Terceiro quadro */}
-            <div className="border-gray-300 border p-4 mb-4">
+            <div className="border-gray-300 border mb-4 w-full">
                 <div
-                    className="cursor-pointer flex justify-between items-center transition-all duration-300"
+                    className="cursor-pointer p-4 flex justify-between items-center transition-all duration-300"
                     onClick={() => setMostrarConteudo(!mostrarConteudo)}
-                    style={{ marginBottom: mostrarConteudo ? '16px' : '0' }}
                 >
                     <label className="text-lg font-bold">Quadro 3</label>
                     <svg
@@ -489,29 +617,110 @@ const Formulario = () => {
                     </svg>
                 </div>
                 <div className={`transition-all duration-300 overflow-hidden ${mostrarConteudo ? 'max-h-96' : 'max-h-0'}`}>
-                    <div className="flex flex-col lg:flex-row mt-2">
-                        <label>Consumo:</label>
-                        <div className="flex flex-col lg:flex-row mt-2">
-                            <input
-                                type="text"
-                                className="p-2 border border-gray-300 rounded-md mb-2 lg:mr-2"
-                                placeholder="Esfera(Kg)"
-                                value={esfera}
-                                onChange={(e) => setEsfera(e.target.value)}
-                            />
-                            <input
-                                type="text"
-                                className="p-2 border border-gray-300 rounded-md mb-2 lg:mr-2"
-                                placeholder="TINTA (baldes)"
-                                value={tinta}
-                                onChange={(e) => setTinta(e.target.value)}
-                            />
-                        </div>
+                    <div className="flex flex-col mt-2 w-full">
+                        <table className="w-full border border-collapse mt-2">
+                            <tbody>
+                                <tr>
+                                    <td className="border px-4">
+                                        <label>Esfera:</label>
+                                        <input
+                                            type="text"
+                                            className="px-4 border border-gray-300 rounded-md w-full"
+                                            placeholder="Esfera(Kg)"
+                                            value={esfera}
+                                            onChange={(e) => setEsfera(e.target.value)}
+                                        />
+                                    </td>
+                                    <td className="border px-4 flex items-center">
+                                        <div className="w-4/5 pr-2">
+                                            <label className="block">Resultado:</label>
+                                            <input
+                                                type="text"
+                                                className={`px-4 border border-gray-300 rounded-md w-full ${editarEsferas ? 'bg-blue-100' : ''}`}
+                                                readOnly={!editarEsferas}
+                                                value={resultadoEsferas}
+                                                onChange={(e) => setResultadoEsferas(e.target.value)}
+                                            />
+                                        </div>
+                                        <div className="w-1/5">
+                                            <div
+                                                className={`ml-2 cursor-pointer flex items-center ${editarEsferas ? 'text-blue-500' : ''}`}
+                                                onClick={handleEditEsfera}
+                                            >
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                    className="h-5 w-5"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth="2"
+                                                        d="M5 15s-1 0-1 1 1 1 1 1h12s1 0 1-1-1-1-1-1H5zM15 13V4a2 2 0 00-2-2H6a2 2 0 00-2 2v9m2 2h2l2 5 2-5h2"
+                                                    />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td className="border px-4">
+                                        <label>Tinta:</label>
+                                        <input
+                                            type="text"
+                                            className="px-4 border border-gray-300 rounded-md w-full"
+                                            placeholder="Tinta (baldes)"
+                                            value={tinta}
+                                            onChange={(e) => setTinta(e.target.value)}
+                                        />
+                                    </td>
+                                    <td className="border px-4 flex items-center">
+                                        <div className="w-4/5 pr-2">
+                                            <label className="block">Resultado:</label>
+                                            <input
+                                                type="text"
+                                                className={`px-4 border border-gray-300 rounded-md w-full ${editarTinta ? 'bg-blue-100' : ''}`}
+                                                readOnly={!editarTinta}
+                                                value={resultadoTinta}
+                                                onChange={(e) => handleInputChangeNumeric(e.target.value, setResultadoTinta)}
+                                            />
+                                        </div>
+                                        <div className="w-1/5">
+                                            <div
+                                                className={`ml-2 cursor-pointer flex items-center ${editarTinta ? 'text-blue-500' : ''}`}
+                                                onClick={handleEditTinta}
+                                            >
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                    className="h-5 w-5"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth="2"
+                                                        d="M5 15s-1 0-1 1 1 1 1 1h12s1 0 1-1-1-1-1-1H5zM15 13V4a2 2 0 00-2-2H6a2 2 0 00-2 2v9m2 2h2l2 5 2-5h2"
+                                                    />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
 
 
+
+            {/* Botões */}
             <div>
                 {/* Se levantamento existe, mostra a div */}
                 {levantamento && (
@@ -523,7 +732,7 @@ const Formulario = () => {
 
                 <div className="flex items-center justify-center h-16 m-2">
                     <button
-                        className="flex-grow bg-green-500 text-white p-2 m-2 rounded-md"
+                        className="flex-grow bg-green-500 text-white p-4 m-2 rounded-md"
                         onClick={gerarLevantamento}
                     >
                         <svg fill="#ffffff" stroke-width="0.05" height="24" width="24" stroke="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
@@ -533,7 +742,7 @@ const Formulario = () => {
                     </button>
 
                     <button
-                        className="flex-grow bg-red-500 text-white p-2 m-2 rounded-md"
+                        className="flex-grow bg-red-500 text-white p-4 m-2 rounded-md"
                         onClick={resetarFormulario}
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -542,7 +751,7 @@ const Formulario = () => {
                     </button>
 
                     <button
-                        className="flex-grow bg-blue-500 text-white p-2 m-2 rounded-md"
+                        className="flex-grow bg-blue-500 text-white p-4 m-2 rounded-md"
                         onClick={compartilharTexto}
                     >
                         <svg fill="#ffffff" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
