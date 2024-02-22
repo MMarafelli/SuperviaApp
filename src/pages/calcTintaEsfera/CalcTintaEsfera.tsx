@@ -658,12 +658,12 @@ const Formulario = () => {
             </div>
 
             {/* Terceiro quadro */}
-            <div className="terceiroQuadro p-4 m-4 mb-4">
+            <div className="terceiroQuadro mx-4 mb-4">
                 <div
-                    className="cursor-pointer flex justify-between items-center transition-all duration-300"
+                    className="colapsavelCursorPointer p-4 flex justify-between items-center transition-all duration-300"
                     onClick={() => setMostrarConteudo(!mostrarConteudo)}
                 >
-                    <label className="text-lg font-bold mb-2 lg:mb-0 lg:mr-2 lg:w-full">Consumo</label>
+                    <label className="colapsavelCursorPointer text-lg font-bold mb-2 lg:mb-0 lg:mr-2 lg:w-full">Consumo</label>
                     <svg
                         className={`w-6 h-6 ${mostrarConteudo ? 'transform rotate-180' : ''}`}
                         fill="none"
@@ -675,7 +675,7 @@ const Formulario = () => {
                     </svg>
                 </div>
                 <div className={`transition-all duration-300 overflow-hidden ${mostrarConteudo ? 'max-h-96' : 'max-h-0'}`}>
-                    <div className="flex flex-col w-full">
+                    <div className="p-2 flex flex-col w-full">
                         <table className="tabela2TelaGrande w-full border-collapse">
                             <tbody>
                                 <tr>
@@ -715,7 +715,7 @@ const Formulario = () => {
                                                     <g id="SVGRepo_tracerCarrier" strokeLinecap="round"></g>
                                                     <g id="SVGRepo_iconCarrier">
                                                         <g id="Page-1" stroke="none" strokeWidth="1" fill="none">
-                                                            <g id="svgCanetaEditar" transform="translate(-583.000000, -101.000000)" fill={editarEsferas ? '#4299e1' : corDoSVG}>
+                                                            <g id="svgCanetaEditar" transform="translate(-583.000000, -101.000000)" fill={editarEsferas ? '#ffcc29' : corDoSVG}>
                                                                 <path d="M583,123 L589,123 L589,110 L583,110 L583,123 Z M586,133.009 L589,125 L583,125 L586,133.009 L586,133.009 Z M587,101 L585,101 C583.367,100.963 582.947,101.841 583,103 L583,108 L589,108 L589,103 C589.007,101.788 588.635,101.008 587,101 L587,101 Z"></path>
                                                             </g>
                                                         </g>
@@ -763,7 +763,7 @@ const Formulario = () => {
                                                     <g id="SVGRepo_tracerCarrier" strokeLinecap="round"></g>
                                                     <g id="SVGRepo_iconCarrier">
                                                         <g id="Page-1" stroke="none" strokeWidth="1" fill="none">
-                                                            <g id="svgCanetaEditar" transform="translate(-583.000000, -101.000000)" fill={editarTinta ? '#4299e1' : corDoSVG}>
+                                                            <g id="svgCanetaEditar" transform="translate(-583.000000, -101.000000)" fill={editarTinta ? '#ffcc29' : corDoSVG}>
                                                                 <path d="M583,123 L589,123 L589,110 L583,110 L583,123 Z M586,133.009 L589,125 L583,125 L586,133.009 L586,133.009 Z M587,101 L585,101 C583.367,100.963 582.947,101.841 583,103 L583,108 L589,108 L589,103 C589.007,101.788 588.635,101.008 587,101 L587,101 Z"></path>
                                                             </g>
                                                         </g>
