@@ -97,30 +97,15 @@ const NavBar = () => {
                 <li className="nav-item">
                     <Link to={`${import.meta.env.BASE_URL}CalcTintaEsfera`} className="nav-link">
                         <svg
-                            aria-hidden="true"
-                            focusable="false"
-                            data-prefix="fad"
-                            data-icon="alien-monster"
-                            role="img"
                             xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 576 512"
-                            className="svg-inline--fa fa-alien-monster fa-w-18 fa-9x"
-                        >
-                            <g className="fa-group">
-                                <path
-                                    fill="currentColor"
-                                    d="M560,128H528a15.99954,15.99954,0,0,0-16,16v80H480V176a15.99954,15.99954,0,0,0-16-16H416V96h48a16.00079,16.00079,0,0,0,16-16V48a15.99954,15.99954,0,0,0-16-16H432a15.99954,15.99954,0,0,0-16,16V64H368a15.99954,15.99954,0,0,0-16,16v48H224V80a15.99954,15.99954,0,0,0-16-16H160V48a15.99954,15.99954,0,0,0-16-16H112A15.99954,15.99954,0,0,0,96,48V80a16.00079,16.00079,0,0,0,16,16h48v64H112a15.99954,15.99954,0,0,0-16,16v48H64V144a15.99954,15.99954,0,0,0-16-16H16A15.99954,15.99954,0,0,0,0,144V272a16.00079,16.00079,0,0,0,16,16H64v80a16.00079,16.00079,0,0,0,16,16h48v80a16.00079,16.00079,0,0,0,16,16h96a16.00079,16.00079,0,0,0,16-16V432a15.99954,15.99954,0,0,0-16-16H192V384H384v32H336a15.99954,15.99954,0,0,0-16,16v32a16.00079,16.00079,0,0,0,16,16h96a16.00079,16.00079,0,0,0,16-16V384h48a16.00079,16.00079,0,0,0,16-16V288h48a16.00079,16.00079,0,0,0,16-16V144A15.99954,15.99954,0,0,0,560,128ZM224,320H160V224h64Zm192,0H352V224h64Z"
-                                    className="fa-secondary"
-                                ></path>
-                                <path
-                                    fill="currentColor"
-                                    d="M160,320h64V224H160Zm192-96v96h64V224Z"
-                                    className="fa-primary"
-                                ></path>
+                            viewBox="0 0 500 500">
+                            <g>
+                                <polygon fill="currentColor" className="fa-primary" points="412.061,152.986 373.039,152.986 447.993,359.014 512,359.014 "></polygon>
+                                <polygon fill="currentColor" className="fa-primary" points="99.939,152.986 0,359.014 64.006,359.014 138.961,152.986 "></polygon>
+                                <path fill="currentColor" className="fa-primary" d="M265.767,152.986l0.367,12.226H245.86l0.373-12.226h-77.996l-56.201,206.027h127.943l0.911-29.861h30.222 l0.906,29.861h128.019l-56.231-206.027H265.767z M245.15,188.742h21.7l0.823,27.121h-23.346L245.15,188.742z M242.238,284.627 l1.13-37.223h25.263l1.13,37.223H242.238z"></path>
                             </g>
                         </svg>
-                        <span className="link-text">Aliens</span>
-
+                        <span className="link-text">Estrada</span>
                     </Link>
                 </li>
 

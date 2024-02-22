@@ -54,11 +54,11 @@
 }
 
 .fa-primary {
-  color: #ff7eee;
+  color: #ffcc29;
 }
 
 .fa-secondary {
-  color: #df49a6;
+  color: #ffcc29;
 }
 
 .fa-primary,
@@ -98,7 +98,7 @@
   .navbar {
     bottom: 0;
     width: 100vw;
-    height: 5rem;
+    height: 4rem;
   }
 
   .toggleNavBar {

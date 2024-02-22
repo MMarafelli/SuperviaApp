@@ -31,7 +31,7 @@ table {
     }
 
     input:focus {
-        border-color: #fffc64b7;
+        border-color: #ffcc29;
     }
 
     input:not(.date-input):not(:placeholder-shown):valid {
@@ -65,7 +65,7 @@ table {
     }
 
     input:focus {
-        border-color: #fffc64b7;
+        border-color: #ffcc29;
     }
 
     input:not(.date-input):not(:placeholder-shown):valid {
