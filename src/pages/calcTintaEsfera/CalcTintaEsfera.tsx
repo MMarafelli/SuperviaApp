@@ -264,7 +264,7 @@ const Formulario = () => {
     const corDoSVG = theme == 'dark' ? 'white' : 'hsl(300, 1%, 30%)';
 
     return (
-        <div className="rounded-md">
+        <div>
 
             {/* Primeiro quadro */}
             <div className="primeiroQuadro p-2 m-4 mb-4 flex flex-col">
