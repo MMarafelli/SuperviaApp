@@ -11,36 +11,75 @@ table {
     /* border-width: 1px; */
 }
 
-input {
-    border: none;
-    border-bottom: 2px solid white;
-    outline: none;
-    transition: border-color 0.3s, background-color 0.3s;
+
+
+@media (prefers-color-scheme: dark) {
+
+    input {
+        border: none;
+        border-bottom: 2px solid white;
+        outline: none;
+        transition: border-color 0.3s, background-color 0.3s;
+    }
+
+    select {
+        border: none;
+        border-bottom: 2px solid white;
+        padding: 8px;
+        outline: none;
+        transition: border-color 0.3s, background-color 0.3s;
+    }
+
+    input:focus {
+        border-color: #fffc64b7;
+    }
+
+    input:not(.date-input):not(:placeholder-shown):valid {
+        border-color: #8fda8f;
+    }
+
+    .border-white {
+        border-color: #ffffff;
+    }
+
+    .border-green {
+        border-color: #8fda8f;
+    }
 }
 
-select {
-    border: none;
-    border-bottom: 2px solid white;
-    padding: 8px;
-    outline: none;
-    transition: border-color 0.3s, background-color 0.3s;
-}
+@media (prefers-color-scheme: light) {
 
-input:focus {
-    border-color: #fffc64b7;
-}
+    input {
+        border: none;
+        border-bottom: 2px solid hsl(300, 1%, 30%);
+        outline: none;
+        transition: border-color 0.3s, background-color 0.3s;
+    }
 
-input:not(.date-input):not(:placeholder-shown):valid {
-    border-color: #8fda8f;
-}
+    select {
+        border: none;
+        border-bottom: 2px solid hsl(300, 1%, 30%);
+        padding: 8px;
+        outline: none;
+        transition: border-color 0.3s, background-color 0.3s;
+    }
 
-/* Controle do input travado e destravado do resultado*/
-.border-white {
-    border-color: white;
-}
+    input:focus {
+        border-color: #fffc64b7;
+    }
 
-.border-green {
-    border-color: #8fda8f;
+    input:not(.date-input):not(:placeholder-shown):valid {
+        border-color: #8fda8f;
+    }
+
+    .border-white {
+        border-color: hsl(300, 1%, 30%);
+    }
+
+    .border-green {
+        border-color: #8fda8f;
+    }
+
 }
 
 /* ---------------------------------------------------------------------------------- */
@@ -116,6 +155,7 @@ input:not(.date-input):not(:placeholder-shown):valid {
 .segundoQuadro>div>div>div>div>input {
     width: 55%;
     padding: .5rem;
+    margin-right: .5rem;
 }
 
 

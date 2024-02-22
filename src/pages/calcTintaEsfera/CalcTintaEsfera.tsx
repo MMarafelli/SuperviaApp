@@ -1,6 +1,6 @@
 // Formulario.js
 import { useRef, useState, ChangeEvent, useEffect } from 'react';
-import './CalcTintaEsfera.css'
+import './CalcTintaEsfera.css';
 
 const Formulario = () => {
     const [larguraDaJanela, setLarguraDaJanela] = useState(window.innerWidth);
@@ -258,6 +258,10 @@ const Formulario = () => {
         setEditarTinta(false);
         setLevantamento('');
     };
+
+    // Função para obter e ajustar a cor do SVG com base no tema
+    const theme = document.documentElement.getAttribute('theme');
+    const corDoSVG = theme == 'dark' ? 'white' : 'hsl(300, 1%, 30%)';
 
     return (
         <div className="rounded-md">
@@ -708,11 +712,11 @@ const Formulario = () => {
                                                 onClick={handleEditEsfera}
                                             >
                                                 <svg className='svgHabilitarEdicao' viewBox="-13 0 32 32" version="1.1">
-                                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                                                    <g id="SVGRepo_tracerCarrier" strokeLinecap="round"></g>
                                                     <g id="SVGRepo_iconCarrier">
-                                                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                            <g id="svgCanetaEditar" transform="translate(-583.000000, -101.000000)" fill={editarEsferas ? '#4299e1' : '#ffffff'}>
+                                                        <g id="Page-1" stroke="none" strokeWidth="1" fill="none">
+                                                            <g id="svgCanetaEditar" transform="translate(-583.000000, -101.000000)" fill={editarEsferas ? '#4299e1' : corDoSVG}>
                                                                 <path d="M583,123 L589,123 L589,110 L583,110 L583,123 Z M586,133.009 L589,125 L583,125 L586,133.009 L586,133.009 Z M587,101 L585,101 C583.367,100.963 582.947,101.841 583,103 L583,108 L589,108 L589,103 C589.007,101.788 588.635,101.008 587,101 L587,101 Z"></path>
                                                             </g>
                                                         </g>
@@ -757,11 +761,11 @@ const Formulario = () => {
                                                 onClick={handleEditTinta}
                                             >
                                                 <svg className='svgHabilitarEdicao' viewBox="-13 0 32 32" version="1.1">
-                                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                                                    <g id="SVGRepo_tracerCarrier" strokeLinecap="round"></g>
                                                     <g id="SVGRepo_iconCarrier">
-                                                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                            <g id="svgCanetaEditar" transform="translate(-583.000000, -101.000000)" fill={editarTinta ? '#4299e1' : '#ffffff'}>
+                                                        <g id="Page-1" stroke="none" strokeWidth="1" fill="none">
+                                                            <g id="svgCanetaEditar" transform="translate(-583.000000, -101.000000)" fill={editarTinta ? '#4299e1' : corDoSVG}>
                                                                 <path d="M583,123 L589,123 L589,110 L583,110 L583,123 Z M586,133.009 L589,125 L583,125 L586,133.009 L586,133.009 Z M587,101 L585,101 C583.367,100.963 582.947,101.841 583,103 L583,108 L589,108 L589,103 C589.007,101.788 588.635,101.008 587,101 L587,101 Z"></path>
                                                             </g>
                                                         </g>
@@ -792,7 +796,7 @@ const Formulario = () => {
                         className="flex-grow bg-green-500 text-white p-4 m-2 rounded-md"
                         onClick={gerarLevantamento}
                     >
-                        <svg fill="#ffffff" stroke-width="0.05" height="24" width="24" stroke="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                        <svg fill="#ffffff" strokeWidth="0.05" height="24" width="24" stroke="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                             <path className="cls-1" d="M11,5H5A2,2,0,0,1,7,3H7V2A1,1,0,0,1,9,2V3H9a2,2,0,0,1,2,2Zm1-2v9H4V3H3A1,1,0,0,0,2,4v9a1,1,0,0,0,1,1H13a1,1,0,0,0,1-1V4a1,1,0,0,0-1-1ZM10,7H5V8h5ZM8,9H5v1H8Z">
                             </path>
                         </svg>
