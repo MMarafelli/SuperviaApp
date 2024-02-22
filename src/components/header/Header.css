@@ -8,9 +8,8 @@
   display: flex;
   flex-direction: row;
   flex-flow: row nowrap;
-
   background-color: #282c34;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   align-items: center;
 
   color: white;
@@ -38,14 +37,4 @@
   height: 15px;
   size: 15px;
   padding: 2.1em 1.5em 1.5em 1.5em;
-}
-
-.logo:hover,
-.header>nav>p {
-  filter: drop-shadow(0 0 2em #fffc64b7);
-}
-
-.logo.react:hover,
-.header>nav>p {
-  filter: drop-shadow(0 0 2em #fffc64b7);
 }

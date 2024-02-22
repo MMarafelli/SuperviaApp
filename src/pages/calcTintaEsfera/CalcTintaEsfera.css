@@ -1,0 +1,169 @@
+/* Gerais */
+table {
+    border-collapse: collapse;
+}
+
+.primeiroQuadro,
+.segundoQuadro,
+.terceiroQuadro,
+.quartoQuadro,
+.tabela1TelaGrande {
+    /* border-width: 1px; */
+}
+
+input {
+    border: none;
+    border-bottom: 2px solid white;
+    outline: none;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+select {
+    border: none;
+    border-bottom: 2px solid white;
+    padding: 8px;
+    outline: none;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+input:focus {
+    border-color: #fffc64b7;
+}
+
+input:not(.date-input):not(:placeholder-shown):valid {
+    border-color: #8fda8f;
+}
+
+/* Controle do input travado e destravado do resultado*/
+.border-white {
+    border-color: white;
+}
+
+.border-green {
+    border-color: #8fda8f;
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* CSS da tabela do primeiro quadro em tela grande */
+
+.primeiroQuadro {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.inputsDoPrimeiroQuadro>input,
+.inputsDoPrimeiroQuadro>select {
+    min-width: 200px;
+    padding: .5rem;
+    margin-bottom: .5rem;
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* CSS da tabela do segundo quadro em tela grande */
+.tabela1TelaGrande>thead>tr,
+.tabela1TelaGrande>thead>tr>th {
+    /* border-width: 1px; */
+    padding: 1rem;
+}
+
+.tabela1TelaGrande>tbody>tr,
+.tabela1TelaGrande>tbody>tr>td {
+    /* border-width: 1px; */
+    padding: 0.5rem;
+}
+
+.tdLegendaTelaGrande {
+    padding: .5rem;
+}
+
+.tabela1TelaGrande>tbody>tr>td>select,
+.tabela1TelaGrande>tbody>tr>td>input {
+    width: 95%;
+    padding: .5rem;
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* CSS das divs do segundo quadro em tela pequena */
+.divsSegundoQuadroTelaPequena div {
+    /* border-width: 1px; */
+}
+
+.segundoQuadro label {
+    display: block;
+}
+
+
+.divsSegundoQuadroTelaPequena .grupo {
+    /* border-width: 1px; */
+    margin-bottom: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.divsSegundoQuadroTelaPequena .bloco {
+    display: flex;
+}
+
+
+.divsSegundoQuadroTelaPequena .quadro {
+    padding: .5rem;
+    width: 45%;
+}
+
+.segundoQuadro>div>div>div>div>select,
+.segundoQuadro>div>div>div>div>input {
+    width: 55%;
+    padding: .5rem;
+}
+
+
+
+/* ---------------------------------------------------------------------------------- */
+/* CSS da tabela do terceiro quadro em tela grande */
+
+.terceiroQuadro {
+    /* border-width: 1px; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.tabela2TelaGrande>tbody>tr>td {
+    /* border-width: 1px; */
+}
+
+.tabela2TelaGrande>tbody>tr>td>input,
+.tabela2TelaGrande>tbody>tr>td>div>input {
+    width: 95%;
+    padding: .5rem;
+}
+
+.teceiroQuadroHabilitarEdicao {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.tdResultadoTelaGrande {
+    min-width: 100px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.svgHabilitarEdicao {
+    width: 2rem;
+    height: 2rem;
+    margin-top: 1rem;
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* CSS do levantamento */
+.levantamento {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* CSS dos botões */
+
+.quartoQuadro button {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.quartoQuadro svg {
+    display: inline;
+}
