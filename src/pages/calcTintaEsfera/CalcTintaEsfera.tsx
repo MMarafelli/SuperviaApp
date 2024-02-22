@@ -508,7 +508,7 @@ const Formulario = () => {
                                             onChange={(e) => handleInputChangeNumeric(e.target.value, setAlcaY)}
                                         />
                                     </div>
-                                    <div className='quadro'>{alcaZ} m²</div>
+                                    <div className='quadro'>Resultado: {alcaZ} m²</div>
                                 </div>
                             </div>
                         </div>
@@ -683,7 +683,6 @@ const Formulario = () => {
                                         <label>Esfera:</label>
                                         <input
                                             type="text"
-                                            className="w-full"
                                             placeholder="Esfera(Kg)"
                                             value={esfera}
                                             onChange={(e) => setEsfera(e.target.value)}
@@ -691,11 +690,11 @@ const Formulario = () => {
                                     </td>
                                     <td className="flex items-center">
                                         <div className="w-4/5 pr-2">
-                                            <label className="block">Resultado:</label>
+                                            <label className="block">Resultado(kg/m²):</label>
                                             <input
                                                 type="text"
                                                 placeholder=' '
-                                                className={`w-full
+                                                className={`
                                                     ${(!editarEsferas && !resultadoEsferas) ? 'border-white' : ''}
                                                     ${(!editarEsferas && resultadoEsferas) ? 'border-green' : ''}
                                                     ${editarEsferas && !resultadoEsferas ? 'border-white' : ''}
@@ -732,7 +731,6 @@ const Formulario = () => {
                                         <label>Tinta:</label>
                                         <input
                                             type="text"
-                                            className="w-full"
                                             placeholder="Tinta (baldes)"
                                             value={tinta}
                                             onChange={(e) => setTinta(e.target.value)}
@@ -740,11 +738,11 @@ const Formulario = () => {
                                     </td>
                                     <td className="flex items-center">
                                         <div className="w-4/5 pr-2">
-                                            <label className="block">Resultado:</label>
+                                            <label className="block">Resultado(m²/balde):</label>
                                             <input
                                                 type="text"
                                                 placeholder=' '
-                                                className={`w-full
+                                                className={`
                                                     ${(!editarTinta && !resultadoTinta) ? 'border-white' : ''}
                                                     ${(!editarTinta && resultadoTinta) ? 'border-green' : ''}
                                                     ${editarTinta && !resultadoTinta ? 'border-white' : ''}
