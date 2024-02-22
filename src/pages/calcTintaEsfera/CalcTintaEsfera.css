@@ -59,6 +59,10 @@ input:not(.date-input):not(:placeholder-shown):valid {
 
 /* ---------------------------------------------------------------------------------- */
 /* CSS da tabela do segundo quadro em tela grande */
+.tabela1TelaGrande {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
 .tabela1TelaGrande>thead>tr,
 .tabela1TelaGrande>thead>tr>th {
     /* border-width: 1px; */

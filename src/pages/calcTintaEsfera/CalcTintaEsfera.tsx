@@ -264,7 +264,6 @@ const Formulario = () => {
 
             {/* Primeiro quadro */}
             <div className="primeiroQuadro p-2 m-4 mb-4 flex flex-col">
-                <label className="text-lg font-bold mb-2 lg:mb-0 lg:mr-2 lg:w-full">Primeiro Quadro:</label>
 
                 <div className="inputsDoPrimeiroQuadro flex flex-col lg:flex-row lg:flex-wrap mt-2">
 
@@ -355,7 +354,6 @@ const Formulario = () => {
 
             {/* Segundo quadro */}
             <div className="segundoQuadro p-4 mb-4">
-                <label className="text-lg font-bold mb-2 lg:mb-0 lg:mr-2 lg:w-full">Segundo Quadro:</label>
 
                 {larguraDaJanela <= 600 ? (
                     <>
@@ -516,7 +514,7 @@ const Formulario = () => {
                     <table className="tabela1TelaGrande w-full mt-2">
                         <thead>
                             <tr>
-                                <th className="tdLegendaTelaGrande">branco</th>
+                                <th className="tdLegendaTelaGrande"></th>
                                 <th className="tdLegendaTelaGrande">Espessura</th>
                                 <th className="tdLegendaTelaGrande">Comprimento (m)</th>
                                 <th className="tdLegendaTelaGrande">m²</th>
@@ -661,7 +659,7 @@ const Formulario = () => {
                     className="cursor-pointer flex justify-between items-center transition-all duration-300"
                     onClick={() => setMostrarConteudo(!mostrarConteudo)}
                 >
-                    <label className="text-lg font-bold mb-2 lg:mb-0 lg:mr-2 lg:w-full">Quadro 3</label>
+                    <label className="text-lg font-bold mb-2 lg:mb-0 lg:mr-2 lg:w-full">Consumo</label>
                     <svg
                         className={`w-6 h-6 ${mostrarConteudo ? 'transform rotate-180' : ''}`}
                         fill="none"
