@@ -389,7 +389,7 @@ const Formulario = () => {
                             onFocus={() => handleInputFocus('estado')}
                             onBlur={handleInputBlur}
                         >
-                            <option value="" selected>
+                            <option value=''>
                                 Selecione um estado
                             </option>
                             <option value="AC">Acre</option>
