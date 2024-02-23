@@ -1,36 +1,42 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/SuperViaApp/assets/favicon-b-pmwAOa.png" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181818" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f3f3" />
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/SuperViaApp/assets/favicon-b-pmwAOa.png" />
 
-    <link rel="manifest" href="manifest.json" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181818" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f3f3" />
 
-    <title>Super Via</title>
-    <script type="module" crossorigin src="/SuperViaApp/assets/index-D9jsfzNt.js"></script>
-    <link rel="stylesheet" crossorigin href="/SuperViaApp/assets/index-d9ztGXl1.css">
-  <link rel="manifest" href="/SuperViaApp/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/SuperViaApp/registerSW.js"></script></head>
-  <body>
-    <div id="root"></div>
-    <script>
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.setAttribute("theme", "dark");
-        //console.log("1");
-        //console.log(document.documentElement.getAttribute('theme'));
-      } else {
-        document.documentElement.setAttribute("theme", "light");
-        //console.log("2");
-        //console.log(document.documentElement.getAttribute('theme'));
-      }
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-        const newColorScheme = event.matches ? "dark" : "light";
-        //console.log("3");
-        //console.log(document.documentElement.getAttribute('theme'));
-      });
-    </script>
-  </body>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="apple-mobile-web-app-staus-bar" content="#ffcc29" />
+
+  <!-- apple support -->
+  <link rel="apple-touch-icon" href="/SuperViaApp/assets/favicon-b-pmwAOa.png" />
+  <title>Super Via</title>
+  <script type="module" crossorigin src="/SuperViaApp/assets/index-D9jsfzNt.js"></script>
+  <link rel="stylesheet" crossorigin href="/SuperViaApp/assets/index-d9ztGXl1.css">
+<link rel="manifest" href="/SuperViaApp/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/SuperViaApp/registerSW.js"></script></head>
+
+<body>
+  <div id="root"></div>
+  <script>
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute("theme", "dark");
+      //console.log("1");
+      //console.log(document.documentElement.getAttribute('theme'));
+    } else {
+      document.documentElement.setAttribute("theme", "light");
+      //console.log("2");
+      //console.log(document.documentElement.getAttribute('theme'));
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+      const newColorScheme = event.matches ? "dark" : "light";
+      //console.log("3");
+      //console.log(document.documentElement.getAttribute('theme'));
+    });
+  </script>
+</body>
+
 </html>
