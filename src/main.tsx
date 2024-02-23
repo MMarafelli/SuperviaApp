@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 
+import { PwaPrompt } from 'react-ios-pwa-prompt-ts'
+
 import './index.css';
 import App from './App';
 
@@ -14,6 +16,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
+    <PwaPrompt />
     <App />
   </React.StrictMode>
 );
