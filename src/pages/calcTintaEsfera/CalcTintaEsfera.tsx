@@ -758,7 +758,7 @@ const Formulario = () => {
                                                 type="text"
                                                 placeholder=" "
                                                 value={esfera}
-                                                onChange={(e) => setEsfera(e.target.value)}
+                                                onChange={(e) => handleInputChangeNumeric(e.target.value, setEsfera)}
                                                 onFocus={() => handleInputFocus('esfera')}
                                                 onBlur={handleInputBlur}
                                             />
@@ -778,7 +778,7 @@ const Formulario = () => {
                                                 `}
                                                     readOnly={!editarEsferas}
                                                     value={resultadoEsferas}
-                                                    onChange={(e) => setResultadoEsferas(e.target.value)}
+                                                    onChange={(e) => handleInputChangeNumeric(e.target.value, setResultadoEsferas)}
                                                 />
                                             </div>
                                         </div>
@@ -813,7 +813,7 @@ const Formulario = () => {
                                                 type="text"
                                                 placeholder=" "
                                                 value={tinta}
-                                                onChange={(e) => setTinta(e.target.value)}
+                                                onChange={(e) => handleInputChangeNumeric(e.target.value, setTinta)}
                                                 onFocus={() => handleInputFocus('tinta')}
                                                 onBlur={handleInputBlur}
                                             />
