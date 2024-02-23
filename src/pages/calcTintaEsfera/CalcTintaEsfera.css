@@ -12,76 +12,6 @@ table {
 }
 
 
-
-@media (prefers-color-scheme: dark) {
-
-    input {
-        border: none;
-        border-bottom: 2px solid white;
-        outline: none;
-        transition: border-color 0.3s, background-color 0.3s;
-    }
-
-    select {
-        border: none;
-        border-bottom: 2px solid white;
-        padding: 8px;
-        outline: none;
-        transition: border-color 0.3s, background-color 0.3s;
-    }
-
-    input:focus {
-        border-color: #ffcc29;
-    }
-
-    input:not(.date-input):not(:placeholder-shown):valid {
-        border-color: #8fda8f;
-    }
-
-    .border-white {
-        border-color: #ffffff;
-    }
-
-    .border-green {
-        border-color: #8fda8f;
-    }
-}
-
-@media (prefers-color-scheme: light) {
-
-    input {
-        border: none;
-        border-bottom: 2px solid hsl(300, 1%, 30%);
-        outline: none;
-        transition: border-color 0.3s, background-color 0.3s;
-    }
-
-    select {
-        border: none;
-        border-bottom: 2px solid hsl(300, 1%, 30%);
-        padding: 8px;
-        outline: none;
-        transition: border-color 0.3s, background-color 0.3s;
-    }
-
-    input:focus {
-        border-color: #ffcc29;
-    }
-
-    input:not(.date-input):not(:placeholder-shown):valid {
-        border-color: #8fda8f;
-    }
-
-    .border-white {
-        border-color: hsl(300, 1%, 30%);
-    }
-
-    .border-green {
-        border-color: #8fda8f;
-    }
-
-}
-
 /* ---------------------------------------------------------------------------------- */
 /* CSS da tabela do primeiro quadro em tela grande */
 
@@ -121,7 +51,7 @@ table {
 .tabela1TelaGrande>tbody>tr>td>select,
 .tabela1TelaGrande>tbody>tr>td>input {
     width: 95%;
-    padding: .5rem;
+    /* padding: .5rem;*/
 }
 
 /* ---------------------------------------------------------------------------------- */
@@ -161,7 +91,7 @@ table {
 
 
 /* ---------------------------------------------------------------------------------- */
-/* CSS da tabela do terceiro quadro em tela grande */
+/* CSS da tabela do terceiro quadro */
 
 .terceiroQuadro {
     /* border-width: 1px; */
@@ -180,7 +110,6 @@ table {
 .tabela2TelaGrande>tbody>tr>td>input,
 .tabela2TelaGrande>tbody>tr>td>div>input {
     width: 97%;
-    padding: .5rem;
 }
 
 .teceiroQuadroHabilitarEdicao {

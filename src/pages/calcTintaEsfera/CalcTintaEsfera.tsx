@@ -18,6 +18,7 @@ const Formulario = () => {
         };
     }, []);
 
+    const [isFocused, setIsFocused] = useState('');
     const [mostrarConteudo, setMostrarConteudo] = useState(false);
     const [estado, setEstado] = useState('');
     const [sentido, setSentido] = useState('');
@@ -48,6 +49,47 @@ const Formulario = () => {
     const [editarTinta, setEditarTinta] = useState(false);
     const [levantamento, setLevantamento] = useState('');
 
+    // ---------------------------------------------------------------------------------------------
+    // Controle de input
+    // ---------------------------------------------------------------------------------------------
+    // Controla o campo para só aceitar valor numérico
+    const handleInputChangeNumeric = (
+        inputValue: string,
+        setFunction: React.Dispatch<React.SetStateAction<string>>
+    ) => {
+        const numericValue = inputValue.replace(/[^\d.]/g, '');
+        setFunction(numericValue);
+    };
+
+    // opções de espeçura da faixa
+    const opcoesDeSelect = [
+        { valor: '', label: 'Selecione...' },
+        { valor: '0.10', label: '0.10' },
+        { valor: '0.15', label: '0.15' },
+    ];
+
+    // Libera ou trava a edição no campo
+    const handleEditEsfera = () => {
+        setEditarEsferas(!editarEsferas);
+    };
+    // Libera ou trava a edição no campo
+    const handleEditTinta = () => {
+        setEditarTinta(!editarTinta);
+    };
+
+    // Controle se o campo está focado ou não.
+    const handleInputFocus = (inputName: string) => {
+        console.log(inputName);
+        setIsFocused(inputName);
+    };
+
+    const handleInputBlur = () => {
+        setIsFocused('');
+    };
+
+    // ---------------------------------------------------------------------------------------------
+    // Calculos
+    // ---------------------------------------------------------------------------------------------
     // Calcula metro quadro para a tabela 
     const calcularM2 = (x: string, y: string): number => {
         const xNumber = parseFloat(x);
@@ -61,30 +103,6 @@ const Formulario = () => {
         const roundedResult = Math.ceil(result * 100) / 100; // Arredonda para cima com duas casas decimais
         return roundedResult;
     };
-
-    // Controla o campo para só aceitar valor numérico
-    const handleInputChangeNumeric = (
-        inputValue: string,
-        setFunction: React.Dispatch<React.SetStateAction<string>>
-    ) => {
-        const numericValue = inputValue.replace(/[^\d.]/g, '');
-        setFunction(numericValue);
-    };
-
-    const handleEditEsfera = () => {
-        setEditarEsferas(!editarEsferas);
-    };
-
-    const handleEditTinta = () => {
-        setEditarTinta(!editarTinta);
-    };
-
-    // opções de espeçura da faixa
-    const opcoesDeSelect = [
-        { valor: '', label: 'Selecione...' },
-        { valor: '0.10', label: '0.10' },
-        { valor: '0.15', label: '0.15' },
-    ];
 
     useEffect(() => {
         const novoDireitoZ = calcularM2(direitoX, direitoY).toString(); // Converta o número para string
@@ -116,7 +134,7 @@ const Formulario = () => {
         setAlcaZ(novoAlcaZ);
     }, [alcaX, alcaY]);
 
-
+    // Calcula resultado de esferas
     useEffect(() => {
         const calcularResultadoEsferas = () => {
             const direitoZNumber = parseFloat(direitoZ);
@@ -154,6 +172,7 @@ const Formulario = () => {
         calcularResultadoEsferas();
     }, [direitoZ, esquerdoZ, eixo2x2Z, eixo4x4Z, alcaZ, esfera]);
 
+    // Calcula resultado de tinta
     useEffect(() => {
         const calcularResultadoTinta = () => {
             const direitoZNumber = parseFloat(direitoZ);
@@ -191,6 +210,10 @@ const Formulario = () => {
         calcularResultadoTinta();
     }, [direitoZ, esquerdoZ, eixo2x2Z, eixo4x4Z, alcaZ, tinta]);
 
+
+    // ---------------------------------------------------------------------------------------------
+    // Gerar texto do levantamento
+    // ---------------------------------------------------------------------------------------------
     const gerarLevantamento = () => {
         const textoLevantamento = `
       Sentido: ${sentido},
@@ -208,6 +231,9 @@ const Formulario = () => {
         setLevantamento(textoLevantamento);
     };
 
+    // ---------------------------------------------------------------------------------------------
+    // Controle do compatilhamento
+    // ---------------------------------------------------------------------------------------------
     const compartilharTexto = () => {
         if (levantamento && navigator.share) {
             navigator.share({
@@ -232,7 +258,12 @@ const Formulario = () => {
         }
     }, [levantamento]);
 
+    // ---------------------------------------------------------------------------------------------
+    // Reset
+    // ---------------------------------------------------------------------------------------------
+
     const resetarFormulario = () => {
+        setIsFocused('');
         setMostrarConteudo(false);
         setEstado('');
         setSentido('');
@@ -259,7 +290,9 @@ const Formulario = () => {
         setLevantamento('');
     };
 
-    // Função para obter e ajustar a cor do SVG com base no tema
+    // ---------------------------------------------------------------------------------------------
+    // Controle de tema
+    // ---------------------------------------------------------------------------------------------
     const theme = document.documentElement.getAttribute('theme');
     const corDoSVG = theme == 'dark' ? 'white' : 'hsl(300, 1%, 30%)';
 
@@ -271,86 +304,123 @@ const Formulario = () => {
 
                 <div className="inputsDoPrimeiroQuadro flex flex-col lg:flex-row lg:flex-wrap mt-2">
 
-                    <input
-                        type="text"
-                        className="lg:mr-2 lg:w-1/5"
-                        placeholder="Sentido"
-                        value={sentido}
-                        onChange={(e) => setSentido(e.target.value)}
-                    />
+                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
+                        <label className={`input-label ${nomeEstrada ? 'input-label-active' : (isFocused == 'nomeEstrada' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                            Estrada
+                        </label>
+                        <input
+                            type="text"
+                            placeholder=" "
+                            value={nomeEstrada}
+                            onChange={(e) => setNomeEstrada(e.target.value)}
+                            onFocus={() => handleInputFocus('nomeEstrada')}
+                            onBlur={handleInputBlur}
+                        />
+                    </div>
 
-                    <input
-                        type="text"
-                        className="lg:mr-2 lg:w-1/5"
-                        placeholder="KM Inicial"
-                        value={kmInicial}
-                        onChange={(e) => setKmInicial(e.target.value)}
-                    />
+                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
+                        <label className={`input-label ${sentido ? 'input-label-active' : (isFocused == 'sentido' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                            Sentido
+                        </label>
+                        <input
+                            type="text"
+                            placeholder=" "
+                            value={sentido}
+                            onChange={(e) => setSentido(e.target.value)}
+                            onFocus={() => handleInputFocus('sentido')}
+                            onBlur={handleInputBlur}
+                        />
+                    </div>
 
-                    <input
-                        type="text"
-                        className="lg:mr-2 lg:w-1/5"
-                        placeholder="KM Final"
-                        value={kmFinal}
-                        onChange={(e) => setKmFinal(e.target.value)}
-                    />
+                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
+                        <label className={`input-label ${kmInicial ? 'input-label-active' : (isFocused == 'kmInicial' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                            Km inicial
+                        </label>
+                        <input
+                            type="text"
+                            placeholder=" "
+                            value={kmInicial}
+                            onChange={(e) => setKmInicial(e.target.value)}
+                            onFocus={() => handleInputFocus('kmInicial')}
+                            onBlur={handleInputBlur}
+                        />
+                    </div>
 
-                    <input
-                        type="date"
-                        className={`lg:mr-2 lg:w-1/5 date-input 
-                        ${(!diaMesAno) ? 'border-white' : ''}
-                        ${(diaMesAno) ? 'border-green' : ''}`}
-                        value={diaMesAno}
-                        onChange={(e) => setDiaMesAno(e.target.value)}
-                    />
+                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
+                        <label className={`input-label ${kmFinal ? 'input-label-active' : (isFocused == 'kmFinal' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                            Km final
+                        </label>
+                        <input
+                            type="text"
+                            placeholder=" "
+                            value={kmFinal}
+                            onChange={(e) => setKmFinal(e.target.value)}
+                            onFocus={() => handleInputFocus('kmFinal')}
+                            onBlur={handleInputBlur}
+                        />
+                    </div>
 
-                    <select
-                        className={`w-full lg:mr-2 lg:w-1/5 
-                        ${(!estado) ? 'border-white' : ''}
-                        ${(estado) ? 'border-green' : ''}
+                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
+                        <label className={`input-label ${diaMesAno ? 'input-label-active' : (isFocused == 'diaMesAno' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                            Data
+                        </label>
+                        <input
+                            type="date"
+                            className={`date-input 
+                            ${diaMesAno ? 'input-label-active border-green' : (isFocused == 'diaMesAno' ? 'input-label-focus border-yellow' : 'input-label-inactive border-white')}
+                            `}
+                            value={diaMesAno}
+                            onChange={(e) => setDiaMesAno(e.target.value)}
+                            onFocus={() => handleInputFocus('diaMesAno')}
+                            onBlur={handleInputBlur}
+                        />
+                    </div>
+
+                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
+                        <label className={`input-label ${estado ? 'input-label-active' : (isFocused == 'estado' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                            Estado
+                        </label>
+                        <select
+                            className={`
+                            ${estado ? 'input-label-active border-green' : (isFocused == 'estado' ? 'input-label-focus border-yellow' : 'input-label-inactive border-white')}
                         `}
-                        value={estado}
-                        onChange={(e) => setEstado(e.target.value)}
-                    >
-                        <option value="" selected>
-                            Selecione um estado
-                        </option>
-                        <option value="AC">Acre</option>
-                        <option value="AL">Alagoas</option>
-                        <option value="AP">Amapá</option>
-                        <option value="AM">Amazonas</option>
-                        <option value="BA">Bahia</option>
-                        <option value="CE">Ceará</option>
-                        <option value="DF">Distrito Federal</option>
-                        <option value="ES">Espírito Santo</option>
-                        <option value="GO">Goiás</option>
-                        <option value="MA">Maranhão</option>
-                        <option value="MT">Mato Grosso</option>
-                        <option value="MS">Mato Grosso do Sul</option>
-                        <option value="MG">Minas Gerais</option>
-                        <option value="PA">Pará</option>
-                        <option value="PB">Paraíba</option>
-                        <option value="PR">Paraná</option>
-                        <option value="PE">Pernambuco</option>
-                        <option value="PI">Piauí</option>
-                        <option value="RJ">Rio de Janeiro</option>
-                        <option value="RN">Rio Grande do Norte</option>
-                        <option value="RS">Rio Grande do Sul</option>
-                        <option value="RO">Rondônia</option>
-                        <option value="RR">Roraima</option>
-                        <option value="SC">Santa Catarina</option>
-                        <option value="SP">São Paulo</option>
-                        <option value="SE">Sergipe</option>
-                        <option value="TO">Tocantins</option>
-                    </select>
-
-                    <input
-                        type="text"
-                        className="lg:mr-2 lg:w-1/5"
-                        placeholder="Nome da Estrada"
-                        value={nomeEstrada}
-                        onChange={(e) => setNomeEstrada(e.target.value)}
-                    />
+                            value={estado}
+                            onChange={(e) => setEstado(e.target.value)}
+                            onFocus={() => handleInputFocus('estado')}
+                            onBlur={handleInputBlur}
+                        >
+                            <option value="" selected>
+                                Selecione um estado
+                            </option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
 
                 </div>
             </div>
@@ -680,30 +750,37 @@ const Formulario = () => {
                             <tbody>
                                 <tr>
                                     <td>
-                                        <label>Esfera:</label>
-                                        <input
-                                            type="text"
-                                            placeholder="Esfera(Kg)"
-                                            value={esfera}
-                                            onChange={(e) => setEsfera(e.target.value)}
-                                        />
+                                        <div className="interacaoBox flex flex-col lg:mr-2">
+                                            <label className={`input-label ${esfera ? 'input-label-active' : (isFocused == 'esfera' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                                                Esfera:
+                                            </label>
+                                            <input
+                                                type="text"
+                                                placeholder="Esfera(Kg)"
+                                                value={esfera}
+                                                onChange={(e) => setEsfera(e.target.value)}
+                                                onFocus={() => handleInputFocus('esfera')}
+                                                onBlur={handleInputBlur}
+                                            />
+                                        </div>
                                     </td>
                                     <td className="flex items-center">
                                         <div className="w-4/5 pr-2">
-                                            <label className="block">Resultado(kg/m²):</label>
-                                            <input
-                                                type="text"
-                                                placeholder=' '
-                                                className={`
-                                                    ${(!editarEsferas && !resultadoEsferas) ? 'border-white' : ''}
-                                                    ${(!editarEsferas && resultadoEsferas) ? 'border-green' : ''}
-                                                    ${editarEsferas && !resultadoEsferas ? 'border-white' : ''}
-                                                    ${editarEsferas && resultadoEsferas ? 'border-green' : ''}
+                                            <div className="interacaoBox flex flex-col lg:mr-2">
+                                                <label className={`input-label ${editarEsferas ? 'input-label-focus' : (resultadoEsferas ? 'input-label-active' : 'input-label-inactive')}`}>
+                                                    Resultado(kg/m²):
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    placeholder=' '
+                                                    className={`
+                                                    ${editarEsferas ? 'border-yellow' : (resultadoEsferas ? 'border-green' : 'border-white')}
                                                 `}
-                                                readOnly={!editarEsferas}
-                                                value={resultadoEsferas}
-                                                onChange={(e) => setResultadoEsferas(e.target.value)}
-                                            />
+                                                    readOnly={!editarEsferas}
+                                                    value={resultadoEsferas}
+                                                    onChange={(e) => setResultadoEsferas(e.target.value)}
+                                                />
+                                            </div>
                                         </div>
                                         <div className="teceiroQuadroHabilitarEdicao w-1/5">
                                             <div
@@ -728,30 +805,37 @@ const Formulario = () => {
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label>Tinta:</label>
-                                        <input
-                                            type="text"
-                                            placeholder="Tinta (baldes)"
-                                            value={tinta}
-                                            onChange={(e) => setTinta(e.target.value)}
-                                        />
+                                        <div className="interacaoBox flex flex-col lg:mr-2">
+                                            <label className={`input-label ${tinta ? 'input-label-active' : (isFocused == 'tinta' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                                                Tinta:
+                                            </label>
+                                            <input
+                                                type="text"
+                                                placeholder="Tinta (baldes)"
+                                                value={tinta}
+                                                onChange={(e) => setTinta(e.target.value)}
+                                                onFocus={() => handleInputFocus('tinta')}
+                                                onBlur={handleInputBlur}
+                                            />
+                                        </div>
                                     </td>
                                     <td className="flex items-center">
                                         <div className="w-4/5 pr-2">
-                                            <label className="block">Resultado(m²/balde):</label>
-                                            <input
-                                                type="text"
-                                                placeholder=' '
-                                                className={`
-                                                    ${(!editarTinta && !resultadoTinta) ? 'border-white' : ''}
-                                                    ${(!editarTinta && resultadoTinta) ? 'border-green' : ''}
-                                                    ${editarTinta && !resultadoTinta ? 'border-white' : ''}
-                                                    ${editarTinta && resultadoTinta ? 'border-green' : ''}
+                                            <div className="interacaoBox flex flex-col lg:mr-2">
+                                                <label className={`input-label ${editarTinta ? 'input-label-focus' : (resultadoTinta ? 'input-label-active' : 'input-label-inactive')}`}>
+                                                    Resultado(m²/balde):
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    placeholder=' '
+                                                    className={`
+                                                    ${editarTinta ? 'border-yellow' : (resultadoTinta ? 'border-green' : 'border-white')}
                                                 `}
-                                                readOnly={!editarTinta}
-                                                value={resultadoTinta}
-                                                onChange={(e) => handleInputChangeNumeric(e.target.value, setResultadoTinta)}
-                                            />
+                                                    readOnly={!editarTinta}
+                                                    value={resultadoTinta}
+                                                    onChange={(e) => handleInputChangeNumeric(e.target.value, setResultadoTinta)}
+                                                />
+                                            </div>
                                         </div>
                                         <div className="teceiroQuadroHabilitarEdicao w-1/5">
                                             <div
