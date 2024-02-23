@@ -22,8 +22,10 @@
 <body>
   <div id="root"></div>
   <script>
+    this.meta.removeTag("name='apple-mobile-web-app-status-bar-style'");
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.documentElement.setAttribute("theme", "dark");
+      this.meta.updateTag({ name: 'apple-mobile-web-app-status-bar-style', content: `black-translucent` }, `name='apple-mobile-web-app-status-bar-style'`);
       //console.log("1");
       //console.log(document.documentElement.getAttribute('theme'));
     } else {
@@ -33,6 +35,7 @@
     }
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
       const newColorScheme = event.matches ? "dark" : "light";
+      this.meta.updateTag({ name: 'apple-mobile-web-app-status-bar-style', content: `default` }, `name='apple-mobile-web-app-status-bar-style'`);
       //console.log("3");
       //console.log(document.documentElement.getAttribute('theme'));
     });
