@@ -41,11 +41,9 @@ table {
 .tabela1TelaGrande>tbody>tr,
 .tabela1TelaGrande>tbody>tr>td {
     /* border-width: 1px; */
-    padding: 0.5rem;
-}
-
-.tdLegendaTelaGrande {
     padding: .5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .tabela1TelaGrande>tbody>tr>td>select,
@@ -67,6 +65,7 @@ table {
 
 .divsSegundoQuadroTelaPequena .grupo {
     /* border-width: 1px; */
+    padding: 0.5rem;
     margin-bottom: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }

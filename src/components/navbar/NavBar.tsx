@@ -3,29 +3,8 @@ import "./NavBar.css"
 
 const NavBar = () => {
 
-    // const themeMap = {
-    //     dark: "light",
-    //     light: "solar",
-    //     solar: "dark"
-    // };
-
     function toggleTheme() {
-        const current = document.getElementsByClassName('navbar');
-        console.log(current)
-        // Itera sobre a coleção de elementos
-        for (let i = 0; i < current.length; i++) {
-            const elemento = current[i];
-
-            // Obtém as classes do elemento usando classList
-            const classes = elemento.classList;
-
-            // Converte as classes para um array (opcional, dependendo do que você quer fazer)
-            const classesArray = Array.from(classes);
-
-            // Exibe as classes no console (ou faça o que precisar com elas)
-            console.log("Classes do elemento:", classesArray);
-        }
-        //const next = themeMap[current];
+        console.log('clicou');
     }
 
     const botao = document.getElementById('themeButton');
@@ -105,7 +84,7 @@ const NavBar = () => {
                                 <path fill="currentColor" className="fa-primary" d="M265.767,152.986l0.367,12.226H245.86l0.373-12.226h-77.996l-56.201,206.027h127.943l0.911-29.861h30.222 l0.906,29.861h128.019l-56.231-206.027H265.767z M245.15,188.742h21.7l0.823,27.121h-23.346L245.15,188.742z M242.238,284.627 l1.13-37.223h25.263l1.13,37.223H242.238z"></path>
                             </g>
                         </svg>
-                        <span className="link-text">Estrada</span>
+                        <span className="link-text">Pintura automática</span>
                     </Link>
                 </li>
 

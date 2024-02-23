@@ -427,7 +427,7 @@ const Formulario = () => {
 
 
             {/* Segundo quadro */}
-            <div className="segundoQuadro p-4 mb-4">
+            <div className="segundoQuadro  m-4">
 
                 {larguraDaJanela <= 600 ? (
                     <>
@@ -585,7 +585,7 @@ const Formulario = () => {
                     </>
                 ) : (
 
-                    <table className="tabela1TelaGrande w-full mt-2">
+                    <table className="tabela1TelaGrande w-full">
                         <thead>
                             <tr>
                                 <th className="tdLegendaTelaGrande"></th>
@@ -752,11 +752,11 @@ const Formulario = () => {
                                     <td>
                                         <div className="interacaoBox flex flex-col lg:mr-2">
                                             <label className={`input-label ${esfera ? 'input-label-active' : (isFocused == 'esfera' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                                                Esfera:
+                                                Esfera(kg):
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Esfera(Kg)"
+                                                placeholder=" "
                                                 value={esfera}
                                                 onChange={(e) => setEsfera(e.target.value)}
                                                 onFocus={() => handleInputFocus('esfera')}
@@ -807,11 +807,11 @@ const Formulario = () => {
                                     <td>
                                         <div className="interacaoBox flex flex-col lg:mr-2">
                                             <label className={`input-label ${tinta ? 'input-label-active' : (isFocused == 'tinta' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                                                Tinta:
+                                                Tinta(baldes):
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Tinta (baldes)"
+                                                placeholder=" "
                                                 value={tinta}
                                                 onChange={(e) => setTinta(e.target.value)}
                                                 onFocus={() => handleInputFocus('tinta')}
