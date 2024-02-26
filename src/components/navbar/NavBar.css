@@ -4,6 +4,7 @@
   background-color: #282c34;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   overflow: hidden;
+  z-index: 100;
 }
 
 .navbar-nav {
@@ -32,7 +33,7 @@
   height: 5rem;
   text-decoration: none;
   filter: grayscale(100%) opacity(0.7);
-  transition: var( 600ms);
+  transition: var(600ms);
 }
 
 .nav-link:hover {
@@ -62,7 +63,7 @@
 
 .fa-primary,
 .fa-secondary {
-  transition: var( 600ms);
+  transition: var(600ms);
 }
 
 .toggleNavBar {
@@ -77,20 +78,17 @@
 
 .toggleNavBar svg {
   transform: rotate(0deg);
-  transition: var( 600ms);
+  transition: var(600ms);
 }
 
-.toggleNavBar-text
-{
+.toggleNavBar-text {
   display: inline;
   position: absolute;
   left: -999px;
-  transition: var( 600ms);
+  transition: var(600ms);
 }
 
-.navbar:hover .toggleNavBar svg {
-  transform: rotate(-180deg);
-}
+
 
 /* Small screens */
 @media only screen and (max-width: 600px) {
@@ -136,13 +134,11 @@
     display: inline;
   }
 
-  .navbar:hover .toggleNavBar svg
-  {
+  .navbar:hover .toggleNavBar svg {
     margin-left: 11rem;
   }
 
-  .navbar:hover .toggleNavBar-text
-  {
+  .navbar:hover .toggleNavBar-text {
     left: 0px;
   }
 }

@@ -4,9 +4,11 @@
 
 body {
   margin: 0;
+  height: 100vh;
 }
 
-input, select{
+input,
+select {
   all: initial;
   height: 1.5rem;
 }
@@ -72,7 +74,6 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -110,9 +111,10 @@ button:focus-visible {
   }
 
   input,
-  select {
+  select,
+  textarea {
     background-color: hsl(0, 0%, 17%);
-    color: white!important;
+    color: white !important;
   }
 
 }
@@ -126,9 +128,10 @@ button:focus-visible {
   }
 
   input,
-  select {
+  select,
+  textarea {
     background-color: #f5f5f5;
-    color: black!important;
+    color: black !important;
   }
 }
 
@@ -138,6 +141,14 @@ button:focus-visible {
 .interacaoBox {
   padding: .5rem;
   min-width: 100px;
+}
+
+.bg-amarelo {
+  background-color: #ffcc29;
+}
+
+.bg-cinza {
+  background-color: #9A9B9E;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -165,15 +176,15 @@ button:focus-visible {
   }
 
   .border-white {
-    border-color: #ffffff!important;
+    border-color: #ffffff !important;
   }
 
   .border-green {
-    border-color: #8fda8f!important;
+    border-color: #8fda8f !important;
   }
 
   .border-yellow {
-    border-color: #ffcc29!important;
+    border-color: #ffcc29 !important;
   }
 
   .input-label {

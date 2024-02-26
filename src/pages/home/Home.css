@@ -1,0 +1,55 @@
+/* ---------------------------------- */
+/* css do relogio geral */
+.div-geral-do-relogio {
+    margin-top: 0.5rem;
+    z-index: 1;
+    height: 25vh;
+    width: 25vh;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    border-color: black;
+    border-width: 2px;
+}
+/* ---------------------------------- */
+/* css do calendario geral */
+.div-geral-do-calendario {
+    margin: 1rem;
+    /* border-width: 1px; */
+    max-width: 500px;
+    min-height: 15vh;
+    max-height: 40vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.div-dos-dias-do-calendario {
+    width: 100%;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.cada-dia {
+    margin: .25rem;
+}
+
+/* ---------------------------------- */
+/* css do bloco de notas geral */
+.div-geral-bloco-de-notas {
+    margin: 1rem;
+    /* border-width: 1px; */
+    width: calc(100% - 2rem);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    min-height: 20vh;
+    max-height: 40vh;
+}
+
+.div-geral-bloco-de-notas .data-selecionada-bloco-de-notas {
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.div-geral-bloco-de-notas textarea {
+    height: 90%;
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+}

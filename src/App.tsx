@@ -7,6 +7,7 @@ import {
 import MainLayout from '../src/layout/MainLayout'
 import LoadingScreen from "./components/loading/LoadingScreen";
 
+import Home from './pages/home/Home';
 import CalcTintaEsfera from "./pages/calcTintaEsfera/CalcTintaEsfera";
 
 const router = createBrowserRouter([
@@ -69,13 +70,13 @@ export default function App() {
   return <RouterProvider router={router} fallbackElement={<LoadingScreen></LoadingScreen>} />;
 }
 
-function Home() {
+/* function Home() {
   return (
     <div>
       <h2>Home welcome</h2>
     </div>
   );
-}
+} */
 
 function NoMatch() {
   return (
