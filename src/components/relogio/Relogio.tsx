@@ -11,18 +11,18 @@ function Relogio() {
         return () => clearInterval(interval);
     }, []);
 
-    const hours = time.getHours() % 12;
-    const minutes = time.getMinutes();
-    const seconds = time.getSeconds();
+    const hours = String(time.getHours()).padStart(2, '0');
+    const minutes = String(time.getMinutes()).padStart(2, '0');
+    const seconds = String(time.getSeconds()).padStart(2, '0');
 
-    const hourRotation = (360 / 12) * hours + (360 / 12) * (minutes / 60);
-    const minuteRotation = (360 / 60) * minutes + (360 / 60) * (seconds / 60);
-    const secondRotation = (360 / 60) * seconds;
+    const hourRotation = (360 / 12) * (time.getHours() % 12) + (360 / 12) * (time.getMinutes() / 60);
+    const minuteRotation = (360 / 60) * time.getMinutes() + (360 / 60) * (time.getSeconds() / 60);
+    const secondRotation = (360 / 60) * time.getSeconds();
 
     const radius = 130; // Novo raio
 
     // Criando os números romanos para cada hora
-    const romanNumerals = Array.from({ length: 12 }, (_, index) => toRoman(index + 1));
+    const romanNumerals = Array.from({ length: 13 }, (_, index) => toRoman(index));
 
     function toRoman(num: number): string {
         const romanNumerals = [
