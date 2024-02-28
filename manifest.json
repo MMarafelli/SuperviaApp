@@ -5,8 +5,8 @@
   "theme_color": "#282c34",
   "background_color": "#282c34",
   "display": "standalone",
-  "scope": "/SuperViaApp/",
-  "start_url": "/SuperViaApp/",
+  "scope": "/SuperViaApp",
+  "start_url": "/SuperViaApp",
   "orientation": "portrait",
   "icons": [
     {
