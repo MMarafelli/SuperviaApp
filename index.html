@@ -24,7 +24,6 @@
   <script>
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.documentElement.setAttribute("theme", "dark");
-      this.meta.updateTag({ name: 'apple-mobile-web-app-status-bar-style', content: `black-translucent` }, `name='apple-mobile-web-app-status-bar-style'`);
       //console.log("1");
       //console.log(document.documentElement.getAttribute('theme'));
     } else {

@@ -5,6 +5,7 @@ function Relogio() {
     const theme = document.documentElement.getAttribute('theme');
     const corDoSVG = theme == 'dark' ? 'white' : 'hsl(300, 1%, 30%)';
 
+
     const [time, setTime] = useState(new Date());
 
     useEffect(() => {
