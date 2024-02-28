@@ -7,11 +7,11 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
   registerType: 'prompt',
   includeAssets: ['favicon.ico', "apple-touc-icon.png", "masked-icon.svg"],
   manifest: {
-    name: "Super Via App",
-    short_name: "Super Via App",
+    name: "SuperVia App",
+    short_name: "SuperVia",
     description: "A Super Via App.",
-    theme_color: '#171717',
-    background_color: '#f0e7db',
+    theme_color: '#282c34',
+    background_color: '#282c34',
     display: "standalone",
     scope: "/SuperViaApp/",
     start_url: "/SuperViaApp/",
@@ -21,13 +21,13 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
         src: 'public/icons/favicon.png',
         sizes: '52x52',
         type: 'image/png',
-        purpose: 'favicon'
+        purpose: 'maskable'
       },
       {
         src: 'public/icons/apple-touch-icon.png',
         sizes: '52x52',
         type: 'image/png',
-        purpose: 'apple touch icon',
+        purpose: 'maskable'
       }
     ]
   }
