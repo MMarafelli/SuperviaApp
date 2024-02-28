@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 
 function Relogio() {
+
+    const theme = document.documentElement.getAttribute('theme');
+    const corDoSVG = theme == 'dark' ? 'white' : 'hsl(300, 1%, 30%)';
+
     const [time, setTime] = useState(new Date());
 
     useEffect(() => {
@@ -46,7 +50,7 @@ function Relogio() {
                         textAnchor="middle"
                         alignmentBaseline="middle"
                         fontSize={(20).toString()}
-                        fill="black"
+                        fill={corDoSVG}
                     >
                         {numeral}
                     </text>
