@@ -222,8 +222,8 @@ const Formulario = () => {
       Data: ${diaMesAno},
       Bordo Direito - X: ${direitoX}, Y: ${direitoY}, Z: ${calcularM2(direitoX, direitoY)},
       Bordo Esquerdo - X: ${esquerdoX}, Y: ${esquerdoY}, Z: ${calcularM2(esquerdoX, esquerdoY)},
-      Eixo 4X4 - X: ${eixo4x4X}, Y: ${eixo4x4Y}, Z: ${calcularM2(eixo4x4X, eixo4x4Y)},
-      Eixo 2X2 - X: ${eixo2x2X}, Y: ${eixo2x2Y}, Z: ${calcularM2(eixo2x2X, eixo2x2Y)},
+            Eixo 4X4 - X: ${eixo4x4X}, Y: ${eixo4x4Y}, Z: ${calcularM2(eixo4x4X, eixo4x4Y)},
+            Eixo 2X2 - X: ${eixo2x2X}, Y: ${eixo2x2Y}, Z: ${calcularM2(eixo2x2X, eixo2x2Y)},
       Alça - X: ${alcaX}, Y: ${alcaY}, Z: ${calcularM2(alcaX, alcaY)},
       Esfera(Kg): ${esfera},
       TINTA (baldes): ${tinta}
@@ -640,7 +640,8 @@ const Formulario = () => {
                                         type="text"
                                         value={esquerdoY}
                                         placeholder=" "
-                                        onChange={(e) => setEsquerdoY(e.target.value)}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                            handleInputChangeNumeric(e.target.value, setEsquerdoY)}
                                     />
                                 </td>
                                 <td className='tdResultadoTelaGrande'>{esquerdoZ}</td>

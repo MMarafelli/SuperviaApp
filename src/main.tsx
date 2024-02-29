@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <PwaPrompt />
+    <PwaPrompt promptOnVisit={3} timesToShow={3} permanentlyHideOnDismiss={false} />
     <App />
   </React.StrictMode>
 );
