@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(
 );
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/SuperViaApp/sw.js').then((registration) => {
+  navigator.serviceWorker.register('/SuperViaApp/sw.js', { scope: '/SuperViaApp/' }).then((registration) => {
     console.log('Service Worker registrado com sucesso:', registration);
   }).catch((error) => {
     console.error('Erro ao registrar o Service Worker:', error);
