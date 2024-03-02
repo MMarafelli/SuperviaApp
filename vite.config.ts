@@ -13,8 +13,9 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
     theme_color: '#282c34',
     background_color: '#282c34',
     display: "standalone",
-    scope: "/SuperViaApp",
-    start_url: "/SuperViaApp",
+    id: "/SuperViaApp/",
+    scope: "/SuperViaApp/",
+    start_url: "/SuperViaApp/",
     orientation: 'portrait',
     icons: [
       {
@@ -35,6 +36,8 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/SuperViaApp',
-  plugins: [react(), VitePWA(manifestForPlugIn)],
+  base: '/SuperViaApp/',
+  plugins: [react(),
+  VitePWA(manifestForPlugIn),
+  VitePWA({ injectRegister: 'inline' })],
 })
