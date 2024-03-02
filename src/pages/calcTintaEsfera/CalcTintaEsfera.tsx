@@ -302,7 +302,7 @@ const Formulario = () => {
             })
                 .then(() => console.log('Levantamento compartilhado com sucesso!'))
                 .catch((error) => console.error('Erro ao compartilhar levantamento:', error));
-        } else if (!levantamento) {
+        } else if (!levantamento || levantamento == 'Favor preencher os campos do formulário') {
             alert('O levantamento precisa ser gerado antes de compartilhar.');
         } else {
             alert('A funcionalidade de compartilhamento não é suportada neste navegador.');
