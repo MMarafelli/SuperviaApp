@@ -234,27 +234,68 @@ const Formulario = () => {
     // Gerar texto do levantamento
     // ---------------------------------------------------------------------------------------------
     const gerarLevantamento = () => {
-        const textoLevantamento = `
-      Sentido: ${sentido},
-      KM Inicial: ${kmInicial},
-      KM Final: ${kmFinal},
-      Data: ${diaMesAno},
-      Bordo Direito - X: ${direitoX}, Y: ${direitoY}, Z: ${calcularM2(direitoX, direitoY)},
-      Bordo Esquerdo - X: ${esquerdoX}, Y: ${esquerdoY}, Z: ${calcularM2(esquerdoX, esquerdoY)},
-            Eixo 4X4 - X: ${eixo4x4X}, Y: ${eixo4x4Y}, Z: ${calcularM2(eixo4x4X, eixo4x4Y)},
-            Eixo 2X2 - X: ${eixo2x2X}, Y: ${eixo2x2Y}, Z: ${calcularM2(eixo2x2X, eixo2x2Y)},
-      Alça - X: ${alcaX}, Y: ${alcaY}, Z: ${calcularM2(alcaX, alcaY)},
-      Esfera(Kg): ${esfera},
-      TINTA (baldes): ${tinta}
-    `;
+        let textoLevantamento = ``;
+        if (diaMesAno && diaMesAno != '') {
+            textoLevantamento += `
+            BR050 - MG - ${diaMesAno}
+    
+            Trecho: KM ${kmInicial || '0'} ao KM ${kmFinal || '0'} / Equipe: 0
+        `;
+        }
+
+        // Pintura Automática Definitiva
+        if ((direitoZ && direitoZ != '0')
+            || (esquerdoZ && esquerdoZ != '0')
+            || (eixo4x4Z && eixo4x4Z != '0')
+            || (eixo2x2Z && eixo2x2Z != '0')
+            || (alcaZ && alcaZ != '0')
+            || (esfera && esfera != '0')
+            || (tinta && tinta != '0')) {
+            textoLevantamento += `
+                **Pintura Automática Definitiva**
+                `;
+
+            if (direitoZ && direitoZ != '0') textoLevantamento += `**BORDO DIREITO : ${direitoZ} metros**\n`;
+            if (esquerdoZ && esquerdoZ != '0') textoLevantamento += `**BORDO ESQUERDO : ${esquerdoZ} metros**\n`;
+            if (eixo4x4Z && eixo4x4Z != '0') textoLevantamento += `**EIXO 4x4 : ${eixo4x4Z} unidades**\n`;
+            if (eixo2x2Z && eixo2x2Z != '0') textoLevantamento += `**Eixo 2X2 : ${eixo2x2Z} unidades**\n`;
+            if (alcaZ && alcaZ != '0') textoLevantamento += `**Alça : ${alcaZ} unidades**\n`;
+            if (esfera && esfera != '0') textoLevantamento += `Esfera(Kg): ${esfera}\n`;
+            if (tinta && tinta != '0') textoLevantamento += `Tinta (baldes): ${tinta}\n`;
+        }
+
+        // Implantação de Tachas Mono
+        if (direitoTipoTacha || esquerdoTipoTacha || eixo4x4TipoTacha || eixo2x2TipoTacha || alcaTipoTacha || alcaQtdTacha) {
+            textoLevantamento += `
+                **Implantação de Tachas Mono**
+                `;
+
+            if (direitoTipoTacha && direitoQtdTacha) textoLevantamento += `**BORDO DIREITO : ${direitoTipoTacha} ${direitoQtdTacha} unidades**\n`;
+            if (esquerdoTipoTacha && esquerdoQtdTacha) textoLevantamento += `**BORDO ESQUERDO : ${esquerdoTipoTacha} ${esquerdoQtdTacha} unidades**\n`;
+            if (eixo4x4TipoTacha && eixo4x4QtdTacha) textoLevantamento += `**EIXO 4x4 : ${eixo4x4TipoTacha} ${eixo4x4QtdTacha} unidades**\n`;
+            if (eixo2x2TipoTacha && eixo2x2QtdTacha) textoLevantamento += `**Eixo 2X2 : ${eixo2x2TipoTacha} ${eixo2x2QtdTacha} unidades**\n`;
+            if (alcaTipoTacha && alcaQtdTacha) textoLevantamento += `**Alça : ${alcaTipoTacha} ${alcaQtdTacha} unidades**\n`;
+
+            // Remoção
+            textoLevantamento += `**REMOÇÃO : 00 unidades**\n`;
+        }
+
+        if (textoLevantamento == '') {
+            textoLevantamento = 'Favor preencher os campos do formulário';
+        }
+        console.log(textoLevantamento)
+
         setLevantamento(textoLevantamento);
     };
+
+
+
 
     // ---------------------------------------------------------------------------------------------
     // Controle do compatilhamento
     // ---------------------------------------------------------------------------------------------
     const compartilharTexto = () => {
-        if (levantamento && navigator.share) {
+        if (levantamento && levantamento != 'Favor preencher os campos do formulário' && navigator.share) {
             navigator.share({
                 title: 'Compartilhar Levantamento',
                 text: levantamento,

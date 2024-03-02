@@ -25,14 +25,14 @@ if ('serviceWorker' in navigator) {
 
 const checkForUpdates = async () => {
   const registration = await navigator.serviceWorker.getRegistration();
-  console.log(registration)
+  //console.log(registration)
   if (registration) {
     registration.update();
   }
 };
 
 // Verifica atualizações periodicamente (por exemplo, a cada hora)
-setInterval(checkForUpdates, 60 * 60); // 1 hora
+setInterval(checkForUpdates, 60 * 60 * 1000); // 1 hora
 
 window.addEventListener('message', (event) => {
   if (event.data === 'updateAvailable') {
