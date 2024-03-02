@@ -35,7 +35,7 @@ table {
 .tabela1TelaGrande>thead>tr,
 .tabela1TelaGrande>thead>tr>th {
     /* border-width: 1px; */
-    padding: 1rem;
+    padding: .5rem;
 }
 
 .tabela1TelaGrande>tbody>tr,
@@ -72,6 +72,7 @@ table {
 
 .divsSegundoQuadroTelaPequena .bloco {
     display: flex;
+    width: 100%;
 }
 
 
@@ -81,12 +82,12 @@ table {
 }
 
 .segundoQuadro>div>div>div>div>select,
-.segundoQuadro>div>div>div>div>input {
+.segundoQuadro>div>div>div>div>input,
+.segundoQuadro>div>div>div>div>.resultado {
     width: 55%;
     padding: .5rem;
     margin-right: .5rem;
 }
-
 
 
 /* ---------------------------------------------------------------------------------- */

@@ -138,6 +138,10 @@ button:focus-visible {
 /* ------------------------------------------------------ */
 /* Ajuste estético dos inputs */
 
+.texto-a-direita {
+  text-align: right;
+}
+
 .interacaoBox {
   padding: .5rem;
   min-width: 100px;

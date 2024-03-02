@@ -29,18 +29,28 @@ const Formulario = () => {
     const [esquerdoX, setEsquerdoX] = useState('');
     const [esquerdoY, setEsquerdoY] = useState('');
     const [esquerdoZ, setEsquerdoZ] = useState('');
+    const [esquerdoTipoTacha, setEsquerdoTipoTacha] = useState('');
+    const [esquerdoQtdTacha, setEsquerdoQtdTacha] = useState('');
     const [direitoX, setDireitoX] = useState('');
     const [direitoY, setDireitoY] = useState('');
     const [direitoZ, setDireitoZ] = useState('');
+    const [direitoTipoTacha, setDireitoTipoTacha] = useState('');
+    const [direitoQtdTacha, setDireitoQtdTacha] = useState('');
     const [eixo4x4X, setEixo4x4X] = useState('');
     const [eixo4x4Y, setEixo4x4Y] = useState('');
     const [eixo4x4Z, setEixo4x4Z] = useState('');
+    const [eixo4x4TipoTacha, setEixo4x4TipoTacha] = useState('');
+    const [eixo4x4QtdTacha, setEixo4x4QtdTacha] = useState('');
     const [eixo2x2X, setEixo2x2X] = useState('');
     const [eixo2x2Y, setEixo2x2Y] = useState('');
     const [eixo2x2Z, setEixo2x2Z] = useState('');
+    const [eixo2x2TipoTacha, setEixo2x2TipoTacha] = useState('');
+    const [eixo2x2QtdTacha, setEixo2x2QtdTacha] = useState('');
     const [alcaX, setAlcaX] = useState('');
     const [alcaY, setAlcaY] = useState('');
     const [alcaZ, setAlcaZ] = useState('');
+    const [alcaTipoTacha, setAlcaTipoTacha] = useState('');
+    const [alcaQtdTacha, setAlcaQtdTacha] = useState('');
     const [esfera, setEsfera] = useState('');
     const [resultadoEsferas, setResultadoEsferas] = useState('');
     const [editarEsferas, setEditarEsferas] = useState(false);
@@ -62,10 +72,19 @@ const Formulario = () => {
     };
 
     // opções de espeçura da faixa
-    const opcoesDeSelect = [
+    const opcoesDeSelectEspessura = [
         { valor: '', label: 'Selecione...' },
         { valor: '0.10', label: '0.10' },
         { valor: '0.15', label: '0.15' },
+    ];
+
+    // opções de espeçura da tacha
+    const opcoesDeSelectTacha = [
+        { valor: '', label: 'Selecione...' },
+        { valor: '1', label: 'Tacha monodirecional' },
+        { valor: '2', label: 'Tacha bidirecional' },
+        { valor: '3', label: 'Tachao monodirecional ' },
+        { valor: '4', label: 'Tachao bidirecional' },
     ];
 
     // Libera ou trava a edição no campo
@@ -271,22 +290,39 @@ const Formulario = () => {
         setKmInicial('');
         setKmFinal('');
         setDiaMesAno('')
+
         setEsquerdoX('');
         setEsquerdoY('');
+        setEsquerdoTipoTacha('');
+        setEsquerdoQtdTacha('');
+
         setDireitoX('');
         setDireitoY('');
+        setDireitoTipoTacha('');
+        setDireitoQtdTacha('');
+
         setEixo4x4X('');
         setEixo4x4Y('');
+        setEixo4x4TipoTacha('');
+        setEixo4x4QtdTacha('');
+
         setEixo2x2X('');
         setEixo2x2Y('');
+        setEixo2x2TipoTacha('');
+        setEixo2x2QtdTacha('');
+
         setAlcaX('');
         setAlcaY('');
+        setAlcaTipoTacha('');
+        setAlcaQtdTacha('');
+
         setEsfera('');
         setResultadoEsferas('');
         setEditarEsferas(false);
         setTinta('');
         setResultadoTinta('');
         setEditarTinta(false);
+
         setLevantamento('');
     };
 
@@ -428,15 +464,14 @@ const Formulario = () => {
 
             {/* Segundo quadro */}
             <div className="segundoQuadro  m-4">
-
-                {larguraDaJanela <= 600 ? (
+                {larguraDaJanela <= 800 ? (
                     <>
                         <div className='divsSegundoQuadroTelaPequena'>
                             <div className='grupo'>
                                 <label className='quadro'>Bordo direito:</label>
                                 <div>
                                     <div className='bloco'>
-                                        <div className='quadro'>
+                                        <div className='texto-a-direita  quadro'>
                                             Espessura
                                         </div>
                                         <select
@@ -445,7 +480,7 @@ const Formulario = () => {
                                             value={direitoX}
                                             onChange={(e) => setDireitoX(e.target.value)}
                                         >
-                                            {opcoesDeSelect.map((opcao) => (
+                                            {opcoesDeSelectEspessura.map((opcao) => (
                                                 <option key={opcao.valor} value={opcao.valor}>
                                                     {opcao.label}
                                                 </option>
@@ -453,7 +488,7 @@ const Formulario = () => {
                                         </select>
                                     </div>
                                     <div className='bloco'>
-                                        <div className='quadro'>Comprimento (m)</div>
+                                        <div className='texto-a-direita  quadro'>Comprimento (m)</div>
                                         <input
                                             type="text"
                                             placeholder=" "
@@ -461,7 +496,39 @@ const Formulario = () => {
                                             onChange={(e) => handleInputChangeNumeric(e.target.value, setDireitoY)}
                                         />
                                     </div>
-                                    <div className='quadro'>Resultado: {direitoZ} m²</div>
+                                    <div className='bloco'>
+                                        <div className='texto-a-direita  quadro'>Resultado(m²):</div>
+                                        <input
+                                            disabled
+                                            type="text"
+                                            placeholder=" "
+                                            value={direitoZ}
+                                        />
+                                    </div>
+                                    <div className='bloco'>
+                                        <div className='texto-a-direita  quadro'>Tipo de tacha:</div>
+                                        <select
+                                            className={`${(!direitoTipoTacha) ? 'border-white' : ''}
+                                                        ${(direitoTipoTacha) ? 'border-green' : ''}`}
+                                            value={direitoTipoTacha}
+                                            onChange={(e) => setDireitoTipoTacha(e.target.value)}>
+                                            {opcoesDeSelectTacha.map((opcao) => (
+                                                <option key={opcao.valor} value={opcao.valor}>
+                                                    {opcao.label}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className='bloco'>
+                                        <div className='texto-a-direita  quadro'>Quantidade de tacha:</div>
+                                        <input
+                                            type="text"
+                                            value={direitoQtdTacha}
+                                            placeholder=" "
+                                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                                handleInputChangeNumeric(e.target.value, setDireitoQtdTacha)}
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
@@ -469,13 +536,13 @@ const Formulario = () => {
                                 <label className='quadro'>Bordo Esquerdo:</label>
                                 <div>
                                     <div className='bloco'>
-                                        <div className='quadro'>Espessura</div>
+                                        <div className='texto-a-direita  quadro'>Espessura</div>
 
                                         <select
                                             className={`${(!esquerdoX) ? 'border-white' : ''}
                                         ${(esquerdoX) ? 'border-green' : ''}`}
                                             value={esquerdoX} onChange={(e) => setEsquerdoX(e.target.value)}>
-                                            {opcoesDeSelect.map((opcao) => (
+                                            {opcoesDeSelectEspessura.map((opcao) => (
                                                 <option key={opcao.valor} value={opcao.valor}>
                                                     {opcao.label}
                                                 </option>
@@ -483,7 +550,7 @@ const Formulario = () => {
                                         </select>
                                     </div>
                                     <div className='bloco'>
-                                        <div className='quadro'>Comprimento (m)</div>
+                                        <div className='texto-a-direita  quadro'>Comprimento (m)</div>
                                         <input
                                             type="text"
                                             placeholder=" "
@@ -491,7 +558,39 @@ const Formulario = () => {
                                             onChange={(e) => handleInputChangeNumeric(e.target.value, setEsquerdoY)}
                                         />
                                     </div>
-                                    <div className='quadro'>Resultado: {esquerdoZ} m²</div>
+                                    <div className='bloco'>
+                                        <div className='texto-a-direita  quadro'>Resultado(m²):</div>
+                                        <input
+                                            disabled
+                                            type="text"
+                                            placeholder=" "
+                                            value={esquerdoZ}
+                                        />
+                                    </div>
+                                    <div className='bloco'>
+                                        <div className='texto-a-direita  quadro'>Tipo de tacha:</div>
+                                        <select
+                                            className={`${(!esquerdoTipoTacha) ? 'border-white' : ''}
+                                                        ${(esquerdoTipoTacha) ? 'border-green' : ''}`}
+                                            value={esquerdoTipoTacha}
+                                            onChange={(e) => setEsquerdoTipoTacha(e.target.value)}>
+                                            {opcoesDeSelectTacha.map((opcao) => (
+                                                <option key={opcao.valor} value={opcao.valor}>
+                                                    {opcao.label}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className='bloco'>
+                                        <div className='texto-a-direita  quadro'>Quantidade de tacha:</div>
+                                        <input
+                                            type="text"
+                                            value={esquerdoQtdTacha}
+                                            placeholder=" "
+                                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                                handleInputChangeNumeric(e.target.value, setEsquerdoQtdTacha)}
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
@@ -499,12 +598,12 @@ const Formulario = () => {
                                 <label className='quadro'>Eixo 4X4:</label>
                                 <div>
                                     <div className='bloco'>
-                                        <div className='quadro'>Espessura</div>
+                                        <div className='texto-a-direita  quadro'>Espessura</div>
                                         <select
                                             className={`${(!eixo4x4X) ? 'border-white' : ''}
                                         ${(eixo4x4X) ? 'border-green' : ''}`}
                                             value={eixo4x4X} onChange={(e) => setEixo4x4X(e.target.value)}>
-                                            {opcoesDeSelect.map((opcao) => (
+                                            {opcoesDeSelectEspessura.map((opcao) => (
                                                 <option key={opcao.valor} value={opcao.valor}>
                                                     {opcao.label}
                                                 </option>
@@ -512,7 +611,7 @@ const Formulario = () => {
                                         </select>
                                     </div>
                                     <div className='bloco'>
-                                        <div className='quadro'>Comprimento (m)</div>
+                                        <div className='texto-a-direita  quadro'>Comprimento (m)</div>
                                         <input className='w-full'
                                             placeholder=" "
                                             type="text"
@@ -520,7 +619,39 @@ const Formulario = () => {
                                             onChange={(e) => handleInputChangeNumeric(e.target.value, setEixo4x4Y)}
                                         />
                                     </div>
-                                    <div className='quadro'>Resultado: {eixo4x4Z} m²</div>
+                                    <div className='bloco'>
+                                        <div className='texto-a-direita  quadro'>Resultado(m²):</div>
+                                        <input
+                                            disabled
+                                            type="text"
+                                            placeholder=" "
+                                            value={eixo4x4Z}
+                                        />
+                                    </div>
+                                    <div className='bloco'>
+                                        <div className='texto-a-direita  quadro'>Tipo de tacha:</div>
+                                        <select
+                                            className={`${(!eixo4x4TipoTacha) ? 'border-white' : ''}
+                                                        ${(eixo4x4TipoTacha) ? 'border-green' : ''}`}
+                                            value={eixo4x4TipoTacha}
+                                            onChange={(e) => setEixo4x4TipoTacha(e.target.value)}>
+                                            {opcoesDeSelectTacha.map((opcao) => (
+                                                <option key={opcao.valor} value={opcao.valor}>
+                                                    {opcao.label}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className='bloco'>
+                                        <div className='texto-a-direita  quadro'>Quantidade de tacha:</div>
+                                        <input
+                                            type="text"
+                                            value={eixo4x4QtdTacha}
+                                            placeholder=" "
+                                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                                handleInputChangeNumeric(e.target.value, setEixo4x4QtdTacha)}
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
@@ -528,12 +659,12 @@ const Formulario = () => {
                                 <label className='quadro'>Eixo 2X2:</label>
                                 <div>
                                     <div className='bloco'>
-                                        <div className='quadro'>Espessura</div>
+                                        <div className='texto-a-direita quadro'>Espessura</div>
                                         <select
                                             className={`${(!eixo2x2X) ? 'border-white' : ''}
                                         ${(eixo2x2X) ? 'border-green' : ''}`}
                                             value={eixo2x2X} onChange={(e) => setEixo2x2X(e.target.value)}>
-                                            {opcoesDeSelect.map((opcao) => (
+                                            {opcoesDeSelectEspessura.map((opcao) => (
                                                 <option key={opcao.valor} value={opcao.valor}>
                                                     {opcao.label}
                                                 </option>
@@ -541,7 +672,7 @@ const Formulario = () => {
                                         </select>
                                     </div>
                                     <div className='bloco'>
-                                        <div className='quadro'>Comprimento (m)</div>
+                                        <div className='texto-a-direita quadro'>Comprimento (m)</div>
                                         <input className='w-full'
                                             placeholder=" "
                                             type="text"
@@ -549,20 +680,23 @@ const Formulario = () => {
                                             onChange={(e) => handleInputChangeNumeric(e.target.value, setEixo2x2Y)}
                                         />
                                     </div>
-                                    <div className='quadro'>Resultado: {eixo2x2Z} m²</div>
-                                </div>
-                            </div>
-
-                            <div className='grupo'>
-                                <label className='quadro'>Alça:</label>
-                                <div>
                                     <div className='bloco'>
-                                        <div className='quadro'>Espessura</div>
+                                        <div className='texto-a-direita quadro'>Resultado(m²):</div>
+                                        <input
+                                            disabled
+                                            type="text"
+                                            placeholder=" "
+                                            value={eixo2x2Z}
+                                        />
+                                    </div>
+                                    <div className='bloco'>
+                                        <div className='texto-a-direita quadro'>Tipo de tacha:</div>
                                         <select
-                                            className={`${(!alcaX) ? 'border-white' : ''}
-                                        ${(alcaX) ? 'border-green' : ''}`}
-                                            value={alcaX} onChange={(e) => setAlcaX(e.target.value)}>
-                                            {opcoesDeSelect.map((opcao) => (
+                                            className={`${(!eixo2x2TipoTacha) ? 'border-white' : ''}
+                                                        ${(eixo2x2TipoTacha) ? 'border-green' : ''}`}
+                                            value={eixo2x2TipoTacha}
+                                            onChange={(e) => setEixo2x2TipoTacha(e.target.value)}>
+                                            {opcoesDeSelectTacha.map((opcao) => (
                                                 <option key={opcao.valor} value={opcao.valor}>
                                                     {opcao.label}
                                                 </option>
@@ -570,7 +704,36 @@ const Formulario = () => {
                                         </select>
                                     </div>
                                     <div className='bloco'>
-                                        <div className='quadro'>Comprimento (m)</div>
+                                        <div className='texto-a-direita quadro'>Quantidade de tacha:</div>
+                                        <input
+                                            type="text"
+                                            value={eixo2x2QtdTacha}
+                                            placeholder=" "
+                                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                                handleInputChangeNumeric(e.target.value, setEixo2x2QtdTacha)}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className='grupo'>
+                                <label className='quadro'>Alça:</label>
+                                <div>
+                                    <div className='bloco'>
+                                        <div className='texto-a-direita quadro'>Espessura</div>
+                                        <select
+                                            className={`${(!alcaX) ? 'border-white' : ''}
+                                        ${(alcaX) ? 'border-green' : ''}`}
+                                            value={alcaX} onChange={(e) => setAlcaX(e.target.value)}>
+                                            {opcoesDeSelectEspessura.map((opcao) => (
+                                                <option key={opcao.valor} value={opcao.valor}>
+                                                    {opcao.label}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className='bloco'>
+                                        <div className='texto-a-direita quadro'>Comprimento (m)</div>
                                         <input className='w-full'
                                             placeholder=" "
                                             type="text"
@@ -578,13 +741,44 @@ const Formulario = () => {
                                             onChange={(e) => handleInputChangeNumeric(e.target.value, setAlcaY)}
                                         />
                                     </div>
-                                    <div className='quadro'>Resultado: {alcaZ} m²</div>
+                                    <div className='bloco'>
+                                        <div className='texto-a-direita  quadro'>Resultado(m²):</div>
+                                        <input
+                                            disabled
+                                            type="text"
+                                            placeholder=" "
+                                            value={alcaZ}
+                                        />
+                                    </div>
+                                    <div className='bloco'>
+                                        <div className='texto-a-direita quadro'>Tipo de tacha:</div>
+                                        <select
+                                            className={`${(!alcaTipoTacha) ? 'border-white' : ''}
+                                                        ${(alcaTipoTacha) ? 'border-green' : ''}`}
+                                            value={alcaTipoTacha}
+                                            onChange={(e) => setAlcaTipoTacha(e.target.value)}>
+                                            {opcoesDeSelectTacha.map((opcao) => (
+                                                <option key={opcao.valor} value={opcao.valor}>
+                                                    {opcao.label}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className='bloco'>
+                                        <div className='texto-a-direita quadro'>Quantidade de tacha:</div>
+                                        <input
+                                            type="text"
+                                            value={alcaQtdTacha}
+                                            placeholder=" "
+                                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                                handleInputChangeNumeric(e.target.value, setAlcaQtdTacha)}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </>
                 ) : (
-
                     <table className="tabela1TelaGrande w-full">
                         <thead>
                             <tr>
@@ -592,6 +786,8 @@ const Formulario = () => {
                                 <th className="tdLegendaTelaGrande">Espessura</th>
                                 <th className="tdLegendaTelaGrande">Comprimento (m)</th>
                                 <th className="tdLegendaTelaGrande">m²</th>
+                                <th className="tdLegendaTelaGrande">Tipo de tacha</th>
+                                <th className="tdLegendaTelaGrande">Quantidade de tachas</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -603,7 +799,7 @@ const Formulario = () => {
                                         ${(direitoX) ? 'border-green' : ''}`}
                                         value={direitoX}
                                         onChange={(e) => setDireitoX(e.target.value)}>
-                                        {opcoesDeSelect.map((opcao) => (
+                                        {opcoesDeSelectEspessura.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
                                             </option>
@@ -620,6 +816,28 @@ const Formulario = () => {
                                     />
                                 </td>
                                 <td className='tdResultadoTelaGrande'>{direitoZ}</td>
+                                <td>
+                                    <select
+                                        className={`${(!direitoTipoTacha) ? 'border-white' : ''}
+                                        ${(direitoTipoTacha) ? 'border-green' : ''}`}
+                                        value={direitoTipoTacha}
+                                        onChange={(e) => setDireitoTipoTacha(e.target.value)}>
+                                        {opcoesDeSelectTacha.map((opcao) => (
+                                            <option key={opcao.valor} value={opcao.valor}>
+                                                {opcao.label}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        value={direitoQtdTacha}
+                                        placeholder=" "
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                            handleInputChangeNumeric(e.target.value, setDireitoQtdTacha)}
+                                    />
+                                </td>
                             </tr>
                             <tr>
                                 <td className="tdLegendaTelaGrande">Bordo Esquerdo</td>
@@ -628,7 +846,7 @@ const Formulario = () => {
                                         className={`${(!esquerdoX) ? 'border-white' : ''}
                                         ${(esquerdoX) ? 'border-green' : ''}`}
                                         value={esquerdoX} onChange={(e) => setEsquerdoX(e.target.value)}>
-                                        {opcoesDeSelect.map((opcao) => (
+                                        {opcoesDeSelectEspessura.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
                                             </option>
@@ -645,6 +863,28 @@ const Formulario = () => {
                                     />
                                 </td>
                                 <td className='tdResultadoTelaGrande'>{esquerdoZ}</td>
+                                <td>
+                                    <select
+                                        className={`${(!esquerdoTipoTacha) ? 'border-white' : ''}
+                                            ${(esquerdoTipoTacha) ? 'border-green' : ''}`}
+                                        value={esquerdoTipoTacha}
+                                        onChange={(e) => setEsquerdoTipoTacha(e.target.value)}>
+                                        {opcoesDeSelectTacha.map((opcao) => (
+                                            <option key={opcao.valor} value={opcao.valor}>
+                                                {opcao.label}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        value={esquerdoQtdTacha}
+                                        placeholder=" "
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                            handleInputChangeNumeric(e.target.value, setEsquerdoQtdTacha)}
+                                    />
+                                </td>
                             </tr>
                             <tr>
                                 <td className="tdLegendaTelaGrande">Eixo 4X4:</td>
@@ -654,7 +894,7 @@ const Formulario = () => {
                                         ${(eixo4x4X) ? 'border-green' : ''}`}
                                         value={eixo4x4X}
                                         onChange={(e) => setEixo4x4X(e.target.value)}>
-                                        {opcoesDeSelect.map((opcao) => (
+                                        {opcoesDeSelectEspessura.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
                                             </option>
@@ -671,6 +911,28 @@ const Formulario = () => {
                                     />
                                 </td>
                                 <td className='tdResultadoTelaGrande'>{eixo4x4Z}</td>
+                                <td>
+                                    <select
+                                        className={`${(!eixo4x4TipoTacha) ? 'border-white' : ''}
+                                            ${(eixo4x4TipoTacha) ? 'border-green' : ''}`}
+                                        value={eixo4x4TipoTacha}
+                                        onChange={(e) => setEixo4x4TipoTacha(e.target.value)}>
+                                        {opcoesDeSelectTacha.map((opcao) => (
+                                            <option key={opcao.valor} value={opcao.valor}>
+                                                {opcao.label}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        value={eixo4x4QtdTacha}
+                                        placeholder=" "
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                            handleInputChangeNumeric(e.target.value, setEixo4x4QtdTacha)}
+                                    />
+                                </td>
                             </tr>
                             <tr>
                                 <td className="tdLegendaTelaGrande">Eixo 2X2:</td>
@@ -680,7 +942,7 @@ const Formulario = () => {
                                         ${(eixo2x2X) ? 'border-green' : ''}`}
                                         value={eixo2x2X}
                                         onChange={(e) => setEixo2x2X(e.target.value)}>
-                                        {opcoesDeSelect.map((opcao) => (
+                                        {opcoesDeSelectEspessura.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
                                             </option>
@@ -697,6 +959,28 @@ const Formulario = () => {
                                     />
                                 </td>
                                 <td className='tdResultadoTelaGrande'>{eixo2x2Z}</td>
+                                <td>
+                                    <select
+                                        className={`${(!eixo2x2TipoTacha) ? 'border-white' : ''}
+                                            ${(eixo2x2TipoTacha) ? 'border-green' : ''}`}
+                                        value={eixo2x2TipoTacha}
+                                        onChange={(e) => setEixo2x2TipoTacha(e.target.value)}>
+                                        {opcoesDeSelectTacha.map((opcao) => (
+                                            <option key={opcao.valor} value={opcao.valor}>
+                                                {opcao.label}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        value={eixo2x2QtdTacha}
+                                        placeholder=" "
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                            handleInputChangeNumeric(e.target.value, setEixo2x2QtdTacha)}
+                                    />
+                                </td>
                             </tr>
                             <tr>
                                 <td className="tdLegendaTelaGrande">Alça:</td>
@@ -706,7 +990,7 @@ const Formulario = () => {
                                         ${(alcaX) ? 'border-green' : ''}`}
                                         value={alcaX}
                                         onChange={(e) => setAlcaX(e.target.value)}>
-                                        {opcoesDeSelect.map((opcao) => (
+                                        {opcoesDeSelectEspessura.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
                                             </option>
@@ -722,6 +1006,28 @@ const Formulario = () => {
                                     />
                                 </td>
                                 <td className='tdResultadoTelaGrande'>{alcaZ}</td>
+                                <td>
+                                    <select
+                                        className={`${(!alcaTipoTacha) ? 'border-white' : ''}
+                                            ${(alcaTipoTacha) ? 'border-green' : ''}`}
+                                        value={alcaTipoTacha}
+                                        onChange={(e) => setAlcaTipoTacha(e.target.value)}>
+                                        {opcoesDeSelectTacha.map((opcao) => (
+                                            <option key={opcao.valor} value={opcao.valor}>
+                                                {opcao.label}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        value={alcaQtdTacha}
+                                        placeholder=" "
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                            handleInputChangeNumeric(e.target.value, setAlcaQtdTacha)}
+                                    />
+                                </td>
                             </tr>
                         </tbody>
                     </table>
