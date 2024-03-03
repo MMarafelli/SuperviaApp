@@ -1,4 +1,4 @@
-// Formulario.js
+// Formulario.jsmonodirecional
 import { useRef, useState, useEffect } from 'react';
 import './CalcTintaEsfera.css';
 
@@ -148,10 +148,10 @@ const Formulario = () => {
     // opções de espeçura da tacha
     const opcoesDeSelectTacha = [
         { valor: '', label: 'Selecione...' },
-        { valor: '1', label: 'Tacha monodirecional' },
-        { valor: '2', label: 'Tacha bidirecional' },
-        { valor: '3', label: 'Tachao monodirecional ' },
-        { valor: '4', label: 'Tachao bidirecional' },
+        { valor: 'Tacha monodirecional', label: 'Tacha monodirecional' },
+        { valor: 'Tacha bidirecional', label: 'Tacha bidirecional' },
+        { valor: 'Tachão monodirecional', label: 'Tachao monodirecional ' },
+        { valor: 'Tachão bidirecional', label: 'Tachao bidirecional' },
     ];
 
     // Libera ou trava a edição no campo
