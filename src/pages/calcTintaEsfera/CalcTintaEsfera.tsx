@@ -1,9 +1,62 @@
 // Formulario.js
-import { useRef, useState, ChangeEvent, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import './CalcTintaEsfera.css';
 
 const Formulario = () => {
+
+    // ---------------------------------------------------------------------------------------------
+    // Variáveis da página
+    // --------------------------------------------------------------------------------------------
     const [larguraDaJanela, setLarguraDaJanela] = useState(window.innerWidth);
+    const [isFocused, setIsFocused] = useState('');
+    const [mostrarConteudo, setMostrarConteudo] = useState(false);
+    const [editarEsferas, setEditarEsferas] = useState(false);
+    const [editarTinta, setEditarTinta] = useState(false);
+    const [levantamento, setLevantamento] = useState('');
+
+    const initialState = {
+        estado: localStorage.getItem('estado') || '',
+        sentido: localStorage.getItem('sentido') || '',
+        nomeEstrada: localStorage.getItem('nomeEstrada') || '',
+        kmInicial: localStorage.getItem('kmInicial') || '',
+        diaMesAno: localStorage.getItem('diaMesAno') || '',
+        kmFinal: localStorage.getItem('kmFinal') || '',
+        esquerdoX: localStorage.getItem('esquerdoX') || '',
+        esquerdoY: localStorage.getItem('esquerdoY') || '',
+        esquerdoZ: localStorage.getItem('esquerdoZ') || '',
+        esquerdoTipoTacha: localStorage.getItem('esquerdoTipoTacha') || '',
+        esquerdoQtdTacha: localStorage.getItem('esquerdoQtdTacha') || '',
+        direitoX: localStorage.getItem('direitoX') || '',
+        direitoY: localStorage.getItem('direitoY') || '',
+        direitoZ: localStorage.getItem('direitoZ') || '',
+        direitoTipoTacha: localStorage.getItem('direitoTipoTacha') || '',
+        direitoQtdTacha: localStorage.getItem('direitoQtdTacha') || '',
+        eixo4x4X: localStorage.getItem('eixo4x4X') || '',
+        eixo4x4Y: localStorage.getItem('eixo4x4Y') || '',
+        eixo4x4Z: localStorage.getItem('eixo4x4Z') || '',
+        eixo4x4TipoTacha: localStorage.getItem('eixo4x4TipoTacha') || '',
+        eixo4x4QtdTacha: localStorage.getItem('eixo4x4QtdTacha') || '',
+        eixo2x2X: localStorage.getItem('eixo2x2X') || '',
+        eixo2x2Y: localStorage.getItem('eixo2x2Y') || '',
+        eixo2x2Z: localStorage.getItem('eixo2x2Z') || '',
+        eixo2x2TipoTacha: localStorage.getItem('eixo2x2TipoTacha') || '',
+        eixo2x2QtdTacha: localStorage.getItem('eixo2x2QtdTacha') || '',
+        alcaX: localStorage.getItem('alcaX') || '',
+        alcaY: localStorage.getItem('alcaY') || '',
+        alcaZ: localStorage.getItem('alcaZ') || '',
+        alcaTipoTacha: localStorage.getItem('alcaTipoTacha') || '',
+        alcaQtdTacha: localStorage.getItem('alcaQtdTacha') || '',
+        esfera: localStorage.getItem('esfera') || '',
+        resultadoEsferas: localStorage.getItem('resultadoEsferas') || '',
+        tinta: localStorage.getItem('tinta') || '',
+        resultadoTinta: localStorage.getItem('resultadoTinta') || '',
+    };
+
+    const [campos, setCampos] = useState(initialState);
+
+    // ---------------------------------------------------------------------------------------------
+    // Handlers
+    // --------------------------------------------------------------------------------------------
 
     //Controle do tamanho da tela, para responsividade
     useEffect(() => {
@@ -18,57 +71,71 @@ const Formulario = () => {
         };
     }, []);
 
-    const [isFocused, setIsFocused] = useState('');
-    const [mostrarConteudo, setMostrarConteudo] = useState(false);
-    const [estado, setEstado] = useState('');
-    const [sentido, setSentido] = useState('');
-    const [nomeEstrada, setNomeEstrada] = useState('');
-    const [kmInicial, setKmInicial] = useState('');
-    const [diaMesAno, setDiaMesAno] = useState('');
-    const [kmFinal, setKmFinal] = useState('');
-    const [esquerdoX, setEsquerdoX] = useState('');
-    const [esquerdoY, setEsquerdoY] = useState('');
-    const [esquerdoZ, setEsquerdoZ] = useState('');
-    const [esquerdoTipoTacha, setEsquerdoTipoTacha] = useState('');
-    const [esquerdoQtdTacha, setEsquerdoQtdTacha] = useState('');
-    const [direitoX, setDireitoX] = useState('');
-    const [direitoY, setDireitoY] = useState('');
-    const [direitoZ, setDireitoZ] = useState('');
-    const [direitoTipoTacha, setDireitoTipoTacha] = useState('');
-    const [direitoQtdTacha, setDireitoQtdTacha] = useState('');
-    const [eixo4x4X, setEixo4x4X] = useState('');
-    const [eixo4x4Y, setEixo4x4Y] = useState('');
-    const [eixo4x4Z, setEixo4x4Z] = useState('');
-    const [eixo4x4TipoTacha, setEixo4x4TipoTacha] = useState('');
-    const [eixo4x4QtdTacha, setEixo4x4QtdTacha] = useState('');
-    const [eixo2x2X, setEixo2x2X] = useState('');
-    const [eixo2x2Y, setEixo2x2Y] = useState('');
-    const [eixo2x2Z, setEixo2x2Z] = useState('');
-    const [eixo2x2TipoTacha, setEixo2x2TipoTacha] = useState('');
-    const [eixo2x2QtdTacha, setEixo2x2QtdTacha] = useState('');
-    const [alcaX, setAlcaX] = useState('');
-    const [alcaY, setAlcaY] = useState('');
-    const [alcaZ, setAlcaZ] = useState('');
-    const [alcaTipoTacha, setAlcaTipoTacha] = useState('');
-    const [alcaQtdTacha, setAlcaQtdTacha] = useState('');
-    const [esfera, setEsfera] = useState('');
-    const [resultadoEsferas, setResultadoEsferas] = useState('');
-    const [editarEsferas, setEditarEsferas] = useState(false);
-    const [tinta, setTinta] = useState('');
-    const [resultadoTinta, setResultadoTinta] = useState('');
-    const [editarTinta, setEditarTinta] = useState(false);
-    const [levantamento, setLevantamento] = useState('');
+    useEffect(() => {
+        Object.keys(campos).forEach((campo) => {
+            if (campo in campos) {
+                localStorage.setItem(campo, campos[campo as keyof typeof campos]);
+                // Usa a asserção de tipo para informar ao TypeScript que campo é uma chave válida de campos
+            }
+        });
+    }, [campos]);
 
+    const handleChange = (
+        campo: keyof typeof campos,
+        valor: string | boolean
+    ) => {
+        setCampos((prevCampos) => ({
+            ...prevCampos,
+            [campo]: valor,
+        }));
+    };
+
+    // 
+    useEffect(() => {
+        parXeY('direito');
+    }, [campos.direitoX, campos.direitoY]);
+
+    useEffect(() => {
+        parXeY('esquerdo');
+    }, [campos.esquerdoX, campos.esquerdoY]);
+
+    useEffect(() => {
+        parXeY('eixo4x4');
+    }, [campos.eixo4x4X, campos.eixo4x4Y]);
+
+    useEffect(() => {
+        parXeY('eixo2x2');
+    }, [campos.eixo2x2X, campos.eixo2x2Y]);
+
+    useEffect(() => {
+        parXeY('alca');
+    }, [campos.alcaX, campos.alcaY]);
+
+    useEffect(() => {
+        calcularResultadoEsferas();
+        calcularResultadoTinta();
+    }, [campos.direitoZ, campos.esquerdoZ, campos.eixo4x4Z, campos.eixo2x2Z, campos.alcaZ, campos.esfera, campos.tinta]);
+
+    /*     // Executar parXeY após setCampos
+        if (['esquerdoX', 'esquerdoY', 'direitoX', 'direitoY', 'eixo4x4X', 'eixo4x4Y', 'eixo2x2X', 'eixo2x2Y', 'alcaX', 'alcaY'].includes(campo)) {
+            parXeY(campo, valor.toString());
+        }
+    
+        // Executar calcularResultadoEsferas e calcularResultadoTinta após setCampos
+        if (['esquerdoX', 'esquerdoY', 'direitoX', 'direitoY', 'eixo4x4X', 'eixo4x4Y', 'eixo2x2X', 'eixo2x2Y', 'alcaX', 'alcaY', 'esfera', 'resultadoEsferas', 'tinta', 'resultadoTinta'].includes(campo)) {
+            calcularResultadoEsferas();
+            calcularResultadoTinta();
+        }
+     */
     // ---------------------------------------------------------------------------------------------
     // Controle de input
     // ---------------------------------------------------------------------------------------------
     // Controla o campo para só aceitar valor numérico
     const handleInputChangeNumeric = (
         inputValue: string,
-        setFunction: React.Dispatch<React.SetStateAction<string>>
     ) => {
         const numericValue = inputValue.replace(/[^\d.]/g, '');
-        setFunction(numericValue);
+        return numericValue;
     };
 
     // opções de espeçura da faixa
@@ -98,7 +165,7 @@ const Formulario = () => {
 
     // Controle se o campo está focado ou não.
     const handleInputFocus = (inputName: string) => {
-        console.log(inputName);
+        //console.log(inputName);
         setIsFocused(inputName);
     };
 
@@ -109,6 +176,24 @@ const Formulario = () => {
     // ---------------------------------------------------------------------------------------------
     // Calculos
     // ---------------------------------------------------------------------------------------------
+
+
+    //Pega o par X e Y correto em cache para o cálculo de M2.
+    const parXeY = (campo: string) => {
+        const campoX = campo + 'X';
+        const campoY = campo + 'Y';
+        const x = parseFloat(campos[campoX as keyof typeof campos] as string) || 0;
+        const y = parseFloat(campos[campoY as keyof typeof campos] as string) || 0;
+
+        let valorZ = calcularM2(x.toString(), y.toString()).toString();
+        if (valorZ == '0') {
+            valorZ = '';
+        }
+
+        const campoZ = campo + 'Z';
+        handleChange(campoZ as keyof typeof campos, valorZ)
+    }
+
     // Calcula metro quadro para a tabela 
     const calcularM2 = (x: string, y: string): number => {
         const xNumber = parseFloat(x);
@@ -123,111 +208,75 @@ const Formulario = () => {
         return roundedResult;
     };
 
-    useEffect(() => {
-        const novoDireitoZ = calcularM2(direitoX, direitoY).toString(); // Converta o número para string
-        setDireitoZ(novoDireitoZ);
-    }, [direitoX, direitoY]);
 
-    useEffect(() => {
-        const novoEsquerdoZ = calcularM2(esquerdoX, esquerdoY).toString(); // Converta o número para string
-        setEsquerdoZ(novoEsquerdoZ);
-    }, [esquerdoX, esquerdoY]);
 
-    useEffect(() => {
-        const novoEixo4x4Z = calcularM2(eixo4x4X, eixo4x4Y).toString(); // Converta o número para string
-        setEixo4x4Z(novoEixo4x4Z);
-    }, [eixo4x4X, eixo4x4Y]);
+    const calcularResultadoEsferas = () => {
+        let direitoZNumber = parseFloat(campos.direitoZ);
+        let esquerdoZNumber = parseFloat(campos.esquerdoZ);
+        let eixo2x2ZNumber = parseFloat(campos.eixo2x2Z);
+        let eixo4x4ZNumber = parseFloat(campos.eixo4x4Z);
+        let alcaZNumber = parseFloat(campos.alcaZ);
+        let esferaNumber = parseFloat(campos.esfera);
 
-    useEffect(() => {
-        const novoEixo2x2Z = calcularM2(eixo2x2X, eixo2x2Y).toString(); // Converta o número para string
-        setEixo2x2Z(novoEixo2x2Z);
-    }, [eixo2x2X, eixo2x2Y]);
+        // Função para verificar se é NaN e atribuir 0 se for
+        const handleNaN = (value: number) => isNaN(value) ? 0 : value;
 
-    useEffect(() => {
-        const novoAlcaZ = calcularM2(alcaX, alcaY).toString(); // Converta o número para string
-        setAlcaZ(novoAlcaZ);
-    }, [alcaX, alcaY]);
+        // Aplicar a função para cada variável
+        direitoZNumber = handleNaN(direitoZNumber);
+        esquerdoZNumber = handleNaN(esquerdoZNumber);
+        eixo2x2ZNumber = handleNaN(eixo2x2ZNumber);
+        eixo4x4ZNumber = handleNaN(eixo4x4ZNumber);
+        alcaZNumber = handleNaN(alcaZNumber);
+        esferaNumber = handleNaN(esferaNumber);
 
-    useEffect(() => {
-        const novoAlcaZ = calcularM2(alcaX, alcaY).toString(); // Converta o número para string
-        setAlcaZ(novoAlcaZ);
-    }, [alcaX, alcaY]);
+        const denominador =
+            direitoZNumber + esquerdoZNumber + eixo2x2ZNumber + eixo4x4ZNumber + alcaZNumber;
 
-    // Calcula resultado de esferas
-    useEffect(() => {
-        const calcularResultadoEsferas = () => {
-            const direitoZNumber = parseFloat(direitoZ);
-            const esquerdoZNumber = parseFloat(esquerdoZ);
-            const eixo2x2ZNumber = parseFloat(eixo2x2Z);
-            const eixo4x4ZNumber = parseFloat(eixo4x4Z);
-            const alcaZNumber = parseFloat(alcaZ);
-            const esferaNumber = parseFloat(esfera);
+        if (denominador === 0) {
+            console.log('aqui 2')
+            handleChange('resultadoEsferas', '');
+            return;
+        }
 
-            if (
-                isNaN(direitoZNumber) ||
-                isNaN(esquerdoZNumber) ||
-                isNaN(eixo2x2ZNumber) ||
-                isNaN(eixo4x4ZNumber) ||
-                isNaN(alcaZNumber) ||
-                isNaN(esferaNumber)
-            ) {
-                setResultadoEsferas('');
-                return;
-            }
+        console.log('aqui 3')
+        const resultado = esferaNumber / denominador;
+        const roundedResultado = Math.ceil(resultado * 100) / 100;
+        handleChange('resultadoEsferas', roundedResultado.toString());
+    };
 
-            const denominador =
-                direitoZNumber + esquerdoZNumber + eixo2x2ZNumber + eixo4x4ZNumber + alcaZNumber;
-
-            if (denominador === 0) {
-                setResultadoEsferas('');
-                return;
-            }
-
-            const resultado = esferaNumber / denominador;
-            const roundedResultado = Math.ceil(resultado * 100) / 100;
-            setResultadoEsferas(roundedResultado.toString());
-        };
-
-        calcularResultadoEsferas();
-    }, [direitoZ, esquerdoZ, eixo2x2Z, eixo4x4Z, alcaZ, esfera]);
 
     // Calcula resultado de tinta
-    useEffect(() => {
-        const calcularResultadoTinta = () => {
-            const direitoZNumber = parseFloat(direitoZ);
-            const esquerdoZNumber = parseFloat(esquerdoZ);
-            const eixo2x2ZNumber = parseFloat(eixo2x2Z);
-            const eixo4x4ZNumber = parseFloat(eixo4x4Z);
-            const alcaZNumber = parseFloat(alcaZ);
-            const tintaNumber = parseFloat(tinta);
+    const calcularResultadoTinta = () => {
+        let direitoZNumber = parseFloat(campos.direitoZ);
+        let esquerdoZNumber = parseFloat(campos.esquerdoZ);
+        let eixo2x2ZNumber = parseFloat(campos.eixo2x2Z);
+        let eixo4x4ZNumber = parseFloat(campos.eixo4x4Z);
+        let alcaZNumber = parseFloat(campos.alcaZ);
+        let tintaNumber = parseFloat(campos.tinta);
 
-            if (
-                isNaN(direitoZNumber) ||
-                isNaN(esquerdoZNumber) ||
-                isNaN(eixo2x2ZNumber) ||
-                isNaN(eixo4x4ZNumber) ||
-                isNaN(alcaZNumber) ||
-                isNaN(tintaNumber)
-            ) {
-                setResultadoTinta('');
-                return;
-            }
+        // Função para verificar se é NaN e atribuir 0 se for
+        const handleNaN = (value: number) => isNaN(value) ? 0 : value;
 
-            const numerador =
-                direitoZNumber + esquerdoZNumber + eixo2x2ZNumber + eixo4x4ZNumber + alcaZNumber;
+        // Aplicar a função para cada variável
+        direitoZNumber = handleNaN(direitoZNumber);
+        esquerdoZNumber = handleNaN(esquerdoZNumber);
+        eixo2x2ZNumber = handleNaN(eixo2x2ZNumber);
+        eixo4x4ZNumber = handleNaN(eixo4x4ZNumber);
+        alcaZNumber = handleNaN(alcaZNumber);
+        tintaNumber = handleNaN(tintaNumber);
 
-            if (numerador === 0) {
-                setResultadoTinta('');
-                return;
-            }
+        const numerador =
+            direitoZNumber + esquerdoZNumber + eixo2x2ZNumber + eixo4x4ZNumber + alcaZNumber;
 
-            const resultado = numerador / tintaNumber;
-            const roundedResultado = Math.ceil(resultado * 100) / 100;
-            setResultadoTinta(roundedResultado.toString());
-        };
+        if (numerador === 0) {
+            handleChange('resultadoTinta', '');
+            return;
+        }
 
-        calcularResultadoTinta();
-    }, [direitoZ, esquerdoZ, eixo2x2Z, eixo4x4Z, alcaZ, tinta]);
+        const resultado = numerador / tintaNumber;
+        const roundedResultado = Math.ceil(resultado * 100) / 100;
+        handleChange('resultadoTinta', roundedResultado.toString());
+    };
 
 
     // ---------------------------------------------------------------------------------------------
@@ -235,46 +284,46 @@ const Formulario = () => {
     // ---------------------------------------------------------------------------------------------
     const gerarLevantamento = () => {
         let textoLevantamento = ``;
-        if (diaMesAno && diaMesAno != '') {
+        if (campos.diaMesAno && campos.diaMesAno != '') {
             textoLevantamento += `
-            BR050 - MG - ${diaMesAno}
-    
-            Trecho: KM ${kmInicial || '0'} ao KM ${kmFinal || '0'} / Equipe: 0
-        `;
+             BR050 - MG - ${campos.diaMesAno}
+     
+             Trecho: KM ${campos.kmInicial || '0'} ao KM ${campos.kmFinal || '0'} / Equipe: 0
+         `;
         }
 
         // Pintura Automática Definitiva
-        if ((direitoZ && direitoZ != '0')
-            || (esquerdoZ && esquerdoZ != '0')
-            || (eixo4x4Z && eixo4x4Z != '0')
-            || (eixo2x2Z && eixo2x2Z != '0')
-            || (alcaZ && alcaZ != '0')
-            || (esfera && esfera != '0')
-            || (tinta && tinta != '0')) {
+        if ((campos.direitoZ && campos.direitoZ != '0')
+            || (campos.esquerdoZ && campos.esquerdoZ != '0')
+            || (campos.eixo4x4Z && campos.eixo4x4Z != '0')
+            || (campos.eixo2x2Z && campos.eixo2x2Z != '0')
+            || (campos.alcaZ && campos.alcaZ != '0')
+            || (campos.esfera && campos.esfera != '0')
+            || (campos.tinta && campos.tinta != '0')) {
             textoLevantamento += `
-                **Pintura Automática Definitiva**
-                `;
+                 **Pintura Automática Definitiva**
+                 `;
 
-            if (direitoZ && direitoZ != '0') textoLevantamento += `**BORDO DIREITO : ${direitoZ} metros**\n`;
-            if (esquerdoZ && esquerdoZ != '0') textoLevantamento += `**BORDO ESQUERDO : ${esquerdoZ} metros**\n`;
-            if (eixo4x4Z && eixo4x4Z != '0') textoLevantamento += `**EIXO 4x4 : ${eixo4x4Z} unidades**\n`;
-            if (eixo2x2Z && eixo2x2Z != '0') textoLevantamento += `**Eixo 2X2 : ${eixo2x2Z} unidades**\n`;
-            if (alcaZ && alcaZ != '0') textoLevantamento += `**Alça : ${alcaZ} unidades**\n`;
-            if (esfera && esfera != '0') textoLevantamento += `Esfera(Kg): ${esfera}\n`;
-            if (tinta && tinta != '0') textoLevantamento += `Tinta (baldes): ${tinta}\n`;
+            if (campos.direitoZ && campos.direitoZ != '0') textoLevantamento += `**BORDO DIREITO : ${campos.direitoZ} metros**\n`;
+            if (campos.esquerdoZ && campos.esquerdoZ != '0') textoLevantamento += `**BORDO ESQUERDO : ${campos.esquerdoZ} metros**\n`;
+            if (campos.eixo4x4Z && campos.eixo4x4Z != '0') textoLevantamento += `**EIXO 4x4 : ${campos.eixo4x4Z} unidades**\n`;
+            if (campos.eixo2x2Z && campos.eixo2x2Z != '0') textoLevantamento += `**Eixo 2X2 : ${campos.eixo2x2Z} unidades**\n`;
+            if (campos.alcaZ && campos.alcaZ != '0') textoLevantamento += `**Alça : ${campos.alcaZ} unidades**\n`;
+            if (campos.esfera && campos.esfera != '0') textoLevantamento += `Esfera(Kg): ${campos.esfera}\n`;
+            if (campos.tinta && campos.tinta != '0') textoLevantamento += `Tinta (baldes): ${campos.tinta}\n`;
         }
 
         // Implantação de Tachas Mono
-        if (direitoTipoTacha || esquerdoTipoTacha || eixo4x4TipoTacha || eixo2x2TipoTacha || alcaTipoTacha || alcaQtdTacha) {
+        if (campos.direitoTipoTacha || campos.esquerdoTipoTacha || campos.eixo4x4TipoTacha || campos.eixo2x2TipoTacha || campos.alcaTipoTacha || campos.alcaQtdTacha) {
             textoLevantamento += `
-                **Implantação de Tachas Mono**
-                `;
+                 **Implantação de Tachas Mono**
+                 `;
 
-            if (direitoTipoTacha && direitoQtdTacha) textoLevantamento += `**BORDO DIREITO : ${direitoTipoTacha} ${direitoQtdTacha} unidades**\n`;
-            if (esquerdoTipoTacha && esquerdoQtdTacha) textoLevantamento += `**BORDO ESQUERDO : ${esquerdoTipoTacha} ${esquerdoQtdTacha} unidades**\n`;
-            if (eixo4x4TipoTacha && eixo4x4QtdTacha) textoLevantamento += `**EIXO 4x4 : ${eixo4x4TipoTacha} ${eixo4x4QtdTacha} unidades**\n`;
-            if (eixo2x2TipoTacha && eixo2x2QtdTacha) textoLevantamento += `**Eixo 2X2 : ${eixo2x2TipoTacha} ${eixo2x2QtdTacha} unidades**\n`;
-            if (alcaTipoTacha && alcaQtdTacha) textoLevantamento += `**Alça : ${alcaTipoTacha} ${alcaQtdTacha} unidades**\n`;
+            if (campos.direitoTipoTacha && campos.direitoQtdTacha) textoLevantamento += `**BORDO DIREITO : ${campos.direitoTipoTacha} ${campos.direitoQtdTacha} unidades**\n`;
+            if (campos.esquerdoTipoTacha && campos.esquerdoQtdTacha) textoLevantamento += `**BORDO ESQUERDO : ${campos.esquerdoTipoTacha} ${campos.esquerdoQtdTacha} unidades**\n`;
+            if (campos.eixo4x4TipoTacha && campos.eixo4x4QtdTacha) textoLevantamento += `**EIXO 4x4 : ${campos.eixo4x4TipoTacha} ${campos.eixo4x4QtdTacha} unidades**\n`;
+            if (campos.eixo2x2TipoTacha && campos.eixo2x2QtdTacha) textoLevantamento += `**Eixo 2X2 : ${campos.eixo2x2TipoTacha} ${campos.eixo2x2QtdTacha} unidades**\n`;
+            if (campos.alcaTipoTacha && campos.alcaQtdTacha) textoLevantamento += `**Alça : ${campos.alcaTipoTacha} ${campos.alcaQtdTacha} unidades**\n`;
 
             // Remoção
             textoLevantamento += `**REMOÇÃO : 00 unidades**\n`;
@@ -283,12 +332,9 @@ const Formulario = () => {
         if (textoLevantamento == '') {
             textoLevantamento = 'Favor preencher os campos do formulário';
         }
-        console.log(textoLevantamento)
-
+        //console.log(textoLevantamento)
         setLevantamento(textoLevantamento);
     };
-
-
 
 
     // ---------------------------------------------------------------------------------------------
@@ -309,8 +355,8 @@ const Formulario = () => {
         }
     };
 
+    // Verifica se levantamento é verdadeiro e se a referência existe
     const levantamentoRef = useRef<HTMLDivElement>(null);
-
     useEffect(() => {
         // Verifica se levantamento é verdadeiro e se a referência existe
         if (levantamento && levantamentoRef.current) {
@@ -323,50 +369,54 @@ const Formulario = () => {
     // ---------------------------------------------------------------------------------------------
 
     const resetarFormulario = () => {
+        const initialState = {
+            estado: '',
+            sentido: '',
+            nomeEstrada: '',
+            kmInicial: '',
+            diaMesAno: '',
+            kmFinal: '',
+            esquerdoX: '',
+            esquerdoY: '',
+            esquerdoZ: '',
+            esquerdoTipoTacha: '',
+            esquerdoQtdTacha: '',
+            direitoX: '',
+            direitoY: '',
+            direitoZ: '',
+            direitoTipoTacha: '',
+            direitoQtdTacha: '',
+            eixo4x4X: '',
+            eixo4x4Y: '',
+            eixo4x4Z: '',
+            eixo4x4TipoTacha: '',
+            eixo4x4QtdTacha: '',
+            eixo2x2X: '',
+            eixo2x2Y: '',
+            eixo2x2Z: '',
+            eixo2x2TipoTacha: '',
+            eixo2x2QtdTacha: '',
+            alcaX: '',
+            alcaY: '',
+            alcaZ: '',
+            alcaTipoTacha: '',
+            alcaQtdTacha: '',
+            esfera: '',
+            resultadoEsferas: '',
+            tinta: '',
+            resultadoTinta: '',
+        };
+
+        // Atualizar campos com os valores inciais.
+        // O useeffect toma conta de atualizar o localStorage.
+        setCampos(initialState);
+
         setIsFocused('');
         setMostrarConteudo(false);
-        setEstado('');
-        setSentido('');
-        setNomeEstrada('');
-        setKmInicial('');
-        setKmFinal('');
-        setDiaMesAno('')
-
-        setEsquerdoX('');
-        setEsquerdoY('');
-        setEsquerdoTipoTacha('');
-        setEsquerdoQtdTacha('');
-
-        setDireitoX('');
-        setDireitoY('');
-        setDireitoTipoTacha('');
-        setDireitoQtdTacha('');
-
-        setEixo4x4X('');
-        setEixo4x4Y('');
-        setEixo4x4TipoTacha('');
-        setEixo4x4QtdTacha('');
-
-        setEixo2x2X('');
-        setEixo2x2Y('');
-        setEixo2x2TipoTacha('');
-        setEixo2x2QtdTacha('');
-
-        setAlcaX('');
-        setAlcaY('');
-        setAlcaTipoTacha('');
-        setAlcaQtdTacha('');
-
-        setEsfera('');
-        setResultadoEsferas('');
         setEditarEsferas(false);
-        setTinta('');
-        setResultadoTinta('');
         setEditarTinta(false);
-
         setLevantamento('');
     };
-
     // ---------------------------------------------------------------------------------------------
     // Controle de tema
     // ---------------------------------------------------------------------------------------------
@@ -382,87 +432,87 @@ const Formulario = () => {
                 <div className="inputsDoPrimeiroQuadro flex flex-col lg:flex-row lg:flex-wrap mt-2">
 
                     <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
-                        <label className={`input-label ${nomeEstrada ? 'input-label-active' : (isFocused == 'nomeEstrada' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                        <label className={`input-label ${campos.nomeEstrada ? 'input-label-active' : (isFocused == 'nomeEstrada' ? 'input-label-focus' : 'input-label-inactive')}`}>
                             Estrada
                         </label>
                         <input
                             type="text"
                             placeholder=" "
-                            value={nomeEstrada}
-                            onChange={(e) => setNomeEstrada(e.target.value)}
+                            value={campos.nomeEstrada}
+                            onChange={(e) => handleChange('nomeEstrada', e.target.value)}
                             onFocus={() => handleInputFocus('nomeEstrada')}
                             onBlur={handleInputBlur}
                         />
                     </div>
 
                     <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
-                        <label className={`input-label ${sentido ? 'input-label-active' : (isFocused == 'sentido' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                        <label className={`input-label ${campos.sentido ? 'input-label-active' : (isFocused == 'sentido' ? 'input-label-focus' : 'input-label-inactive')}`}>
                             Sentido
                         </label>
                         <input
                             type="text"
                             placeholder=" "
-                            value={sentido}
-                            onChange={(e) => setSentido(e.target.value)}
+                            value={campos.sentido}
+                            onChange={(e) => handleChange('sentido', e.target.value)}
                             onFocus={() => handleInputFocus('sentido')}
                             onBlur={handleInputBlur}
                         />
                     </div>
 
                     <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
-                        <label className={`input-label ${kmInicial ? 'input-label-active' : (isFocused == 'kmInicial' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                        <label className={`input-label ${campos.kmInicial ? 'input-label-active' : (isFocused == 'kmInicial' ? 'input-label-focus' : 'input-label-inactive')}`}>
                             Km inicial
                         </label>
                         <input
                             type="text"
                             placeholder=" "
-                            value={kmInicial}
-                            onChange={(e) => setKmInicial(e.target.value)}
+                            value={campos.kmInicial}
+                            onChange={(e) => handleChange('kmInicial', e.target.value)}
                             onFocus={() => handleInputFocus('kmInicial')}
                             onBlur={handleInputBlur}
                         />
                     </div>
 
                     <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
-                        <label className={`input-label ${kmFinal ? 'input-label-active' : (isFocused == 'kmFinal' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                        <label className={`input-label ${campos.kmFinal ? 'input-label-active' : (isFocused == 'kmFinal' ? 'input-label-focus' : 'input-label-inactive')}`}>
                             Km final
                         </label>
                         <input
                             type="text"
                             placeholder=" "
-                            value={kmFinal}
-                            onChange={(e) => setKmFinal(e.target.value)}
+                            value={campos.kmFinal}
+                            onChange={(e) => handleChange('kmFinal', e.target.value)}
                             onFocus={() => handleInputFocus('kmFinal')}
                             onBlur={handleInputBlur}
                         />
                     </div>
 
                     <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
-                        <label className={`input-label ${diaMesAno ? 'input-label-active' : (isFocused == 'diaMesAno' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                        <label className={`input-label ${campos.diaMesAno ? 'input-label-active' : (isFocused == 'diaMesAno' ? 'input-label-focus' : 'input-label-inactive')}`}>
                             Data
                         </label>
                         <input
                             type="date"
                             className={`date-input 
-                            ${diaMesAno ? 'input-label-active border-green' : (isFocused == 'diaMesAno' ? 'input-label-focus border-yellow' : 'input-label-inactive border-white')}
+                            ${campos.diaMesAno ? 'input-label-active border-green' : (isFocused == 'diaMesAno' ? 'input-label-focus border-yellow' : 'input-label-inactive border-white')}
                             `}
-                            value={diaMesAno}
-                            onChange={(e) => setDiaMesAno(e.target.value)}
+                            value={campos.diaMesAno}
+                            onChange={(e) => handleChange('diaMesAno', e.target.value)}
                             onFocus={() => handleInputFocus('diaMesAno')}
                             onBlur={handleInputBlur}
                         />
                     </div>
 
                     <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
-                        <label className={`input-label ${estado ? 'input-label-active' : (isFocused == 'estado' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                        <label className={`input-label ${campos.estado ? 'input-label-active' : (isFocused == 'estado' ? 'input-label-focus' : 'input-label-inactive')}`}>
                             Estado
                         </label>
                         <select
                             className={`
-                            ${estado ? 'input-label-active border-green' : (isFocused == 'estado' ? 'input-label-focus border-yellow' : 'input-label-inactive border-white')}
+                            ${campos.estado ? 'input-label-active border-green' : (isFocused == 'estado' ? 'input-label-focus border-yellow' : 'input-label-inactive border-white')}
                         `}
-                            value={estado}
-                            onChange={(e) => setEstado(e.target.value)}
+                            value={campos.estado}
+                            onChange={(e) => handleChange('estado', e.target.value)}
                             onFocus={() => handleInputFocus('estado')}
                             onBlur={handleInputBlur}
                         >
@@ -502,7 +552,6 @@ const Formulario = () => {
                 </div>
             </div>
 
-
             {/* Segundo quadro */}
             <div className="segundoQuadro  m-4">
                 {larguraDaJanela <= 800 ? (
@@ -516,10 +565,10 @@ const Formulario = () => {
                                             Espessura
                                         </div>
                                         <select
-                                            className={`${(!direitoX) ? 'border-white' : ''}
-                                                        ${(direitoX) ? 'border-green' : ''}`}
-                                            value={direitoX}
-                                            onChange={(e) => setDireitoX(e.target.value)}
+                                            className={`${(!campos.direitoX) ? 'border-white' : ''}
+                                                        ${(campos.direitoX) ? 'border-green' : ''}`}
+                                            value={campos.direitoX}
+                                            onChange={(e) => handleChange('direitoX', e.target.value)}
                                         >
                                             {opcoesDeSelectEspessura.map((opcao) => (
                                                 <option key={opcao.valor} value={opcao.valor}>
@@ -533,8 +582,8 @@ const Formulario = () => {
                                         <input
                                             type="text"
                                             placeholder=" "
-                                            value={direitoY}
-                                            onChange={(e) => handleInputChangeNumeric(e.target.value, setDireitoY)}
+                                            value={campos.direitoY}
+                                            onChange={(e) => handleChange('direitoY', handleInputChangeNumeric(e.target.value))}
                                         />
                                     </div>
                                     <div className='bloco'>
@@ -543,16 +592,16 @@ const Formulario = () => {
                                             disabled
                                             type="text"
                                             placeholder=" "
-                                            value={direitoZ}
+                                            value={campos.direitoZ}
                                         />
                                     </div>
                                     <div className='bloco'>
                                         <div className='texto-a-direita  quadro'>Tipo de tacha:</div>
                                         <select
-                                            className={`${(!direitoTipoTacha) ? 'border-white' : ''}
-                                                        ${(direitoTipoTacha) ? 'border-green' : ''}`}
-                                            value={direitoTipoTacha}
-                                            onChange={(e) => setDireitoTipoTacha(e.target.value)}>
+                                            className={`${(!campos.direitoTipoTacha) ? 'border-white' : ''}
+                                                        ${(campos.direitoTipoTacha) ? 'border-green' : ''}`}
+                                            value={campos.direitoTipoTacha}
+                                            onChange={(e) => handleChange('direitoTipoTacha', e.target.value)}>
                                             {opcoesDeSelectTacha.map((opcao) => (
                                                 <option key={opcao.valor} value={opcao.valor}>
                                                     {opcao.label}
@@ -564,15 +613,13 @@ const Formulario = () => {
                                         <div className='texto-a-direita  quadro'>Quantidade de tacha:</div>
                                         <input
                                             type="text"
-                                            value={direitoQtdTacha}
+                                            value={campos.direitoQtdTacha}
                                             placeholder=" "
-                                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                                handleInputChangeNumeric(e.target.value, setDireitoQtdTacha)}
+                                            onChange={(e) => handleChange('direitoQtdTacha', handleInputChangeNumeric(e.target.value))}
                                         />
                                     </div>
                                 </div>
                             </div>
-
                             <div className='grupo'>
                                 <label className='quadro'>Bordo Esquerdo:</label>
                                 <div>
@@ -580,9 +627,10 @@ const Formulario = () => {
                                         <div className='texto-a-direita  quadro'>Espessura</div>
 
                                         <select
-                                            className={`${(!esquerdoX) ? 'border-white' : ''}
-                                        ${(esquerdoX) ? 'border-green' : ''}`}
-                                            value={esquerdoX} onChange={(e) => setEsquerdoX(e.target.value)}>
+                                            className={`${(!campos.esquerdoX) ? 'border-white' : ''}
+                                            ${(campos.esquerdoX) ? 'border-green' : ''}`}
+                                            value={campos.esquerdoX}
+                                            onChange={(e) => handleChange('esquerdoX', e.target.value)}>
                                             {opcoesDeSelectEspessura.map((opcao) => (
                                                 <option key={opcao.valor} value={opcao.valor}>
                                                     {opcao.label}
@@ -595,26 +643,26 @@ const Formulario = () => {
                                         <input
                                             type="text"
                                             placeholder=" "
-                                            value={esquerdoY}
-                                            onChange={(e) => handleInputChangeNumeric(e.target.value, setEsquerdoY)}
+                                            value={campos.esquerdoY}
+                                            onChange={(e) => handleChange('esquerdoY', handleInputChangeNumeric(e.target.value))}
                                         />
                                     </div>
                                     <div className='bloco'>
-                                        <div className='texto-a-direita  quadro'>Resultado(m²):</div>
+                                        <div className='texto-a-direita quadro'>Resultado(m²):</div>
                                         <input
                                             disabled
                                             type="text"
                                             placeholder=" "
-                                            value={esquerdoZ}
+                                            value={campos.esquerdoZ}
                                         />
                                     </div>
                                     <div className='bloco'>
                                         <div className='texto-a-direita  quadro'>Tipo de tacha:</div>
                                         <select
-                                            className={`${(!esquerdoTipoTacha) ? 'border-white' : ''}
-                                                        ${(esquerdoTipoTacha) ? 'border-green' : ''}`}
-                                            value={esquerdoTipoTacha}
-                                            onChange={(e) => setEsquerdoTipoTacha(e.target.value)}>
+                                            className={`${(!campos.esquerdoTipoTacha) ? 'border-white' : ''}
+                                                        ${(campos.esquerdoTipoTacha) ? 'border-green' : ''}`}
+                                            value={campos.esquerdoTipoTacha}
+                                            onChange={(e) => handleChange('esquerdoTipoTacha', e.target.value)}>
                                             {opcoesDeSelectTacha.map((opcao) => (
                                                 <option key={opcao.valor} value={opcao.valor}>
                                                     {opcao.label}
@@ -626,10 +674,9 @@ const Formulario = () => {
                                         <div className='texto-a-direita  quadro'>Quantidade de tacha:</div>
                                         <input
                                             type="text"
-                                            value={esquerdoQtdTacha}
+                                            value={campos.esquerdoQtdTacha}
                                             placeholder=" "
-                                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                                handleInputChangeNumeric(e.target.value, setEsquerdoQtdTacha)}
+                                            onChange={(e) => handleChange('esquerdoQtdTacha', handleInputChangeNumeric(e.target.value))}
                                         />
                                     </div>
                                 </div>
@@ -641,9 +688,10 @@ const Formulario = () => {
                                     <div className='bloco'>
                                         <div className='texto-a-direita  quadro'>Espessura</div>
                                         <select
-                                            className={`${(!eixo4x4X) ? 'border-white' : ''}
-                                        ${(eixo4x4X) ? 'border-green' : ''}`}
-                                            value={eixo4x4X} onChange={(e) => setEixo4x4X(e.target.value)}>
+                                            className={`${(!campos.eixo4x4X) ? 'border-white' : ''}
+                                        ${(campos.eixo4x4X) ? 'border-green' : ''}`}
+                                            value={campos.eixo4x4X}
+                                            onChange={(e) => handleChange('eixo4x4X', e.target.value)}>
                                             {opcoesDeSelectEspessura.map((opcao) => (
                                                 <option key={opcao.valor} value={opcao.valor}>
                                                     {opcao.label}
@@ -656,8 +704,8 @@ const Formulario = () => {
                                         <input className='w-full'
                                             placeholder=" "
                                             type="text"
-                                            value={eixo4x4Y}
-                                            onChange={(e) => handleInputChangeNumeric(e.target.value, setEixo4x4Y)}
+                                            value={campos.eixo4x4Y}
+                                            onChange={(e) => handleChange('eixo4x4Y', handleInputChangeNumeric(e.target.value))}
                                         />
                                     </div>
                                     <div className='bloco'>
@@ -666,16 +714,16 @@ const Formulario = () => {
                                             disabled
                                             type="text"
                                             placeholder=" "
-                                            value={eixo4x4Z}
+                                            value={campos.eixo4x4Z}
                                         />
                                     </div>
                                     <div className='bloco'>
                                         <div className='texto-a-direita  quadro'>Tipo de tacha:</div>
                                         <select
-                                            className={`${(!eixo4x4TipoTacha) ? 'border-white' : ''}
-                                                        ${(eixo4x4TipoTacha) ? 'border-green' : ''}`}
-                                            value={eixo4x4TipoTacha}
-                                            onChange={(e) => setEixo4x4TipoTacha(e.target.value)}>
+                                            className={`${(!campos.eixo4x4TipoTacha) ? 'border-white' : ''}
+                                                        ${(campos.eixo4x4TipoTacha) ? 'border-green' : ''}`}
+                                            value={campos.eixo4x4TipoTacha}
+                                            onChange={(e) => handleChange('eixo4x4TipoTacha', e.target.value)}>
                                             {opcoesDeSelectTacha.map((opcao) => (
                                                 <option key={opcao.valor} value={opcao.valor}>
                                                     {opcao.label}
@@ -687,10 +735,9 @@ const Formulario = () => {
                                         <div className='texto-a-direita  quadro'>Quantidade de tacha:</div>
                                         <input
                                             type="text"
-                                            value={eixo4x4QtdTacha}
+                                            value={campos.eixo4x4QtdTacha}
                                             placeholder=" "
-                                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                                handleInputChangeNumeric(e.target.value, setEixo4x4QtdTacha)}
+                                            onChange={(e) => handleChange('eixo4x4QtdTacha', handleInputChangeNumeric(e.target.value))}
                                         />
                                     </div>
                                 </div>
@@ -702,9 +749,10 @@ const Formulario = () => {
                                     <div className='bloco'>
                                         <div className='texto-a-direita quadro'>Espessura</div>
                                         <select
-                                            className={`${(!eixo2x2X) ? 'border-white' : ''}
-                                        ${(eixo2x2X) ? 'border-green' : ''}`}
-                                            value={eixo2x2X} onChange={(e) => setEixo2x2X(e.target.value)}>
+                                            className={`${(!campos.eixo2x2X) ? 'border-white' : ''}
+                                        ${(campos.eixo2x2X) ? 'border-green' : ''}`}
+                                            value={campos.eixo2x2X}
+                                            onChange={(e) => handleChange('eixo2x2X', e.target.value)}>
                                             {opcoesDeSelectEspessura.map((opcao) => (
                                                 <option key={opcao.valor} value={opcao.valor}>
                                                     {opcao.label}
@@ -717,8 +765,8 @@ const Formulario = () => {
                                         <input className='w-full'
                                             placeholder=" "
                                             type="text"
-                                            value={eixo2x2Y}
-                                            onChange={(e) => handleInputChangeNumeric(e.target.value, setEixo2x2Y)}
+                                            value={campos.eixo2x2Y}
+                                            onChange={(e) => handleChange('eixo2x2Y', handleInputChangeNumeric(e.target.value))}
                                         />
                                     </div>
                                     <div className='bloco'>
@@ -727,16 +775,16 @@ const Formulario = () => {
                                             disabled
                                             type="text"
                                             placeholder=" "
-                                            value={eixo2x2Z}
+                                            value={campos.eixo2x2Z}
                                         />
                                     </div>
                                     <div className='bloco'>
                                         <div className='texto-a-direita quadro'>Tipo de tacha:</div>
                                         <select
-                                            className={`${(!eixo2x2TipoTacha) ? 'border-white' : ''}
-                                                        ${(eixo2x2TipoTacha) ? 'border-green' : ''}`}
-                                            value={eixo2x2TipoTacha}
-                                            onChange={(e) => setEixo2x2TipoTacha(e.target.value)}>
+                                            className={`${(!campos.eixo2x2TipoTacha) ? 'border-white' : ''}
+                                                        ${(campos.eixo2x2TipoTacha) ? 'border-green' : ''}`}
+                                            value={campos.eixo2x2TipoTacha}
+                                            onChange={(e) => handleChange('eixo2x2TipoTacha', e.target.value)}>
                                             {opcoesDeSelectTacha.map((opcao) => (
                                                 <option key={opcao.valor} value={opcao.valor}>
                                                     {opcao.label}
@@ -748,10 +796,9 @@ const Formulario = () => {
                                         <div className='texto-a-direita quadro'>Quantidade de tacha:</div>
                                         <input
                                             type="text"
-                                            value={eixo2x2QtdTacha}
+                                            value={campos.eixo2x2QtdTacha}
                                             placeholder=" "
-                                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                                handleInputChangeNumeric(e.target.value, setEixo2x2QtdTacha)}
+                                            onChange={(e) => handleChange('eixo2x2QtdTacha', handleInputChangeNumeric(e.target.value))}
                                         />
                                     </div>
                                 </div>
@@ -763,9 +810,10 @@ const Formulario = () => {
                                     <div className='bloco'>
                                         <div className='texto-a-direita quadro'>Espessura</div>
                                         <select
-                                            className={`${(!alcaX) ? 'border-white' : ''}
-                                        ${(alcaX) ? 'border-green' : ''}`}
-                                            value={alcaX} onChange={(e) => setAlcaX(e.target.value)}>
+                                            className={`${(!campos.alcaX) ? 'border-white' : ''}
+                                        ${(campos.alcaX) ? 'border-green' : ''}`}
+                                            value={campos.alcaX}
+                                            onChange={(e) => handleChange('alcaX', e.target.value)}>
                                             {opcoesDeSelectEspessura.map((opcao) => (
                                                 <option key={opcao.valor} value={opcao.valor}>
                                                     {opcao.label}
@@ -778,8 +826,8 @@ const Formulario = () => {
                                         <input className='w-full'
                                             placeholder=" "
                                             type="text"
-                                            value={alcaY}
-                                            onChange={(e) => handleInputChangeNumeric(e.target.value, setAlcaY)}
+                                            value={campos.alcaY}
+                                            onChange={(e) => handleChange('alcaY', handleInputChangeNumeric(e.target.value))}
                                         />
                                     </div>
                                     <div className='bloco'>
@@ -788,16 +836,16 @@ const Formulario = () => {
                                             disabled
                                             type="text"
                                             placeholder=" "
-                                            value={alcaZ}
+                                            value={campos.alcaZ}
                                         />
                                     </div>
                                     <div className='bloco'>
                                         <div className='texto-a-direita quadro'>Tipo de tacha:</div>
                                         <select
-                                            className={`${(!alcaTipoTacha) ? 'border-white' : ''}
-                                                        ${(alcaTipoTacha) ? 'border-green' : ''}`}
-                                            value={alcaTipoTacha}
-                                            onChange={(e) => setAlcaTipoTacha(e.target.value)}>
+                                            className={`${(!campos.alcaTipoTacha) ? 'border-white' : ''}
+                                                        ${(campos.alcaTipoTacha) ? 'border-green' : ''}`}
+                                            value={campos.alcaTipoTacha}
+                                            onChange={(e) => handleChange('alcaTipoTacha', e.target.value)}>
                                             {opcoesDeSelectTacha.map((opcao) => (
                                                 <option key={opcao.valor} value={opcao.valor}>
                                                     {opcao.label}
@@ -809,10 +857,9 @@ const Formulario = () => {
                                         <div className='texto-a-direita quadro'>Quantidade de tacha:</div>
                                         <input
                                             type="text"
-                                            value={alcaQtdTacha}
+                                            value={campos.alcaQtdTacha}
                                             placeholder=" "
-                                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                                handleInputChangeNumeric(e.target.value, setAlcaQtdTacha)}
+                                            onChange={(e) => handleChange('alcaQtdTacha', handleInputChangeNumeric(e.target.value))}
                                         />
                                     </div>
                                 </div>
@@ -836,10 +883,10 @@ const Formulario = () => {
                                 <td className="tdLegendaTelaGrande">Bordo Direito</td>
                                 <td>
                                     <select
-                                        className={`${(!direitoX) ? 'border-white' : ''}
-                                        ${(direitoX) ? 'border-green' : ''}`}
-                                        value={direitoX}
-                                        onChange={(e) => setDireitoX(e.target.value)}>
+                                        className={`${(!campos.direitoX) ? 'border-white' : ''}
+                                        ${(campos.direitoX) ? 'border-green' : ''}`}
+                                        value={campos.direitoX}
+                                        onChange={(e) => handleChange('direitoX', e.target.value)}>
                                         {opcoesDeSelectEspessura.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
@@ -850,19 +897,18 @@ const Formulario = () => {
                                 <td>
                                     <input
                                         type="text"
-                                        value={direitoY}
+                                        value={campos.direitoY}
                                         placeholder=" "
-                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                            handleInputChangeNumeric(e.target.value, setDireitoY)}
+                                        onChange={(e) => handleChange('direitoY', handleInputChangeNumeric(e.target.value))}
                                     />
                                 </td>
-                                <td className='tdResultadoTelaGrande'>{direitoZ}</td>
+                                <td className='tdResultadoTelaGrande'>{campos.direitoZ}</td>
                                 <td>
                                     <select
-                                        className={`${(!direitoTipoTacha) ? 'border-white' : ''}
-                                        ${(direitoTipoTacha) ? 'border-green' : ''}`}
-                                        value={direitoTipoTacha}
-                                        onChange={(e) => setDireitoTipoTacha(e.target.value)}>
+                                        className={`${(!campos.direitoTipoTacha) ? 'border-white' : ''}
+                                        ${(campos.direitoTipoTacha) ? 'border-green' : ''}`}
+                                        value={campos.direitoTipoTacha}
+                                        onChange={(e) => handleChange('direitoTipoTacha', e.target.value)}>
                                         {opcoesDeSelectTacha.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
@@ -873,10 +919,9 @@ const Formulario = () => {
                                 <td>
                                     <input
                                         type="text"
-                                        value={direitoQtdTacha}
+                                        value={campos.direitoQtdTacha}
                                         placeholder=" "
-                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                            handleInputChangeNumeric(e.target.value, setDireitoQtdTacha)}
+                                        onChange={(e) => handleChange('direitoQtdTacha', handleInputChangeNumeric(e.target.value))}
                                     />
                                 </td>
                             </tr>
@@ -884,9 +929,10 @@ const Formulario = () => {
                                 <td className="tdLegendaTelaGrande">Bordo Esquerdo</td>
                                 <td>
                                     <select
-                                        className={`${(!esquerdoX) ? 'border-white' : ''}
-                                        ${(esquerdoX) ? 'border-green' : ''}`}
-                                        value={esquerdoX} onChange={(e) => setEsquerdoX(e.target.value)}>
+                                        className={`${(!campos.esquerdoX) ? 'border-white' : ''}
+                                        ${(campos.esquerdoX) ? 'border-green' : ''}`}
+                                        value={campos.esquerdoX}
+                                        onChange={(e) => handleChange('esquerdoX', e.target.value)}>
                                         {opcoesDeSelectEspessura.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
@@ -897,19 +943,18 @@ const Formulario = () => {
                                 <td>
                                     <input
                                         type="text"
-                                        value={esquerdoY}
+                                        value={campos.esquerdoY}
                                         placeholder=" "
-                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                            handleInputChangeNumeric(e.target.value, setEsquerdoY)}
+                                        onChange={(e) => handleChange('esquerdoY', handleInputChangeNumeric(e.target.value))}
                                     />
                                 </td>
-                                <td className='tdResultadoTelaGrande'>{esquerdoZ}</td>
+                                <td className='tdResultadoTelaGrande'>{campos.esquerdoZ}</td>
                                 <td>
                                     <select
-                                        className={`${(!esquerdoTipoTacha) ? 'border-white' : ''}
-                                            ${(esquerdoTipoTacha) ? 'border-green' : ''}`}
-                                        value={esquerdoTipoTacha}
-                                        onChange={(e) => setEsquerdoTipoTacha(e.target.value)}>
+                                        className={`${(!campos.esquerdoTipoTacha) ? 'border-white' : ''}
+                                            ${(campos.esquerdoTipoTacha) ? 'border-green' : ''}`}
+                                        value={campos.esquerdoTipoTacha}
+                                        onChange={(e) => handleChange('esquerdoTipoTacha', e.target.value)}>
                                         {opcoesDeSelectTacha.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
@@ -920,10 +965,9 @@ const Formulario = () => {
                                 <td>
                                     <input
                                         type="text"
-                                        value={esquerdoQtdTacha}
+                                        value={campos.esquerdoQtdTacha}
                                         placeholder=" "
-                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                            handleInputChangeNumeric(e.target.value, setEsquerdoQtdTacha)}
+                                        onChange={(e) => handleChange('esquerdoQtdTacha', handleInputChangeNumeric(e.target.value))}
                                     />
                                 </td>
                             </tr>
@@ -931,10 +975,10 @@ const Formulario = () => {
                                 <td className="tdLegendaTelaGrande">Eixo 4X4:</td>
                                 <td>
                                     <select
-                                        className={`${(!eixo4x4X) ? 'border-white' : ''}
-                                        ${(eixo4x4X) ? 'border-green' : ''}`}
-                                        value={eixo4x4X}
-                                        onChange={(e) => setEixo4x4X(e.target.value)}>
+                                        className={`${(!campos.eixo4x4X) ? 'border-white' : ''}
+                                        ${(campos.eixo4x4X) ? 'border-green' : ''}`}
+                                        value={campos.eixo4x4X}
+                                        onChange={(e) => handleChange('eixo4x4X', e.target.value)}>
                                         {opcoesDeSelectEspessura.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
@@ -945,19 +989,18 @@ const Formulario = () => {
                                 <td>
                                     <input
                                         type="text"
-                                        value={eixo4x4Y}
+                                        value={campos.eixo4x4Y}
                                         placeholder=" "
-                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                            handleInputChangeNumeric(e.target.value, setEixo4x4Y)}
+                                        onChange={(e) => handleChange('eixo4x4Y', handleInputChangeNumeric(e.target.value))}
                                     />
                                 </td>
-                                <td className='tdResultadoTelaGrande'>{eixo4x4Z}</td>
+                                <td className='tdResultadoTelaGrande'>{campos.eixo4x4Z}</td>
                                 <td>
                                     <select
-                                        className={`${(!eixo4x4TipoTacha) ? 'border-white' : ''}
-                                            ${(eixo4x4TipoTacha) ? 'border-green' : ''}`}
-                                        value={eixo4x4TipoTacha}
-                                        onChange={(e) => setEixo4x4TipoTacha(e.target.value)}>
+                                        className={`${(!campos.eixo4x4TipoTacha) ? 'border-white' : ''}
+                                            ${(campos.eixo4x4TipoTacha) ? 'border-green' : ''}`}
+                                        value={campos.eixo4x4TipoTacha}
+                                        onChange={(e) => handleChange('eixo4x4TipoTacha', e.target.value)}>
                                         {opcoesDeSelectTacha.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
@@ -968,10 +1011,9 @@ const Formulario = () => {
                                 <td>
                                     <input
                                         type="text"
-                                        value={eixo4x4QtdTacha}
+                                        value={campos.eixo4x4QtdTacha}
                                         placeholder=" "
-                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                            handleInputChangeNumeric(e.target.value, setEixo4x4QtdTacha)}
+                                        onChange={(e) => handleChange('eixo4x4QtdTacha', handleInputChangeNumeric(e.target.value))}
                                     />
                                 </td>
                             </tr>
@@ -979,10 +1021,10 @@ const Formulario = () => {
                                 <td className="tdLegendaTelaGrande">Eixo 2X2:</td>
                                 <td>
                                     <select
-                                        className={`${(!eixo2x2X) ? 'border-white' : ''}
-                                        ${(eixo2x2X) ? 'border-green' : ''}`}
-                                        value={eixo2x2X}
-                                        onChange={(e) => setEixo2x2X(e.target.value)}>
+                                        className={`${(!campos.eixo2x2X) ? 'border-white' : ''}
+                                        ${(campos.eixo2x2X) ? 'border-green' : ''}`}
+                                        value={campos.eixo2x2X}
+                                        onChange={(e) => handleChange('eixo2x2X', e.target.value)}>
                                         {opcoesDeSelectEspessura.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
@@ -993,19 +1035,18 @@ const Formulario = () => {
                                 <td>
                                     <input
                                         type="text"
-                                        value={eixo2x2Y}
+                                        value={campos.eixo2x2Y}
                                         placeholder=" "
-                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                            handleInputChangeNumeric(e.target.value, setEixo2x2Y)}
+                                        onChange={(e) => handleChange('eixo2x2Y', handleInputChangeNumeric(e.target.value))}
                                     />
                                 </td>
-                                <td className='tdResultadoTelaGrande'>{eixo2x2Z}</td>
+                                <td className='tdResultadoTelaGrande'>{campos.eixo2x2Z}</td>
                                 <td>
                                     <select
-                                        className={`${(!eixo2x2TipoTacha) ? 'border-white' : ''}
-                                            ${(eixo2x2TipoTacha) ? 'border-green' : ''}`}
-                                        value={eixo2x2TipoTacha}
-                                        onChange={(e) => setEixo2x2TipoTacha(e.target.value)}>
+                                        className={`${(!campos.eixo2x2TipoTacha) ? 'border-white' : ''}
+                                            ${(campos.eixo2x2TipoTacha) ? 'border-green' : ''}`}
+                                        value={campos.eixo2x2TipoTacha}
+                                        onChange={(e) => handleChange('eixo2x2TipoTacha', e.target.value)}>
                                         {opcoesDeSelectTacha.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
@@ -1016,10 +1057,9 @@ const Formulario = () => {
                                 <td>
                                     <input
                                         type="text"
-                                        value={eixo2x2QtdTacha}
+                                        value={campos.eixo2x2QtdTacha}
                                         placeholder=" "
-                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                            handleInputChangeNumeric(e.target.value, setEixo2x2QtdTacha)}
+                                        onChange={(e) => handleChange('eixo2x2QtdTacha', handleInputChangeNumeric(e.target.value))}
                                     />
                                 </td>
                             </tr>
@@ -1027,10 +1067,10 @@ const Formulario = () => {
                                 <td className="tdLegendaTelaGrande">Alça:</td>
                                 <td>
                                     <select
-                                        className={`${(!alcaX) ? 'border-white' : ''}
-                                        ${(alcaX) ? 'border-green' : ''}`}
-                                        value={alcaX}
-                                        onChange={(e) => setAlcaX(e.target.value)}>
+                                        className={`${(!campos.alcaX) ? 'border-white' : ''}
+                                        ${(campos.alcaX) ? 'border-green' : ''}`}
+                                        value={campos.alcaX}
+                                        onChange={(e) => handleChange('alcaX', e.target.value)}>
                                         {opcoesDeSelectEspessura.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
@@ -1040,19 +1080,18 @@ const Formulario = () => {
                                 </td>
                                 <td>
                                     <input type="text"
-                                        value={alcaY}
+                                        value={campos.alcaY}
                                         placeholder=" "
-                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                            handleInputChangeNumeric(e.target.value, setAlcaY)}
+                                        onChange={(e) => handleChange('alcaY', handleInputChangeNumeric(e.target.value))}
                                     />
                                 </td>
-                                <td className='tdResultadoTelaGrande'>{alcaZ}</td>
+                                <td className='tdResultadoTelaGrande'>{campos.alcaZ}</td>
                                 <td>
                                     <select
-                                        className={`${(!alcaTipoTacha) ? 'border-white' : ''}
-                                            ${(alcaTipoTacha) ? 'border-green' : ''}`}
-                                        value={alcaTipoTacha}
-                                        onChange={(e) => setAlcaTipoTacha(e.target.value)}>
+                                        className={`${(!campos.alcaTipoTacha) ? 'border-white' : ''}
+                                            ${(campos.alcaTipoTacha) ? 'border-green' : ''}`}
+                                        value={campos.alcaTipoTacha}
+                                        onChange={(e) => handleChange('alcaTipoTacha', e.target.value)}>
                                         {opcoesDeSelectTacha.map((opcao) => (
                                             <option key={opcao.valor} value={opcao.valor}>
                                                 {opcao.label}
@@ -1063,10 +1102,9 @@ const Formulario = () => {
                                 <td>
                                     <input
                                         type="text"
-                                        value={alcaQtdTacha}
+                                        value={campos.alcaQtdTacha}
                                         placeholder=" "
-                                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                            handleInputChangeNumeric(e.target.value, setAlcaQtdTacha)}
+                                        onChange={(e) => handleChange('alcaQtdTacha', handleInputChangeNumeric(e.target.value))}
                                     />
                                 </td>
                             </tr>
@@ -1099,14 +1137,14 @@ const Formulario = () => {
                                 <tr>
                                     <td>
                                         <div className="interacaoBox flex flex-col lg:mr-2">
-                                            <label className={`input-label ${esfera ? 'input-label-active' : (isFocused == 'esfera' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                                            <label className={`input-label ${campos.esfera ? 'input-label-active' : (isFocused == 'esfera' ? 'input-label-focus' : 'input-label-inactive')}`}>
                                                 Esfera(kg):
                                             </label>
                                             <input
                                                 type="text"
                                                 placeholder=" "
-                                                value={esfera}
-                                                onChange={(e) => handleInputChangeNumeric(e.target.value, setEsfera)}
+                                                value={campos.esfera}
+                                                onChange={(e) => handleChange('esfera', e.target.value)}
                                                 onFocus={() => handleInputFocus('esfera')}
                                                 onBlur={handleInputBlur}
                                             />
@@ -1115,18 +1153,18 @@ const Formulario = () => {
                                     <td className="flex items-center">
                                         <div className="w-4/5 pr-2">
                                             <div className="interacaoBox flex flex-col lg:mr-2">
-                                                <label className={`input-label ${editarEsferas ? 'input-label-focus' : (resultadoEsferas ? 'input-label-active' : 'input-label-inactive')}`}>
+                                                <label className={`input-label ${editarEsferas ? 'input-label-focus' : (campos.resultadoEsferas ? 'input-label-active' : 'input-label-inactive')}`}>
                                                     Resultado(kg/m²):
                                                 </label>
                                                 <input
                                                     type="text"
                                                     placeholder=' '
                                                     className={`
-                                                    ${editarEsferas ? 'border-yellow' : (resultadoEsferas ? 'border-green' : 'border-white')}
+                                                    ${editarEsferas ? 'border-yellow' : (campos.resultadoEsferas ? 'border-green' : 'border-white')}
                                                 `}
                                                     readOnly={!editarEsferas}
-                                                    value={resultadoEsferas}
-                                                    onChange={(e) => handleInputChangeNumeric(e.target.value, setResultadoEsferas)}
+                                                    value={campos.resultadoEsferas}
+                                                    onChange={(e) => handleChange('resultadoEsferas', e.target.value)}
                                                 />
                                             </div>
                                         </div>
@@ -1154,14 +1192,14 @@ const Formulario = () => {
                                 <tr>
                                     <td>
                                         <div className="interacaoBox flex flex-col lg:mr-2">
-                                            <label className={`input-label ${tinta ? 'input-label-active' : (isFocused == 'tinta' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                                            <label className={`input-label ${campos.tinta ? 'input-label-active' : (isFocused == 'tinta' ? 'input-label-focus' : 'input-label-inactive')}`}>
                                                 Tinta(baldes):
                                             </label>
                                             <input
                                                 type="text"
                                                 placeholder=" "
-                                                value={tinta}
-                                                onChange={(e) => handleInputChangeNumeric(e.target.value, setTinta)}
+                                                value={campos.tinta}
+                                                onChange={(e) => handleChange('tinta', e.target.value)}
                                                 onFocus={() => handleInputFocus('tinta')}
                                                 onBlur={handleInputBlur}
                                             />
@@ -1170,18 +1208,18 @@ const Formulario = () => {
                                     <td className="flex items-center">
                                         <div className="w-4/5 pr-2">
                                             <div className="interacaoBox flex flex-col lg:mr-2">
-                                                <label className={`input-label ${editarTinta ? 'input-label-focus' : (resultadoTinta ? 'input-label-active' : 'input-label-inactive')}`}>
+                                                <label className={`input-label ${editarTinta ? 'input-label-focus' : (campos.resultadoTinta ? 'input-label-active' : 'input-label-inactive')}`}>
                                                     Resultado(m²/balde):
                                                 </label>
                                                 <input
                                                     type="text"
                                                     placeholder=' '
                                                     className={`
-                                                    ${editarTinta ? 'border-yellow' : (resultadoTinta ? 'border-green' : 'border-white')}
+                                                    ${editarTinta ? 'border-yellow' : (campos.resultadoTinta ? 'border-green' : 'border-white')}
                                                 `}
                                                     readOnly={!editarTinta}
-                                                    value={resultadoTinta}
-                                                    onChange={(e) => handleInputChangeNumeric(e.target.value, setResultadoTinta)}
+                                                    value={campos.resultadoTinta}
+                                                    onChange={(e) => handleChange('resultadoTinta', e.target.value)}
                                                 />
                                             </div>
                                         </div>
