@@ -285,13 +285,13 @@ const Formulario = () => {
                  **Pintura Automática Definitiva**
                  `;
 
-            if (campos.direitoZ && campos.direitoZ != '0') textoLevantamento += `**BORDO DIREITO : ${campos.direitoZ} metros**\n`;
-            if (campos.esquerdoZ && campos.esquerdoZ != '0') textoLevantamento += `**BORDO ESQUERDO : ${campos.esquerdoZ} metros**\n`;
-            if (campos.eixo4x4Z && campos.eixo4x4Z != '0') textoLevantamento += `**EIXO 4x4 : ${campos.eixo4x4Z} unidades**\n`;
-            if (campos.eixo2x2Z && campos.eixo2x2Z != '0') textoLevantamento += `**Eixo 2X2 : ${campos.eixo2x2Z} unidades**\n`;
-            if (campos.alcaZ && campos.alcaZ != '0') textoLevantamento += `**Alça : ${campos.alcaZ} unidades**\n`;
-            if (campos.esfera && campos.esfera != '0') textoLevantamento += `Esfera(Kg): ${campos.esfera}\n`;
-            if (campos.tinta && campos.tinta != '0') textoLevantamento += `Tinta (baldes): ${campos.tinta}\n`;
+            if (campos.direitoZ && campos.direitoZ != '0') textoLevantamento +=   `**  BORDO DIREITO: ${campos.direitoZ} metros**\n`;
+            if (campos.esquerdoZ && campos.esquerdoZ != '0') textoLevantamento += `**BORDO ESQUERDO: ${campos.esquerdoZ} metros**\n`;
+            if (campos.eixo4x4Z && campos.eixo4x4Z != '0') textoLevantamento +=   `**      EIXO 4x4: ${campos.eixo4x4Z} unidades**\n`;
+            if (campos.eixo2x2Z && campos.eixo2x2Z != '0') textoLevantamento +=   `**      Eixo 2X2: ${campos.eixo2x2Z} unidades**\n`;
+            if (campos.alcaZ && campos.alcaZ != '0') textoLevantamento +=         `**Alça : ${campos.alcaZ} unidades**\n`;
+            if (campos.esfera && campos.esfera != '0') textoLevantamento +=       `Esfera(Kg): ${campos.esfera}\n`;
+            if (campos.tinta && campos.tinta != '0') textoLevantamento +=         `Tinta (baldes): ${campos.tinta}\n`;
         }
 
         // Implantação de Tachas Mono
