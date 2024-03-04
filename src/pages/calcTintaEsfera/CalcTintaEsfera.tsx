@@ -262,7 +262,7 @@ const Formulario = () => {
         const numerador =
             direitoZNumber + esquerdoZNumber + eixo2x2ZNumber + eixo4x4ZNumber + alcaZNumber;
 
-        if (numerador === 0) {
+        if (tintaNumber === 0) {
             handleChange('resultadoTinta', '');
             return;
         }
