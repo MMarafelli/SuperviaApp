@@ -2,6 +2,9 @@
 import { useRef, useState, useEffect } from 'react';
 import './CalcTintaEsfera.css';
 
+import BlocoDivVariavel from '../../components/blocosCalcTintaEsfera/blocoDiv'
+import BlocoTrVariavel from '../../components/blocosCalcTintaEsfera/blocoTr'
+
 const Formulario = () => {
 
     // ---------------------------------------------------------------------------------------------
@@ -130,13 +133,6 @@ const Formulario = () => {
     // ---------------------------------------------------------------------------------------------
     // Controle de input
     // ---------------------------------------------------------------------------------------------
-    // Controla o campo para só aceitar valor numérico
-    const handleInputChangeNumeric = (
-        inputValue: string,
-    ) => {
-        const numericValue = inputValue.replace(/[^\d.]/g, '');
-        return numericValue;
-    };
 
     // opções de espeçura da faixa
     const opcoesDeSelectEspessura = [
@@ -233,12 +229,10 @@ const Formulario = () => {
             direitoZNumber + esquerdoZNumber + eixo2x2ZNumber + eixo4x4ZNumber + alcaZNumber;
 
         if (denominador === 0) {
-            console.log('aqui 2')
             handleChange('resultadoEsferas', '');
             return;
         }
 
-        console.log('aqui 3')
         const resultado = esferaNumber / denominador;
         const roundedResultado = Math.ceil(resultado * 100) / 100;
         handleChange('resultadoEsferas', roundedResultado.toString());
@@ -557,314 +551,68 @@ const Formulario = () => {
                 {larguraDaJanela <= 800 ? (
                     <>
                         <div className='divsSegundoQuadroTelaPequena'>
-                            <div className='grupo'>
-                                <label className='quadro'>Bordo direito:</label>
-                                <div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita  quadro'>
-                                            Espessura
-                                        </div>
-                                        <select
-                                            className={`${(!campos.direitoX) ? 'border-white' : ''}
-                                                        ${(campos.direitoX) ? 'border-green' : ''}`}
-                                            value={campos.direitoX}
-                                            onChange={(e) => handleChange('direitoX', e.target.value)}
-                                        >
-                                            {opcoesDeSelectEspessura.map((opcao) => (
-                                                <option key={opcao.valor} value={opcao.valor}>
-                                                    {opcao.label}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita  quadro'>Comprimento (m)</div>
-                                        <input
-                                            type="text"
-                                            placeholder=" "
-                                            value={campos.direitoY}
-                                            onChange={(e) => handleChange('direitoY', handleInputChangeNumeric(e.target.value))}
-                                        />
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita  quadro'>Resultado(m²):</div>
-                                        <input
-                                            disabled
-                                            type="text"
-                                            placeholder=" "
-                                            value={campos.direitoZ}
-                                        />
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita  quadro'>Tipo de tacha:</div>
-                                        <select
-                                            className={`${(!campos.direitoTipoTacha) ? 'border-white' : ''}
-                                                        ${(campos.direitoTipoTacha) ? 'border-green' : ''}`}
-                                            value={campos.direitoTipoTacha}
-                                            onChange={(e) => handleChange('direitoTipoTacha', e.target.value)}>
-                                            {opcoesDeSelectTacha.map((opcao) => (
-                                                <option key={opcao.valor} value={opcao.valor}>
-                                                    {opcao.label}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita  quadro'>Quantidade de tacha:</div>
-                                        <input
-                                            type="text"
-                                            value={campos.direitoQtdTacha}
-                                            placeholder=" "
-                                            onChange={(e) => handleChange('direitoQtdTacha', handleInputChangeNumeric(e.target.value))}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='grupo'>
-                                <label className='quadro'>Bordo Esquerdo:</label>
-                                <div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita  quadro'>Espessura</div>
 
-                                        <select
-                                            className={`${(!campos.esquerdoX) ? 'border-white' : ''}
-                                            ${(campos.esquerdoX) ? 'border-green' : ''}`}
-                                            value={campos.esquerdoX}
-                                            onChange={(e) => handleChange('esquerdoX', e.target.value)}>
-                                            {opcoesDeSelectEspessura.map((opcao) => (
-                                                <option key={opcao.valor} value={opcao.valor}>
-                                                    {opcao.label}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita  quadro'>Comprimento (m)</div>
-                                        <input
-                                            type="text"
-                                            placeholder=" "
-                                            value={campos.esquerdoY}
-                                            onChange={(e) => handleChange('esquerdoY', handleInputChangeNumeric(e.target.value))}
-                                        />
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita quadro'>Resultado(m²):</div>
-                                        <input
-                                            disabled
-                                            type="text"
-                                            placeholder=" "
-                                            value={campos.esquerdoZ}
-                                        />
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita  quadro'>Tipo de tacha:</div>
-                                        <select
-                                            className={`${(!campos.esquerdoTipoTacha) ? 'border-white' : ''}
-                                                        ${(campos.esquerdoTipoTacha) ? 'border-green' : ''}`}
-                                            value={campos.esquerdoTipoTacha}
-                                            onChange={(e) => handleChange('esquerdoTipoTacha', e.target.value)}>
-                                            {opcoesDeSelectTacha.map((opcao) => (
-                                                <option key={opcao.valor} value={opcao.valor}>
-                                                    {opcao.label}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita  quadro'>Quantidade de tacha:</div>
-                                        <input
-                                            type="text"
-                                            value={campos.esquerdoQtdTacha}
-                                            placeholder=" "
-                                            onChange={(e) => handleChange('esquerdoQtdTacha', handleInputChangeNumeric(e.target.value))}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
+                            <BlocoDivVariavel
+                                label="Bordo Direito"
+                                valorX={campos.direitoX}
+                                valorY={campos.direitoY}
+                                valorZ={campos.direitoZ}
+                                tipoTacha={campos.direitoTipoTacha}
+                                qtdTacha={campos.direitoQtdTacha}
+                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesTacha={opcoesDeSelectTacha}
+                                onChange={(campo, valor) => handleChange(`${'direito' + campo as keyof typeof campos}`, valor)}
+                            />
 
-                            <div className='grupo'>
-                                <label className='quadro'>Eixo 4X4:</label>
-                                <div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita  quadro'>Espessura</div>
-                                        <select
-                                            className={`${(!campos.eixo4x4X) ? 'border-white' : ''}
-                                        ${(campos.eixo4x4X) ? 'border-green' : ''}`}
-                                            value={campos.eixo4x4X}
-                                            onChange={(e) => handleChange('eixo4x4X', e.target.value)}>
-                                            {opcoesDeSelectEspessura.map((opcao) => (
-                                                <option key={opcao.valor} value={opcao.valor}>
-                                                    {opcao.label}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita  quadro'>Comprimento (m)</div>
-                                        <input className='w-full'
-                                            placeholder=" "
-                                            type="text"
-                                            value={campos.eixo4x4Y}
-                                            onChange={(e) => handleChange('eixo4x4Y', handleInputChangeNumeric(e.target.value))}
-                                        />
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita  quadro'>Resultado(m²):</div>
-                                        <input
-                                            disabled
-                                            type="text"
-                                            placeholder=" "
-                                            value={campos.eixo4x4Z}
-                                        />
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita  quadro'>Tipo de tacha:</div>
-                                        <select
-                                            className={`${(!campos.eixo4x4TipoTacha) ? 'border-white' : ''}
-                                                        ${(campos.eixo4x4TipoTacha) ? 'border-green' : ''}`}
-                                            value={campos.eixo4x4TipoTacha}
-                                            onChange={(e) => handleChange('eixo4x4TipoTacha', e.target.value)}>
-                                            {opcoesDeSelectTacha.map((opcao) => (
-                                                <option key={opcao.valor} value={opcao.valor}>
-                                                    {opcao.label}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita  quadro'>Quantidade de tacha:</div>
-                                        <input
-                                            type="text"
-                                            value={campos.eixo4x4QtdTacha}
-                                            placeholder=" "
-                                            onChange={(e) => handleChange('eixo4x4QtdTacha', handleInputChangeNumeric(e.target.value))}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
+                            <BlocoDivVariavel
+                                label="Bordo Esquerdo"
+                                valorX={campos.esquerdoX}
+                                valorY={campos.esquerdoY}
+                                valorZ={campos.esquerdoZ}
+                                tipoTacha={campos.esquerdoTipoTacha}
+                                qtdTacha={campos.esquerdoQtdTacha}
+                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesTacha={opcoesDeSelectTacha}
+                                onChange={(campo, valor) => handleChange(`${'esquerdo' + campo as keyof typeof campos}`, valor)}
+                            />
 
-                            <div className='grupo'>
-                                <label className='quadro'>Eixo 2X2:</label>
-                                <div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita quadro'>Espessura</div>
-                                        <select
-                                            className={`${(!campos.eixo2x2X) ? 'border-white' : ''}
-                                        ${(campos.eixo2x2X) ? 'border-green' : ''}`}
-                                            value={campos.eixo2x2X}
-                                            onChange={(e) => handleChange('eixo2x2X', e.target.value)}>
-                                            {opcoesDeSelectEspessura.map((opcao) => (
-                                                <option key={opcao.valor} value={opcao.valor}>
-                                                    {opcao.label}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita quadro'>Comprimento (m)</div>
-                                        <input className='w-full'
-                                            placeholder=" "
-                                            type="text"
-                                            value={campos.eixo2x2Y}
-                                            onChange={(e) => handleChange('eixo2x2Y', handleInputChangeNumeric(e.target.value))}
-                                        />
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita quadro'>Resultado(m²):</div>
-                                        <input
-                                            disabled
-                                            type="text"
-                                            placeholder=" "
-                                            value={campos.eixo2x2Z}
-                                        />
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita quadro'>Tipo de tacha:</div>
-                                        <select
-                                            className={`${(!campos.eixo2x2TipoTacha) ? 'border-white' : ''}
-                                                        ${(campos.eixo2x2TipoTacha) ? 'border-green' : ''}`}
-                                            value={campos.eixo2x2TipoTacha}
-                                            onChange={(e) => handleChange('eixo2x2TipoTacha', e.target.value)}>
-                                            {opcoesDeSelectTacha.map((opcao) => (
-                                                <option key={opcao.valor} value={opcao.valor}>
-                                                    {opcao.label}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita quadro'>Quantidade de tacha:</div>
-                                        <input
-                                            type="text"
-                                            value={campos.eixo2x2QtdTacha}
-                                            placeholder=" "
-                                            onChange={(e) => handleChange('eixo2x2QtdTacha', handleInputChangeNumeric(e.target.value))}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
+                            <BlocoDivVariavel
+                                label="Eixo 4X4:"
+                                valorX={campos.eixo4x4X}
+                                valorY={campos.eixo4x4Y}
+                                valorZ={campos.eixo4x4Z}
+                                tipoTacha={campos.eixo4x4TipoTacha}
+                                qtdTacha={campos.eixo4x4QtdTacha}
+                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesTacha={opcoesDeSelectTacha}
+                                onChange={(campo, valor) => handleChange(`${'eixo4x4' + campo as keyof typeof campos}`, valor)}
+                            />
 
-                            <div className='grupo'>
-                                <label className='quadro'>Alça:</label>
-                                <div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita quadro'>Espessura</div>
-                                        <select
-                                            className={`${(!campos.alcaX) ? 'border-white' : ''}
-                                        ${(campos.alcaX) ? 'border-green' : ''}`}
-                                            value={campos.alcaX}
-                                            onChange={(e) => handleChange('alcaX', e.target.value)}>
-                                            {opcoesDeSelectEspessura.map((opcao) => (
-                                                <option key={opcao.valor} value={opcao.valor}>
-                                                    {opcao.label}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita quadro'>Comprimento (m)</div>
-                                        <input className='w-full'
-                                            placeholder=" "
-                                            type="text"
-                                            value={campos.alcaY}
-                                            onChange={(e) => handleChange('alcaY', handleInputChangeNumeric(e.target.value))}
-                                        />
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita  quadro'>Resultado(m²):</div>
-                                        <input
-                                            disabled
-                                            type="text"
-                                            placeholder=" "
-                                            value={campos.alcaZ}
-                                        />
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita quadro'>Tipo de tacha:</div>
-                                        <select
-                                            className={`${(!campos.alcaTipoTacha) ? 'border-white' : ''}
-                                                        ${(campos.alcaTipoTacha) ? 'border-green' : ''}`}
-                                            value={campos.alcaTipoTacha}
-                                            onChange={(e) => handleChange('alcaTipoTacha', e.target.value)}>
-                                            {opcoesDeSelectTacha.map((opcao) => (
-                                                <option key={opcao.valor} value={opcao.valor}>
-                                                    {opcao.label}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className='bloco'>
-                                        <div className='texto-a-direita quadro'>Quantidade de tacha:</div>
-                                        <input
-                                            type="text"
-                                            value={campos.alcaQtdTacha}
-                                            placeholder=" "
-                                            onChange={(e) => handleChange('alcaQtdTacha', handleInputChangeNumeric(e.target.value))}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
+                            <BlocoDivVariavel
+                                label="Eixo 2X2:"
+                                valorX={campos.eixo2x2X}
+                                valorY={campos.eixo2x2Y}
+                                valorZ={campos.eixo2x2Z}
+                                tipoTacha={campos.eixo2x2TipoTacha}
+                                qtdTacha={campos.eixo2x2QtdTacha}
+                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesTacha={opcoesDeSelectTacha}
+                                onChange={(campo, valor) => handleChange(`${'eixo2x2' + campo as keyof typeof campos}`, valor)}
+                            />
+
+                            <BlocoDivVariavel
+                                label="Alça:"
+                                valorX={campos.alcaX}
+                                valorY={campos.alcaY}
+                                valorZ={campos.alcaZ}
+                                tipoTacha={campos.alcaTipoTacha}
+                                qtdTacha={campos.alcaQtdTacha}
+                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesTacha={opcoesDeSelectTacha}
+                                onChange={(campo, valor) => handleChange(`${'alca' + campo as keyof typeof campos}`, valor)}
+                            />
                         </div>
+
                     </>
                 ) : (
                     <table className="tabela1TelaGrande w-full">
@@ -879,235 +627,67 @@ const Formulario = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td className="tdLegendaTelaGrande">Bordo Direito</td>
-                                <td>
-                                    <select
-                                        className={`${(!campos.direitoX) ? 'border-white' : ''}
-                                        ${(campos.direitoX) ? 'border-green' : ''}`}
-                                        value={campos.direitoX}
-                                        onChange={(e) => handleChange('direitoX', e.target.value)}>
-                                        {opcoesDeSelectEspessura.map((opcao) => (
-                                            <option key={opcao.valor} value={opcao.valor}>
-                                                {opcao.label}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        value={campos.direitoY}
-                                        placeholder=" "
-                                        onChange={(e) => handleChange('direitoY', handleInputChangeNumeric(e.target.value))}
-                                    />
-                                </td>
-                                <td className='tdResultadoTelaGrande'>{campos.direitoZ}</td>
-                                <td>
-                                    <select
-                                        className={`${(!campos.direitoTipoTacha) ? 'border-white' : ''}
-                                        ${(campos.direitoTipoTacha) ? 'border-green' : ''}`}
-                                        value={campos.direitoTipoTacha}
-                                        onChange={(e) => handleChange('direitoTipoTacha', e.target.value)}>
-                                        {opcoesDeSelectTacha.map((opcao) => (
-                                            <option key={opcao.valor} value={opcao.valor}>
-                                                {opcao.label}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        value={campos.direitoQtdTacha}
-                                        placeholder=" "
-                                        onChange={(e) => handleChange('direitoQtdTacha', handleInputChangeNumeric(e.target.value))}
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="tdLegendaTelaGrande">Bordo Esquerdo</td>
-                                <td>
-                                    <select
-                                        className={`${(!campos.esquerdoX) ? 'border-white' : ''}
-                                        ${(campos.esquerdoX) ? 'border-green' : ''}`}
-                                        value={campos.esquerdoX}
-                                        onChange={(e) => handleChange('esquerdoX', e.target.value)}>
-                                        {opcoesDeSelectEspessura.map((opcao) => (
-                                            <option key={opcao.valor} value={opcao.valor}>
-                                                {opcao.label}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        value={campos.esquerdoY}
-                                        placeholder=" "
-                                        onChange={(e) => handleChange('esquerdoY', handleInputChangeNumeric(e.target.value))}
-                                    />
-                                </td>
-                                <td className='tdResultadoTelaGrande'>{campos.esquerdoZ}</td>
-                                <td>
-                                    <select
-                                        className={`${(!campos.esquerdoTipoTacha) ? 'border-white' : ''}
-                                            ${(campos.esquerdoTipoTacha) ? 'border-green' : ''}`}
-                                        value={campos.esquerdoTipoTacha}
-                                        onChange={(e) => handleChange('esquerdoTipoTacha', e.target.value)}>
-                                        {opcoesDeSelectTacha.map((opcao) => (
-                                            <option key={opcao.valor} value={opcao.valor}>
-                                                {opcao.label}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        value={campos.esquerdoQtdTacha}
-                                        placeholder=" "
-                                        onChange={(e) => handleChange('esquerdoQtdTacha', handleInputChangeNumeric(e.target.value))}
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="tdLegendaTelaGrande">Eixo 4X4:</td>
-                                <td>
-                                    <select
-                                        className={`${(!campos.eixo4x4X) ? 'border-white' : ''}
-                                        ${(campos.eixo4x4X) ? 'border-green' : ''}`}
-                                        value={campos.eixo4x4X}
-                                        onChange={(e) => handleChange('eixo4x4X', e.target.value)}>
-                                        {opcoesDeSelectEspessura.map((opcao) => (
-                                            <option key={opcao.valor} value={opcao.valor}>
-                                                {opcao.label}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        value={campos.eixo4x4Y}
-                                        placeholder=" "
-                                        onChange={(e) => handleChange('eixo4x4Y', handleInputChangeNumeric(e.target.value))}
-                                    />
-                                </td>
-                                <td className='tdResultadoTelaGrande'>{campos.eixo4x4Z}</td>
-                                <td>
-                                    <select
-                                        className={`${(!campos.eixo4x4TipoTacha) ? 'border-white' : ''}
-                                            ${(campos.eixo4x4TipoTacha) ? 'border-green' : ''}`}
-                                        value={campos.eixo4x4TipoTacha}
-                                        onChange={(e) => handleChange('eixo4x4TipoTacha', e.target.value)}>
-                                        {opcoesDeSelectTacha.map((opcao) => (
-                                            <option key={opcao.valor} value={opcao.valor}>
-                                                {opcao.label}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        value={campos.eixo4x4QtdTacha}
-                                        placeholder=" "
-                                        onChange={(e) => handleChange('eixo4x4QtdTacha', handleInputChangeNumeric(e.target.value))}
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="tdLegendaTelaGrande">Eixo 2X2:</td>
-                                <td>
-                                    <select
-                                        className={`${(!campos.eixo2x2X) ? 'border-white' : ''}
-                                        ${(campos.eixo2x2X) ? 'border-green' : ''}`}
-                                        value={campos.eixo2x2X}
-                                        onChange={(e) => handleChange('eixo2x2X', e.target.value)}>
-                                        {opcoesDeSelectEspessura.map((opcao) => (
-                                            <option key={opcao.valor} value={opcao.valor}>
-                                                {opcao.label}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        value={campos.eixo2x2Y}
-                                        placeholder=" "
-                                        onChange={(e) => handleChange('eixo2x2Y', handleInputChangeNumeric(e.target.value))}
-                                    />
-                                </td>
-                                <td className='tdResultadoTelaGrande'>{campos.eixo2x2Z}</td>
-                                <td>
-                                    <select
-                                        className={`${(!campos.eixo2x2TipoTacha) ? 'border-white' : ''}
-                                            ${(campos.eixo2x2TipoTacha) ? 'border-green' : ''}`}
-                                        value={campos.eixo2x2TipoTacha}
-                                        onChange={(e) => handleChange('eixo2x2TipoTacha', e.target.value)}>
-                                        {opcoesDeSelectTacha.map((opcao) => (
-                                            <option key={opcao.valor} value={opcao.valor}>
-                                                {opcao.label}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        value={campos.eixo2x2QtdTacha}
-                                        placeholder=" "
-                                        onChange={(e) => handleChange('eixo2x2QtdTacha', handleInputChangeNumeric(e.target.value))}
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="tdLegendaTelaGrande">Alça:</td>
-                                <td>
-                                    <select
-                                        className={`${(!campos.alcaX) ? 'border-white' : ''}
-                                        ${(campos.alcaX) ? 'border-green' : ''}`}
-                                        value={campos.alcaX}
-                                        onChange={(e) => handleChange('alcaX', e.target.value)}>
-                                        {opcoesDeSelectEspessura.map((opcao) => (
-                                            <option key={opcao.valor} value={opcao.valor}>
-                                                {opcao.label}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td>
-                                    <input type="text"
-                                        value={campos.alcaY}
-                                        placeholder=" "
-                                        onChange={(e) => handleChange('alcaY', handleInputChangeNumeric(e.target.value))}
-                                    />
-                                </td>
-                                <td className='tdResultadoTelaGrande'>{campos.alcaZ}</td>
-                                <td>
-                                    <select
-                                        className={`${(!campos.alcaTipoTacha) ? 'border-white' : ''}
-                                            ${(campos.alcaTipoTacha) ? 'border-green' : ''}`}
-                                        value={campos.alcaTipoTacha}
-                                        onChange={(e) => handleChange('alcaTipoTacha', e.target.value)}>
-                                        {opcoesDeSelectTacha.map((opcao) => (
-                                            <option key={opcao.valor} value={opcao.valor}>
-                                                {opcao.label}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td>
-                                    <input
-                                        type="text"
-                                        value={campos.alcaQtdTacha}
-                                        placeholder=" "
-                                        onChange={(e) => handleChange('alcaQtdTacha', handleInputChangeNumeric(e.target.value))}
-                                    />
-                                </td>
-                            </tr>
+
+                            <BlocoTrVariavel
+                                label="Bordo Direito:"
+                                valorX={campos.direitoX}
+                                valorY={campos.direitoY}
+                                valorZ={campos.direitoZ}
+                                tipoTacha={campos.direitoTipoTacha}
+                                qtdTacha={campos.direitoQtdTacha}
+                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesTacha={opcoesDeSelectTacha}
+                                onChange={(campo, valor) => handleChange(`${'direito' + campo as keyof typeof campos}`, valor)}
+                            />
+
+                            <BlocoTrVariavel
+                                label="Bordo Esquerdo:"
+                                valorX={campos.esquerdoX}
+                                valorY={campos.esquerdoY}
+                                valorZ={campos.esquerdoZ}
+                                tipoTacha={campos.esquerdoTipoTacha}
+                                qtdTacha={campos.esquerdoQtdTacha}
+                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesTacha={opcoesDeSelectTacha}
+                                onChange={(campo, valor) => handleChange(`${'esquerdo' + campo as keyof typeof campos}`, valor)}
+                            />
+
+                            <BlocoTrVariavel
+                                label="Eixo 4X4:"
+                                valorX={campos.eixo4x4X}
+                                valorY={campos.eixo4x4Y}
+                                valorZ={campos.eixo4x4Z}
+                                tipoTacha={campos.eixo4x4TipoTacha}
+                                qtdTacha={campos.eixo4x4QtdTacha}
+                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesTacha={opcoesDeSelectTacha}
+                                onChange={(campo, valor) => handleChange(`${'eixo4x4' + campo as keyof typeof campos}`, valor)}
+                            />
+
+                            <BlocoTrVariavel
+                                label="Eixo 2X2:"
+                                valorX={campos.eixo2x2X}
+                                valorY={campos.eixo2x2Y}
+                                valorZ={campos.eixo2x2Z}
+                                tipoTacha={campos.eixo2x2TipoTacha}
+                                qtdTacha={campos.eixo2x2QtdTacha}
+                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesTacha={opcoesDeSelectTacha}
+                                onChange={(campo, valor) => handleChange(`${'eixo2x2' + campo as keyof typeof campos}`, valor)}
+                            />
+
+                            <BlocoTrVariavel
+                                label="Alça:"
+                                valorX={campos.alcaX}
+                                valorY={campos.alcaY}
+                                valorZ={campos.alcaZ}
+                                tipoTacha={campos.alcaTipoTacha}
+                                qtdTacha={campos.alcaQtdTacha}
+                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesTacha={opcoesDeSelectTacha}
+                                onChange={(campo, valor) => handleChange(`${'alca' + campo as keyof typeof campos}`, valor)}
+                            />
+
                         </tbody>
                     </table>
                 )}
