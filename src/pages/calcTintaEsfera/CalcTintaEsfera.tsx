@@ -74,6 +74,7 @@ const Formulario = () => {
         };
     }, []);
 
+    // Atualizador de cache
     useEffect(() => {
         Object.keys(campos).forEach((campo) => {
             if (campo in campos) {
@@ -83,6 +84,7 @@ const Formulario = () => {
         });
     }, [campos]);
 
+    // handler de valor geral
     const handleChange = (
         campo: keyof typeof campos,
         valor: string | boolean
@@ -119,17 +121,25 @@ const Formulario = () => {
         calcularResultadoTinta();
     }, [campos.direitoZ, campos.esquerdoZ, campos.eixo4x4Z, campos.eixo2x2Z, campos.alcaZ, campos.esfera, campos.tinta]);
 
-    /*     // Executar parXeY após setCampos
-        if (['esquerdoX', 'esquerdoY', 'direitoX', 'direitoY', 'eixo4x4X', 'eixo4x4Y', 'eixo2x2X', 'eixo2x2Y', 'alcaX', 'alcaY'].includes(campo)) {
-            parXeY(campo, valor.toString());
-        }
-    
-        // Executar calcularResultadoEsferas e calcularResultadoTinta após setCampos
-        if (['esquerdoX', 'esquerdoY', 'direitoX', 'direitoY', 'eixo4x4X', 'eixo4x4Y', 'eixo2x2X', 'eixo2x2Y', 'alcaX', 'alcaY', 'esfera', 'resultadoEsferas', 'tinta', 'resultadoTinta'].includes(campo)) {
-            calcularResultadoEsferas();
-            calcularResultadoTinta();
-        }
-     */
+    // Libera ou trava a edição no campo
+    const handleEditEsfera = () => {
+        setEditarEsferas(!editarEsferas);
+    };
+    // Libera ou trava a edição no campo
+    const handleEditTinta = () => {
+        setEditarTinta(!editarTinta);
+    };
+
+    // Controle se o campo está focado ou não.
+    const handleInputFocus = (inputName: string) => {
+        //console.log(inputName);
+        setIsFocused(inputName);
+    };
+
+    const handleInputBlur = () => {
+        setIsFocused('');
+    };
+
     // ---------------------------------------------------------------------------------------------
     // Controle de input
     // ---------------------------------------------------------------------------------------------
@@ -149,25 +159,6 @@ const Formulario = () => {
         { valor: 'Tachão monodirecional', label: 'Tachao monodirecional ' },
         { valor: 'Tachão bidirecional', label: 'Tachao bidirecional' },
     ];
-
-    // Libera ou trava a edição no campo
-    const handleEditEsfera = () => {
-        setEditarEsferas(!editarEsferas);
-    };
-    // Libera ou trava a edição no campo
-    const handleEditTinta = () => {
-        setEditarTinta(!editarTinta);
-    };
-
-    // Controle se o campo está focado ou não.
-    const handleInputFocus = (inputName: string) => {
-        //console.log(inputName);
-        setIsFocused(inputName);
-    };
-
-    const handleInputBlur = () => {
-        setIsFocused('');
-    };
 
     // ---------------------------------------------------------------------------------------------
     // Calculos
@@ -204,8 +195,6 @@ const Formulario = () => {
         return roundedResult;
     };
 
-
-
     const calcularResultadoEsferas = () => {
         let direitoZNumber = parseFloat(campos.direitoZ);
         let esquerdoZNumber = parseFloat(campos.esquerdoZ);
@@ -237,7 +226,6 @@ const Formulario = () => {
         const roundedResultado = Math.ceil(resultado * 100) / 100;
         handleChange('resultadoEsferas', roundedResultado.toString());
     };
-
 
     // Calcula resultado de tinta
     const calcularResultadoTinta = () => {
@@ -271,7 +259,6 @@ const Formulario = () => {
         const roundedResultado = Math.ceil(resultado * 100) / 100;
         handleChange('resultadoTinta', roundedResultado.toString());
     };
-
 
     // ---------------------------------------------------------------------------------------------
     // Gerar texto do levantamento
