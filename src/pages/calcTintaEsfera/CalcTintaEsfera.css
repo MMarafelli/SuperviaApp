@@ -79,6 +79,7 @@ table {
 .divsSegundoQuadroTelaPequena .quadro {
     padding: .5rem;
     width: 45%;
+    white-space: nowrap;
 }
 
 .segundoQuadro>div>div>div>div>select,
