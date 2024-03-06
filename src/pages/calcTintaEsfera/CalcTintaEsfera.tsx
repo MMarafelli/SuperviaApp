@@ -267,11 +267,8 @@ const Formulario = () => {
     const gerarLevantamento = () => {
         let textoLevantamento = ``;
         if (campos.diaMesAno && campos.diaMesAno != '') {
-            textoLevantamento += `
-             BR050 - MG - ${format(new Date(campos.diaMesAno), 'dd/MM/yyyy')}
-     
-             Trecho: KM ${campos.kmInicial || '0'} ao KM ${campos.kmFinal || '0'} / Equipe: ${campos.equipe}
-         `;
+            textoLevantamento += `BR050 - MG - ${format(new Date(campos.diaMesAno), 'dd/MM/yyyy')}\n`
+            textoLevantamento += `Trecho: KM ${campos.kmInicial || '0'} ao KM ${campos.kmFinal || '0'} / Equipe: ${campos.equipe}\n\n`;
         }
 
         // Pintura Automática Definitiva
@@ -282,15 +279,13 @@ const Formulario = () => {
             || (campos.alcaZ && campos.alcaZ != '0')
             || (campos.esfera && campos.esfera != '0')
             || (campos.tinta && campos.tinta != '0')) {
-            textoLevantamento += `
-                 **Pintura Automática Definitiva**
-                 `;
+            textoLevantamento += `*Pintura Automática Definitiva*\n`;
 
-            if (campos.direitoZ && campos.direitoZ != '0') textoLevantamento += `*\u00A0Bordo direito: ${campos.direitoZ} metros*\n`;
-            if (campos.esquerdoZ && campos.esquerdoZ != '0') textoLevantamento += `*Bordo esquerdo: ${campos.esquerdoZ} metros*\n`;
-            if (campos.eixo4x4Z && campos.eixo4x4Z != '0') textoLevantamento += `*\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Eixo 4x4: ${campos.eixo4x4Z} unidades*\n`;
-            if (campos.eixo2x2Z && campos.eixo2x2Z != '0') textoLevantamento += `*\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Eixo 2X2: ${campos.eixo2x2Z} unidades*\n`;
-            if (campos.alcaZ && campos.alcaZ != '0') textoLevantamento += `*\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Alça : ${campos.alcaZ} unidades*\n`;
+            if (campos.direitoZ && campos.direitoZ != '0') textoLevantamento += `\u00A0Bordo direito: ${campos.direitoZ} metros\n`;
+            if (campos.esquerdoZ && campos.esquerdoZ != '0') textoLevantamento += `Bordo esquerdo: ${campos.esquerdoZ} metros\n`;
+            if (campos.eixo4x4Z && campos.eixo4x4Z != '0') textoLevantamento += `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Eixo 4x4: ${campos.eixo4x4Z} unidades\n`;
+            if (campos.eixo2x2Z && campos.eixo2x2Z != '0') textoLevantamento += `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Eixo 2X2: ${campos.eixo2x2Z} unidades\n`;
+            if (campos.alcaZ && campos.alcaZ != '0') textoLevantamento += `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Alça : ${campos.alcaZ} unidades\n`;
             /*             if (campos.esfera && campos.esfera != '0') textoLevantamento += `Esfera(Kg): ${campos.esfera}\n`;
                         if (campos.tinta && campos.tinta != '0') textoLevantamento += `Tinta (baldes): ${campos.tinta}\n`; */
         }
