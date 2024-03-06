@@ -372,7 +372,7 @@ const Formulario = () => {
         }
 
         // Remoção
-        textoLevantamento += `*REMOÇÃO : 00 unidades*\n`;
+        textoLevantamento += `*REMOÇÃO* : 00 unidades\n`;
 
         if (textoLevantamento == '') {
             textoLevantamento = 'Favor preencher os campos do formulário';
