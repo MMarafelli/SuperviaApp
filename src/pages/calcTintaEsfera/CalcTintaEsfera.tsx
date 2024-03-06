@@ -13,9 +13,9 @@ const Formulario = () => {
     // --------------------------------------------------------------------------------------------
     const [larguraDaJanela, setLarguraDaJanela] = useState(window.innerWidth);
     const [isFocused, setIsFocused] = useState('');
-    const [mostrarConteudo, setMostrarConteudo] = useState(false);
-    const [editarEsferas, setEditarEsferas] = useState(false);
-    const [editarTinta, setEditarTinta] = useState(false);
+    //const [mostrarConteudo, setMostrarConteudo] = useState(false);
+    //const [editarEsferas, setEditarEsferas] = useState(false);
+    //const [editarTinta, setEditarTinta] = useState(false);
     const [levantamento, setLevantamento] = useState('');
 
     const initialState = {
@@ -54,6 +54,7 @@ const Formulario = () => {
         resultadoEsferas: localStorage.getItem('resultadoEsferas') || '',
         tinta: localStorage.getItem('tinta') || '',
         resultadoTinta: localStorage.getItem('resultadoTinta') || '',
+        remocao: localStorage.getItem('remocao') || '',
     };
 
     const [campos, setCampos] = useState(initialState);
@@ -123,13 +124,13 @@ const Formulario = () => {
     }, [campos.direitoZ, campos.esquerdoZ, campos.eixo4x4Z, campos.eixo2x2Z, campos.alcaZ, campos.esfera, campos.tinta]);
 
     // Libera ou trava a edição no campo
-    const handleEditEsfera = () => {
-        setEditarEsferas(!editarEsferas);
-    };
-    // Libera ou trava a edição no campo
-    const handleEditTinta = () => {
-        setEditarTinta(!editarTinta);
-    };
+    /*     const handleEditEsfera = () => {
+            setEditarEsferas(!editarEsferas);
+        };
+        // Libera ou trava a edição no campo
+        const handleEditTinta = () => {
+            setEditarTinta(!editarTinta);
+        }; */
 
     // Controle se o campo está focado ou não.
     const handleInputFocus = (inputName: string) => {
@@ -372,7 +373,7 @@ const Formulario = () => {
         }
 
         // Remoção
-        textoLevantamento += `*REMOÇÃO* : 00 unidades\n`;
+        textoLevantamento += `*REMOÇÃO*: ${campos.remocao} unidades\n`;
 
         if (textoLevantamento == '') {
             textoLevantamento = 'Favor preencher os campos do formulário';
@@ -441,6 +442,7 @@ const Formulario = () => {
             resultadoEsferas: '',
             tinta: '',
             resultadoTinta: '',
+            remocao: '',
         };
 
         // Atualizar campos com os valores inciais.
@@ -448,16 +450,17 @@ const Formulario = () => {
         setCampos(initialState);
 
         setIsFocused('');
-        setMostrarConteudo(false);
-        setEditarEsferas(false);
-        setEditarTinta(false);
+        /*      setMostrarConteudo(false);
+                setEditarEsferas(false);
+                setEditarTinta(false); */
         setLevantamento('');
     };
     // ---------------------------------------------------------------------------------------------
     // Controle de tema
     // ---------------------------------------------------------------------------------------------
-    const theme = document.documentElement.getAttribute('theme');
-    const corDoSVG = theme == 'dark' ? 'white' : 'hsl(300, 1%, 30%)';
+    /*  const theme = document.documentElement.getAttribute('theme');
+        const corDoSVG = theme == 'dark' ? 'white' : 'hsl(300, 1%, 30%)'; */
+    // ---------------------------------------------------------------------------------------------
 
     return (
         <div>
@@ -745,6 +748,31 @@ const Formulario = () => {
 
             {/* Terceiro quadro */}
             <div className="terceiroQuadro mx-4 mb-4">
+                <table className="w-full">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div className="interacaoBox flex flex-col lg:mr-2">
+                                    <label className={`input-label ${campos.remocao ? 'input-label-active' : (isFocused == 'remocao' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                                        Remoção(unidades):
+                                    </label>
+                                    <input
+                                        type="text"
+                                        placeholder=" "
+                                        value={campos.remocao}
+                                        onChange={(e) => handleChange('remocao', e.target.value)}
+                                        onFocus={() => handleInputFocus('remocao')}
+                                        onBlur={handleInputBlur}
+                                    />
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            {/* Terceiro quadro */}
+            {/*             <div className="terceiroQuadro mx-4 mb-4">
                 <div
                     className="colapsavelCursorPointer p-4 flex justify-between items-center transition-all duration-300"
                     onClick={() => setMostrarConteudo(!mostrarConteudo)}
@@ -877,7 +905,7 @@ const Formulario = () => {
                         </table>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             {/* Botões */}
             <div className='quartoQuadro'>
