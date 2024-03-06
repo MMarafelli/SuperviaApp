@@ -1,6 +1,7 @@
 // Formulario.jsmonodirecional
 import { useRef, useState, useEffect } from 'react';
 import './CalcTintaEsfera.css';
+import { format } from 'date-fns';
 
 import BlocoDivVariavel from '../../components/blocosCalcTintaEsfera/blocoDiv'
 import BlocoTrVariavel from '../../components/blocosCalcTintaEsfera/blocoTr'
@@ -267,7 +268,7 @@ const Formulario = () => {
         let textoLevantamento = ``;
         if (campos.diaMesAno && campos.diaMesAno != '') {
             textoLevantamento += `
-             BR050 - MG - ${campos.diaMesAno}
+             BR050 - MG - ${format(new Date(campos.diaMesAno), 'dd/MM/yyyy')}
      
              Trecho: KM ${campos.kmInicial || '0'} ao KM ${campos.kmFinal || '0'} / Equipe: ${campos.equipe}
          `;
@@ -290,8 +291,8 @@ const Formulario = () => {
             if (campos.eixo4x4Z && campos.eixo4x4Z != '0') textoLevantamento += `**      EIXO 4x4: ${campos.eixo4x4Z} unidades**\n`;
             if (campos.eixo2x2Z && campos.eixo2x2Z != '0') textoLevantamento += `**      Eixo 2X2: ${campos.eixo2x2Z} unidades**\n`;
             if (campos.alcaZ && campos.alcaZ != '0') textoLevantamento += `**Alça : ${campos.alcaZ} unidades**\n`;
-            if (campos.esfera && campos.esfera != '0') textoLevantamento += `Esfera(Kg): ${campos.esfera}\n`;
-            if (campos.tinta && campos.tinta != '0') textoLevantamento += `Tinta (baldes): ${campos.tinta}\n`;
+            /*             if (campos.esfera && campos.esfera != '0') textoLevantamento += `Esfera(Kg): ${campos.esfera}\n`;
+                        if (campos.tinta && campos.tinta != '0') textoLevantamento += `Tinta (baldes): ${campos.tinta}\n`; */
         }
 
         // Implantação de Tachas monodirecional
