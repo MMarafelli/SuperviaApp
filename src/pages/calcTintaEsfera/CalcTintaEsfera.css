@@ -138,6 +138,11 @@ table {
 /* ---------------------------------------------------------------------------------- */
 /* CSS dos botões */
 
+.quartoQuadro textarea {
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+
 .quartoQuadro button {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }

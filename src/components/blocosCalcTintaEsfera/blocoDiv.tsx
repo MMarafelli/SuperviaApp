@@ -25,12 +25,14 @@ const BlocoDivVariavel: React.FC<BlocoDivVariavelProps> = ({ label, valorX, valo
         return numericValue;
     };
 
+    console.log(tipoTacha)
+
     return (
         <div className='grupo'>
             <label className='quadro'>{label}:</label>
             <div>
                 <div className='bloco'>
-                    <div className='texto-a-direita quadro'>Espessura</div>
+                    <div className='texto-a-direita quadro'>Espessura:</div>
                     <select
                         className={`${(!valorX) ? 'border-white' : ''}
                                     ${(valorX) ? 'border-green' : ''}`}
@@ -44,7 +46,7 @@ const BlocoDivVariavel: React.FC<BlocoDivVariavelProps> = ({ label, valorX, valo
                     </select>
                 </div>
                 <div className='bloco'>
-                    <div className='texto-a-direita quadro'>Comprimento (m)</div>
+                    <div className='texto-a-direita quadro'>Comprimento(m):</div>
                     <input
                         type="text"
                         placeholder=" "

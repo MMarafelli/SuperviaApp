@@ -142,6 +142,24 @@ const Formulario = () => {
     };
 
     // ---------------------------------------------------------------------------------------------
+    // Controle da textArea
+    // ---------------------------------------------------------------------------------------------
+    const [textareaHeight, setTextareaHeight] = useState('auto');
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+    const levantamentoRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        // Verifica se levantamento é verdadeiro e se a referência existe
+        if (levantamento && levantamentoRef.current) {
+            levantamentoRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+        if (textareaRef.current) {
+            setTextareaHeight(`${textareaRef.current.scrollHeight}px`);
+        }
+    }, [levantamento]);
+
+
+
+    // ---------------------------------------------------------------------------------------------
     // Controle de input
     // ---------------------------------------------------------------------------------------------
 
@@ -281,10 +299,10 @@ const Formulario = () => {
             || (campos.tinta && campos.tinta != '0')) {
             textoLevantamento += `*Pintura Automática Definitiva*\n`;
 
-            if (campos.direitoZ && campos.direitoZ != '0') textoLevantamento += `\u00A0\u00A0\u00A0\u00A0Bordo direito: ${campos.direitoZ} metros\n`;
+            if (campos.direitoZ && campos.direitoZ != '0') textoLevantamento += `\u00A0\u00A0\u00A0Bordo direito: ${campos.direitoZ} metros\n`;
             if (campos.esquerdoZ && campos.esquerdoZ != '0') textoLevantamento += `Bordo esquerdo: ${campos.esquerdoZ} metros\n`;
-            if (campos.eixo4x4Z && campos.eixo4x4Z != '0') textoLevantamento += `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Eixo 4x4: ${campos.eixo4x4Z} unidades\n`;
-            if (campos.eixo2x2Z && campos.eixo2x2Z != '0') textoLevantamento += `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Eixo 2X2: ${campos.eixo2x2Z} unidades\n`;
+            if (campos.eixo4x4Z && campos.eixo4x4Z != '0') textoLevantamento += `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Eixo 4x4: ${campos.eixo4x4Z} unidades\n`;
+            if (campos.eixo2x2Z && campos.eixo2x2Z != '0') textoLevantamento += `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Eixo 2X2: ${campos.eixo2x2Z} unidades\n`;
             if (campos.alcaZ && campos.alcaZ != '0') textoLevantamento += `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Alça: ${campos.alcaZ} unidades\n`;
             /*             if (campos.esfera && campos.esfera != '0') textoLevantamento += `Esfera(Kg): ${campos.esfera}\n`;
                         if (campos.tinta && campos.tinta != '0') textoLevantamento += `Tinta (baldes): ${campos.tinta}\n`; */
@@ -292,10 +310,10 @@ const Formulario = () => {
 
         // Implantação de Tachas monodirecional
         if ((campos.direitoTipoTacha == 'Tacha monodirecional' && campos.direitoQtdTacha)
-            || (campos.esquerdoTipoTacha == 'Tacha monodirecional' && campos.direitoQtdTacha)
-            || (campos.eixo4x4TipoTacha == 'Tacha monodirecional' && campos.direitoQtdTacha)
-            || (campos.eixo2x2TipoTacha == 'Tacha monodirecional' && campos.direitoQtdTacha)
-            || (campos.alcaTipoTacha == 'Tacha monodirecional' && campos.direitoQtdTacha)) {
+            || (campos.esquerdoTipoTacha == 'Tacha monodirecional' && campos.esquerdoTipoTacha)
+            || (campos.eixo4x4TipoTacha == 'Tacha monodirecional' && campos.eixo4x4TipoTacha)
+            || (campos.eixo2x2TipoTacha == 'Tacha monodirecional' && campos.eixo2x2TipoTacha)
+            || (campos.alcaTipoTacha == 'Tacha monodirecional' && campos.alcaTipoTacha)) {
             textoLevantamento += `
                  **Implantação de Tachas Monodirecionais**
                  `;
@@ -309,10 +327,10 @@ const Formulario = () => {
 
         // Implantação de Tacha bidirecional
         if ((campos.direitoTipoTacha == 'Tacha bidirecional' && campos.direitoQtdTacha)
-            || (campos.esquerdoTipoTacha == 'Tacha bidirecional' && campos.direitoQtdTacha)
-            || (campos.eixo4x4TipoTacha == 'Tacha bidirecional' && campos.direitoQtdTacha)
-            || (campos.eixo2x2TipoTacha == 'Tacha bidirecional' && campos.direitoQtdTacha)
-            || (campos.alcaTipoTacha == 'Tacha bidirecional' && campos.direitoQtdTacha)) {
+            || (campos.esquerdoTipoTacha == 'Tacha bidirecional' && campos.esquerdoQtdTacha)
+            || (campos.eixo4x4TipoTacha == 'Tacha bidirecional' && campos.eixo4x4QtdTacha)
+            || (campos.eixo2x2TipoTacha == 'Tacha bidirecional' && campos.eixo2x2QtdTacha)
+            || (campos.alcaTipoTacha == 'Tacha bidirecional' && campos.alcaQtdTacha)) {
             textoLevantamento += `
                      **Implantação de Tachas bidirecionais**
                      `;
@@ -326,10 +344,10 @@ const Formulario = () => {
 
         // Implantação de Tachão monodirecional
         if ((campos.direitoTipoTacha == 'Tachão monodirecional' && campos.direitoQtdTacha)
-            || (campos.esquerdoTipoTacha == 'Tachão monodirecional' && campos.direitoQtdTacha)
-            || (campos.eixo4x4TipoTacha == 'Tachão monodirecional' && campos.direitoQtdTacha)
-            || (campos.eixo2x2TipoTacha == 'Tachão monodirecional' && campos.direitoQtdTacha)
-            || (campos.alcaTipoTacha == 'Tachão monodirecional' && campos.direitoQtdTacha)) {
+            || (campos.esquerdoTipoTacha == 'Tachão monodirecional' && campos.esquerdoQtdTacha)
+            || (campos.eixo4x4TipoTacha == 'Tachão monodirecional' && campos.eixo4x4QtdTacha)
+            || (campos.eixo2x2TipoTacha == 'Tachão monodirecional' && campos.eixo2x2QtdTacha)
+            || (campos.alcaTipoTacha == 'Tachão monodirecional' && campos.alcaQtdTacha)) {
             textoLevantamento += `
                          **Implantação de Tachões monodirecionais**
                          `;
@@ -343,10 +361,10 @@ const Formulario = () => {
 
         // Implantação de Tachão bidirecional
         if ((campos.direitoTipoTacha == 'Tachão bidirecional' && campos.direitoQtdTacha)
-            || (campos.esquerdoTipoTacha == 'Tachão bidirecional' && campos.direitoQtdTacha)
-            || (campos.eixo4x4TipoTacha == 'Tachão bidirecional' && campos.direitoQtdTacha)
-            || (campos.eixo2x2TipoTacha == 'Tachão bidirecional' && campos.direitoQtdTacha)
-            || (campos.alcaTipoTacha == 'Tachão bidirecional' && campos.direitoQtdTacha)) {
+            || (campos.esquerdoTipoTacha == 'Tachão bidirecional' && campos.esquerdoQtdTacha)
+            || (campos.eixo4x4TipoTacha == 'Tachão bidirecional' && campos.eixo4x4QtdTacha)
+            || (campos.eixo2x2TipoTacha == 'Tachão bidirecional' && campos.eixo2x2QtdTacha)
+            || (campos.alcaTipoTacha == 'Tachão bidirecional' && campos.alcaQtdTacha)) {
             textoLevantamento += `
                              **Implantação de Tachões Bidirecionais**
                              `;
@@ -386,15 +404,6 @@ const Formulario = () => {
             alert('A funcionalidade de compartilhamento não é suportada neste navegador.');
         }
     };
-
-    // Verifica se levantamento é verdadeiro e se a referência existe
-    const levantamentoRef = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        // Verifica se levantamento é verdadeiro e se a referência existe
-        if (levantamento && levantamentoRef.current) {
-            levantamentoRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
-        }
-    }, [levantamento]);
 
     // ---------------------------------------------------------------------------------------------
     // Reset
@@ -881,7 +890,12 @@ const Formulario = () => {
                 {levantamento && (
                     <div className="levantamento mt-5 p-4 m-4" ref={levantamentoRef}>
                         <label className="text-lg font-bold">Levantamento Gerado:</label>
-                        <pre className="mt-2 whitespace-pre-line">{levantamento}</pre>
+                        <textarea className="w-full mt-2"
+                            readOnly
+                            ref={textareaRef}
+                            value={levantamento}
+                            style={{ height: textareaHeight, whiteSpace: 'pre-line' }}
+                        />
                     </div>
                 )}
 
