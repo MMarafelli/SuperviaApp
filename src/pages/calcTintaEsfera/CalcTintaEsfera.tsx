@@ -19,7 +19,7 @@ const Formulario = () => {
 
     const initialState = {
         estado: localStorage.getItem('estado') || '',
-        sentido: localStorage.getItem('sentido') || '',
+        equipe: localStorage.getItem('equipe') || '',
         nomeEstrada: localStorage.getItem('nomeEstrada') || '',
         kmInicial: localStorage.getItem('kmInicial') || '',
         diaMesAno: localStorage.getItem('diaMesAno') || '',
@@ -156,8 +156,8 @@ const Formulario = () => {
         { valor: '', label: 'Selecione...' },
         { valor: 'Tacha monodirecional', label: 'Tacha monodirecional' },
         { valor: 'Tacha bidirecional', label: 'Tacha bidirecional' },
-        { valor: 'Tachão monodirecional', label: 'Tachao monodirecional ' },
-        { valor: 'Tachão bidirecional', label: 'Tachao bidirecional' },
+        { valor: 'Tachão monodirecional', label: 'Tachão monodirecional ' },
+        { valor: 'Tachão bidirecional', label: 'Tachão bidirecional' },
     ];
 
     // ---------------------------------------------------------------------------------------------
@@ -269,7 +269,7 @@ const Formulario = () => {
             textoLevantamento += `
              BR050 - MG - ${campos.diaMesAno}
      
-             Trecho: KM ${campos.kmInicial || '0'} ao KM ${campos.kmFinal || '0'} / Equipe: 0
+             Trecho: KM ${campos.kmInicial || '0'} ao KM ${campos.kmFinal || '0'} / Equipe: ${campos.equipe}
          `;
         }
 
@@ -285,30 +285,85 @@ const Formulario = () => {
                  **Pintura Automática Definitiva**
                  `;
 
-            if (campos.direitoZ && campos.direitoZ != '0') textoLevantamento +=   `**  BORDO DIREITO: ${campos.direitoZ} metros**\n`;
+            if (campos.direitoZ && campos.direitoZ != '0') textoLevantamento += `**  BORDO DIREITO: ${campos.direitoZ} metros**\n`;
             if (campos.esquerdoZ && campos.esquerdoZ != '0') textoLevantamento += `**BORDO ESQUERDO: ${campos.esquerdoZ} metros**\n`;
-            if (campos.eixo4x4Z && campos.eixo4x4Z != '0') textoLevantamento +=   `**      EIXO 4x4: ${campos.eixo4x4Z} unidades**\n`;
-            if (campos.eixo2x2Z && campos.eixo2x2Z != '0') textoLevantamento +=   `**      Eixo 2X2: ${campos.eixo2x2Z} unidades**\n`;
-            if (campos.alcaZ && campos.alcaZ != '0') textoLevantamento +=         `**Alça : ${campos.alcaZ} unidades**\n`;
-            if (campos.esfera && campos.esfera != '0') textoLevantamento +=       `Esfera(Kg): ${campos.esfera}\n`;
-            if (campos.tinta && campos.tinta != '0') textoLevantamento +=         `Tinta (baldes): ${campos.tinta}\n`;
+            if (campos.eixo4x4Z && campos.eixo4x4Z != '0') textoLevantamento += `**      EIXO 4x4: ${campos.eixo4x4Z} unidades**\n`;
+            if (campos.eixo2x2Z && campos.eixo2x2Z != '0') textoLevantamento += `**      Eixo 2X2: ${campos.eixo2x2Z} unidades**\n`;
+            if (campos.alcaZ && campos.alcaZ != '0') textoLevantamento += `**Alça : ${campos.alcaZ} unidades**\n`;
+            if (campos.esfera && campos.esfera != '0') textoLevantamento += `Esfera(Kg): ${campos.esfera}\n`;
+            if (campos.tinta && campos.tinta != '0') textoLevantamento += `Tinta (baldes): ${campos.tinta}\n`;
         }
 
-        // Implantação de Tachas Mono
-        if (campos.direitoTipoTacha || campos.esquerdoTipoTacha || campos.eixo4x4TipoTacha || campos.eixo2x2TipoTacha || campos.alcaTipoTacha || campos.alcaQtdTacha) {
+        // Implantação de Tachas monodirecional
+        if ((campos.direitoTipoTacha == 'Tacha monodirecional' && campos.direitoQtdTacha)
+            || (campos.esquerdoTipoTacha == 'Tacha monodirecional' && campos.direitoQtdTacha)
+            || (campos.eixo4x4TipoTacha == 'Tacha monodirecional' && campos.direitoQtdTacha)
+            || (campos.eixo2x2TipoTacha == 'Tacha monodirecional' && campos.direitoQtdTacha)
+            || (campos.alcaTipoTacha == 'Tacha monodirecional' && campos.direitoQtdTacha)) {
             textoLevantamento += `
-                 **Implantação de Tachas Mono**
+                 **Implantação de Tachas Monodirecionais**
                  `;
 
-            if (campos.direitoTipoTacha && campos.direitoQtdTacha) textoLevantamento += `**BORDO DIREITO : ${campos.direitoTipoTacha} ${campos.direitoQtdTacha} unidades**\n`;
-            if (campos.esquerdoTipoTacha && campos.esquerdoQtdTacha) textoLevantamento += `**BORDO ESQUERDO : ${campos.esquerdoTipoTacha} ${campos.esquerdoQtdTacha} unidades**\n`;
-            if (campos.eixo4x4TipoTacha && campos.eixo4x4QtdTacha) textoLevantamento += `**EIXO 4x4 : ${campos.eixo4x4TipoTacha} ${campos.eixo4x4QtdTacha} unidades**\n`;
-            if (campos.eixo2x2TipoTacha && campos.eixo2x2QtdTacha) textoLevantamento += `**Eixo 2X2 : ${campos.eixo2x2TipoTacha} ${campos.eixo2x2QtdTacha} unidades**\n`;
-            if (campos.alcaTipoTacha && campos.alcaQtdTacha) textoLevantamento += `**Alça : ${campos.alcaTipoTacha} ${campos.alcaQtdTacha} unidades**\n`;
-
-            // Remoção
-            textoLevantamento += `**REMOÇÃO : 00 unidades**\n`;
+            if (campos.direitoTipoTacha == 'Tacha monodirecional' && campos.direitoQtdTacha) textoLevantamento += `**BORDO DIREITO :  ${campos.direitoQtdTacha} unidades**\n`;
+            if (campos.esquerdoTipoTacha == 'Tacha monodirecional' && campos.esquerdoQtdTacha) textoLevantamento += `**BORDO ESQUERDO : ${campos.esquerdoQtdTacha} unidades**\n`;
+            if (campos.eixo4x4TipoTacha == 'Tacha monodirecional' && campos.eixo4x4QtdTacha) textoLevantamento += `**EIXO 4x4 : ${campos.eixo4x4QtdTacha} unidades**\n`;
+            if (campos.eixo2x2TipoTacha == 'Tacha monodirecional' && campos.eixo2x2QtdTacha) textoLevantamento += `**Eixo 2X2 : ${campos.eixo2x2QtdTacha} unidades**\n`;
+            if (campos.alcaTipoTacha == 'Tacha monodirecional' && campos.alcaQtdTacha) textoLevantamento += `**Alça : ${campos.alcaQtdTacha} unidades**\n`;
         }
+
+        // Implantação de Tacha bidirecional
+        if ((campos.direitoTipoTacha == 'Tacha bidirecional' && campos.direitoQtdTacha)
+            || (campos.esquerdoTipoTacha == 'Tacha bidirecional' && campos.direitoQtdTacha)
+            || (campos.eixo4x4TipoTacha == 'Tacha bidirecional' && campos.direitoQtdTacha)
+            || (campos.eixo2x2TipoTacha == 'Tacha bidirecional' && campos.direitoQtdTacha)
+            || (campos.alcaTipoTacha == 'Tacha bidirecional' && campos.direitoQtdTacha)) {
+            textoLevantamento += `
+                     **Implantação de Tachas bidirecionais**
+                     `;
+
+            if (campos.direitoTipoTacha == 'Tacha bidirecional' && campos.direitoQtdTacha) textoLevantamento += `**BORDO DIREITO :  ${campos.direitoQtdTacha} unidades**\n`;
+            if (campos.esquerdoTipoTacha == 'Tacha bidirecional' && campos.esquerdoQtdTacha) textoLevantamento += `**BORDO ESQUERDO : ${campos.esquerdoQtdTacha} unidades**\n`;
+            if (campos.eixo4x4TipoTacha == 'Tacha bidirecional' && campos.eixo4x4QtdTacha) textoLevantamento += `**EIXO 4x4 : ${campos.eixo4x4QtdTacha} unidades**\n`;
+            if (campos.eixo2x2TipoTacha == 'Tacha bidirecional' && campos.eixo2x2QtdTacha) textoLevantamento += `**Eixo 2X2 : ${campos.eixo2x2QtdTacha} unidades**\n`;
+            if (campos.alcaTipoTacha == 'Tacha bidirecional' && campos.alcaQtdTacha) textoLevantamento += `**Alça : ${campos.alcaQtdTacha} unidades**\n`;
+        }
+
+        // Implantação de Tachão monodirecional
+        if ((campos.direitoTipoTacha == 'Tachão monodirecional' && campos.direitoQtdTacha)
+            || (campos.esquerdoTipoTacha == 'Tachão monodirecional' && campos.direitoQtdTacha)
+            || (campos.eixo4x4TipoTacha == 'Tachão monodirecional' && campos.direitoQtdTacha)
+            || (campos.eixo2x2TipoTacha == 'Tachão monodirecional' && campos.direitoQtdTacha)
+            || (campos.alcaTipoTacha == 'Tachão monodirecional' && campos.direitoQtdTacha)) {
+            textoLevantamento += `
+                         **Implantação de Tachões monodirecionais**
+                         `;
+
+            if (campos.direitoTipoTacha == 'Tachão monodirecional' && campos.direitoQtdTacha) textoLevantamento += `**BORDO DIREITO :  ${campos.direitoQtdTacha} unidades**\n`;
+            if (campos.esquerdoTipoTacha == 'Tachão monodirecional' && campos.esquerdoQtdTacha) textoLevantamento += `**BORDO ESQUERDO : ${campos.esquerdoQtdTacha} unidades**\n`;
+            if (campos.eixo4x4TipoTacha == 'Tachão monodirecional' && campos.eixo4x4QtdTacha) textoLevantamento += `**EIXO 4x4 : ${campos.eixo4x4QtdTacha} unidades**\n`;
+            if (campos.eixo2x2TipoTacha == 'Tachão monodirecional' && campos.eixo2x2QtdTacha) textoLevantamento += `**Eixo 2X2 : ${campos.eixo2x2QtdTacha} unidades**\n`;
+            if (campos.alcaTipoTacha == 'Tachão monodirecional' && campos.alcaQtdTacha) textoLevantamento += `**Alça : ${campos.alcaQtdTacha} unidades**\n`;
+        }
+
+        // Implantação de Tachão bidirecional
+        if ((campos.direitoTipoTacha == 'Tachão bidirecional' && campos.direitoQtdTacha)
+            || (campos.esquerdoTipoTacha == 'Tachão bidirecional' && campos.direitoQtdTacha)
+            || (campos.eixo4x4TipoTacha == 'Tachão bidirecional' && campos.direitoQtdTacha)
+            || (campos.eixo2x2TipoTacha == 'Tachão bidirecional' && campos.direitoQtdTacha)
+            || (campos.alcaTipoTacha == 'Tachão bidirecional' && campos.direitoQtdTacha)) {
+            textoLevantamento += `
+                             **Implantação de Tachões Bidirecionais**
+                             `;
+
+            if (campos.direitoTipoTacha == 'Tachão bidirecional' && campos.direitoQtdTacha) textoLevantamento += `**BORDO DIREITO :  ${campos.direitoQtdTacha} unidades**\n`;
+            if (campos.esquerdoTipoTacha == 'Tachão bidirecional' && campos.esquerdoQtdTacha) textoLevantamento += `**BORDO ESQUERDO : ${campos.esquerdoQtdTacha} unidades**\n`;
+            if (campos.eixo4x4TipoTacha == 'Tachão bidirecional' && campos.eixo4x4QtdTacha) textoLevantamento += `**EIXO 4x4 : ${campos.eixo4x4QtdTacha} unidades**\n`;
+            if (campos.eixo2x2TipoTacha == 'Tachão bidirecional' && campos.eixo2x2QtdTacha) textoLevantamento += `**Eixo 2X2 : ${campos.eixo2x2QtdTacha} unidades**\n`;
+            if (campos.alcaTipoTacha == 'Tachão bidirecional' && campos.alcaQtdTacha) textoLevantamento += `**Alça : ${campos.alcaQtdTacha} unidades**\n`;
+        }
+
+        // Remoção
+        textoLevantamento += `**REMOÇÃO : 00 unidades**\n`;
 
         if (textoLevantamento == '') {
             textoLevantamento = 'Favor preencher os campos do formulário';
@@ -352,7 +407,7 @@ const Formulario = () => {
     const resetarFormulario = () => {
         const initialState = {
             estado: '',
-            sentido: '',
+            equipe: '',
             nomeEstrada: '',
             kmInicial: '',
             diaMesAno: '',
@@ -427,64 +482,6 @@ const Formulario = () => {
                     </div>
 
                     <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
-                        <label className={`input-label ${campos.sentido ? 'input-label-active' : (isFocused == 'sentido' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                            Sentido
-                        </label>
-                        <input
-                            type="text"
-                            placeholder=" "
-                            value={campos.sentido}
-                            onChange={(e) => handleChange('sentido', e.target.value)}
-                            onFocus={() => handleInputFocus('sentido')}
-                            onBlur={handleInputBlur}
-                        />
-                    </div>
-
-                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
-                        <label className={`input-label ${campos.kmInicial ? 'input-label-active' : (isFocused == 'kmInicial' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                            Km inicial
-                        </label>
-                        <input
-                            type="text"
-                            placeholder=" "
-                            value={campos.kmInicial}
-                            onChange={(e) => handleChange('kmInicial', e.target.value)}
-                            onFocus={() => handleInputFocus('kmInicial')}
-                            onBlur={handleInputBlur}
-                        />
-                    </div>
-
-                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
-                        <label className={`input-label ${campos.kmFinal ? 'input-label-active' : (isFocused == 'kmFinal' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                            Km final
-                        </label>
-                        <input
-                            type="text"
-                            placeholder=" "
-                            value={campos.kmFinal}
-                            onChange={(e) => handleChange('kmFinal', e.target.value)}
-                            onFocus={() => handleInputFocus('kmFinal')}
-                            onBlur={handleInputBlur}
-                        />
-                    </div>
-
-                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
-                        <label className={`input-label ${campos.diaMesAno ? 'input-label-active' : (isFocused == 'diaMesAno' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                            Data
-                        </label>
-                        <input
-                            type="date"
-                            className={`date-input 
-                            ${campos.diaMesAno ? 'input-label-active border-green' : (isFocused == 'diaMesAno' ? 'input-label-focus border-yellow' : 'input-label-inactive border-white')}
-                            `}
-                            value={campos.diaMesAno}
-                            onChange={(e) => handleChange('diaMesAno', e.target.value)}
-                            onFocus={() => handleInputFocus('diaMesAno')}
-                            onBlur={handleInputBlur}
-                        />
-                    </div>
-
-                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
                         <label className={`input-label ${campos.estado ? 'input-label-active' : (isFocused == 'estado' ? 'input-label-focus' : 'input-label-inactive')}`}>
                             Estado
                         </label>
@@ -528,6 +525,72 @@ const Formulario = () => {
                             <option value="SE">Sergipe</option>
                             <option value="TO">Tocantins</option>
                         </select>
+                    </div>
+
+                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
+                        <label className={`input-label ${campos.diaMesAno ? 'input-label-active' : (isFocused == 'diaMesAno' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                            Data
+                        </label>
+                        <input
+                            type="date"
+                            className={`date-input 
+                            ${campos.diaMesAno ? 'input-label-active border-green' : (isFocused == 'diaMesAno' ? 'input-label-focus border-yellow' : 'input-label-inactive border-white')}
+                            `}
+                            value={campos.diaMesAno}
+                            onChange={(e) => handleChange('diaMesAno', e.target.value)}
+                            onFocus={() => handleInputFocus('diaMesAno')}
+                            onBlur={handleInputBlur}
+                        />
+                    </div>
+
+                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
+                        <label className={`input-label ${campos.equipe ? 'input-label-active' : (isFocused == 'estado' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                            Equipe
+                        </label>
+                        <select
+                            className={`
+                            ${campos.equipe ? 'input-label-active border-green' : (isFocused == 'equipe' ? 'input-label-focus border-yellow' : 'input-label-inactive border-white')}
+                        `}
+                            value={campos.equipe}
+                            onChange={(e) => handleChange('equipe', e.target.value)}
+                            onFocus={() => handleInputFocus('equipe')}
+                            onBlur={handleInputBlur}
+                        >
+                            <option value=''>
+                                Selecione uma equipe
+                            </option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                        </select>
+                    </div>
+
+                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
+                        <label className={`input-label ${campos.kmInicial ? 'input-label-active' : (isFocused == 'kmInicial' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                            Km inicial/Estaca inicial
+                        </label>
+                        <input
+                            type="text"
+                            placeholder=" "
+                            value={campos.kmInicial}
+                            onChange={(e) => handleChange('kmInicial', e.target.value)}
+                            onFocus={() => handleInputFocus('kmInicial')}
+                            onBlur={handleInputBlur}
+                        />
+                    </div>
+
+                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
+                        <label className={`input-label ${campos.kmFinal ? 'input-label-active' : (isFocused == 'kmFinal' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                            Km final/Estaca final
+                        </label>
+                        <input
+                            type="text"
+                            placeholder=" "
+                            value={campos.kmFinal}
+                            onChange={(e) => handleChange('kmFinal', e.target.value)}
+                            onFocus={() => handleInputFocus('kmFinal')}
+                            onBlur={handleInputBlur}
+                        />
                     </div>
 
                 </div>
