@@ -25,8 +25,6 @@ const BlocoDivVariavel: React.FC<BlocoDivVariavelProps> = ({ label, valorX, valo
         return numericValue;
     };
 
-    console.log(tipoTacha)
-
     return (
         <div className='grupo'>
             <label className='quadro'>{label}:</label>
