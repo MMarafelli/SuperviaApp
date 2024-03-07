@@ -2,8 +2,11 @@ import { useState, useEffect } from 'react';
 
 function Relogio() {
 
+    // ---------------------------------------------------------------------------------------------
+    // Controle de tema
+    // ---------------------------------------------------------------------------------------------
     const theme = document.documentElement.getAttribute('theme');
-    const corDoSVG = theme == 'dark' ? 'white' : 'hsl(300, 1%, 30%)';
+    const corDoSVG = theme == 'dark' ? 'white' : 'black';
 
 
     const [time, setTime] = useState(new Date());
@@ -16,9 +19,9 @@ function Relogio() {
         return () => clearInterval(interval);
     }, []);
 
-    const hours = String(time.getHours()).padStart(2, '0');
-    const minutes = String(time.getMinutes()).padStart(2, '0');
-    const seconds = String(time.getSeconds()).padStart(2, '0');
+    /*     const hours = String(time.getHours()).padStart(2, '0');
+        const minutes = String(time.getMinutes()).padStart(2, '0');
+        const seconds = String(time.getSeconds()).padStart(2, '0'); */
 
     const hourRotation = (360 / 12) * (time.getHours() % 12) + (360 / 12) * (time.getMinutes() / 60);
     const minuteRotation = (360 / 60) * time.getMinutes() + (360 / 60) * (time.getSeconds() / 60);
@@ -64,16 +67,16 @@ function Relogio() {
                     x2="130"
                     y2="80"
                     transform={`rotate(${hourRotation} 130 130)`}
-                    stroke="black"
+                    stroke={corDoSVG}
                     strokeWidth="4"
                 />
                 <line
                     x1="130"
                     y1="130"
                     x2="130"
-                    y2="70"
+                    y2="45"
                     transform={`rotate(${minuteRotation} 130 130)`}
-                    stroke="black"
+                    stroke={corDoSVG}
                     strokeWidth="2"
                 />
                 <line
@@ -86,9 +89,9 @@ function Relogio() {
                     strokeWidth="1"
                 />
             </svg>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl font-bold">
+            {/*             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl font-bold">
                 {`${hours}:${minutes}:${seconds}`}
-            </div>
+            </div> */}
         </div>
     );
 }
