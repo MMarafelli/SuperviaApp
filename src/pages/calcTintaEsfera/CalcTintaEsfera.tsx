@@ -322,7 +322,7 @@ const Formulario = () => {
         }
 
         // Remoção
-        textoLevantamento += `*REMOÇÃO*: ${campos.remocao} unidades\n`;
+        textoLevantamento += `*Remoção*: ${campos.remocao} unidades\n`;
 
         if (textoLevantamento == '') {
             textoLevantamento = 'Favor preencher os campos do formulário';
