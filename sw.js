@@ -1,6 +1,6 @@
 // sw.js
 const CACHE_NAME = 'seu-app-cache';
-let currentVersion = 'v1';
+let currentVersion = 'v2';
 
 self.addEventListener('install', (event) => {
     event.waitUntil(
