@@ -1,1 +1,1 @@
-if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/SuperViaApp/sw.js', { scope: '/SuperViaApp/' })})}
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/SuperviaApp/sw.js', { scope: '/SuperviaApp/' })})}
