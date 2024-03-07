@@ -14,8 +14,6 @@ const Formulario = () => {
     const [larguraDaJanela, setLarguraDaJanela] = useState(window.innerWidth);
     const [isFocused, setIsFocused] = useState('');
     //const [mostrarConteudo, setMostrarConteudo] = useState(false);
-    //const [editarEsferas, setEditarEsferas] = useState(false);
-    //const [editarTinta, setEditarTinta] = useState(false);
     const [levantamento, setLevantamento] = useState('');
 
     const initialState = {
@@ -50,6 +48,7 @@ const Formulario = () => {
         alcaZ: localStorage.getItem('alcaZ') || '',
         alcaTipoTacha: localStorage.getItem('alcaTipoTacha') || '',
         alcaQtdTacha: localStorage.getItem('alcaQtdTacha') || '',
+        totalMetrosPista: localStorage.getItem('totalMetrosPista') || '',
         esfera: localStorage.getItem('esfera') || '',
         resultadoEsferas: localStorage.getItem('resultadoEsferas') || '',
         tinta: localStorage.getItem('tinta') || '',
@@ -119,9 +118,8 @@ const Formulario = () => {
     }, [campos.alcaX, campos.alcaY]);
 
     useEffect(() => {
-        calcularResultadoEsferas();
-        calcularResultadoTinta();
-    }, [campos.direitoZ, campos.esquerdoZ, campos.eixo4x4Z, campos.eixo2x2Z, campos.alcaZ, campos.esfera, campos.tinta]);
+        calcularMetrosPista();
+    }, [campos.direitoZ, campos.esquerdoZ, campos.eixo4x4Z, campos.eixo2x2Z, campos.alcaZ]);
 
     // Libera ou trava a edição no campo
     /*     const handleEditEsfera = () => {
@@ -157,8 +155,6 @@ const Formulario = () => {
             setTextareaHeight(`${textareaRef.current.scrollHeight}px`);
         }
     }, [levantamento]);
-
-
 
     // ---------------------------------------------------------------------------------------------
     // Controle de input
@@ -215,69 +211,22 @@ const Formulario = () => {
         return roundedResult;
     };
 
-    const calcularResultadoEsferas = () => {
-        let direitoZNumber = parseFloat(campos.direitoZ);
-        let esquerdoZNumber = parseFloat(campos.esquerdoZ);
-        let eixo2x2ZNumber = parseFloat(campos.eixo2x2Z);
-        let eixo4x4ZNumber = parseFloat(campos.eixo4x4Z);
-        let alcaZNumber = parseFloat(campos.alcaZ);
-        let esferaNumber = parseFloat(campos.esfera);
+    const calcularMetrosPista = () => {
 
-        // Função para verificar se é NaN e atribuir 0 se for
+        console.log('calcularMetrosPista')
         const handleNaN = (value: number) => isNaN(value) ? 0 : value;
 
-        // Aplicar a função para cada variável
-        direitoZNumber = handleNaN(direitoZNumber);
-        esquerdoZNumber = handleNaN(esquerdoZNumber);
-        eixo2x2ZNumber = handleNaN(eixo2x2ZNumber);
-        eixo4x4ZNumber = handleNaN(eixo4x4ZNumber);
-        alcaZNumber = handleNaN(alcaZNumber);
-        esferaNumber = handleNaN(esferaNumber);
+        const direitoZNumber = handleNaN(parseFloat(campos.direitoZ));
+        const esquerdoZNumber = handleNaN(parseFloat(campos.esquerdoZ));
+        const eixo2x2ZNumber = handleNaN(parseFloat(campos.eixo2x2Z));
+        const eixo4x4ZNumber = handleNaN(parseFloat(campos.eixo4x4Z));
+        const alcaZNumber = handleNaN(parseFloat(campos.alcaZ));
 
-        const denominador =
+        const total =
             direitoZNumber + esquerdoZNumber + eixo2x2ZNumber + eixo4x4ZNumber + alcaZNumber;
 
-        if (denominador === 0) {
-            handleChange('resultadoEsferas', '');
-            return;
-        }
-
-        const resultado = esferaNumber / denominador;
-        const roundedResultado = Math.ceil(resultado * 100) / 100;
-        handleChange('resultadoEsferas', roundedResultado.toString());
-    };
-
-    // Calcula resultado de tinta
-    const calcularResultadoTinta = () => {
-        let direitoZNumber = parseFloat(campos.direitoZ);
-        let esquerdoZNumber = parseFloat(campos.esquerdoZ);
-        let eixo2x2ZNumber = parseFloat(campos.eixo2x2Z);
-        let eixo4x4ZNumber = parseFloat(campos.eixo4x4Z);
-        let alcaZNumber = parseFloat(campos.alcaZ);
-        let tintaNumber = parseFloat(campos.tinta);
-
-        // Função para verificar se é NaN e atribuir 0 se for
-        const handleNaN = (value: number) => isNaN(value) ? 0 : value;
-
-        // Aplicar a função para cada variável
-        direitoZNumber = handleNaN(direitoZNumber);
-        esquerdoZNumber = handleNaN(esquerdoZNumber);
-        eixo2x2ZNumber = handleNaN(eixo2x2ZNumber);
-        eixo4x4ZNumber = handleNaN(eixo4x4ZNumber);
-        alcaZNumber = handleNaN(alcaZNumber);
-        tintaNumber = handleNaN(tintaNumber);
-
-        const numerador =
-            direitoZNumber + esquerdoZNumber + eixo2x2ZNumber + eixo4x4ZNumber + alcaZNumber;
-
-        if (tintaNumber === 0) {
-            handleChange('resultadoTinta', '');
-            return;
-        }
-
-        const resultado = numerador / tintaNumber;
-        const roundedResultado = Math.ceil(resultado * 100) / 100;
-        handleChange('resultadoTinta', roundedResultado.toString());
+        const roundedResultado = Math.ceil(total * 100) / 100;
+        handleChange('totalMetrosPista', roundedResultado.toString());
     };
 
     // ---------------------------------------------------------------------------------------------
@@ -382,7 +331,6 @@ const Formulario = () => {
         setLevantamento(textoLevantamento);
     };
 
-
     // ---------------------------------------------------------------------------------------------
     // Controle do compatilhamento
     // ---------------------------------------------------------------------------------------------
@@ -443,6 +391,7 @@ const Formulario = () => {
             tinta: '',
             resultadoTinta: '',
             remocao: '',
+            totalMetrosPista: '',
         };
 
         // Atualizar campos com os valores inciais.
@@ -460,6 +409,9 @@ const Formulario = () => {
     // ---------------------------------------------------------------------------------------------
     /*  const theme = document.documentElement.getAttribute('theme');
         const corDoSVG = theme == 'dark' ? 'white' : 'hsl(300, 1%, 30%)'; */
+
+    // ---------------------------------------------------------------------------------------------
+    // Pagina
     // ---------------------------------------------------------------------------------------------
 
     return (
@@ -753,6 +705,31 @@ const Formulario = () => {
                         <tr>
                             <td>
                                 <div className="interacaoBox flex flex-col lg:mr-2">
+                                    <label className={`input-label ${campos.totalMetrosPista ? 'input-label-active' : (isFocused == 'totalMetrosPista' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                                        Total m²:
+                                    </label>
+                                    <input
+                                        type="text"
+                                        placeholder=" "
+                                        readOnly
+                                        value={campos.totalMetrosPista}
+                                        onFocus={() => handleInputFocus('totalMetrosPista')}
+                                        onBlur={handleInputBlur}
+                                    />
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            {/* Terceiro quadro */}
+            <div className="terceiroQuadro mx-4 mb-4">
+                <table className="w-full">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div className="interacaoBox flex flex-col lg:mr-2">
                                     <label className={`input-label ${campos.remocao ? 'input-label-active' : (isFocused == 'remocao' ? 'input-label-focus' : 'input-label-inactive')}`}>
                                         Remoção(unidades):
                                     </label>
@@ -771,7 +748,7 @@ const Formulario = () => {
                 </table>
             </div>
 
-            {/* Terceiro quadro */}
+            {/* Quadro de consumo */}
             {/*             <div className="terceiroQuadro mx-4 mb-4">
                 <div
                     className="colapsavelCursorPointer p-4 flex justify-between items-center transition-all duration-300"

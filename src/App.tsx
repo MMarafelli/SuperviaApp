@@ -9,6 +9,7 @@ import LoadingScreen from "./components/loading/LoadingScreen";
 
 import Home from './pages/home/Home';
 import CalcTintaEsfera from "./pages/calcTintaEsfera/CalcTintaEsfera";
+import CalcConsumo from "./pages/calcConsumo/calcConsumo";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "CalcTintaEsfera",
         element: <CalcTintaEsfera></CalcTintaEsfera>,
+      },
+      {
+        path: "CalcConsumo",
+        element: <CalcConsumo></CalcConsumo>,
       },
       {
         path: "about",
