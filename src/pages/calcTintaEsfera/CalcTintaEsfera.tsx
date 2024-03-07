@@ -140,6 +140,11 @@ const Formulario = () => {
         setIsFocused('');
     };
 
+    const handleInputChangeNumeric = (value: string) => {
+        const numericValue = value.replace(/[^\d.]/g, '');
+        return numericValue;
+    };
+
     // ---------------------------------------------------------------------------------------------
     // Controle da textArea
     // ---------------------------------------------------------------------------------------------
@@ -322,7 +327,9 @@ const Formulario = () => {
         }
 
         // Remoção
-        textoLevantamento += `*Remoção*: ${campos.remocao} unidade(s)\n`;
+        if (campos.remocao) {
+            textoLevantamento += `*Remoção*: ${campos.remocao} unidade(s)\n`;
+        }
 
         if (textoLevantamento == '') {
             textoLevantamento = 'Favor preencher os campos do formulário';
@@ -737,7 +744,7 @@ const Formulario = () => {
                                         type="text"
                                         placeholder=" "
                                         value={campos.remocao}
-                                        onChange={(e) => handleChange('remocao', e.target.value)}
+                                        onChange={(e) => handleChange('remocao', handleInputChangeNumeric(e.target.value))}
                                         onFocus={() => handleInputFocus('remocao')}
                                         onBlur={handleInputBlur}
                                     />
