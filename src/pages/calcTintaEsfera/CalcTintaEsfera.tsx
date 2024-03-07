@@ -218,7 +218,7 @@ const Formulario = () => {
 
     const calcularMetrosPista = () => {
 
-        console.log('calcularMetrosPista')
+        //console.log('calcularMetrosPista')
         const handleNaN = (value: number) => isNaN(value) ? 0 : value;
 
         const direitoZNumber = handleNaN(parseFloat(campos.direitoZ));
@@ -268,7 +268,7 @@ const Formulario = () => {
             || (campos.eixo4x4TipoTacha == 'Tacha monodirecional' && campos.eixo4x4TipoTacha)
             || (campos.eixo2x2TipoTacha == 'Tacha monodirecional' && campos.eixo2x2TipoTacha)
             || (campos.alcaTipoTacha == 'Tacha monodirecional' && campos.alcaTipoTacha)) {
-            textoLevantamento += `*Implantação de Tachas Monodirecionais*\n`;
+            textoLevantamento += `*Implantação de Tachas monodirecionais*\n`;
 
             if (campos.direitoTipoTacha == 'Tacha monodirecional' && campos.direitoQtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020Bordo direito: ${campos.direitoQtdTacha} unidade(s)\n`;
             if (campos.esquerdoTipoTacha == 'Tacha monodirecional' && campos.esquerdoQtdTacha) textoLevantamento += `Bordo esquerdo: ${campos.esquerdoQtdTacha} unidade(s)\n`;
@@ -316,7 +316,7 @@ const Formulario = () => {
             || (campos.eixo4x4TipoTacha == 'Tachão bidirecional' && campos.eixo4x4QtdTacha)
             || (campos.eixo2x2TipoTacha == 'Tachão bidirecional' && campos.eixo2x2QtdTacha)
             || (campos.alcaTipoTacha == 'Tachão bidirecional' && campos.alcaQtdTacha)) {
-            textoLevantamento += `*Implantação de Tachões Bidirecionais*\n`;
+            textoLevantamento += `*Implantação de Tachões bidirecionais*\n`;
 
             if (campos.direitoTipoTacha == 'Tachão bidirecional' && campos.direitoQtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020Bordo direito: ${campos.direitoQtdTacha} unidade(s)\n`;
             if (campos.esquerdoTipoTacha == 'Tachão bidirecional' && campos.esquerdoQtdTacha) textoLevantamento += `Bordo esquerdo: ${campos.esquerdoQtdTacha} unidade(s)\n`;
