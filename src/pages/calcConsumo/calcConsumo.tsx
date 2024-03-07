@@ -174,12 +174,17 @@ const TabelaConsumo = () => {
     return (
         /* Quadro de consumo */
         <div>
-            <label className={`input-label ${campos.remocao ? 'input-label-active' : (isFocused == 'remocao' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                Total metros:
-            </label>
-            <input
-                readOnly
-                value={campos.totalMetrosPista} />
+            <div className="quadro-consumo m-4" >
+                <div className="p-2 flex flex-col w-full">
+                    <label className={`input-label ${campos.remocao ? 'input-label-active' : (isFocused == 'remocao' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                        Total m²:
+                    </label>
+                    <input
+                        readOnly
+                        value={campos.totalMetrosPista} />
+                </div>
+            </div>
+
             <div className="quadro-consumo m-4" >
                 <div className="p-2 flex flex-col w-full">
                     <table className="tabela2TelaGrande w-full border-collapse">
@@ -297,7 +302,7 @@ const TabelaConsumo = () => {
                     </table>
                 </div>
             </div >
-        </div>
+        </div >
     )
 
 }
