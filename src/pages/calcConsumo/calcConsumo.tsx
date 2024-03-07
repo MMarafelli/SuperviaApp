@@ -124,7 +124,7 @@ const TabelaConsumo = () => {
         const denominador =
             direitoZNumber + esquerdoZNumber + eixo2x2ZNumber + eixo4x4ZNumber + alcaZNumber;
 
-        if (denominador === 0) {
+        if (denominador === 0 || esferaNumber === 0) {
             handleChange('resultadoEsferas', '');
             return;
         }
