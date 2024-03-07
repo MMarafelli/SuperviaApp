@@ -13,7 +13,7 @@ import CalcConsumo from "./pages/calcConsumo/calcConsumo";
 
 const router = createBrowserRouter([
   {
-    path: "/SuperViaApp",
+    path: "/SuperviaApp",
     element: <MainLayout />,
     children: [
       {
@@ -88,7 +88,7 @@ function NoMatch() {
     <div>
       <h2>Nothing to see here!</h2>
       <p>
-        <Link to="/SuperViaApp">Go to the home page</Link>
+        <Link to="/SuperviaApp">Go to the home page</Link>
       </p>
     </div>
   );

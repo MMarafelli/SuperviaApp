@@ -6,10 +6,10 @@ export function DashboardLayout() {
       <nav>
         <ul>
           <li>
-            <Link to="/SuperViaApp/dashboard">Dashboard Home</Link>
+            <Link to="/SuperviaApp/dashboard">Dashboard Home</Link>
           </li>
           <li>
-            <Link to="/SuperViaApp/dashboard/messages">Messages</Link>
+            <Link to="/SuperviaApp/dashboard/messages">Messages</Link>
           </li>
         </ul>
       </nav>

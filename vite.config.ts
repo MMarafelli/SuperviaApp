@@ -7,15 +7,15 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
   registerType: 'prompt',
   includeAssets: ['favicon.ico', "apple-touc-icon.png", "masked-icon.svg"],
   manifest: {
-    name: "SuperVia App",
-    short_name: "SuperVia",
+    name: "Supervia App",
+    short_name: "Supervia",
     description: "A Super Via App.",
     theme_color: '#282c34',
     background_color: '#282c34',
     display: "standalone",
-    id: "/SuperViaApp/",
-    scope: "/SuperViaApp/",
-    start_url: "/SuperViaApp/",
+    id: "/SuperviaApp/",
+    scope: "/SuperviaApp/",
+    start_url: "/SuperviaApp/",
     orientation: 'portrait',
     icons: [
       {
@@ -36,7 +36,7 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/SuperViaApp/',
+  base: '/SuperviaApp/',
   plugins: [react(),
   VitePWA(manifestForPlugIn),
   VitePWA({ injectRegister: 'inline' })],
