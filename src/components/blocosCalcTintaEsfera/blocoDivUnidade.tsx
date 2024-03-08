@@ -18,7 +18,7 @@ interface BlocoDivVariavelProps {
 }
 
 
-const BlocoDivVariavel: React.FC<BlocoDivVariavelProps> = ({ label, valorX, valorY, valorZ, tipoTacha, qtdTacha, opcoesEspessura, opcoesTacha, onChange }) => {
+const BlocoDivUnidVariavel: React.FC<BlocoDivVariavelProps> = ({ label, valorX, valorY, valorZ, tipoTacha, qtdTacha, opcoesEspessura, opcoesTacha, onChange }) => {
 
     const handleInputChangeNumeric = (value: string) => {
         const numericValue = value.replace(/[^\d.]/g, '');
@@ -44,7 +44,7 @@ const BlocoDivVariavel: React.FC<BlocoDivVariavelProps> = ({ label, valorX, valo
                     </select>
                 </div>
                 <div className='bloco'>
-                    <div className='texto-a-direita quadro'>Comprimento(m):</div>
+                    <div className='texto-a-direita quadro'>Unidades:</div>
                     <input
                         type="text"
                         placeholder=" "
@@ -89,4 +89,4 @@ const BlocoDivVariavel: React.FC<BlocoDivVariavelProps> = ({ label, valorX, valo
     );
 };
 
-export default BlocoDivVariavel;
+export default BlocoDivUnidVariavel;

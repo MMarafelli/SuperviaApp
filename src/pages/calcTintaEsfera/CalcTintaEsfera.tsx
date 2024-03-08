@@ -3,7 +3,8 @@ import { useRef, useState, useEffect } from 'react';
 import './CalcTintaEsfera.css';
 import { format } from 'date-fns';
 
-import BlocoDivVariavel from '../../components/blocosCalcTintaEsfera/blocoDiv'
+import BlocoDivCompVariavel from '../../components/blocosCalcTintaEsfera/blocoDivComprimento'
+import BlocoDivUnidVariavel from '../../components/blocosCalcTintaEsfera/blocoDivUnidade'
 import BlocoTrVariavel from '../../components/blocosCalcTintaEsfera/blocoTr'
 
 const Formulario = () => {
@@ -33,11 +34,11 @@ const Formulario = () => {
         direitoZ: localStorage.getItem('direitoZ') || '',
         direitoTipoTacha: localStorage.getItem('direitoTipoTacha') || '',
         direitoQtdTacha: localStorage.getItem('direitoQtdTacha') || '',
-        eixo4x4X: localStorage.getItem('eixo4x4X') || '',
-        eixo4x4Y: localStorage.getItem('eixo4x4Y') || '',
-        eixo4x4Z: localStorage.getItem('eixo4x4Z') || '',
-        eixo4x4TipoTacha: localStorage.getItem('eixo4x4TipoTacha') || '',
-        eixo4x4QtdTacha: localStorage.getItem('eixo4x4QtdTacha') || '',
+        eixo4x12X: localStorage.getItem('eixo4x12X') || '',
+        eixo4x12Y: localStorage.getItem('eixo4x12Y') || '',
+        eixo4x12Z: localStorage.getItem('eixo4x12Z') || '',
+        eixo4x12TipoTacha: localStorage.getItem('eixo4x12TipoTacha') || '',
+        eixo4x12QtdTacha: localStorage.getItem('eixo4x12QtdTacha') || '',
         eixo2x2X: localStorage.getItem('eixo2x2X') || '',
         eixo2x2Y: localStorage.getItem('eixo2x2Y') || '',
         eixo2x2Z: localStorage.getItem('eixo2x2Z') || '',
@@ -106,8 +107,8 @@ const Formulario = () => {
     }, [campos.esquerdoX, campos.esquerdoY]);
 
     useEffect(() => {
-        parXeY('eixo4x4');
-    }, [campos.eixo4x4X, campos.eixo4x4Y]);
+        parXeY('eixo4x12');
+    }, [campos.eixo4x12X, campos.eixo4x12Y]);
 
     useEffect(() => {
         parXeY('eixo2x2');
@@ -119,7 +120,7 @@ const Formulario = () => {
 
     useEffect(() => {
         calcularMetrosPista();
-    }, [campos.direitoZ, campos.esquerdoZ, campos.eixo4x4Z, campos.eixo2x2Z, campos.alcaZ]);
+    }, [campos.direitoZ, campos.esquerdoZ, campos.eixo4x12Z, campos.eixo2x2Z, campos.alcaZ]);
 
     // Libera ou trava a edição no campo
     /*     const handleEditEsfera = () => {
@@ -191,7 +192,17 @@ const Formulario = () => {
         const campoX = campo + 'X';
         const campoY = campo + 'Y';
         const x = parseFloat(campos[campoX as keyof typeof campos] as string) || 0;
-        const y = parseFloat(campos[campoY as keyof typeof campos] as string) || 0;
+        let y = parseFloat(campos[campoY as keyof typeof campos] as string) || 0;
+
+        if (campo === 'eixo4x12') {
+            y = y * 4
+            console.log(y)
+        }
+
+        if (campo === 'eixo2x2') {
+            y = y * 2
+            console.log(y)
+        }
 
         let valorZ = calcularM2(x.toString(), y.toString()).toString();
         if (valorZ == '0') {
@@ -224,11 +235,11 @@ const Formulario = () => {
         const direitoZNumber = handleNaN(parseFloat(campos.direitoZ));
         const esquerdoZNumber = handleNaN(parseFloat(campos.esquerdoZ));
         const eixo2x2ZNumber = handleNaN(parseFloat(campos.eixo2x2Z));
-        const eixo4x4ZNumber = handleNaN(parseFloat(campos.eixo4x4Z));
+        const eixo4x12ZNumber = handleNaN(parseFloat(campos.eixo4x12Z));
         const alcaZNumber = handleNaN(parseFloat(campos.alcaZ));
 
         const total =
-            direitoZNumber + esquerdoZNumber + eixo2x2ZNumber + eixo4x4ZNumber + alcaZNumber;
+            direitoZNumber + esquerdoZNumber + eixo2x2ZNumber + eixo4x12ZNumber + alcaZNumber;
 
         const roundedResultado = Math.ceil(total * 100) / 100;
         handleChange('totalMetrosPista', roundedResultado.toString());
@@ -247,33 +258,33 @@ const Formulario = () => {
         // Pintura Automática Definitiva
         if ((campos.direitoZ && campos.direitoZ != '0')
             || (campos.esquerdoZ && campos.esquerdoZ != '0')
-            || (campos.eixo4x4Z && campos.eixo4x4Z != '0')
+            || (campos.eixo4x12Z && campos.eixo4x12Z != '0')
             || (campos.eixo2x2Z && campos.eixo2x2Z != '0')
             || (campos.alcaZ && campos.alcaZ != '0')
             || (campos.esfera && campos.esfera != '0')
             || (campos.tinta && campos.tinta != '0')) {
             textoLevantamento += `*Pintura Automática Definitiva*\n`;
 
-            if (campos.direitoZ && campos.direitoZ != '0') textoLevantamento += `\u0020\u0020\u0020\u0020\u0020Bordo direito: ${campos.direitoZ} metros\n`;
-            if (campos.esquerdoZ && campos.esquerdoZ != '0') textoLevantamento += `Bordo esquerdo: ${campos.esquerdoZ} metros\n`;
-            if (campos.eixo4x4Z && campos.eixo4x4Z != '0') textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Eixo 4x4: ${campos.eixo4x4Z} unidade(s)\n`;
-            if (campos.eixo2x2Z && campos.eixo2x2Z != '0') textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Eixo 2X2: ${campos.eixo2x2Z} unidade(s)\n`;
-            if (campos.alcaZ && campos.alcaZ != '0') textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Alça: ${campos.alcaZ} unidade(s)\n`;
+            if (campos.direitoZ && campos.direitoZ != '0') textoLevantamento += `\u0020\u0020\u0020\u0020\u0020Bordo direito: ${campos.direitoY} metro(s)\n`;
+            if (campos.esquerdoZ && campos.esquerdoZ != '0') textoLevantamento += `Bordo esquerdo: ${campos.esquerdoY} metro(s)\n`;
+            if (campos.eixo4x12Z && campos.eixo4x12Z != '0') textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Eixo 4x12: ${campos.eixo4x12Y} unidade(s)\n`;
+            if (campos.eixo2x2Z && campos.eixo2x2Z != '0') textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u00202X2: ${campos.eixo2x2Y} unidade(s)\n`;
+            if (campos.alcaZ && campos.alcaZ != '0') textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Alça: ${campos.alcaY} metro(s)\n`;
             textoLevantamento += `\n`;
         }
 
         // Implantação de Tachas monodirecional
         if ((campos.direitoTipoTacha == 'Tacha monodirecional' && campos.direitoQtdTacha)
             || (campos.esquerdoTipoTacha == 'Tacha monodirecional' && campos.esquerdoTipoTacha)
-            || (campos.eixo4x4TipoTacha == 'Tacha monodirecional' && campos.eixo4x4TipoTacha)
+            || (campos.eixo4x12TipoTacha == 'Tacha monodirecional' && campos.eixo4x12TipoTacha)
             || (campos.eixo2x2TipoTacha == 'Tacha monodirecional' && campos.eixo2x2TipoTacha)
             || (campos.alcaTipoTacha == 'Tacha monodirecional' && campos.alcaTipoTacha)) {
             textoLevantamento += `*Implantação de Tachas monodirecionais*\n`;
 
             if (campos.direitoTipoTacha == 'Tacha monodirecional' && campos.direitoQtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020Bordo direito: ${campos.direitoQtdTacha} unidade(s)\n`;
             if (campos.esquerdoTipoTacha == 'Tacha monodirecional' && campos.esquerdoQtdTacha) textoLevantamento += `Bordo esquerdo: ${campos.esquerdoQtdTacha} unidade(s)\n`;
-            if (campos.eixo4x4TipoTacha == 'Tacha monodirecional' && campos.eixo4x4QtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Eixo 4x4: ${campos.eixo4x4QtdTacha} unidade(s)\n`;
-            if (campos.eixo2x2TipoTacha == 'Tacha monodirecional' && campos.eixo2x2QtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Eixo 2X2: ${campos.eixo2x2QtdTacha} unidade(s)\n`;
+            if (campos.eixo4x12TipoTacha == 'Tacha monodirecional' && campos.eixo4x12QtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Eixo 4x12: ${campos.eixo4x12QtdTacha} unidade(s)\n`;
+            if (campos.eixo2x2TipoTacha == 'Tacha monodirecional' && campos.eixo2x2QtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u00202X2: ${campos.eixo2x2QtdTacha} unidade(s)\n`;
             if (campos.alcaTipoTacha == 'Tacha monodirecional' && campos.alcaQtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Alça: ${campos.alcaQtdTacha} unidade(s)\n`;
             textoLevantamento += `\n`;
         }
@@ -281,15 +292,15 @@ const Formulario = () => {
         // Implantação de Tacha bidirecional
         if ((campos.direitoTipoTacha == 'Tacha bidirecional' && campos.direitoQtdTacha)
             || (campos.esquerdoTipoTacha == 'Tacha bidirecional' && campos.esquerdoQtdTacha)
-            || (campos.eixo4x4TipoTacha == 'Tacha bidirecional' && campos.eixo4x4QtdTacha)
+            || (campos.eixo4x12TipoTacha == 'Tacha bidirecional' && campos.eixo4x12QtdTacha)
             || (campos.eixo2x2TipoTacha == 'Tacha bidirecional' && campos.eixo2x2QtdTacha)
             || (campos.alcaTipoTacha == 'Tacha bidirecional' && campos.alcaQtdTacha)) {
             textoLevantamento += `*Implantação de Tachas bidirecionais*\n`;
 
             if (campos.direitoTipoTacha == 'Tacha bidirecional' && campos.direitoQtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020Bordo direito: ${campos.direitoQtdTacha} unidade(s)\n`;
             if (campos.esquerdoTipoTacha == 'Tacha bidirecional' && campos.esquerdoQtdTacha) textoLevantamento += `Bordo esquerdo: ${campos.esquerdoQtdTacha} unidade(s)\n`;
-            if (campos.eixo4x4TipoTacha == 'Tacha bidirecional' && campos.eixo4x4QtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Eixo 4x4: ${campos.eixo4x4QtdTacha} unidade(s)\n`;
-            if (campos.eixo2x2TipoTacha == 'Tacha bidirecional' && campos.eixo2x2QtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Eixo 2X2: ${campos.eixo2x2QtdTacha} unidade(s)\n`;
+            if (campos.eixo4x12TipoTacha == 'Tacha bidirecional' && campos.eixo4x12QtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Eixo 4x12: ${campos.eixo4x12QtdTacha} unidade(s)\n`;
+            if (campos.eixo2x2TipoTacha == 'Tacha bidirecional' && campos.eixo2x2QtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u00202X2: ${campos.eixo2x2QtdTacha} unidade(s)\n`;
             if (campos.alcaTipoTacha == 'Tacha bidirecional' && campos.alcaQtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Alça: ${campos.alcaQtdTacha} unidade(s)\n`;
             textoLevantamento += `\n`;
         }
@@ -297,15 +308,15 @@ const Formulario = () => {
         // Implantação de Tachão monodirecional
         if ((campos.direitoTipoTacha == 'Tachão monodirecional' && campos.direitoQtdTacha)
             || (campos.esquerdoTipoTacha == 'Tachão monodirecional' && campos.esquerdoQtdTacha)
-            || (campos.eixo4x4TipoTacha == 'Tachão monodirecional' && campos.eixo4x4QtdTacha)
+            || (campos.eixo4x12TipoTacha == 'Tachão monodirecional' && campos.eixo4x12QtdTacha)
             || (campos.eixo2x2TipoTacha == 'Tachão monodirecional' && campos.eixo2x2QtdTacha)
             || (campos.alcaTipoTacha == 'Tachão monodirecional' && campos.alcaQtdTacha)) {
             textoLevantamento += `*Implantação de Tachões monodirecionais*\n`;
 
             if (campos.direitoTipoTacha == 'Tachão monodirecional' && campos.direitoQtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020Bordo direito: ${campos.direitoQtdTacha} unidade(s)\n`;
             if (campos.esquerdoTipoTacha == 'Tachão monodirecional' && campos.esquerdoQtdTacha) textoLevantamento += `Bordo esquerdo: ${campos.esquerdoQtdTacha} unidade(s)\n`;
-            if (campos.eixo4x4TipoTacha == 'Tachão monodirecional' && campos.eixo4x4QtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Eixo 4x4: ${campos.eixo4x4QtdTacha} unidade(s)\n`;
-            if (campos.eixo2x2TipoTacha == 'Tachão monodirecional' && campos.eixo2x2QtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Eixo 2X2: ${campos.eixo2x2QtdTacha} unidade(s)\n`;
+            if (campos.eixo4x12TipoTacha == 'Tachão monodirecional' && campos.eixo4x12QtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Eixo 4x12: ${campos.eixo4x12QtdTacha} unidade(s)\n`;
+            if (campos.eixo2x2TipoTacha == 'Tachão monodirecional' && campos.eixo2x2QtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u00202X2: ${campos.eixo2x2QtdTacha} unidade(s)\n`;
             if (campos.alcaTipoTacha == 'Tachão monodirecional' && campos.alcaQtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Alça: ${campos.alcaQtdTacha} unidade(s)\n`;
             textoLevantamento += `\n`;
         }
@@ -313,15 +324,15 @@ const Formulario = () => {
         // Implantação de Tachão bidirecional
         if ((campos.direitoTipoTacha == 'Tachão bidirecional' && campos.direitoQtdTacha)
             || (campos.esquerdoTipoTacha == 'Tachão bidirecional' && campos.esquerdoQtdTacha)
-            || (campos.eixo4x4TipoTacha == 'Tachão bidirecional' && campos.eixo4x4QtdTacha)
+            || (campos.eixo4x12TipoTacha == 'Tachão bidirecional' && campos.eixo4x12QtdTacha)
             || (campos.eixo2x2TipoTacha == 'Tachão bidirecional' && campos.eixo2x2QtdTacha)
             || (campos.alcaTipoTacha == 'Tachão bidirecional' && campos.alcaQtdTacha)) {
             textoLevantamento += `*Implantação de Tachões bidirecionais*\n`;
 
             if (campos.direitoTipoTacha == 'Tachão bidirecional' && campos.direitoQtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020Bordo direito: ${campos.direitoQtdTacha} unidade(s)\n`;
             if (campos.esquerdoTipoTacha == 'Tachão bidirecional' && campos.esquerdoQtdTacha) textoLevantamento += `Bordo esquerdo: ${campos.esquerdoQtdTacha} unidade(s)\n`;
-            if (campos.eixo4x4TipoTacha == 'Tachão bidirecional' && campos.eixo4x4QtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Eixo 4x4: ${campos.eixo4x4QtdTacha} unidade(s)\n`;
-            if (campos.eixo2x2TipoTacha == 'Tachão bidirecional' && campos.eixo2x2QtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Eixo 2X2: ${campos.eixo2x2QtdTacha} unidade(s)\n`;
+            if (campos.eixo4x12TipoTacha == 'Tachão bidirecional' && campos.eixo4x12QtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Eixo 4x12: ${campos.eixo4x12QtdTacha} unidade(s)\n`;
+            if (campos.eixo2x2TipoTacha == 'Tachão bidirecional' && campos.eixo2x2QtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u00202X2: ${campos.eixo2x2QtdTacha} unidade(s)\n`;
             if (campos.alcaTipoTacha == 'Tachão bidirecional' && campos.alcaQtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Alça: ${campos.alcaQtdTacha} unidade(s)\n`;
             textoLevantamento += `\n`;
         }
@@ -378,11 +389,11 @@ const Formulario = () => {
             direitoZ: '',
             direitoTipoTacha: '',
             direitoQtdTacha: '',
-            eixo4x4X: '',
-            eixo4x4Y: '',
-            eixo4x4Z: '',
-            eixo4x4TipoTacha: '',
-            eixo4x4QtdTacha: '',
+            eixo4x12X: '',
+            eixo4x12Y: '',
+            eixo4x12Z: '',
+            eixo4x12TipoTacha: '',
+            eixo4x12QtdTacha: '',
             eixo2x2X: '',
             eixo2x2Y: '',
             eixo2x2Z: '',
@@ -564,7 +575,7 @@ const Formulario = () => {
                     <>
                         <div className='divsSegundoQuadroTelaPequena'>
 
-                            <BlocoDivVariavel
+                            <BlocoDivCompVariavel
                                 label="Bordo Direito"
                                 valorX={campos.direitoX}
                                 valorY={campos.direitoY}
@@ -576,7 +587,7 @@ const Formulario = () => {
                                 onChange={(campo, valor) => handleChange(`${'direito' + campo as keyof typeof campos}`, valor)}
                             />
 
-                            <BlocoDivVariavel
+                            <BlocoDivCompVariavel
                                 label="Bordo Esquerdo"
                                 valorX={campos.esquerdoX}
                                 valorY={campos.esquerdoY}
@@ -588,20 +599,20 @@ const Formulario = () => {
                                 onChange={(campo, valor) => handleChange(`${'esquerdo' + campo as keyof typeof campos}`, valor)}
                             />
 
-                            <BlocoDivVariavel
-                                label="Eixo 4X4:"
-                                valorX={campos.eixo4x4X}
-                                valorY={campos.eixo4x4Y}
-                                valorZ={campos.eixo4x4Z}
-                                tipoTacha={campos.eixo4x4TipoTacha}
-                                qtdTacha={campos.eixo4x4QtdTacha}
+                            <BlocoDivUnidVariavel
+                                label="Eixo 4x12"
+                                valorX={campos.eixo4x12X}
+                                valorY={campos.eixo4x12Y}
+                                valorZ={campos.eixo4x12Z}
+                                tipoTacha={campos.eixo4x12TipoTacha}
+                                qtdTacha={campos.eixo4x12QtdTacha}
                                 opcoesEspessura={opcoesDeSelectEspessura}
                                 opcoesTacha={opcoesDeSelectTacha}
-                                onChange={(campo, valor) => handleChange(`${'eixo4x4' + campo as keyof typeof campos}`, valor)}
+                                onChange={(campo, valor) => handleChange(`${'eixo4x12' + campo as keyof typeof campos}`, valor)}
                             />
 
-                            <BlocoDivVariavel
-                                label="Eixo 2X2:"
+                            <BlocoDivUnidVariavel
+                                label="2x2"
                                 valorX={campos.eixo2x2X}
                                 valorY={campos.eixo2x2Y}
                                 valorZ={campos.eixo2x2Z}
@@ -612,7 +623,7 @@ const Formulario = () => {
                                 onChange={(campo, valor) => handleChange(`${'eixo2x2' + campo as keyof typeof campos}`, valor)}
                             />
 
-                            <BlocoDivVariavel
+                            <BlocoDivCompVariavel
                                 label="Alça:"
                                 valorX={campos.alcaX}
                                 valorY={campos.alcaY}
@@ -665,30 +676,6 @@ const Formulario = () => {
                             />
 
                             <BlocoTrVariavel
-                                label="Eixo 4X4:"
-                                valorX={campos.eixo4x4X}
-                                valorY={campos.eixo4x4Y}
-                                valorZ={campos.eixo4x4Z}
-                                tipoTacha={campos.eixo4x4TipoTacha}
-                                qtdTacha={campos.eixo4x4QtdTacha}
-                                opcoesEspessura={opcoesDeSelectEspessura}
-                                opcoesTacha={opcoesDeSelectTacha}
-                                onChange={(campo, valor) => handleChange(`${'eixo4x4' + campo as keyof typeof campos}`, valor)}
-                            />
-
-                            <BlocoTrVariavel
-                                label="Eixo 2X2:"
-                                valorX={campos.eixo2x2X}
-                                valorY={campos.eixo2x2Y}
-                                valorZ={campos.eixo2x2Z}
-                                tipoTacha={campos.eixo2x2TipoTacha}
-                                qtdTacha={campos.eixo2x2QtdTacha}
-                                opcoesEspessura={opcoesDeSelectEspessura}
-                                opcoesTacha={opcoesDeSelectTacha}
-                                onChange={(campo, valor) => handleChange(`${'eixo2x2' + campo as keyof typeof campos}`, valor)}
-                            />
-
-                            <BlocoTrVariavel
                                 label="Alça:"
                                 valorX={campos.alcaX}
                                 valorY={campos.alcaY}
@@ -698,6 +685,42 @@ const Formulario = () => {
                                 opcoesEspessura={opcoesDeSelectEspessura}
                                 opcoesTacha={opcoesDeSelectTacha}
                                 onChange={(campo, valor) => handleChange(`${'alca' + campo as keyof typeof campos}`, valor)}
+                            />
+
+                        </tbody>
+                        <thead>
+                            <tr>
+                                <th className="tdLegendaTelaGrande"></th>
+                                <th className="tdLegendaTelaGrande">Espessura</th>
+                                <th className="tdLegendaTelaGrande">Unidades</th>
+                                <th className="tdLegendaTelaGrande">Qtd</th>
+                                <th className="tdLegendaTelaGrande">Tipo de tacha</th>
+                                <th className="tdLegendaTelaGrande">Quantidade de tachas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <BlocoTrVariavel
+                                label="Eixo 4x12:"
+                                valorX={campos.eixo4x12X}
+                                valorY={campos.eixo4x12Y}
+                                valorZ={campos.eixo4x12Z}
+                                tipoTacha={campos.eixo4x12TipoTacha}
+                                qtdTacha={campos.eixo4x12QtdTacha}
+                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesTacha={opcoesDeSelectTacha}
+                                onChange={(campo, valor) => handleChange(`${'eixo4x12' + campo as keyof typeof campos}`, valor)}
+                            />
+
+                            <BlocoTrVariavel
+                                label="2X2:"
+                                valorX={campos.eixo2x2X}
+                                valorY={campos.eixo2x2Y}
+                                valorZ={campos.eixo2x2Z}
+                                tipoTacha={campos.eixo2x2TipoTacha}
+                                qtdTacha={campos.eixo2x2QtdTacha}
+                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesTacha={opcoesDeSelectTacha}
+                                onChange={(campo, valor) => handleChange(`${'eixo2x2' + campo as keyof typeof campos}`, valor)}
                             />
 
                         </tbody>
