@@ -571,7 +571,7 @@ const Formulario = () => {
 
             {/* Segundo quadro */}
             <div className="segundoQuadro  m-4">
-                {larguraDaJanela <= 800 ? (
+                {larguraDaJanela <= 900 ? (
                     <>
                         <div className='divsSegundoQuadroTelaPequena'>
 

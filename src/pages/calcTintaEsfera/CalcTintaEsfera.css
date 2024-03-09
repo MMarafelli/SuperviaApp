@@ -35,18 +35,20 @@ table {
 
 .tabela1TelaGrande>thead>tr,
 .tabela1TelaGrande>thead>tr>th {
-    border-width: 1px;
-    border-color: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.8);
     padding: .5rem;
 }
 
 .tabela1TelaGrande>tbody>tr,
 .tabela1TelaGrande>tbody>tr>td {
-    border-width: 1px;
-    border-color: rgba(0, 0, 0, 0.8);
     padding: .5rem;
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.tabela1TelaGrande>tbody>tr:not(:last-child),
+.tabela1TelaGrande>tbody>tr>td {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.8);
 }
 
 .tabela1TelaGrande>tbody>tr>td>select,
