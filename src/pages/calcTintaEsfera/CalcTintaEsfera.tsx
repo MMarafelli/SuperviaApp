@@ -196,12 +196,12 @@ const Formulario = () => {
 
         if (campo === 'eixo4x12') {
             y = y * 4
-            console.log(y)
+            //console.log(y)
         }
 
         if (campo === 'eixo2x2') {
             y = y * 2
-            console.log(y)
+            //console.log(y)
         }
 
         let valorZ = calcularM2(x.toString(), y.toString()).toString();
@@ -624,7 +624,7 @@ const Formulario = () => {
                             />
 
                             <BlocoDivCompVariavel
-                                label="Alça:"
+                                label="Alça"
                                 valorX={campos.alcaX}
                                 valorY={campos.alcaY}
                                 valorZ={campos.alcaZ}
