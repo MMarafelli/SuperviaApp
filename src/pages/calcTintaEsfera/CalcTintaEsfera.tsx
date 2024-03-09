@@ -517,7 +517,7 @@ const Formulario = () => {
                     </div>
 
                     <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
-                        <label className={`input-label ${campos.equipe ? 'input-label-active' : (isFocused == 'estado' ? 'input-label-focus' : 'input-label-inactive')}`}>
+                        <label className={`input-label ${campos.equipe ? 'input-label-active' : (isFocused == 'equipe' ? 'input-label-focus' : 'input-label-inactive')}`}>
                             Equipe
                         </label>
                         <select

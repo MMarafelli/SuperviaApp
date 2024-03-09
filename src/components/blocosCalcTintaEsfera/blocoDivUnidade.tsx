@@ -55,6 +55,8 @@ const BlocoDivUnidVariavel: React.FC<BlocoDivVariavelProps> = ({ label, valorX, 
                 <div className='bloco'>
                     <div className='texto-a-direita quadro'>Resultado(m²):</div>
                     <input
+                        className={`${(!valorZ) ? 'border-white' : ''}
+                                    ${(valorZ) ? 'border-green' : ''}`}
                         disabled
                         type="text"
                         placeholder=" "
