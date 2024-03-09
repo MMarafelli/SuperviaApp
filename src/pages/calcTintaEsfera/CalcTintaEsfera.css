@@ -30,17 +30,20 @@ table {
 /* CSS da tabela do segundo quadro em tela grande */
 .tabela1TelaGrande {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    white-space: nowrap;
 }
 
 .tabela1TelaGrande>thead>tr,
 .tabela1TelaGrande>thead>tr>th {
-    /* border-width: 1px; */
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.8);
     padding: .5rem;
 }
 
 .tabela1TelaGrande>tbody>tr,
 .tabela1TelaGrande>tbody>tr>td {
-    /* border-width: 1px; */
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.8);
     padding: .5rem;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -141,6 +144,7 @@ table {
 .quartoQuadro textarea {
     overflow-wrap: break-word;
     white-space: pre-wrap;
+    resize: none;
 }
 
 .quartoQuadro button {
