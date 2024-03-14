@@ -167,7 +167,7 @@ const Formulario = () => {
     // ---------------------------------------------------------------------------------------------
 
     // opções de espeçura da faixa
-    const opcoesDeSelectEspessura = [
+    const opcoesDeSelectLargura = [
         { valor: '', label: 'Selecione...' },
         { valor: '0.10', label: '0.10' },
         { valor: '0.15', label: '0.15' },
@@ -582,7 +582,7 @@ const Formulario = () => {
                                 valorZ={campos.direitoZ}
                                 tipoTacha={campos.direitoTipoTacha}
                                 qtdTacha={campos.direitoQtdTacha}
-                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesLargura={opcoesDeSelectLargura}
                                 opcoesTacha={opcoesDeSelectTacha}
                                 onChange={(campo, valor) => handleChange(`${'direito' + campo as keyof typeof campos}`, valor)}
                             />
@@ -594,7 +594,7 @@ const Formulario = () => {
                                 valorZ={campos.esquerdoZ}
                                 tipoTacha={campos.esquerdoTipoTacha}
                                 qtdTacha={campos.esquerdoQtdTacha}
-                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesLargura={opcoesDeSelectLargura}
                                 opcoesTacha={opcoesDeSelectTacha}
                                 onChange={(campo, valor) => handleChange(`${'esquerdo' + campo as keyof typeof campos}`, valor)}
                             />
@@ -606,7 +606,7 @@ const Formulario = () => {
                                 valorZ={campos.eixo4x12Z}
                                 tipoTacha={campos.eixo4x12TipoTacha}
                                 qtdTacha={campos.eixo4x12QtdTacha}
-                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesLargura={opcoesDeSelectLargura}
                                 opcoesTacha={opcoesDeSelectTacha}
                                 onChange={(campo, valor) => handleChange(`${'eixo4x12' + campo as keyof typeof campos}`, valor)}
                             />
@@ -618,7 +618,7 @@ const Formulario = () => {
                                 valorZ={campos.eixo2x2Z}
                                 tipoTacha={campos.eixo2x2TipoTacha}
                                 qtdTacha={campos.eixo2x2QtdTacha}
-                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesLargura={opcoesDeSelectLargura}
                                 opcoesTacha={opcoesDeSelectTacha}
                                 onChange={(campo, valor) => handleChange(`${'eixo2x2' + campo as keyof typeof campos}`, valor)}
                             />
@@ -630,7 +630,7 @@ const Formulario = () => {
                                 valorZ={campos.alcaZ}
                                 tipoTacha={campos.alcaTipoTacha}
                                 qtdTacha={campos.alcaQtdTacha}
-                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesLargura={opcoesDeSelectLargura}
                                 opcoesTacha={opcoesDeSelectTacha}
                                 onChange={(campo, valor) => handleChange(`${'alca' + campo as keyof typeof campos}`, valor)}
                             />
@@ -642,7 +642,7 @@ const Formulario = () => {
                         <thead>
                             <tr>
                                 <th className="tdLegendaTelaGrande"></th>
-                                <th className="tdLegendaTelaGrande">Espessura</th>
+                                <th className="tdLegendaTelaGrande">Largura</th>
                                 <th className="tdLegendaTelaGrande">Comprimento (m)</th>
                                 <th className="tdLegendaTelaGrande">m²</th>
                                 <th className="tdLegendaTelaGrande">Tipo de tacha</th>
@@ -658,7 +658,7 @@ const Formulario = () => {
                                 valorZ={campos.direitoZ}
                                 tipoTacha={campos.direitoTipoTacha}
                                 qtdTacha={campos.direitoQtdTacha}
-                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesLargura={opcoesDeSelectLargura}
                                 opcoesTacha={opcoesDeSelectTacha}
                                 onChange={(campo, valor) => handleChange(`${'direito' + campo as keyof typeof campos}`, valor)}
                             />
@@ -670,7 +670,7 @@ const Formulario = () => {
                                 valorZ={campos.esquerdoZ}
                                 tipoTacha={campos.esquerdoTipoTacha}
                                 qtdTacha={campos.esquerdoQtdTacha}
-                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesLargura={opcoesDeSelectLargura}
                                 opcoesTacha={opcoesDeSelectTacha}
                                 onChange={(campo, valor) => handleChange(`${'esquerdo' + campo as keyof typeof campos}`, valor)}
                             />
@@ -682,7 +682,7 @@ const Formulario = () => {
                                 valorZ={campos.alcaZ}
                                 tipoTacha={campos.alcaTipoTacha}
                                 qtdTacha={campos.alcaQtdTacha}
-                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesLargura={opcoesDeSelectLargura}
                                 opcoesTacha={opcoesDeSelectTacha}
                                 onChange={(campo, valor) => handleChange(`${'alca' + campo as keyof typeof campos}`, valor)}
                             />
@@ -691,7 +691,7 @@ const Formulario = () => {
                         <thead>
                             <tr>
                                 <th className="tdLegendaTelaGrande"></th>
-                                <th className="tdLegendaTelaGrande">Espessura</th>
+                                <th className="tdLegendaTelaGrande">Largura</th>
                                 <th className="tdLegendaTelaGrande">Unidades</th>
                                 <th className="tdLegendaTelaGrande">Qtd</th>
                                 <th className="tdLegendaTelaGrande">Tipo de tacha</th>
@@ -706,7 +706,7 @@ const Formulario = () => {
                                 valorZ={campos.eixo4x12Z}
                                 tipoTacha={campos.eixo4x12TipoTacha}
                                 qtdTacha={campos.eixo4x12QtdTacha}
-                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesLargura={opcoesDeSelectLargura}
                                 opcoesTacha={opcoesDeSelectTacha}
                                 onChange={(campo, valor) => handleChange(`${'eixo4x12' + campo as keyof typeof campos}`, valor)}
                             />
@@ -718,7 +718,7 @@ const Formulario = () => {
                                 valorZ={campos.eixo2x2Z}
                                 tipoTacha={campos.eixo2x2TipoTacha}
                                 qtdTacha={campos.eixo2x2QtdTacha}
-                                opcoesEspessura={opcoesDeSelectEspessura}
+                                opcoesLargura={opcoesDeSelectLargura}
                                 opcoesTacha={opcoesDeSelectTacha}
                                 onChange={(campo, valor) => handleChange(`${'eixo2x2' + campo as keyof typeof campos}`, valor)}
                             />

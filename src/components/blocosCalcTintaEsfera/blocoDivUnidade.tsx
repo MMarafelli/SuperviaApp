@@ -12,13 +12,13 @@ interface BlocoDivVariavelProps {
     valorZ: string;
     tipoTacha: string;
     qtdTacha: string;
-    opcoesEspessura: OpcaoSelect[];
+    opcoesLargura: OpcaoSelect[];
     opcoesTacha: OpcaoSelect[];
     onChange: (campo: string, valor: string) => void;
 }
 
 
-const BlocoDivUnidVariavel: React.FC<BlocoDivVariavelProps> = ({ label, valorX, valorY, valorZ, tipoTacha, qtdTacha, opcoesEspessura, opcoesTacha, onChange }) => {
+const BlocoDivUnidVariavel: React.FC<BlocoDivVariavelProps> = ({ label, valorX, valorY, valorZ, tipoTacha, qtdTacha, opcoesLargura, opcoesTacha, onChange }) => {
 
     const handleInputChangeNumeric = (value: string) => {
         const numericValue = value.replace(/[^\d.]/g, '');
@@ -30,13 +30,13 @@ const BlocoDivUnidVariavel: React.FC<BlocoDivVariavelProps> = ({ label, valorX, 
             <label className='quadro'>{label}:</label>
             <div>
                 <div className='bloco'>
-                    <div className='texto-a-direita quadro'>Espessura:</div>
+                    <div className='texto-a-direita quadro'>Largura:</div>
                     <select
                         className={`${(!valorX) ? 'border-white' : ''}
                                     ${(valorX) ? 'border-green' : ''}`}
                         value={valorX}
                         onChange={(e) => onChange('X', e.target.value)}>
-                        {opcoesEspessura.map((opcao) => (
+                        {opcoesLargura.map((opcao) => (
                             <option key={opcao.valor} value={opcao.valor}>
                                 {opcao.label}
                             </option>
