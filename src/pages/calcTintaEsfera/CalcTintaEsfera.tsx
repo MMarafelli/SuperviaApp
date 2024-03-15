@@ -422,6 +422,14 @@ const Formulario = () => {
                 setEditarTinta(false); */
         setLevantamento('');
     };
+
+    const limparCampos = (campo: string) => {
+        //console.log('limpar campo ' + campo)
+        handleChange(`${campo + 'X' as keyof typeof campos}`, '');
+        handleChange(`${campo + 'Y' as keyof typeof campos}`, '');
+        handleChange(`${campo + 'TipoTacha' as keyof typeof campos}`, '');
+        handleChange(`${campo + 'QtdTacha' as keyof typeof campos}`, '');
+    }
     // ---------------------------------------------------------------------------------------------
     // Controle de tema
     // ---------------------------------------------------------------------------------------------
@@ -585,6 +593,7 @@ const Formulario = () => {
                                 opcoesLargura={opcoesDeSelectLargura}
                                 opcoesTacha={opcoesDeSelectTacha}
                                 onChange={(campo, valor) => handleChange(`${'direito' + campo as keyof typeof campos}`, valor)}
+                                onClickIcon={() => limparCampos('direito')}
                             />
 
                             <BlocoDivCompVariavel
@@ -597,6 +606,7 @@ const Formulario = () => {
                                 opcoesLargura={opcoesDeSelectLargura}
                                 opcoesTacha={opcoesDeSelectTacha}
                                 onChange={(campo, valor) => handleChange(`${'esquerdo' + campo as keyof typeof campos}`, valor)}
+                                onClickIcon={() => limparCampos('esquerdo')}
                             />
 
                             <BlocoDivUnidVariavel
@@ -609,6 +619,7 @@ const Formulario = () => {
                                 opcoesLargura={opcoesDeSelectLargura}
                                 opcoesTacha={opcoesDeSelectTacha}
                                 onChange={(campo, valor) => handleChange(`${'eixo4x12' + campo as keyof typeof campos}`, valor)}
+                                onClickIcon={() => limparCampos('eixo4x12')}
                             />
 
                             <BlocoDivUnidVariavel
@@ -621,6 +632,7 @@ const Formulario = () => {
                                 opcoesLargura={opcoesDeSelectLargura}
                                 opcoesTacha={opcoesDeSelectTacha}
                                 onChange={(campo, valor) => handleChange(`${'eixo2x2' + campo as keyof typeof campos}`, valor)}
+                                onClickIcon={() => limparCampos('eixo2x2')}
                             />
 
                             <BlocoDivCompVariavel
@@ -633,6 +645,7 @@ const Formulario = () => {
                                 opcoesLargura={opcoesDeSelectLargura}
                                 opcoesTacha={opcoesDeSelectTacha}
                                 onChange={(campo, valor) => handleChange(`${'alca' + campo as keyof typeof campos}`, valor)}
+                                onClickIcon={() => limparCampos('alca')}
                             />
                         </div>
 

@@ -15,10 +15,11 @@ interface BlocoDivVariavelProps {
     opcoesLargura: OpcaoSelect[];
     opcoesTacha: OpcaoSelect[];
     onChange: (campo: string, valor: string) => void;
+    onClickIcon?: () => void;
 }
 
 
-const BlocoDivCompVariavel: React.FC<BlocoDivVariavelProps> = ({ label, valorX, valorY, valorZ, tipoTacha, qtdTacha, opcoesLargura, opcoesTacha, onChange }) => {
+const BlocoDivCompVariavel: React.FC<BlocoDivVariavelProps> = ({ label, valorX, valorY, valorZ, tipoTacha, qtdTacha, opcoesLargura, opcoesTacha, onChange, onClickIcon }) => {
 
     const handleInputChangeNumeric = (value: string) => {
         const numericValue = value.replace(/[^\d.]/g, '');
@@ -27,7 +28,12 @@ const BlocoDivCompVariavel: React.FC<BlocoDivVariavelProps> = ({ label, valorX, 
 
     return (
         <div className='grupo'>
-            <label className='quadro'>{label}:</label>
+            <div className='tituloDaDivBloco'>
+                <label className=''>{label}:</label>
+                <svg onClick={onClickIcon} xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="red" viewBox="0 0 16 16">
+                    <path fillRule="evenodd" d="M9.354 8l3.823-3.823a.5.5 0 1 0-.708-.708L8.646 7.293 4.823 3.47a.5.5 0 1 0-.708.708L7.938 8l-3.823 3.823a.5.5 0 1 0 .708.708L8.646 8.707l3.823 3.823a.5.5 0 1 0 .708-.708L9.354 8z" strokeWidth="2" />
+                </svg>
+            </div>
             <div>
                 <div className='bloco'>
                     <div className='texto-a-direita quadro'>Largura:</div>

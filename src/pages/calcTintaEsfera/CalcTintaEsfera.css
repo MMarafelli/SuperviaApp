@@ -63,10 +63,9 @@ table {
     /* border-width: 1px; */
 }
 
-.segundoQuadro label {
-    display: block;
+.divsSegundoQuadroTelaPequena .tituloDaDivBloco>svg {
+    float: right;
 }
-
 
 .divsSegundoQuadroTelaPequena .grupo {
     /* border-width: 1px; */
