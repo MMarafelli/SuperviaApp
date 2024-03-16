@@ -1,7 +1,6 @@
 // Formulario.jsmonodirecional
 import { useRef, useState, useEffect } from 'react';
 import './CalcTintaEsfera.css';
-import { format } from 'date-fns';
 
 import BlocoDivCompVariavel from '../../components/blocosCalcTintaEsfera/blocoDivComprimento'
 import BlocoDivUnidVariavel from '../../components/blocosCalcTintaEsfera/blocoDivUnidade'
@@ -251,7 +250,9 @@ const Formulario = () => {
     const gerarLevantamento = () => {
         let textoLevantamento = ``;
         if (campos.diaMesAno && campos.diaMesAno != '') {
-            textoLevantamento += `BR050 - MG - ${format(new Date(campos.diaMesAno), 'dd/MM/yyyy')}\n\n`
+            const partes = campos.diaMesAno.split('-');
+            const dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
+            textoLevantamento += `${campos.nomeEstrada} - ${campos.estado} - ${dataFormatada}\n\n`
             textoLevantamento += `Trecho: KM ${campos.kmInicial || '0'} ao KM ${campos.kmFinal || '0'} / Equipe: ${campos.equipe}\n\n`;
         }
 
