@@ -249,7 +249,7 @@ const Formulario = () => {
     // ---------------------------------------------------------------------------------------------
     const gerarLevantamento = () => {
         let textoLevantamento = ``;
-        if (campos.diaMesAno && campos.diaMesAno != '') {
+        if (campos.nomeEstrada && campos.estado && campos.diaMesAno && campos.diaMesAno != '' && campos.equipe) {
             const partes = campos.diaMesAno.split('-');
             const dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
             textoLevantamento += `${campos.nomeEstrada} - ${campos.estado} - ${dataFormatada}\n\n`
