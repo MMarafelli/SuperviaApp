@@ -88,3 +88,59 @@ self.addEventListener('message', (event) => {
     self.skipWaiting();
   }
 });
+
+// Push event - handle push notifications
+self.addEventListener('push', (event) => {
+  let data = {};
+  try {
+    data = event.data ? event.data.json() : {};
+  } catch (e) {
+    data = { title: 'SuperVia App', body: 'Nova atualização disponível!' };
+  }
+
+  const options = {
+    title: data.title || 'SuperVia App',
+    body: data.body || 'Nova atualização disponível!',
+    icon: '/SuperviaApp/assets/icons/sv_192x192.png',
+    badge: '/SuperviaApp/assets/icons/sv_48x48.png',
+    vibrate: [200, 100, 200],
+    data: data,
+    actions: [
+      {
+        action: 'open',
+        title: 'Abrir App',
+        icon: '/SuperviaApp/assets/icons/sv_48x48.png'
+      },
+      {
+        action: 'close',
+        title: 'Fechar'
+      }
+    ]
+  };
+
+  event.waitUntil(
+    self.registration.showNotification(data.title || 'SuperVia App', options)
+  );
+});
+
+// Notification click event
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+
+  if (event.action === 'open' || !event.action) {
+    event.waitUntil(
+      clients.matchAll({ type: 'window' }).then((clientList) => {
+        // Se já há uma janela aberta, foca nela
+        for (const client of clientList) {
+          if (client.url.includes('/SuperviaApp/') && 'focus' in client) {
+            return client.focus();
+          }
+        }
+        // Senão, abre uma nova janela
+        if (clients.openWindow) {
+          return clients.openWindow('/SuperviaApp/');
+        }
+      })
+    );
+  }
+});

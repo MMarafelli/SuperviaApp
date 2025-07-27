@@ -1,13 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePWAUpdate } from '../../hooks/usePWAUpdate';
+import { usePushNotifications } from '../../hooks/usePushNotifications';
 
 const UpdateNotification: React.FC = () => {
   const { needRefresh, updateServiceWorker, isOnline } = usePWAUpdate();
+  const { requestPermission, sendUpdateNotification, permission } = usePushNotifications();
   const [isDismissed, setIsDismissed] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
 
-  const handleUpdate = () => {
+  // Solicita permissão para notificações quando o componente monta
+  useEffect(() => {
+    if (permission === 'default') {
+      requestPermission();
+    }
+  }, [permission, requestPermission]);
+
+  const handleUpdate = async () => {
     setIsUpdating(true);
+    
+    // Envia notificação de que a atualização foi aplicada
+    try {
+      await sendUpdateNotification();
+    } catch (error) {
+      console.log('Erro ao enviar notificação:', error);
+    }
+    
     updateServiceWorker();
   };
 
