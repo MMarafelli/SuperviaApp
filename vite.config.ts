@@ -20,6 +20,7 @@ export default defineConfig({
       overlay: false
     }
   },
+  publicDir: 'public',
   plugins: [
     react(),
     {

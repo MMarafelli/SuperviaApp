@@ -31,10 +31,11 @@ export const usePWAUpdate = (): PWAUpdateHook => {
     const registerSW = async () => {
       if ('serviceWorker' in navigator) {
         try {
-          // Detecta se está em desenvolvimento ou produção
-          const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-          const swPath = isDev ? '/sw.js' : '/SuperviaApp/sw.js';
-          const swScope = isDev ? '/' : '/SuperviaApp/';
+          // O caminho é sempre /SuperviaApp/sw.js tanto em dev quanto em prod
+          const swPath = '/SuperviaApp/sw.js';
+          const swScope = '/SuperviaApp/';
+          
+          console.log(`Registrando SW: ${swPath} com escopo: ${swScope}`);
           
           const reg = await navigator.serviceWorker.register(swPath, {
             scope: swScope
