@@ -1007,21 +1007,22 @@ const Formulario = () => {
                 </div>
             </div> */}
 
+            {/* Levantamento gerado - fora do quartoQuadro para evitar card dentro de card */}
+            {levantamento && (
+                <div className="levantamento-container" ref={levantamentoRef}>
+                    <label className="levantamento-title">Levantamento Gerado:</label>
+                    <textarea className="levantamento-textarea"
+                        readOnly
+                        ref={textareaRef}
+                        value={levantamento}
+                        style={{ height: textareaHeight }}
+                    />
+                    <div className="levantamento-divider"></div>
+                </div>
+            )}
+
             {/* Botões */}
             <div className='quartoQuadro'>
-                {/* Se levantamento existe, mostra a div */}
-                {levantamento && (
-                    <div className="levantamento mt-5 p-4 m-4" ref={levantamentoRef}>
-                        <label className="text-lg font-bold">Levantamento Gerado:</label>
-                        <textarea className="w-full mt-2"
-                            readOnly
-                            ref={textareaRef}
-                            value={levantamento}
-                            style={{ height: textareaHeight }}
-                        />
-                    </div>
-                )}
-
                 <div className="flex items-center justify-center h-16 m-2">
                     <button
                         className="modern-button"

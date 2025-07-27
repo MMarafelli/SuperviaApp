@@ -1,6 +1,7 @@
 /* Estilos gerais seguindo EXATAMENTE o padrão da Home */
 .calc-tinta-container {
-    padding: 0.75rem; /* Padding mais compacto igual à Home */
+    padding: 0.5rem; /* Padding ainda mais compacto */
+    padding-bottom: 0.25rem; /* Padding inferior mínimo para colado na navbar */
     overflow-x: hidden !important; /* Remove scroll horizontal do container principal */
 }
 
@@ -9,8 +10,7 @@
 .primeiroQuadro,
 .terceiroQuadro,
 .quartoQuadro,
-.divsSegundoQuadroTelaPequena .grupo,
-.levantamento {
+.divsSegundoQuadroTelaPequena .grupo {
     width: auto;
     min-height: auto;
     background: #fff !important; /* FUNDO BRANCO sempre */
@@ -24,7 +24,63 @@
     backdrop-filter: none; /* Remove o glassmorphism */
     position: relative;
     overflow: hidden !important; /* Remove qualquer overflow de TODOS os quadros */
-    margin: 0.5rem 0; /* Margin mais compacto igual à Home */
+    margin: 0.5rem 0; /* Margin padronizado para 1rem total entre quadros */
+}
+
+/* Padronização de espaçamento: 1rem total entre quadros verticalmente */
+.calc-tinta-container > * {
+    margin: 1rem 0 !important; /* 0.5rem top + 0.5rem bottom = 1rem total entre elementos */
+}
+
+/* Primeiro quadro sem margin-top para colar no topo */
+.calc-tinta-container > *:first-child {
+    margin-top: 0 !important;
+}
+
+/* Último quadro sem margin-bottom para economizar espaço */
+.calc-tinta-container > *:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Remove classes Tailwind que interferem no espaçamento padronizado */
+.calc-tinta-container .m-2 {
+    margin: 0 !important; /* Remove TODA margem do m-2 do Tailwind */
+}
+
+.calc-tinta-container .lg\:mr-2 {
+    margin-right: 0 !important; /* Remove margem direita do lg:mr-2 */
+}
+
+.calc-tinta-container .mt-2 {
+    margin-top: 0 !important; /* Remove margem superior do mt-2 */
+}
+
+/* Garante espaçamento padronizado para todos os cards principais */
+.calc-tinta-container > .primeiroQuadro,
+.calc-tinta-container > .segundoQuadro,
+.calc-tinta-container > .terceiroQuadro,
+.calc-tinta-container > .quartoQuadro,
+.calc-tinta-container > .levantamento-container {
+    /* Margem vertical já definida pela regra geral acima */
+    /* Remove qualquer padding ou margem lateral */
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* NEUTRALIZA elementos internos que possam ter margem Tailwind */
+.calc-tinta-container .quartoQuadro > .flex.m-2 {
+    margin: 0 !important;
+    padding: 0.5rem 0 !important; /* Substitui a margem por padding interno */
+}
+
+/* NEUTRALIZA qualquer div com classes Tailwind dentro dos cards */
+.calc-tinta-container .primeiroQuadro .mt-2,
+.calc-tinta-container .segundoQuadro .mt-2,
+.calc-tinta-container .terceiroQuadro .mt-2,
+.calc-tinta-container .quartoQuadro .mt-2 {
+    margin-top: 0 !important;
 }
 
 /* Hover removido para telas grandes conforme solicitado */
@@ -33,8 +89,7 @@
     .primeiroQuadro:hover,
     .terceiroQuadro:hover,
     .quartoQuadro:hover,
-    .divsSegundoQuadroTelaPequena .grupo:hover,
-    .levantamento:hover {
+    .divsSegundoQuadroTelaPequena .grupo:hover {
         transform: scale(1.02) !important;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
         border-color: #ffcc29 !important;
@@ -48,8 +103,7 @@
 .segundoQuadro::before,
 .terceiroQuadro::before,
 .quartoQuadro::before,
-.divsSegundoQuadroTelaPequena .grupo::before,
-.levantamento::before {
+.divsSegundoQuadroTelaPequena .grupo::before {
     display: none !important;
 }
 
@@ -252,7 +306,7 @@ select option[value=""] {
     background: #ffcc29; /* Amarelo SuperVia no hover */
 }
 
-/* Animações de entrada */
+/* Animações de entrada - mantém espaçamento padronizado */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -310,13 +364,13 @@ select option[value=""] {
     border: none !important;
     box-shadow: none !important;
     border-radius: 0 !important;
-    margin: 0 !important;
+    /* Margem já definida pela regra geral do container */
     padding: 0 !important;
     overflow: visible !important;
 }
 
 .segundoQuadro .tabela1TelaGrande {
-    margin: 0 !important;
+    margin: 0 !important; /* Remove margem da tabela pois o container já tem */
     border-radius: 1rem !important; /* Mantém border radius consistente */
     width: 100% !important; /* Força a tabela a ocupar 100% do container */
     table-layout: fixed !important; /* Força layout fixo para evitar overflow */
@@ -345,7 +399,7 @@ select option[value=""] {
     border-radius: 1rem !important; /* Border radius como os outros cards */
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important; /* Sombra como os outros cards */
     border: 1px solid #e5e7eb !important; /* Borda como os outros cards */
-    margin: 0.75rem 0 !important; /* Margin igual aos outros cards */
+    margin: 0 !important; /* Remove margem pois o container segundoQuadro já tem */
     padding: 0 !important; /* Remove padding para não afetar as células */
 }
 
@@ -651,7 +705,7 @@ select option[value=""] {
 }
 
 /* ---------------------------------------------------------------------------------- */
-/* CSS do levantamento - já estilizado acima com os outros cards */
+/* CSS do levantamento - agora com layout limpo sem card aninhado */
 
 /* ---------------------------------------------------------------------------------- */
 /* CSS dos botões */
@@ -858,7 +912,7 @@ select option[value=""] {
     border: 1px solid #e5e7eb !important;
     border-radius: 1rem !important;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
-    margin: 0.75rem 0 !important; /* Margin reduzido igual aos cards */
+    /* Margem já controlada pelas regras do container pai */
     overflow: visible !important;
     white-space: normal !important;
 }
@@ -963,4 +1017,74 @@ select option[value=""] {
     background: #2563eb !important;
     transform: translateY(-1px) !important;
     box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* CSS do container de levantamento - layout limpo sem card dentro de card */
+
+.levantamento-container {
+    margin: 0.5rem 0 !important;
+    padding: 1rem !important;
+    background: #fff !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 1rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
+.levantamento-title {
+    color: #374151 !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    margin-bottom: 0.75rem !important;
+    display: block !important;
+    text-shadow: none !important;
+}
+
+.levantamento-textarea {
+    width: 100% !important;
+    padding: 0.875rem !important;
+    background: #f9fafb !important; /* Fundo cinza muito claro */
+    border: 1px solid #e5e7eb !important;
+    border-radius: 0.5rem !important;
+    color: #374151 !important;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    line-height: 1.6 !important;
+    font-family: 'Courier New', monospace !important; /* Fonte monospace para levantamento */
+    resize: none !important;
+    overflow-wrap: break-word !important;
+    white-space: pre-wrap !important;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    margin-bottom: 0.5rem !important;
+    transition: all 0.2s ease !important;
+}
+
+.levantamento-textarea:focus {
+    outline: none !important;
+    border-color: #ffcc29 !important;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 0 3px rgba(255, 204, 41, 0.1) !important;
+}
+
+.levantamento-divider {
+    width: 100% !important;
+    height: 1px !important;
+    background: linear-gradient(90deg, transparent, #e5e7eb 10%, #e5e7eb 90%, transparent) !important;
+    margin: 0.5rem 0 !important;
+    position: relative !important;
+}
+
+.levantamento-divider::after {
+    content: '' !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 6px !important;
+    height: 6px !important;
+    background: #ffcc29 !important;
+    border-radius: 50% !important;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 3px #e5e7eb !important;
 }
