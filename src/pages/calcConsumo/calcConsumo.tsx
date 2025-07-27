@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { ICampos } from '../../types/calcConsumo.types';
 import { useCalculos } from '../../hooks/useCalculos';
 import { StorageService } from '../../services/StorageService';
@@ -38,17 +38,17 @@ const TabelaConsumo = () => {
         });
     }, [campos]);
 
-    // Handler de valor geral
-    const handleChange = (campo: keyof ICampos, valor: string) => {
+    // Handler de valor geral - memoizado
+    const handleChange = useCallback((campo: keyof ICampos, valor: string) => {
         setCampos((prevCampos) => ({
             ...prevCampos,
             [campo]: valor,
         }));
-    };
+    }, []);
 
-    // Handlers de edição
-    const handleEditEsfera = () => setEditarEsferas(!editarEsferas);
-    const handleEditTinta = () => setEditarTinta(!editarTinta);
+    // Handlers de edição - memoizados
+    const handleEditEsfera = useCallback(() => setEditarEsferas(!editarEsferas), [editarEsferas]);
+    const handleEditTinta = useCallback(() => setEditarTinta(!editarTinta), [editarTinta]);
 
     // Cálculos
     const { resultadoEsferas, resultadoTinta } = useCalculos(campos);
@@ -58,8 +58,8 @@ const TabelaConsumo = () => {
         handleChange('resultadoTinta', resultadoTinta);
     }, [resultadoEsferas, resultadoTinta]);
 
-    // Layout Mobile
-    const MobileLayout = () => (
+    // Layout Mobile - memoizado para evitar re-renders
+    const MobileLayout = useCallback(() => (
         <div className="sv-space-y-4">
             {/* Seção 1: Total m² */}
             <CalculationSection 
@@ -136,10 +136,10 @@ const TabelaConsumo = () => {
                 </div>
             </CalculationSection>
         </div>
-    );
+    ), [campos, editarEsferas, editarTinta, handleChange, handleEditEsfera, handleEditTinta]);
 
-    // Layout Desktop
-    const DesktopLayout = () => (
+    // Layout Desktop - memoizado para evitar re-renders
+    const DesktopLayout = useCallback(() => (
         <div className="sv-space-y-4">
             {/* Seção 1: Total m² */}
             <CalculationSection 
@@ -243,15 +243,15 @@ const TabelaConsumo = () => {
                 </CalculationTable>
             </CalculationSection>
         </div>
-    );
+    ), [campos, editarEsferas, editarTinta, handleChange, handleEditEsfera, handleEditTinta]);
 
     return (
         <div className="sv-container sv-fade-in">
             <PageTitle title="CÁLCULO DE CONSUMO" />
             
             <ResponsiveCalculationLayout
-                mobileLayout={<MobileLayout />}
-                desktopLayout={<DesktopLayout />}
+                mobileLayout={MobileLayout()}
+                desktopLayout={DesktopLayout()}
                 breakpoint={900}
             />
 
