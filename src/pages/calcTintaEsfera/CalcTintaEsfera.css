@@ -1,6 +1,7 @@
 /* Estilos gerais seguindo EXATAMENTE o padrão da Home */
 .calc-tinta-container {
-    padding: 1rem; /* Padding mais compacto igual à Home */
+    padding: 0.75rem; /* Padding mais compacto igual à Home */
+    overflow-x: hidden !important; /* Remove scroll horizontal do container principal */
 }
 
 /* Cards modernos seguindo EXATAMENTE o padrão da Home */
@@ -22,25 +23,29 @@
     transition: all 0.3s ease-in-out;
     backdrop-filter: none; /* Remove o glassmorphism */
     position: relative;
-    overflow: visible;
+    overflow: hidden !important; /* Remove qualquer overflow de TODOS os quadros */
     margin: 0.5rem 0; /* Margin mais compacto igual à Home */
 }
 
-.modern-card:hover,
-.primeiroQuadro:hover,
-.terceiroQuadro:hover,
-.quartoQuadro:hover,
-.divsSegundoQuadroTelaPequena .grupo:hover,
-.levantamento:hover {
-    transform: scale(1.02) !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
-    border-color: #ffcc29 !important;
-    background: #fff !important; /* Mantém fundo branco no hover */
+/* Hover removido para telas grandes conforme solicitado */
+@media (max-width: 900px) {
+    .modern-card:hover,
+    .primeiroQuadro:hover,
+    .terceiroQuadro:hover,
+    .quartoQuadro:hover,
+    .divsSegundoQuadroTelaPequena .grupo:hover,
+    .levantamento:hover {
+        transform: scale(1.02) !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+        border-color: #ffcc29 !important;
+        background: #fff !important;
+    }
 }
 
 /* Remove os pseudo-elementos shimmer que não existem na Home */
 .modern-card::before,
 .primeiroQuadro::before,
+.segundoQuadro::before,
 .terceiroQuadro::before,
 .quartoQuadro::before,
 .divsSegundoQuadroTelaPequena .grupo::before,
@@ -118,54 +123,28 @@ body div.modern-card textarea {
     border: 1.5px solid #d1d5db !important;
 }
 
-/* REGRAS ESPECÍFICAS POR CLASSE com máxima especificidade */
-body div.calc-tinta-container div.inputsDoPrimeiroQuadro input,
-body div.calc-tinta-container div.inputsDoPrimeiroQuadro select,
-body div.calc-tinta-container .date-input,
-body div.calc-tinta-container .tabela1TelaGrande tbody tr td input,
-body div.calc-tinta-container .tabela1TelaGrande tbody tr td select,
-body div.calc-tinta-container .tabela2TelaGrande tbody tr td input,
-body div.calc-tinta-container .segundoQuadro input,
-body div.calc-tinta-container .segundoQuadro select,
-body div.calc-tinta-container .quartoQuadro textarea {
-    background-color: #ffffff !important;
-    color: #374151 !important;
-    border-color: #d1d5db !important;
-}
+/* SOLUÇÃO SIMPLIFICADA PARA INPUTS */
 
-/* Regra para inputs específicos como data */
-body input.date-input,
-body input[type="date"],
-body input[type="text"],
-body input[type="number"],
-body select,
-body textarea {
+/* Inputs FORA da tabela - fundo branco */
+.calc-tinta-container .primeiroQuadro input,
+.calc-tinta-container .primeiroQuadro select,
+.calc-tinta-container .terceiroQuadro input,
+.calc-tinta-container .quartoQuadro input,
+.calc-tinta-container .quartoQuadro textarea {
     background-color: #ffffff !important;
-    color: #374151 !important;
-}
-
-/* REGRA MAIS ESPECÍFICA que qualquer media query global */
-html body .calc-tinta-container input,
-html body .calc-tinta-container select,
-html body .calc-tinta-container textarea,
-html body .calc-tinta-container .date-input {
-    background: white !important;
-    background-color: white !important;
     color: #374151 !important;
     border: 1.5px solid #d1d5db !important;
 }
 
-/* SOBRESCREVER diretamente o media query dark */
-@media (prefers-color-scheme: dark) {
-    html body .calc-tinta-container input,
-    html body .calc-tinta-container select,
-    html body .calc-tinta-container textarea,
-    html body .calc-tinta-container .date-input {
-        background: white !important;
-        background-color: white !important;
-        color: #374151 !important;
-        border: 1.5px solid #d1d5db !important;
-    }
+/* Inputs DENTRO da tabela segundoQuadro - fundo TRANSPARENTE para integrar com o card */
+.calc-tinta-container .segundoQuadro input,
+.calc-tinta-container .segundoQuadro select,
+.tabela1TelaGrande input,
+.tabela1TelaGrande select {
+    background-color: transparent !important;
+    background: transparent !important;
+    color: #374151 !important;
+    border: 1.5px solid #d1d5db !important;
 }
 
 .modern-card input:focus,
@@ -325,25 +304,93 @@ select option[value=""] {
     color: #374151 !important; /* Mantém texto escuro no foco */
 }
 
-/* CSS da tabela do segundo quadro */
+/* Container invisível do segundo quadro - apenas organizacional */
 .segundoQuadro {
-    margin: 0;
-    padding: 0;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
 }
 
-/* CSS do terceiro e quarto quadros - já estilizados acima com os outros cards */
+.segundoQuadro .tabela1TelaGrande {
+    margin: 0 !important;
+    border-radius: 1rem !important; /* Mantém border radius consistente */
+    width: 100% !important; /* Força a tabela a ocupar 100% do container */
+    table-layout: fixed !important; /* Força layout fixo para evitar overflow */
+}
 
-/* CSS da tabela1TelaGrande - já estilizada acima com os outros elementos */
+/* Responsividade para telas menores que desktop */
+@media (max-width: 1200px) {
+    /* Reduz larguras das colunas em telas menores mantendo proporção */
+    .tabela1TelaGrande th:nth-child(1), .tabela1TelaGrande td:nth-child(1) { width: 15% !important; } /* Label */
+    .tabela1TelaGrande th:nth-child(2), .tabela1TelaGrande td:nth-child(2) { width: 12% !important; } /* Largura */
+    .tabela1TelaGrande th:nth-child(3), .tabela1TelaGrande td:nth-child(3) { width: 18% !important; } /* Comprimento/Unidades */
+    .tabela1TelaGrande th:nth-child(4), .tabela1TelaGrande td:nth-child(4) { width: 12% !important; } /* m²/Qtd */
+    .tabela1TelaGrande th:nth-child(5), .tabela1TelaGrande td:nth-child(5) { width: 25% !important; } /* Tipo de tacha */
+    .tabela1TelaGrande th:nth-child(6), .tabela1TelaGrande td:nth-child(6) { width: 18% !important; } /* Quantidade de tachas */
+}
+
+.tabela1TelaGrande {
+    width: 100% !important;
+    max-width: 100% !important;
+    table-layout: fixed !important; /* Força layout fixo para controlar larguras */
+    border-collapse: separate !important; /* Mudando para separate para preservar border-radius */
+    border-spacing: 0 !important; /* Remove espaçamento entre células */
+    overflow: hidden !important; /* Remove qualquer overflow da tabela */
+    /* Aplicando estilos de card diretamente à tabela */
+    background: #fff !important; /* Fundo branco como os outros cards */
+    border-radius: 1rem !important; /* Border radius como os outros cards */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important; /* Sombra como os outros cards */
+    border: 1px solid #e5e7eb !important; /* Borda como os outros cards */
+    margin: 0.75rem 0 !important; /* Margin igual aos outros cards */
+    padding: 0 !important; /* Remove padding para não afetar as células */
+}
 
 .tabela1TelaGrande>thead>tr,
-.tabela1TelaGrande>thead>tr>th {
+.tabela1TelaGrande>thead>tr>th,
+.tdLegendaTelaGrande {
     border-bottom: 2px solid #ffcc29 !important; /* Borda amarela limpa */
-    padding: 1rem 0.75rem !important;
-    background: #fff !important; /* Fundo branco */
+    border-top: none !important; /* Remove borda superior */
+    border-left: none !important; /* Remove borda esquerda */
+    border-right: none !important; /* Remove borda direita */
+    padding: 0.75rem 0.5rem !important; /* Reduz padding para economizar espaço */
+    background: transparent !important; /* Fundo transparente */
     color: #1f2937 !important; /* Texto escuro */
     font-weight: 700 !important;
     text-shadow: none !important;
     letter-spacing: normal !important;
+    text-align: left !important;
+    overflow: hidden !important; /* Remove overflow dos cabeçalhos */
+    text-overflow: ellipsis !important; /* Adiciona ellipsis se necessário */
+    white-space: nowrap !important; /* Evita quebra de linha */
+    border-radius: 0 !important; /* Remove qualquer border-radius dos cabeçalhos */
+}
+
+/* Bordas arredondadas para primeira linha do cabeçalho */
+.tabela1TelaGrande>thead:first-child>tr:first-child>th:first-child {
+    border-top-left-radius: 1rem !important;
+}
+
+.tabela1TelaGrande>thead:first-child>tr:first-child>th:last-child {
+    border-top-right-radius: 1rem !important;
+}
+
+/* Bordas arredondadas para última linha do corpo */
+.tabela1TelaGrande>tbody:last-child>tr:last-child>td:first-child {
+    border-bottom-left-radius: 1rem !important;
+}
+
+.tabela1TelaGrande>tbody:last-child>tr:last-child>td:last-child {
+    border-bottom-right-radius: 1rem !important;
+}
+
+/* Remove todos os border-radius dos cabeçalhos */
+.tabela1TelaGrande>thead:first-child>tr>th:first-child,
+.tabela1TelaGrande>thead:first-child>tr>th:last-child {
+    border-radius: 0 !important; /* Remove border-radius */
 }
 
 .tabela1TelaGrande>tbody>tr,
@@ -352,36 +399,92 @@ select option[value=""] {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
     transition: all 0.3s ease;
+    border: none !important; /* Remove qualquer borda das células */
+    border-radius: 0 !important; /* Remove border-radius das células */
+    background: transparent !important; /* Fundo transparente por padrão */
 }
 
-.tabela1TelaGrande>tbody>tr:hover {
-    background: #f9fafb !important; /* Cinza muito claro no hover */
+/* Hover da tabela removido para telas grandes */
+@media (max-width: 900px) {
+    .tabela1TelaGrande>tbody>tr:hover {
+        background: #f9fafb !important;
+    }
 }
 
 .tabela1TelaGrande>tbody>tr:not(:last-child),
 .tabela1TelaGrande>tbody>tr>td {
     border-bottom: 1px solid #e5e7eb !important; /* Borda cinza clara */
+    border-left: none !important; /* Remove borda esquerda */
+    border-right: none !important; /* Remove borda direita */
+    border-top: none !important; /* Remove borda superior */
+}
+
+/* Remove borda inferior da última linha */
+.tabela1TelaGrande>tbody>tr:last-child>td {
+    border-bottom: none !important;
 }
 
 .tabela1TelaGrande>tbody>tr>td>select,
 .tabela1TelaGrande>tbody>tr>td>input {
-    width: 95%;
-    padding: 0.75rem !important;
-    background: #fff !important; /* Fundo branco sempre */
+    width: 90% !important; /* Reduz largura para evitar overflow */
+    max-width: 100% !important; /* Limita largura máxima */
+    padding: 0.5rem !important; /* Reduz padding ligeiramente */
+    background: transparent !important; /* Fundo transparente para integrar com o card */
     border: 1.5px solid #d1d5db !important; /* Borda cinza clara */
     border-radius: 0.5rem !important; /* Border radius menor */
     color: #374151 !important; /* Texto cinza escuro para contraste */
-    font-size: 0.95rem !important;
+    font-size: 0.85rem !important; /* Fonte ligeiramente menor */
     font-weight: 400 !important; /* Peso normal */
     transition: all 0.2s ease !important;
     backdrop-filter: none !important;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: none !important; /* Remove sombra para integração limpa */
     line-height: 1.5 !important;
+    margin: 0.1rem 0 !important; /* Reduz margem vertical */
+    box-sizing: border-box !important; /* Inclui padding/border no tamanho total */
 }
+
+/* Larguras específicas para cada coluna com controle rígido */
+.tabela1TelaGrande th:nth-child(1), .tabela1TelaGrande td:nth-child(1) { 
+    width: 15% !important; 
+    max-width: 15% !important; 
+    min-width: 15% !important; 
+    overflow: hidden !important; 
+    text-overflow: ellipsis !important; 
+} /* Label */
+.tabela1TelaGrande th:nth-child(2), .tabela1TelaGrande td:nth-child(2) { 
+    width: 12% !important; 
+    max-width: 12% !important; 
+    min-width: 12% !important; 
+    overflow: hidden !important; 
+} /* Largura */
+.tabela1TelaGrande th:nth-child(3), .tabela1TelaGrande td:nth-child(3) { 
+    width: 18% !important; 
+    max-width: 18% !important; 
+    min-width: 18% !important; 
+    overflow: hidden !important; 
+} /* Comprimento/Unidades */
+.tabela1TelaGrande th:nth-child(4), .tabela1TelaGrande td:nth-child(4) { 
+    width: 12% !important; 
+    max-width: 12% !important; 
+    min-width: 12% !important; 
+    overflow: hidden !important; 
+} /* m²/Qtd */
+.tabela1TelaGrande th:nth-child(5), .tabela1TelaGrande td:nth-child(5) { 
+    width: 25% !important; 
+    max-width: 25% !important; 
+    min-width: 25% !important; 
+    overflow: hidden !important; 
+} /* Tipo de tacha */
+.tabela1TelaGrande th:nth-child(6), .tabela1TelaGrande td:nth-child(6) { 
+    width: 18% !important; 
+    max-width: 18% !important; 
+    min-width: 18% !important; 
+    overflow: hidden !important; 
+} /* Quantidade de tachas */
 
 .tabela1TelaGrande>tbody>tr>td>select:focus,
 .tabela1TelaGrande>tbody>tr>td>input:focus {
-    background: #fff !important;
+    background: transparent !important; /* Manter transparente mesmo no foco */
     border-color: #ffcc29 !important; /* Amarelo SuperVia no foco */
     outline: none !important;
     box-shadow: 0 0 0 3px rgba(255, 204, 41, 0.1) !important;
@@ -486,9 +589,12 @@ select option[value=""] {
     transition: all 0.3s ease;
 }
 
-.tabela2TelaGrande>tbody>tr:hover {
-    background: #f9fafb !important; /* Cinza muito claro no hover igual à Home */
-    border-radius: 8px;
+/* Hover da tabela2 removido para telas grandes */
+@media (max-width: 900px) {
+    .tabela2TelaGrande>tbody>tr:hover {
+        background: #f9fafb !important;
+        border-radius: 8px;
+    }
 }
 
 .tabela2TelaGrande>tbody>tr>td>input,
@@ -536,9 +642,12 @@ select option[value=""] {
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
-.svgHabilitarEdicao:hover {
-    transform: scale(1.1) rotate(5deg);
-    filter: drop-shadow(0 4px 8px rgba(255, 204, 41, 0.3));
+/* Hover do SVG removido para telas grandes */
+@media (max-width: 900px) {
+    .svgHabilitarEdicao:hover {
+        transform: scale(1.1) rotate(5deg);
+        filter: drop-shadow(0 4px 8px rgba(255, 204, 41, 0.3));
+    }
 }
 
 /* ---------------------------------------------------------------------------------- */
@@ -754,11 +863,14 @@ select option[value=""] {
     white-space: normal !important;
 }
 
-.tabela1TelaGrande:hover,
-.tabela2TelaGrande:hover {
-    transform: scale(1.02) !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
-    border-color: #ffcc29 !important;
+/* Hover das tabelas removido para telas grandes */
+@media (max-width: 900px) {
+    .tabela1TelaGrande:hover,
+    .tabela2TelaGrande:hover {
+        transform: scale(1.02) !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+        border-color: #ffcc29 !important;
+    }
 }
 
 /* SVG de edição seguindo padrão da Home */

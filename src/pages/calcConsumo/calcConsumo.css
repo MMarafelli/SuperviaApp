@@ -1,64 +1,105 @@
-/* Estilos gerais seguindo EXATAMENTE o padrão da Home */
+/* Estilos da calcConsumo seguindo EXATAMENTE o padrão da calcTintaEsfera */
 .calc-consumo-container {
-    padding: 1rem; /* Padding mais compacto igual à Home */
+    padding: 0.75rem;
+    overflow-x: hidden !important;
 }
 
-/* Cards modernos seguindo EXATAMENTE o padrão da Home */
-.modern-card,
-.quadro-consumo {
+/* PRIMEIRO QUADRO - Total m² (2º child após PageTitle) - FUNDO BRANCO */
+.calc-consumo-container .quadro-consumo:nth-child(2) {
     width: auto;
     min-height: auto;
-    background: #fff !important; /* FUNDO BRANCO sempre */
-    border-radius: 1rem;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e5e7eb;
-    padding: 1rem; /* Padding mais compacto igual à Home */
-    display: flex;
-    flex-direction: column;
-    transition: all 0.3s ease-in-out;
-    backdrop-filter: none; /* Remove o glassmorphism */
-    position: relative;
-    overflow: visible;
-    margin: 0.5rem 0; /* Margin mais compacto igual à Home */
+    background: #ffffff !important; /* FUNDO BRANCO */
+    border-radius: 1rem !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #e5e7eb !important;
+    padding: 1rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0.5rem 0 !important;
 }
 
-.modern-card:hover,
-.quadro-consumo:hover {
-    transform: scale(1.02) !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
-    border-color: #ffcc29 !important;
-    background: #fff !important; /* Mantém fundo branco no hover */
+/* SEGUNDO QUADRO - Cálculos (3º child após PageTitle) - FUNDO BRANCO EM MOBILE */
+.calc-consumo-container .quadro-consumo:nth-child(3) {
+    background: #ffffff !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #e5e7eb !important;
+    padding: 1rem !important;
+    margin: 0.5rem 0 !important;
+    overflow: visible !important;
 }
 
-/* Remove os pseudo-elementos shimmer que não existem na Home */
-.modern-card::before,
-.quadro-consumo::before {
-    display: none !important;
+/* Para desktop - segundo quadro transparente */
+@media (min-width: 1025px) {
+    .calc-consumo-container .quadro-consumo:nth-child(3) {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
 }
 
-/* Inputs seguindo EXATAMENTE o padrão da Home */
+/* Para tablets/telas médias - segundo quadro branco */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .calc-consumo-container .quadro-consumo:nth-child(3) {
+        background: #ffffff !important;
+        border-radius: 1rem !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+        border: 1px solid #e5e7eb !important;
+        padding: 1rem !important;
+        margin: 0.5rem 0 !important;
+    }
+}
+
+/* MÁXIMA ESPECIFICIDADE - Força o primeiro quadro a ter fundo branco */
+html body div.calc-consumo-container div.quadro-consumo:nth-child(2) {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+}
+
+/* MÁXIMA ESPECIFICIDADE - Força o segundo quadro a ter fundo branco em mobile */
+@media (max-width: 768px) {
+    html body div.calc-consumo-container div.quadro-consumo:nth-child(3) {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+    }
+}
+
+/* MÁXIMA ESPECIFICIDADE - Força o segundo quadro a ter fundo branco em tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+    html body div.calc-consumo-container div.quadro-consumo:nth-child(3) {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+    }
+}
+
+/* Inputs gerais */
 .calc-consumo-container input,
 .calc-consumo-container select,
 .calc-consumo-container textarea {
-    width: 100% !important;
-    padding: 0.5rem 0.75rem !important;
+    background: #fff !important;
     border: 1px solid #e5e7eb !important;
     border-radius: 0.5rem !important;
-    background: #fff !important; /* FUNDO BRANCO sempre */
-    color: #1f2937 !important; /* TEXTO ESCURO sempre */
+    padding: 0.5rem 0.75rem !important;
+    color: #1f2937 !important;
     font-size: 0.875rem !important;
     transition: all 0.2s ease !important;
-    outline: none !important;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
 }
 
 .calc-consumo-container input:focus,
 .calc-consumo-container select:focus,
 .calc-consumo-container textarea:focus {
-    border-color: #ffcc29 !important; /* Amarelo SuperVia no foco */
+    border-color: #ffcc29 !important;
     box-shadow: 0 0 0 3px rgba(255, 204, 41, 0.1) !important;
-    background: #fff !important; /* Mantém fundo branco no foco */
-    color: #1f2937 !important; /* Mantém texto escuro no foco */
+    outline: none !important;
+}
+
+/* Campo Total m² específico - read-only */
+.calc-consumo-container .quadro-consumo:nth-child(2) input[name="totalMetrosPista"] {
+    background: #f9fafb !important;
+    cursor: default !important;
 }
 
 /* Labels seguindo padrão da Home */
@@ -151,6 +192,48 @@
     font-style: normal !important;
 }
 
+/* Tabela como card */
+.tabela2TelaGrande {
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    background: #fff !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #e5e7eb !important;
+    margin: 0.75rem 0 !important;
+    overflow: hidden !important;
+}
+
+.tabela2TelaGrande>tbody>tr>td {
+    padding: 1rem !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-top: none !important;
+}
+
+.tabela2TelaGrande>tbody>tr:last-child>td {
+    border-bottom: none !important;
+}
+
+/* Inputs dentro da tabela - transparentes */
+.tabela2TelaGrande input,
+.tabela2TelaGrande select {
+    background: transparent !important;
+    border: 1.5px solid #d1d5db !important;
+    border-radius: 0.5rem !important;
+    padding: 0.5rem !important;
+    color: #374151 !important;
+}
+
+.tabela2TelaGrande input:focus,
+.tabela2TelaGrande select:focus {
+    border-color: #ffcc29 !important;
+    box-shadow: 0 0 0 3px rgba(255, 204, 41, 0.1) !important;
+    outline: none !important;
+}
+
 /* Gerais seguindo padrão da Home */
 * {
     box-sizing: border-box;
@@ -162,13 +245,27 @@ table {
 }
 
 /* Responsividade seguindo padrão da Home */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .calc-consumo-container {
-        padding: 0.5rem;
+        padding: 0.75rem;
     }
     
-    .quadro-consumo {
-        margin: 0.25rem 0;
-        padding: 0.75rem;
+    /* Ambos os quadros com fundo branco em mobile e tablet */
+    .calc-consumo-container .quadro-consumo:nth-child(2),
+    .calc-consumo-container .quadro-consumo:nth-child(3) {
+        background: #ffffff !important;
+        border-radius: 1rem !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+        border: 1px solid #e5e7eb !important;
+        margin: 0.5rem 0 !important;
+        padding: 1rem !important;
+    }
+    
+    /* Tabela em mobile/tablet - sem shadow duplo */
+    .tabela2TelaGrande {
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
     }
 }

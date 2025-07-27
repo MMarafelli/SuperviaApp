@@ -84,7 +84,7 @@ const TabelaConsumo = () => {
             
             {/* Primeiro quadro - Total m² */}
             <div className="quadro-consumo">
-                <div className="p-2 flex flex-col w-full">
+                <div className="flex flex-col w-full">
                     <InputField
                         label="📐 Total m²:"
                         value={campos.totalMetrosPista}
@@ -96,8 +96,8 @@ const TabelaConsumo = () => {
             </div>
 
             {/* Segundo quadro - Cálculos */}
-            <div className="quadro-consumo m-4">
-                <div className="p-2 flex flex-col w-full">
+            <div className="quadro-consumo">
+                <div className="flex flex-col w-full">
                     {larguraDaJanela <= 900 ? (
                         // Layout mobile - estrutura em cards verticais
                         <div className="flex flex-col space-y-4">
