@@ -95,14 +95,16 @@ const TabelaConsumo = () => {
                             unit="kg/m²"
                             editable={editarEsferas}
                             onEdit={(newValue) => handleChange('resultadoEsferas', newValue)}
+                            actionButton={
+                                <SVButton
+                                    variant={editarEsferas ? "success" : "info"}
+                                    size="sm"
+                                    onClick={handleEditEsfera}
+                                >
+                                    {editarEsferas ? "🔒 Bloquear" : "✏️ Editar"}
+                                </SVButton>
+                            }
                         />
-                        <SVButton
-                            variant={editarEsferas ? "success" : "info"}
-                            size="sm"
-                            onClick={handleEditEsfera}
-                        >
-                            {editarEsferas ? "🔒 Bloquear Edição" : "✏️ Permitir Edição"}
-                        </SVButton>
                     </FieldGroup>
 
                     {/* Grupo Tinta */}
@@ -120,14 +122,16 @@ const TabelaConsumo = () => {
                             unit="m²/balde"
                             editable={editarTinta}
                             onEdit={(newValue) => handleChange('resultadoTinta', newValue)}
+                            actionButton={
+                                <SVButton
+                                    variant={editarTinta ? "success" : "info"}
+                                    size="sm"
+                                    onClick={handleEditTinta}
+                                >
+                                    {editarTinta ? "🔒 Bloquear" : "✏️ Editar"}
+                                </SVButton>
+                            }
                         />
-                        <SVButton
-                            variant={editarTinta ? "success" : "info"}
-                            size="sm"
-                            onClick={handleEditTinta}
-                        >
-                            {editarTinta ? "🔒 Bloquear Edição" : "✏️ Permitir Edição"}
-                        </SVButton>
                     </FieldGroup>
                 </div>
             </CalculationSection>

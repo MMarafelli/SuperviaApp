@@ -61,6 +61,7 @@ interface ResultDisplayProps {
   className?: string;
   editable?: boolean;
   onEdit?: (newValue: string) => void;
+  actionButton?: ReactNode;
 }
 
 export const ResultDisplay: React.FC<ResultDisplayProps> = ({
@@ -69,7 +70,8 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
   unit = '',
   className = '',
   editable = false,
-  onEdit
+  onEdit,
+  actionButton
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(value.toString());
@@ -85,24 +87,31 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
 
   return (
     <div className={`result-display ${className} ${editable ? 'editable' : ''}`}>
-      <span className="result-label">{label}:</span>
-      {isEditing ? (
-        <div className="result-edit">
-          <input
-            type="text"
-            value={editValue}
-            onChange={(e) => setEditValue(e.target.value)}
-            onBlur={handleEditToggle}
-            onKeyPress={(e) => e.key === 'Enter' && handleEditToggle()}
-            autoFocus
-          />
-        </div>
-      ) : (
-        <span className="result-value" onClick={handleEditToggle}>
-          {value} {unit}
-          {editable && <span className="edit-indicator">✏️</span>}
-        </span>
-      )}
+      <div className="result-row">
+        <span className="result-label">{label}:</span>
+        {isEditing ? (
+          <div className="result-edit">
+            <input
+              type="text"
+              value={editValue}
+              onChange={(e) => setEditValue(e.target.value)}
+              onBlur={handleEditToggle}
+              onKeyPress={(e) => e.key === 'Enter' && handleEditToggle()}
+              autoFocus
+            />
+          </div>
+        ) : (
+          <span className="result-value" onClick={handleEditToggle}>
+            {value} {unit}
+            {editable && !actionButton && <span className="edit-indicator">✏️</span>}
+          </span>
+        )}
+        {actionButton && (
+          <div className="result-action">
+            {actionButton}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
