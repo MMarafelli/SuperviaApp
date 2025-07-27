@@ -1,146 +1,174 @@
-/* Estilos modernos baseados na Home */
+/* Estilos gerais seguindo EXATAMENTE o padrão da Home */
 .calc-consumo-container {
-    padding: 1rem;
+    padding: 1rem; /* Padding mais compacto igual à Home */
 }
 
-.calc-consumo-container h1 {
-    color: #ffcc29;
-    font-size: 1.75rem;
-    font-weight: 600;
-    margin: 2rem 1.5rem 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    position: relative;
-    display: inline-block;
-}
-
-.calc-consumo-container h1::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 60px;
-    height: 4px;
-    background: #ffcc29;
-    border-radius: 2px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
+/* Cards modernos seguindo EXATAMENTE o padrão da Home */
+.modern-card,
 .quadro-consumo {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    padding: 1.5rem;
-    margin: 1rem;
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.2),
-        0 2px 8px rgba(0, 0, 0, 0.1);
+    width: auto;
+    min-height: auto;
+    background: #fff !important; /* FUNDO BRANCO sempre */
+    border-radius: 1rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    padding: 1rem; /* Padding mais compacto igual à Home */
+    display: flex;
+    flex-direction: column;
     transition: all 0.3s ease-in-out;
+    backdrop-filter: none; /* Remove o glassmorphism */
+    position: relative;
+    overflow: visible;
+    margin: 0.5rem 0; /* Margin mais compacto igual à Home */
 }
 
+.modern-card:hover,
 .quadro-consumo:hover {
-    transform: scale(1.01);
-    box-shadow: 
-        0 12px 40px rgba(0, 0, 0, 0.25),
-        0 4px 12px rgba(0, 0, 0, 0.15);
-    border-color: rgba(255, 204, 41, 0.3);
+    transform: scale(1.02) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+    border-color: #ffcc29 !important;
+    background: #fff !important; /* Mantém fundo branco no hover */
 }
 
-/* Estilos para inputs e formulários */
-.quadro-consumo input,
-.quadro-consumo select,
-.quadro-consumo textarea {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
-    padding: 0.75rem;
-    color: #ffffff;
-    transition: all 0.3s ease;
+/* Remove os pseudo-elementos shimmer que não existem na Home */
+.modern-card::before,
+.quadro-consumo::before {
+    display: none !important;
 }
 
-.quadro-consumo input:focus,
-.quadro-consumo select:focus,
-.quadro-consumo textarea:focus {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: #ffcc29;
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(255, 204, 41, 0.2);
+/* Inputs seguindo EXATAMENTE o padrão da Home */
+.calc-consumo-container input,
+.calc-consumo-container select,
+.calc-consumo-container textarea {
+    width: 100% !important;
+    padding: 0.5rem 0.75rem !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 0.5rem !important;
+    background: #fff !important; /* FUNDO BRANCO sempre */
+    color: #1f2937 !important; /* TEXTO ESCURO sempre */
+    font-size: 0.875rem !important;
+    transition: all 0.2s ease !important;
+    outline: none !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
 }
 
-.quadro-consumo input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+.calc-consumo-container input:focus,
+.calc-consumo-container select:focus,
+.calc-consumo-container textarea:focus {
+    border-color: #ffcc29 !important; /* Amarelo SuperVia no foco */
+    box-shadow: 0 0 0 3px rgba(255, 204, 41, 0.1) !important;
+    background: #fff !important; /* Mantém fundo branco no foco */
+    color: #1f2937 !important; /* Mantém texto escuro no foco */
 }
 
-/* Botões modernos */
+/* Labels seguindo padrão da Home */
+.calc-consumo-container label {
+    color: #374151 !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    margin-bottom: 0.25rem !important;
+    display: block !important;
+    text-shadow: none !important;
+    font-style: normal !important; /* Remove itálico */
+    font-weight: 400 !important;
+}
+
+/* Botões modernos seguindo EXATAMENTE o padrão da Home */
 .modern-button {
-    background: linear-gradient(135deg, #ffcc29, #ffd952);
-    border: none;
-    border-radius: 12px;
-    padding: 0.75rem 1.5rem;
-    color: #1a1a1a;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(255, 204, 41, 0.3);
-}
-
-.modern-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(255, 204, 41, 0.4);
+    padding: 0.5rem 1rem !important;
+    border: none !important;
+    border-radius: 0.5rem !important;
+    cursor: pointer !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    transition: all 0.2s ease !important;
+    text-shadow: none !important;
+    position: relative !important;
+    overflow: visible !important;
+    margin: 0.25rem !important;
+    white-space: nowrap !important; /* Evita quebra de linha */
 }
 
 .modern-button:active {
-    transform: translateY(0);
+    transform: translateY(0) !important;
+    transition: all 0.1s ease !important;
 }
 
-.consumo-container {
-    max-width: 100%;
-    overflow-x: hidden;
+/* Remove efeitos shimmer dos botões */
+.modern-button::before {
+    display: none !important;
 }
 
-/* Responsividade para mobile */
-@media only screen and (max-width: 900px) {
-    .consumo-container {
-        padding: 0;
-    }
-    
-    .quadro-consumo {
-        margin: 1rem 0.5rem;
+/* SVGs de edição seguindo padrão da Home */
+.svgHabilitarEdicao {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.svgHabilitarEdicao:hover {
+    transform: scale(1.1) !important; /* Sem rotação */
+    opacity: 0.7 !important;
+}
+
+/* Botões principais seguindo EXATAMENTE o padrão da Home */
+.calc-consumo-container button.modern-button {
+    padding: 0.5rem 1rem !important;
+    border: none !important;
+    border-radius: 0.5rem !important;
+    cursor: pointer !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    transition: all 0.2s ease !important;
+    margin: 0.25rem !important;
+    min-height: 2.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.25rem !important;
+    flex: 1 !important; /* Garante que todos os botões tenham o mesmo tamanho */
+    min-width: 0 !important; /* Permite que o flexbox funcione corretamente */
+    width: auto !important; /* Remove qualquer largura fixa */
+}
+
+/* Container dos botões para distribuição igual */
+.botoes-container .flex {
+    display: flex !important;
+    gap: 0.5rem !important;
+    align-items: stretch !important; /* Faz os botões terem a mesma altura */
+}
+
+/* Estilos de texto seguindo EXATAMENTE a hierarquia da Home */
+.calc-consumo-container label,
+.quadro-consumo label {
+    color: #374151 !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    margin-bottom: 0.25rem !important;
+    display: block !important;
+    text-shadow: none !important;
+    font-style: normal !important;
+}
+
+/* Gerais seguindo padrão da Home */
+* {
+    box-sizing: border-box;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* Responsividade seguindo padrão da Home */
+@media (max-width: 768px) {
+    .calc-consumo-container {
         padding: 0.5rem;
     }
     
-    .svgHabilitarEdicao {
-        width: 1.5rem;
-        height: 1.5rem;
-        margin-top: 0.5rem;
+    .quadro-consumo {
+        margin: 0.25rem 0;
+        padding: 0.75rem;
     }
-}
-
-/* Ajustes para desktop */
-.tabela2TelaGrande {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.2),
-        0 2px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
-}
-
-.tabela2TelaGrande:hover {
-    transform: scale(1.01);
-    box-shadow: 
-        0 12px 40px rgba(0, 0, 0, 0.25),
-        0 4px 12px rgba(0, 0, 0, 0.15);
-    border-color: rgba(255, 204, 41, 0.3);
-}
-
-.svgHabilitarEdicao {
-    width: 2rem;
-    height: 2rem;
-    margin-top: 1rem;
 }

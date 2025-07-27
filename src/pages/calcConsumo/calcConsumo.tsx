@@ -3,6 +3,7 @@ import { ICampos } from '../../types/calcConsumo.types';
 import { useCalculos } from '../../hooks/useCalculos';
 import { StorageService } from '../../services/StorageService';
 import { InputField } from '../../components/InputField';
+import { PageTitle } from '../../components/PageTitle';
 import { isDevelopment } from '../../utils/devUtils';
 import './calcConsumo.css';
 import '../../styles/shared.css';
@@ -79,11 +80,13 @@ const TabelaConsumo = () => {
 
     return (
         <div className="calc-consumo-container">
-            <h1>Cálculo de Consumo</h1>
+            <PageTitle title="Cálculo de Consumo" />
+            
+            {/* Primeiro quadro - Total m² */}
             <div className="quadro-consumo">
                 <div className="p-2 flex flex-col w-full">
                     <InputField
-                        label="Total m²:"
+                        label="📐 Total m²:"
                         value={campos.totalMetrosPista}
                         name="totalMetrosPista"
                         onChange={handleChange}
@@ -92,6 +95,7 @@ const TabelaConsumo = () => {
                 </div>
             </div>
 
+            {/* Segundo quadro - Cálculos */}
             <div className="quadro-consumo m-4">
                 <div className="p-2 flex flex-col w-full">
                     {larguraDaJanela <= 900 ? (
@@ -101,7 +105,7 @@ const TabelaConsumo = () => {
                             <div className="flex flex-col space-y-2">
                                 <div className="w-full">
                                     <InputField
-                                        label="Esfera(kg):"
+                                        label="⚪ Esfera(kg):"
                                         value={campos.esfera}
                                         name="esfera"
                                         onChange={handleChange}
@@ -113,7 +117,7 @@ const TabelaConsumo = () => {
                                 <div className="flex items-center space-x-2">
                                     <div className="flex-1">
                                         <InputField
-                                            label="Resultado(kg/m²):"
+                                            label="📊 Resultado(kg/m²):"
                                             value={campos.resultadoEsferas}
                                             name="resultadoEsferas"
                                             onChange={handleChange}
@@ -146,7 +150,7 @@ const TabelaConsumo = () => {
                             <div className="flex flex-col space-y-2">
                                 <div className="w-full">
                                     <InputField
-                                        label="Tinta(baldes):"
+                                        label="🎨 Tinta(baldes):"
                                         value={campos.tinta}
                                         name="tinta"
                                         onChange={handleChange}
@@ -158,7 +162,7 @@ const TabelaConsumo = () => {
                                 <div className="flex items-center space-x-2">
                                     <div className="flex-1">
                                         <InputField
-                                            label="Resultado(m²/balde):"
+                                            label="📊 Resultado(m²/balde):"
                                             value={campos.resultadoTinta}
                                             name="resultadoTinta"
                                             onChange={handleChange}
@@ -194,7 +198,7 @@ const TabelaConsumo = () => {
                                 <tr>
                                     <td>
                                         <InputField
-                                            label="Esfera(kg):"
+                                            label="⚪ Esfera(kg):"
                                             value={campos.esfera}
                                             name="esfera"
                                             onChange={handleChange}
@@ -206,7 +210,7 @@ const TabelaConsumo = () => {
                                     <td className="flex items-center">
                                         <div className="w-4/5 pr-2">
                                             <InputField
-                                                label="Resultado(kg/m²):"
+                                                label="📊 Resultado(kg/m²):"
                                                 value={campos.resultadoEsferas}
                                                 name="resultadoEsferas"
                                                 onChange={handleChange}
@@ -237,7 +241,7 @@ const TabelaConsumo = () => {
                                 <tr>
                                     <td>
                                         <InputField
-                                            label="Tinta(baldes):"
+                                            label="🎨 Tinta(baldes):"
                                             value={campos.tinta}
                                             name="tinta"
                                             onChange={handleChange}
@@ -249,7 +253,7 @@ const TabelaConsumo = () => {
                                     <td className="flex items-center">
                                         <div className="w-4/5 pr-2">
                                             <InputField
-                                                label="Resultado(m²/balde):"
+                                                label="📊 Resultado(m²/balde):"
                                                 value={campos.resultadoTinta}
                                                 name="resultadoTinta"
                                                 onChange={handleChange}

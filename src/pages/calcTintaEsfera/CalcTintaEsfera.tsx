@@ -530,7 +530,7 @@ const Formulario = () => {
 
                     <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
                         <label className={`input-label ${campos.nomeEstrada ? 'input-label-active' : (isFocused == 'nomeEstrada' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                            Estrada
+                            🛣️ Estrada
                         </label>
                         <input
                             type="text"
@@ -544,7 +544,7 @@ const Formulario = () => {
 
                     <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
                         <label className={`input-label ${campos.estado ? 'input-label-active' : (isFocused == 'estado' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                            Estado
+                            🗺️ Estado
                         </label>
                         <select
                             className={`
@@ -590,7 +590,7 @@ const Formulario = () => {
 
                     <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
                         <label className={`input-label ${campos.diaMesAno ? 'input-label-active' : (isFocused == 'diaMesAno' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                            Data
+                            📅 Data
                         </label>
                         <input
                             type="date"
@@ -606,7 +606,7 @@ const Formulario = () => {
 
                     <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
                         <label className={`input-label ${campos.equipe ? 'input-label-active' : (isFocused == 'equipe' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                            Equipe
+                            👥 Equipe
                         </label>
                         <select
                             className={`
@@ -628,7 +628,7 @@ const Formulario = () => {
 
                     <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
                         <label className={`input-label ${campos.kmInicial ? 'input-label-active' : (isFocused == 'kmInicial' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                            Km inicial/Estaca inicial
+                            📍 Km inicial/Estaca inicial
                         </label>
                         <input
                             type="text"
@@ -642,7 +642,7 @@ const Formulario = () => {
 
                     <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
                         <label className={`input-label ${campos.kmFinal ? 'input-label-active' : (isFocused == 'kmFinal' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                            Km final/Estaca final
+                            🏁 Km final/Estaca final
                         </label>
                         <input
                             type="text"
@@ -1024,38 +1024,49 @@ const Formulario = () => {
 
                 <div className="flex items-center justify-center h-16 m-2">
                     <button
-                        className="flex-grow bg-green-500 text-white p-4 m-2 rounded-md"
+                        className="modern-button"
                         onClick={gerarLevantamento}
                         type="button"
                         aria-label="Gerar levantamento de pintura automática"
+                        style={{
+                            backgroundColor: '#10b981',
+                            color: '#ffffff',
+                            boxShadow: '0 2px 4px rgba(16, 185, 129, 0.2)',
+                            fontSize: '0.875rem'
+                        }}
                     >
-                        <svg fill="#ffffff" strokeWidth="0.05" height="24" width="24" stroke="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                            <path className="cls-1" d="M11,5H5A2,2,0,0,1,7,3H7V2A1,1,0,0,1,9,2V3H9a2,2,0,0,1,2,2Zm1-2v9H4V3H3A1,1,0,0,0,2,4v9a1,1,0,0,0,1,1H13a1,1,0,0,0,1-1V4a1,1,0,0,0-1-1ZM10,7H5V8h5ZM8,9H5v1H8Z">
-                            </path>
-                        </svg>
+                        📋 Gerar
                     </button>
 
                     <button
-                        className="flex-grow bg-red-500 text-white p-4 m-2 rounded-md"
+                        className="modern-button"
                         onClick={resetarFormulario}
                         type="button"
                         aria-label="Resetar formulário"
+                        style={{
+                            background: '#fff',
+                            color: '#ef4444',
+                            border: '1.5px solid #ef4444',
+                            boxShadow: '0 2px 4px rgba(239,68,68,0.1)',
+                            fontSize: '0.875rem'
+                        }}
                     >
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
+                        🗑️ Limpar
                     </button>
 
                     <button
-                        className="flex-grow bg-blue-500 text-white p-4 m-2 rounded-md"
+                        className="modern-button"
                         onClick={compartilharTexto}
                         type="button"
                         aria-label="Compartilhar levantamento"
+                        style={{
+                            backgroundColor: '#3b82f6',
+                            color: '#ffffff',
+                            boxShadow: '0 2px 4px rgba(59, 130, 246, 0.2)',
+                            fontSize: '0.875rem'
+                        }}
                     >
-                        <svg fill="#ffffff" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                            <path d="M12,10c-.6012,0-1.13403,.27069-1.50067,.69055l-4.54468-2.27234c.02881-.13507,.04535-.2746,.04535-.41821,0-.14368-.01654-.28314-.04535-.41821l4.54468-2.2724c.36664,.4198,.89954,.69061,1.50067,.69061,1.10455,0,2-.89545,2-2,0-1.10461-.89545-2-2-2s-2,.89539-2,2c0,.14362,.01654,.28314,.04535,.41821l-4.54468,2.27234c-.36664-.41986-.89948-.69055-1.50067-.69055-1.10455,0-2,.89539-2,2,0,1.10455,.89545,2,2,2,.60114,0,1.13403-.27081,1.50067-.69061l4.54468,2.2724c-.02881,.13507-.04535,.27454-.04535,.41821,0,1.10455,.89545,2,2,2s2-.89545,2-2c0-1.10461-.89545-2-2-2Z">
-                            </path>
-                        </svg>
+                        📤 Enviar
                     </button>
                 </div>
             </div>

@@ -155,7 +155,7 @@ button:focus-visible {
 }
 
 .interacaoBox {
-  padding: .5rem;
+  padding-bottom: .5rem;
   min-width: 100px;
 }
 

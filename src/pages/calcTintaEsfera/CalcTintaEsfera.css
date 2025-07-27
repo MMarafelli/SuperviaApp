@@ -1,156 +1,230 @@
-/* Estilos modernos seguindo o padrão da Home */
+/* Estilos gerais seguindo EXATAMENTE o padrão da Home */
 .calc-tinta-container {
-    padding: 1rem;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    padding: 1rem; /* Padding mais compacto igual à Home */
 }
 
-/* Cards modernos seguindo padrão da Home */
-.modern-card {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
-        rgba(255, 255, 255, 0.05) 100%);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    padding: 1.5rem;
-    margin: 1rem;
-    box-shadow: 
-        0 10px 40px rgba(0, 0, 0, 0.3),
-        0 4px 15px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+/* Cards modernos seguindo EXATAMENTE o padrão da Home */
+.modern-card,
+.primeiroQuadro,
+.terceiroQuadro,
+.quartoQuadro,
+.divsSegundoQuadroTelaPequena .grupo,
+.levantamento {
+    width: auto;
+    min-height: auto;
+    background: #fff !important; /* FUNDO BRANCO sempre */
+    border-radius: 1rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    padding: 1rem; /* Padding mais compacto igual à Home */
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+    backdrop-filter: none; /* Remove o glassmorphism */
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    margin: 0.5rem 0; /* Margin mais compacto igual à Home */
 }
 
-.modern-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 204, 41, 0.1), 
-        transparent);
-    transition: left 0.6s ease;
+.modern-card:hover,
+.primeiroQuadro:hover,
+.terceiroQuadro:hover,
+.quartoQuadro:hover,
+.divsSegundoQuadroTelaPequena .grupo:hover,
+.levantamento:hover {
+    transform: scale(1.02) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+    border-color: #ffcc29 !important;
+    background: #fff !important; /* Mantém fundo branco no hover */
 }
 
-.modern-card:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.4),
-        0 8px 25px rgba(0, 0, 0, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 204, 41, 0.4);
+/* Remove os pseudo-elementos shimmer que não existem na Home */
+.modern-card::before,
+.primeiroQuadro::before,
+.terceiroQuadro::before,
+.quartoQuadro::before,
+.divsSegundoQuadroTelaPequena .grupo::before,
+.levantamento::before {
+    display: none !important;
 }
 
-.modern-card:hover::before {
-    left: 100%;
-}
-
-/* Estilos para inputs e formulários seguindo padrão da Home */
+/* Estilos para inputs e formulários seguindo EXATAMENTE o padrão da Home */
+/* FORÇAR fundo branco em TODOS os inputs independente do tema */
+.calc-tinta-container input,
+.calc-tinta-container select,
+.calc-tinta-container textarea,
 .modern-card input,
 .modern-card select,
-.modern-card textarea {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
-        rgba(255, 255, 255, 0.05) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    padding: 0.875rem 1rem;
-    color: #ffffff;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    box-shadow: 
-        0 2px 8px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+.modern-card textarea,
+.inputsDoPrimeiroQuadro>input,
+.inputsDoPrimeiroQuadro>select,
+.tabela1TelaGrande>tbody>tr>td>select,
+.tabela1TelaGrande>tbody>tr>td>input,
+.tabela2TelaGrande>tbody>tr>td>input,
+.tabela2TelaGrande>tbody>tr>td>div>input,
+.segundoQuadro>div>div>div>div>select,
+.segundoQuadro>div>div>div>div>input,
+.quartoQuadro textarea {
+    background: #fff !important; /* Fundo branco sempre */
+    border: 1.5px solid #d1d5db !important; /* Borda cinza clara */
+    border-radius: 0.5rem !important; /* Border radius menor */
+    padding: 0.75rem !important;
+    color: #374151 !important; /* Texto cinza escuro */
+    font-size: 0.95rem !important;
+    font-weight: 400 !important; /* Peso normal */
+    transition: all 0.2s ease !important;
+    backdrop-filter: none !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    line-height: 1.5 !important;
+}
+
+/* REGRA ESPECÍFICA para sobrescrever o tema dark mode global */
+@media (prefers-color-scheme: dark) {
+    .calc-tinta-container input,
+    .calc-tinta-container select,
+    .calc-tinta-container textarea,
+    .modern-card input,
+    .modern-card select,
+    .modern-card textarea,
+    .inputsDoPrimeiroQuadro>input,
+    .inputsDoPrimeiroQuadro>select,
+    .tabela1TelaGrande>tbody>tr>td>select,
+    .tabela1TelaGrande>tbody>tr>td>input,
+    .tabela2TelaGrande>tbody>tr>td>input,
+    .tabela2TelaGrande>tbody>tr>td>div>input,
+    .segundoQuadro>div>div>div>div>select,
+    .segundoQuadro>div>div>div>div>input,
+    .quartoQuadro textarea {
+        background: #fff !important; /* FORÇA fundo branco no dark mode */
+        color: #374151 !important; /* FORÇA texto escuro no dark mode */
+        border-color: #d1d5db !important;
+    }
+}
+
+/* MÁXIMA ESPECIFICIDADE - sobrescreve QUALQUER regra global */
+body div.calc-tinta-container input,
+body div.calc-tinta-container select,
+body div.calc-tinta-container textarea {
+    background-color: #fff !important;
+    color: #374151 !important;
+    border: 1.5px solid #d1d5db !important;
+}
+
+body div.modern-card input,
+body div.modern-card select,
+body div.modern-card textarea {
+    background-color: #fff !important;
+    color: #374151 !important;
+    border: 1.5px solid #d1d5db !important;
+}
+
+/* REGRAS ESPECÍFICAS POR CLASSE com máxima especificidade */
+body div.calc-tinta-container div.inputsDoPrimeiroQuadro input,
+body div.calc-tinta-container div.inputsDoPrimeiroQuadro select,
+body div.calc-tinta-container .date-input,
+body div.calc-tinta-container .tabela1TelaGrande tbody tr td input,
+body div.calc-tinta-container .tabela1TelaGrande tbody tr td select,
+body div.calc-tinta-container .tabela2TelaGrande tbody tr td input,
+body div.calc-tinta-container .segundoQuadro input,
+body div.calc-tinta-container .segundoQuadro select,
+body div.calc-tinta-container .quartoQuadro textarea {
+    background-color: #ffffff !important;
+    color: #374151 !important;
+    border-color: #d1d5db !important;
+}
+
+/* Regra para inputs específicos como data */
+body input.date-input,
+body input[type="date"],
+body input[type="text"],
+body input[type="number"],
+body select,
+body textarea {
+    background-color: #ffffff !important;
+    color: #374151 !important;
+}
+
+/* REGRA MAIS ESPECÍFICA que qualquer media query global */
+html body .calc-tinta-container input,
+html body .calc-tinta-container select,
+html body .calc-tinta-container textarea,
+html body .calc-tinta-container .date-input {
+    background: white !important;
+    background-color: white !important;
+    color: #374151 !important;
+    border: 1.5px solid #d1d5db !important;
+}
+
+/* SOBRESCREVER diretamente o media query dark */
+@media (prefers-color-scheme: dark) {
+    html body .calc-tinta-container input,
+    html body .calc-tinta-container select,
+    html body .calc-tinta-container textarea,
+    html body .calc-tinta-container .date-input {
+        background: white !important;
+        background-color: white !important;
+        color: #374151 !important;
+        border: 1.5px solid #d1d5db !important;
+    }
 }
 
 .modern-card input:focus,
 .modern-card select:focus,
-.modern-card textarea:focus {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.15) 0%, 
-        rgba(255, 255, 255, 0.08) 100%);
-    border-color: #ffcc29;
-    outline: none;
-    box-shadow: 
-        0 0 0 3px rgba(255, 204, 41, 0.2),
-        0 4px 12px rgba(255, 204, 41, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    transform: translateY(-1px);
+.modern-card textarea:focus,
+.inputsDoPrimeiroQuadro>input:focus,
+.inputsDoPrimeiroQuadro>select:focus,
+.tabela1TelaGrande>tbody>tr>td>select:focus,
+.tabela1TelaGrande>tbody>tr>td>input:focus,
+.tabela2TelaGrande>tbody>tr>td>input:focus,
+.tabela2TelaGrande>tbody>tr>td>div>input:focus,
+.segundoQuadro>div>div>div>div>select:focus,
+.segundoQuadro>div>div>div>div>input:focus,
+.quartoQuadro textarea:focus {
+    background: #fff !important;
+    border-color: #ffcc29 !important; /* Amarelo SuperVia no foco */
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(255, 204, 41, 0.1) !important;
+    transform: none !important; /* Remove transformação */
+    color: #374151 !important; /* Mantém texto escuro no foco */
 }
 
-.modern-card input::placeholder {
-    color: rgba(255, 255, 255, 0.4);
-    font-weight: 400;
+.modern-card input::placeholder,
+input::placeholder,
+textarea::placeholder {
+    color: #9ca3af !important; /* Cinza médio para placeholders */
+    font-style: normal !important; /* Remove itálico */
+    font-weight: 400 !important;
 }
 
-/* Botões modernos seguindo padrão da Home */
+/* Botões modernos seguindo EXATAMENTE o padrão da Home */
 .modern-button {
-    background: linear-gradient(135deg, #ffcc29 0%, #ffd952 50%, #ffcc29 100%);
-    border: none;
-    border-radius: 14px;
-    padding: 0.875rem 1.75rem;
-    color: #1a1a1a;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 
-        0 6px 20px rgba(255, 204, 41, 0.3),
-        0 2px 8px rgba(255, 204, 41, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
-}
-
-.modern-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 255, 255, 0.2), 
-        transparent);
-    transition: left 0.6s ease;
-}
-
-.modern-button:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 
-        0 10px 30px rgba(255, 204, 41, 0.4),
-        0 4px 15px rgba(255, 204, 41, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    background: linear-gradient(135deg, #ffd952 0%, #ffe066 50%, #ffd952 100%);
-}
-
-.modern-button:hover::before {
-    left: 100%;
+    padding: 0.5rem 1rem !important;
+    border: none !important;
+    border-radius: 0.5rem !important;
+    cursor: pointer !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    transition: all 0.2s ease !important;
+    text-shadow: none !important;
+    position: relative !important;
+    overflow: visible !important;
+    margin: 0.25rem !important;
+    white-space: nowrap !important; /* Evita quebra de linha */
 }
 
 .modern-button:active {
-    transform: translateY(-1px) scale(1.01);
-    transition: all 0.1s ease;
+    transform: translateY(0) !important;
+    transition: all 0.1s ease !important;
+}
+
+/* Remove efeitos shimmer dos botões */
+.modern-button::before {
+    display: none !important;
 }
 
 /* Gerais seguindo padrão da Home */
 * {
     box-sizing: border-box;
-}
-
-body {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-    min-height: 100vh;
 }
 
 table {
@@ -162,8 +236,9 @@ table {
 input::placeholder,
 textarea::placeholder,
 select option[value=""] {
-    color: rgba(255, 255, 255, 0.4) !important;
-    font-style: italic;
+    color: #9ca3af !important; /* Cinza médio para placeholders igual aos outros */
+    font-style: normal !important; /* Remove itálico */
+    font-weight: 400 !important;
 }
 
 /* Estados de validação */
@@ -177,25 +252,25 @@ select option[value=""] {
     box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2) !important;
 }
 
-/* Scrollbar personalizada seguindo o tema */
+/* Scrollbar personalizada seguindo o tema claro */
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
+    background: #f3f4f6; /* Fundo claro */
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #ffcc29, #ffd952);
+    background: #d1d5db; /* Cinza médio */
     border-radius: 4px;
     transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #ffd952, #ffe066);
+    background: #ffcc29; /* Amarelo SuperVia no hover */
 }
 
 /* Animações de entrada */
@@ -219,82 +294,35 @@ select option[value=""] {
 .calc-tinta-container > *:nth-child(4) { animation-delay: 0.3s; }
 .calc-tinta-container > *:nth-child(5) { animation-delay: 0.4s; }
 
-/* CSS da tabela do primeiro quadro - Estilo moderno seguindo padrão da Home */
-.primeiroQuadro {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
-        rgba(255, 255, 255, 0.05) 100%);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    padding: 1.5rem;
-    margin: 1rem;
-    box-shadow: 
-        0 10px 40px rgba(0, 0, 0, 0.3),
-        0 4px 15px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
+/* CSS da tabela do primeiro quadro - já estilizado acima com os outros cards */
 
-.primeiroQuadro::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 204, 41, 0.05), 
-        transparent);
-    transition: left 0.8s ease;
-}
-
-.primeiroQuadro:hover {
-    transform: translateY(-2px) scale(1.005);
-    box-shadow: 
-        0 15px 50px rgba(0, 0, 0, 0.35),
-        0 6px 20px rgba(0, 0, 0, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 204, 41, 0.3);
-}
-
-.primeiroQuadro:hover::before {
-    left: 100%;
-}
+/* Pseudo-elementos removidos - design limpo como a Home */
 
 .inputsDoPrimeiroQuadro>input,
 .inputsDoPrimeiroQuadro>select {
     min-width: 200px;
-    padding: 0.875rem 1rem;
-    margin-bottom: 0.75rem;
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
-        rgba(255, 255, 255, 0.05) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    color: #ffffff;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    box-shadow: 
-        0 2px 8px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    padding: 0.75rem !important;
+    margin-bottom: 0.5rem;
+    background: #fff !important; /* Fundo branco sempre */
+    border: 1.5px solid #d1d5db !important; /* Borda cinza clara */
+    border-radius: 0.5rem !important; /* Border radius menor */
+    color: #374151 !important; /* Texto cinza escuro para contraste */
+    font-size: 0.95rem !important;
+    font-weight: 400 !important; /* Peso normal */
+    transition: all 0.2s ease !important;
+    backdrop-filter: none !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    line-height: 1.5 !important;
 }
 
 .inputsDoPrimeiroQuadro>input:focus,
 .inputsDoPrimeiroQuadro>select:focus {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.15) 0%, 
-        rgba(255, 255, 255, 0.08) 100%);
-    border-color: #ffcc29;
-    outline: none;
-    box-shadow: 
-        0 0 0 3px rgba(255, 204, 41, 0.2),
-        0 4px 12px rgba(255, 204, 41, 0.15);
-    transform: translateY(-1px);
+    background: #fff !important;
+    border-color: #ffcc29 !important; /* Amarelo SuperVia no foco */
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(255, 204, 41, 0.1) !important;
+    transform: none !important; /* Remove transformação */
+    color: #374151 !important; /* Mantém texto escuro no foco */
 }
 
 /* CSS da tabela do segundo quadro */
@@ -303,92 +331,19 @@ select option[value=""] {
     padding: 0;
 }
 
-.terceiroQuadro,
-.quartoQuadro {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
-        rgba(255, 255, 255, 0.05) 100%);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    padding: 1.5rem;
-    margin: 1rem;
-    box-shadow: 
-        0 10px 40px rgba(0, 0, 0, 0.3),
-        0 4px 15px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
+/* CSS do terceiro e quarto quadros - já estilizados acima com os outros cards */
 
-.terceiroQuadro::before,
-.quartoQuadro::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 204, 41, 0.05), 
-        transparent);
-    transition: left 0.8s ease;
-}
-
-.terceiroQuadro:hover,
-.quartoQuadro:hover {
-    transform: translateY(-2px) scale(1.005);
-    box-shadow: 
-        0 15px 50px rgba(0, 0, 0, 0.35),
-        0 6px 20px rgba(0, 0, 0, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 204, 41, 0.3);
-}
-
-.terceiroQuadro:hover::before,
-.quartoQuadro:hover::before {
-    left: 100%;
-}
-
-.tabela1TelaGrande {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.08) 0%, 
-        rgba(255, 255, 255, 0.04) 100%);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 16px;
-    margin: 1rem;
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.25),
-        0 4px 15px rgba(0, 0, 0, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    white-space: nowrap;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.tabela1TelaGrande:hover {
-    transform: translateY(-1px) scale(1.005);
-    box-shadow: 
-        0 12px 40px rgba(0, 0, 0, 0.3),
-        0 6px 20px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 204, 41, 0.3);
-}
+/* CSS da tabela1TelaGrande - já estilizada acima com os outros elementos */
 
 .tabela1TelaGrande>thead>tr,
 .tabela1TelaGrande>thead>tr>th {
-    border-bottom: 2px solid rgba(255, 204, 41, 0.3);
-    padding: 1rem 0.75rem;
-    background: linear-gradient(135deg, 
-        rgba(255, 204, 41, 0.1) 0%, 
-        rgba(255, 204, 41, 0.05) 100%);
-    color: #ffcc29;
-    font-weight: 700;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    letter-spacing: 0.05em;
+    border-bottom: 2px solid #ffcc29 !important; /* Borda amarela limpa */
+    padding: 1rem 0.75rem !important;
+    background: #fff !important; /* Fundo branco */
+    color: #1f2937 !important; /* Texto escuro */
+    font-weight: 700 !important;
+    text-shadow: none !important;
+    letter-spacing: normal !important;
 }
 
 .tabela1TelaGrande>tbody>tr,
@@ -400,38 +355,38 @@ select option[value=""] {
 }
 
 .tabela1TelaGrande>tbody>tr:hover {
-    background: rgba(255, 204, 41, 0.05);
+    background: #f9fafb !important; /* Cinza muito claro no hover */
 }
 
 .tabela1TelaGrande>tbody>tr:not(:last-child),
 .tabela1TelaGrande>tbody>tr>td {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid #e5e7eb !important; /* Borda cinza clara */
 }
 
 .tabela1TelaGrande>tbody>tr>td>select,
 .tabela1TelaGrande>tbody>tr>td>input {
     width: 95%;
-    padding: 0.75rem;
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
-        rgba(255, 255, 255, 0.05) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    color: #ffffff;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
+    padding: 0.75rem !important;
+    background: #fff !important; /* Fundo branco sempre */
+    border: 1.5px solid #d1d5db !important; /* Borda cinza clara */
+    border-radius: 0.5rem !important; /* Border radius menor */
+    color: #374151 !important; /* Texto cinza escuro para contraste */
+    font-size: 0.95rem !important;
+    font-weight: 400 !important; /* Peso normal */
+    transition: all 0.2s ease !important;
+    backdrop-filter: none !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    line-height: 1.5 !important;
 }
 
 .tabela1TelaGrande>tbody>tr>td>select:focus,
 .tabela1TelaGrande>tbody>tr>td>input:focus {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.15) 0%, 
-        rgba(255, 255, 255, 0.08) 100%);
-    border-color: #ffcc29;
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(255, 204, 41, 0.2);
-    transform: translateY(-1px);
+    background: #fff !important;
+    border-color: #ffcc29 !important; /* Amarelo SuperVia no foco */
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(255, 204, 41, 0.1) !important;
+    transform: none !important; /* Remove transformação */
+    color: #374151 !important; /* Mantém texto escuro no foco */
 }
 
 /* ---------------------------------------------------------------------------------- */
@@ -464,50 +419,7 @@ select option[value=""] {
     opacity: 0.8;
 }
 
-.divsSegundoQuadroTelaPequena .grupo {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
-        rgba(255, 255, 255, 0.05) 100%);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 18px;
-    padding: 1.25rem;
-    margin: 1rem;
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.25),
-        0 4px 15px rgba(0, 0, 0, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.divsSegundoQuadroTelaPequena .grupo::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 204, 41, 0.05), 
-        transparent);
-    transition: left 0.8s ease;
-}
-
-.divsSegundoQuadroTelaPequena .grupo:hover {
-    transform: translateY(-2px) scale(1.005);
-    box-shadow: 
-        0 12px 40px rgba(0, 0, 0, 0.3),
-        0 6px 20px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 204, 41, 0.3);
-}
-
-.divsSegundoQuadroTelaPequena .grupo:hover::before {
-    left: 100%;
-}
+/* CSS dos grupos - já estilizados acima com os outros cards */
 
 .divsSegundoQuadroTelaPequena .bloco {
     display: flex;
@@ -533,33 +445,28 @@ select option[value=""] {
 .segundoQuadro>div>div>div>div>input,
 .segundoQuadro>div>div>div>div>.resultado {
     width: 55%;
-    padding: 0.875rem 1rem;
+    padding: 0.75rem !important;
     margin-right: 0.75rem;
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
-        rgba(255, 255, 255, 0.05) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    color: #ffffff;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    box-shadow: 
-        0 2px 8px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    background: #fff !important; /* Fundo branco sempre */
+    border: 1.5px solid #d1d5db !important; /* Borda cinza clara */
+    border-radius: 0.5rem !important; /* Border radius menor */
+    color: #374151 !important; /* Texto cinza escuro para contraste */
+    font-size: 0.95rem !important;
+    font-weight: 400 !important; /* Peso normal */
+    transition: all 0.2s ease !important;
+    backdrop-filter: none !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    line-height: 1.5 !important;
 }
 
 .segundoQuadro>div>div>div>div>select:focus,
 .segundoQuadro>div>div>div>div>input:focus {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.15) 0%, 
-        rgba(255, 255, 255, 0.08) 100%);
-    border-color: #ffcc29;
-    outline: none;
-    box-shadow: 
-        0 0 0 2px rgba(255, 204, 41, 0.2),
-        0 4px 12px rgba(255, 204, 41, 0.15);
-    transform: translateY(-1px);
+    background: #fff !important;
+    border-color: #ffcc29 !important; /* Amarelo SuperVia no foco */
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(255, 204, 41, 0.1) !important;
+    transform: none !important; /* Remove transformação */
+    color: #374151 !important; /* Mantém texto escuro no foco */
 }
 
 /* ---------------------------------------------------------------------------------- */
@@ -575,12 +482,12 @@ select option[value=""] {
 
 .tabela2TelaGrande>tbody>tr>td {
     padding: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid #e5e7eb !important; /* Borda cinza clara igual à Home */
     transition: all 0.3s ease;
 }
 
 .tabela2TelaGrande>tbody>tr:hover {
-    background: rgba(255, 204, 41, 0.05);
+    background: #f9fafb !important; /* Cinza muito claro no hover igual à Home */
     border-radius: 8px;
 }
 
@@ -588,26 +495,26 @@ select option[value=""] {
 .tabela2TelaGrande>tbody>tr>td>div>input {
     width: 97%;
     padding: 0.75rem;
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
-        rgba(255, 255, 255, 0.05) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    color: #ffffff;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
+    background: #fff !important; /* Fundo branco sempre */
+    border: 1.5px solid #d1d5db !important; /* Borda cinza clara */
+    border-radius: 0.5rem !important; /* Border radius menor */
+    color: #374151 !important; /* Texto cinza escuro para contraste */
+    font-size: 0.95rem !important;
+    font-weight: 400 !important; /* Peso normal */
+    transition: all 0.2s ease !important;
+    backdrop-filter: none !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    line-height: 1.5 !important;
 }
 
 .tabela2TelaGrande>tbody>tr>td>input:focus,
 .tabela2TelaGrande>tbody>tr>td>div>input:focus {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.15) 0%, 
-        rgba(255, 255, 255, 0.08) 100%);
-    border-color: #ffcc29;
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(255, 204, 41, 0.2);
-    transform: translateY(-1px);
+    background: #fff !important;
+    border-color: #ffcc29 !important; /* Amarelo SuperVia no foco */
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(255, 204, 41, 0.1) !important;
+    transform: none !important; /* Remove transformação */
+    color: #374151 !important; /* Mantém texto escuro no foco */
 }
 
 .teceiroQuadroHabilitarEdicao {
@@ -635,51 +542,7 @@ select option[value=""] {
 }
 
 /* ---------------------------------------------------------------------------------- */
-/* CSS do levantamento seguindo padrão da Home */
-.levantamento {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
-        rgba(255, 255, 255, 0.05) 100%);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    padding: 1.5rem;
-    margin: 1rem;
-    box-shadow: 
-        0 10px 40px rgba(0, 0, 0, 0.3),
-        0 4px 15px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.levantamento::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 204, 41, 0.05), 
-        transparent);
-    transition: left 0.8s ease;
-}
-
-.levantamento:hover {
-    transform: translateY(-2px) scale(1.005);
-    box-shadow: 
-        0 15px 50px rgba(0, 0, 0, 0.35),
-        0 6px 20px rgba(0, 0, 0, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 204, 41, 0.3);
-}
-
-.levantamento:hover::before {
-    left: 100%;
-}
+/* CSS do levantamento - já estilizado acima com os outros cards */
 
 /* ---------------------------------------------------------------------------------- */
 /* CSS dos botões */
@@ -688,31 +551,25 @@ select option[value=""] {
     overflow-wrap: break-word;
     white-space: pre-wrap;
     resize: none;
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
-        rgba(255, 255, 255, 0.05) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    padding: 1rem;
-    color: #ffffff;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    box-shadow: 
-        0 2px 8px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    background: #fff !important; /* Fundo branco sempre */
+    border: 1.5px solid #d1d5db !important; /* Borda cinza clara */
+    border-radius: 0.5rem !important; /* Border radius menor */
+    padding: 0.75rem !important;
+    color: #374151 !important; /* Texto cinza escuro para contraste */
+    font-size: 0.95rem !important;
+    font-weight: 400 !important; /* Peso normal */
+    transition: all 0.2s ease !important;
+    backdrop-filter: none !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    line-height: 1.5 !important;
 }
 
 .quartoQuadro textarea:focus {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.15) 0%, 
-        rgba(255, 255, 255, 0.08) 100%);
-    border-color: #ffcc29;
-    outline: none;
-    box-shadow: 
-        0 0 0 3px rgba(255, 204, 41, 0.2),
-        0 4px 12px rgba(255, 204, 41, 0.15);
-    transform: translateY(-1px);
+    background: #fff !important;
+    border-color: #ffcc29 !important; /* Amarelo SuperVia no foco */
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(255, 204, 41, 0.1) !important;
+    transform: none !important; /* Remove transformação */
 }
 
 .quartoQuadro button {
@@ -748,59 +605,34 @@ select option[value=""] {
     left: 100%;
 }
 
-/* Botão Salvar - Verde moderno seguindo padrão da Home */
-.quartoQuadro button:nth-child(1) {
-    background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
-    box-shadow: 
-        0 6px 20px rgba(16, 185, 129, 0.4),
-        0 2px 8px rgba(16, 185, 129, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+/* Botões específicos seguindo EXATAMENTE o padrão da Home */
+.quartoQuadro button {
+    padding: 0.5rem 1rem !important;
+    border: none !important;
+    border-radius: 0.5rem !important;
+    cursor: pointer !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    transition: all 0.2s ease !important;
+    color: #374151 !important;
+    text-shadow: none !important;
+    position: relative !important;
+    overflow: visible !important;
+    margin: 0.25rem !important;
 }
 
-.quartoQuadro button:nth-child(1):hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 
-        0 10px 30px rgba(16, 185, 129, 0.5),
-        0 4px 15px rgba(16, 185, 129, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    background: linear-gradient(135deg, #059669 0%, #047857 50%, #065f46 100%);
+/* Remove efeitos shimmer */
+.quartoQuadro button::before {
+    display: none !important;
 }
 
-/* Botão Deletar - Vermelho moderno seguindo padrão da Home */
-.quartoQuadro button:nth-child(2) {
-    background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
-    box-shadow: 
-        0 6px 20px rgba(239, 68, 68, 0.4),
-        0 2px 8px rgba(239, 68, 68, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+.quartoQuadro button:hover::before {
+    display: none !important;
 }
 
-.quartoQuadro button:nth-child(2):hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 
-        0 10px 30px rgba(239, 68, 68, 0.5),
-        0 4px 15px rgba(239, 68, 68, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%);
-}
+/* Regras antigas removidas - agora usamos apenas .modern-button específico */
 
-/* Botão Compartilhar - Azul moderno seguindo padrão da Home */
-.quartoQuadro button:nth-child(3) {
-    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
-    box-shadow: 
-        0 6px 20px rgba(59, 130, 246, 0.4),
-        0 2px 8px rgba(59, 130, 246, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.quartoQuadro button:nth-child(3):hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 
-        0 10px 30px rgba(59, 130, 246, 0.5),
-        0 4px 15px rgba(59, 130, 246, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e40af 100%);
-}
+/* Regras antigas removidas - agora usamos apenas .modern-button específico */
 
 .quartoQuadro svg {
     display: inline;
@@ -812,49 +644,211 @@ select option[value=""] {
     transform: scale(1.1);
 }
 
-/* Estilos para labels seguindo padrão da Home */
+/* Estilos de texto seguindo EXATAMENTE a hierarquia da Home */
 .calc-tinta-container label,
 .primeiroQuadro label,
 .segundoQuadro label,
 .terceiroQuadro label,
-.quartoQuadro label {
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 0.95rem;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    letter-spacing: 0.025em;
+.quartoQuadro label,
+.divsSegundoQuadroTelaPequena .quadro {
+    color: #374151 !important; /* Cinza escuro sempre para legibilidade */
+    font-weight: 500 !important; /* Peso médio */
+    font-size: 0.95rem !important;
+    text-shadow: none !important; /* Remove text-shadow */
+    letter-spacing: normal !important;
+    line-height: 1.5 !important;
 }
 
-/* Estilos para títulos de seção */
+/* Títulos principais seguindo padrão da Home */
 .calc-tinta-container h2,
 .calc-tinta-container h3 {
-    color: #ffcc29;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    letter-spacing: 0.05em;
+    color: #1f2937 !important; /* Cinza muito escuro */
+    font-weight: 700 !important; /* Negrito forte */
+    margin-bottom: 0.5rem !important;
+    text-shadow: none !important;
+    letter-spacing: normal !important;
+    font-size: 1.125rem !important; /* 18px */
 }
 
-/* Ajustes para títulos colapsáveis */
+/* Títulos de cards com ícones - seguindo padrão da Home */
 .divsSegundoQuadroTelaPequena .tituloDaDivBloco {
-    color: #ffcc29;
-    font-weight: 700;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(255, 204, 41, 0.2);
-    margin-bottom: 1rem;
+    color: #1f2937 !important; /* Cinza escuro */
+    font-weight: 700 !important;
+    text-shadow: none !important;
+    padding: 0.5rem 0 !important;
+    border-bottom: 1px solid #e5e7eb !important; /* Borda cinza clara */
+    margin-bottom: 0.5rem !important;
+    font-size: 1rem !important;
+    display: flex !important;
+    align-items: center !important;
 }
 
-/* Melhorias para resultados e campos readonly */
-.resultado,
-.tabela2TelaGrande .resultado {
-    background: linear-gradient(135deg, 
-        rgba(255, 204, 41, 0.2) 0%, 
-        rgba(255, 204, 41, 0.1) 100%) !important;
-    border: 1px solid rgba(255, 204, 41, 0.4) !important;
-    color: #ffcc29 !important;
+/* Adicionar ícones aos títulos como na Home */
+.divsSegundoQuadroTelaPequena .tituloDaDivBloco::before {
+    content: "📊" !important; /* Ícone de gráfico */
+    margin-right: 0.5rem !important;
+    font-size: 1.1rem !important;
+}
+
+/* Subtítulos e informações secundárias */
+.calc-tinta-container .text-gray-500,
+.calc-tinta-container .text-gray-600,
+.tabela1TelaGrande>thead>tr>th {
+    color: #6b7280 !important; /* Cinza médio */
+    font-weight: 400 !important;
+    font-size: 0.875rem !important;
+}
+
+/* Headers de tabela com destaque amarelo mas fundo branco */
+.tabela1TelaGrande>thead>tr,
+.tabela1TelaGrande>thead>tr>th {
+    border-bottom: 2px solid #ffcc29 !important; /* Borda amarela */
+    padding: 1rem 0.75rem !important;
+    background: #fff !important; /* Fundo branco */
+    color: #1f2937 !important; /* Texto escuro */
     font-weight: 700 !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
-    pointer-events: none;
+    text-shadow: none !important;
+    letter-spacing: normal !important;
+}
+
+/* Hover das linhas de tabela */
+.tabela1TelaGrande>tbody>tr:hover,
+.tabela2TelaGrande>tbody>tr:hover {
+    background: #f9fafb !important; /* Cinza muito claro no hover */
+}
+
+/* Melhorias para resultados e campos readonly seguindo padrão da Home */
+.resultado,
+.tabela2TelaGrande .resultado,
+.segundoQuadro>div>div>div>div>.resultado {
+    background: #f3f4f6 !important; /* Fundo cinza claro como bg-gray-50 da Home */
+    border: 1.5px solid #d1d5db !important; /* Borda cinza */
+    color: #374151 !important; /* Texto escuro */
+    font-weight: 500 !important; /* Peso médio */
+    text-shadow: none !important;
+    pointer-events: none !important;
+    border-radius: 0.5rem !important;
+    padding: 0.75rem !important;
+}
+
+.quartoQuadro svg {
+    display: inline !important;
+    filter: none !important; /* Remove filtros */
+    transition: all 0.2s ease !important;
+}
+
+.quartoQuadro button:hover svg {
+    transform: scale(1.05) !important; /* Transformação mais sutil */
+}
+
+/* Ajustes gerais para remover glassmorphism e seguir padrão da Home */
+.tabela1TelaGrande,
+.tabela2TelaGrande {
+    background: #fff !important;
+    backdrop-filter: none !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+    margin: 0.75rem 0 !important; /* Margin reduzido igual aos cards */
+    overflow: visible !important;
+    white-space: normal !important;
+}
+
+.tabela1TelaGrande:hover,
+.tabela2TelaGrande:hover {
+    transform: scale(1.02) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+    border-color: #ffcc29 !important;
+}
+
+/* SVG de edição seguindo padrão da Home */
+.svgHabilitarEdicao {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    margin-top: 0.5rem !important;
+    transition: all 0.2s ease !important;
+    filter: none !important;
+    cursor: pointer !important;
+}
+
+.svgHabilitarEdicao:hover {
+    transform: scale(1.1) !important; /* Sem rotação */
+    opacity: 0.7 !important;
+}
+
+/* Botões principais seguindo EXATAMENTE o padrão da Home */
+.calc-tinta-container button.modern-button {
+    padding: 0.5rem 1rem !important;
+    border: none !important;
+    border-radius: 0.5rem !important;
+    cursor: pointer !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    transition: all 0.2s ease !important;
+    margin: 0.25rem !important;
+    min-height: 2.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.25rem !important;
+    flex: 1 !important; /* Garante que todos os botões tenham o mesmo tamanho */
+    min-width: 0 !important; /* Permite que o flexbox funcione corretamente */
+    width: auto !important; /* Remove qualquer largura fixa */
+}
+
+/* Container dos botões para distribuição igual */
+.quartoQuadro .flex {
+    display: flex !important;
+    gap: 0.5rem !important;
+    align-items: stretch !important; /* Faz os botões terem a mesma altura */
+}
+
+/* Botão Gerar - Verde para ação positiva - FORÇA MÁXIMA */
+.calc-tinta-container .quartoQuadro button.modern-button:nth-child(1) {
+    background-color: #10b981 !important;
+    background: #10b981 !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2) !important;
+    border: none !important;
+}
+
+.calc-tinta-container .quartoQuadro button.modern-button:nth-child(1):hover {
+    background-color: #059669 !important;
+    background: #059669 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Botão Limpar - Vermelho como delete-btn da Home */
+.calc-tinta-container .quartoQuadro button.modern-button:nth-child(2) {
+    background: #fff !important;
+    background-color: #fff !important;
+    color: #ef4444 !important;
+    border: 1.5px solid #ef4444 !important;
+    box-shadow: 0 2px 4px rgba(239,68,68,0.1) !important;
+}
+
+.calc-tinta-container .quartoQuadro button.modern-button:nth-child(2):hover {
+    background: #ef4444 !important;
+    background-color: #ef4444 !important;
+    color: #fff !important;
+    border-color: #b91c1c !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(239,68,68,0.2) !important;
+}
+
+/* Botão Compartilhar - Azul neutro */
+.calc-tinta-container .quartoQuadro button.modern-button:nth-child(3) {
+    background-color: #3b82f6 !important;
+    background: #3b82f6 !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2) !important;
+    border: none !important;
+}
+
+.calc-tinta-container .quartoQuadro button.modern-button:nth-child(3):hover {
+    background-color: #2563eb !important;
+    background: #2563eb !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3) !important;
 }
