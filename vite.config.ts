@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa';
-import { writeFileSync } from 'fs';
+import { writeFileSync, copyFileSync } from 'fs';
 import { resolve } from 'path';
 
 // Gera versão baseada no timestamp
@@ -36,6 +36,16 @@ export default defineConfig({
         writeFileSync(
           resolve(__dirname, 'public/version.json'),
           JSON.stringify(versionInfo, null, 2)
+        );
+      }
+    },
+    {
+      name: 'copy-web-config',
+      writeBundle() {
+        // Copia web.config para dist após build
+        copyFileSync(
+          resolve(__dirname, 'web.config'),
+          resolve(__dirname, 'dist/web.config')
         );
       }
     },
