@@ -31,8 +31,13 @@ export const usePWAUpdate = (): PWAUpdateHook => {
     const registerSW = async () => {
       if ('serviceWorker' in navigator) {
         try {
-          const reg = await navigator.serviceWorker.register('/SuperviaApp/sw.js', {
-            scope: '/SuperviaApp/'
+          // Detecta se está em desenvolvimento ou produção
+          const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+          const swPath = isDev ? '/sw.js' : '/SuperviaApp/sw.js';
+          const swScope = isDev ? '/' : '/SuperviaApp/';
+          
+          const reg = await navigator.serviceWorker.register(swPath, {
+            scope: swScope
           });
 
           setRegistration(reg);
@@ -54,17 +59,28 @@ export const usePWAUpdate = (): PWAUpdateHook => {
             }
           });
 
-          // Verifica periodicamente por atualizações (a cada 60 segundos)
-          const checkForUpdates = () => {
-            reg.update().catch(console.error);
+          // Verifica periodicamente por atualizações (a cada 10 minutos)
+          const checkForUpdates = async () => {
+            try {
+              await reg.update();
+            } catch (error) {
+              // Silencia os erros de atualização do SW para evitar spam no console
+              console.debug('SW update check failed (normal behavior):', error);
+            }
           };
 
-          const interval = setInterval(checkForUpdates, 60000);
+          const interval = setInterval(checkForUpdates, 600000); // 10 minutos
           
-          // Verifica imediatamente quando a aba ganha foco
+          // Verifica quando a aba ganha foco, mas com throttle
+          let lastCheck = 0;
           const handleVisibilityChange = () => {
             if (!document.hidden) {
-              checkForUpdates();
+              const now = Date.now();
+              // Só verifica se passou pelo menos 5 minutos desde a última verificação
+              if (now - lastCheck > 300000) {
+                lastCheck = now;
+                checkForUpdates();
+              }
             }
           };
 
