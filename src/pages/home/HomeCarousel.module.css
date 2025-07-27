@@ -1,0 +1,132 @@
+.carousel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1rem 1.5rem 2rem;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .carousel {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+.card {
+  width: 280px;
+  min-height: 260px;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-color: #ffcc29;
+}
+
+.card-content {
+  flex: 1;
+  margin-bottom: 1rem;
+  color: #374151;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.edit-btn, .delete-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.edit-btn {
+  background-color: #ffcc29;
+  color: #1f2937;
+  box-shadow: 0 2px 4px rgba(255, 204, 41, 0.2);
+  font-size: 0.875rem;
+}
+.edit-btn:hover {
+  background-color: #ffd952;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(255, 204, 41, 0.3);
+}
+
+.delete-btn {
+  background: #fff;
+  color: #ef4444;
+  border: 1.5px solid #ef4444;
+  box-shadow: 0 2px 4px rgba(239,68,68,0.1);
+  font-size: 0.875rem;
+}
+.delete-btn:hover {
+  background: #ef4444;
+  color: #fff;
+  border-color: #b91c1c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(239,68,68,0.2);
+}
+
+@media (max-width: 768px) {
+  .carousel {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .card {
+    width: 100%;
+    min-width: unset;
+    max-width: 100%;
+    min-height: 240px;
+    margin: 0;
+    padding: 1rem;
+  }
+  .card-content {
+    font-size: 0.85rem;
+  }
+  .card-actions {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.5rem;
+  }
+  .edit-btn, .delete-btn {
+    flex: 1;
+    text-align: center;
+    padding: 0.6rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .card {
+    min-width: 220px;
+    max-width: 260px;
+  }
+}

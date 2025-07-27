@@ -6,7 +6,6 @@ import {
 
 import MainLayout from '../src/layout/MainLayout'
 import LoadingScreen from "./components/loading/LoadingScreen";
-
 import Home from './pages/home/Home';
 import CalcTintaEsfera from "./pages/calcTintaEsfera/CalcTintaEsfera";
 import CalcConsumo from "./pages/calcConsumo/calcConsumo";
@@ -22,45 +21,16 @@ const router = createBrowserRouter([
       },
       {
         path: "CalcTintaEsfera",
-        element: <CalcTintaEsfera></CalcTintaEsfera>,
+        element: <CalcTintaEsfera />,
       },
       {
         path: "CalcConsumo",
-        element: <CalcConsumo></CalcConsumo>,
+        element: <CalcConsumo />,
       },
       {
         path: "about",
         // Single route in lazy file
         lazy: () => import("./pages/About"),
-      },
-      {
-        path: "dashboard",
-        async lazy() {
-          // Multiple routes in lazy file
-          const { DashboardLayout } = await import("./pages/Dashboard");
-          return { Component: DashboardLayout };
-        },
-        children: [
-          {
-            index: true,
-            async lazy() {
-              const { DashboardIndex } = await import("./pages/Dashboard");
-              return { Component: DashboardIndex };
-            },
-          },
-          {
-            path: "messages",
-            async lazy() {
-              const { dashboardMessagesLoader, DashboardMessages } = await import(
-                "./pages/Dashboard"
-              );
-              return {
-                loader: dashboardMessagesLoader,
-                Component: DashboardMessages,
-              };
-            },
-          },
-        ],
       },
       {
         path: "*",

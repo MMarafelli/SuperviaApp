@@ -1,42 +1,146 @@
-.header {
-  all: initial;
-
+.modern-header {
   position: fixed;
-  max-height: 70px;
-  width: 100vw;
-  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 1000;
+  background: hsl(0, 0%, 17%);
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 1px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
+.header-container {
   display: flex;
-  flex-direction: row;
-  flex-flow: row nowrap;
-  background-color: #282c34;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
 
-  color: white;
+/* Logo Section */
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 0 0 auto;
+}
+
+.brand-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.logo-main {
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.logo-main:hover {
+  transform: scale(1.05);
+}
+
+.brand-tagline {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+/* Header Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 0 0 auto;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.user-info:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 204, 41, 0.3);
+  transform: translateY(-1px);
+}
+
+.user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #ffcc29, #ffd952);
+  border-radius: 8px;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(255, 204, 41, 0.2);
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-role {
+  font-size: 0.75rem;
+  color: #e2e8f0;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modern-header {
+    height: 70px;
+  }
   
-
+  .header-container {
+    padding: 0 1rem;
+  }
+  
+  .brand-name {
+    font-size: 1.25rem;
+  }
+  
+  .brand-tagline {
+    font-size: 0.65rem;
+  }
+  
+  .user-details {
+    display: none;
+  }
+  
+  .user-info {
+    padding: 0.375rem;
+  }
 }
 
-.divLogoHeader {
-  will-change: filter;
-  transition: filter 300ms;
-  max-width: 20vw;
-}
-
-.divFillerHeader {
-  width: 20vw
-}
-
-.header>nav {
-  text-align: end;
-  width: 60vw;
-  padding: 1.5em;
-}
-
-.logo {
-  all: initial;
-  height: 15px;
-  size: 15px;
-  padding: 2.1em 1.5em 1.5em 1.5em;
+@media (max-width: 480px) {
+  .brand-info {
+    display: none;
+  }
+  
+  .header-actions {
+    gap: 0.5rem;
+  }
 }

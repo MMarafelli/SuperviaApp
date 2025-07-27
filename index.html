@@ -3,41 +3,31 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="public/assets/icons/favicon.png" />
+  <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181818" />
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f3f3" />
 
-  <link rel="manifest" href="manifest.json" />
-  <meta name="apple-mobile-web-app-staus-bar" content="#ffcc29" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="apple-mobile-web-app-status-bar" content="#ffcc29" />
 
   <!-- apple support -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="#282c34" />
-  <link rel="apple-touch-icon" href="/public/assets/icons/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
   <title>Super Via</title>
 </head>
 
 <body>
   <div id="root"></div>
   <script>
+    // Detecção básica de tema
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.documentElement.setAttribute("theme", "dark");
-      //console.log("1");
-      //console.log(document.documentElement.getAttribute('theme'));
     } else {
       document.documentElement.setAttribute("theme", "light");
-      //console.log("2");
-      //console.log(document.documentElement.getAttribute('theme'));
     }
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-      const newColorScheme = event.matches ? "dark" : "light";
-      this.meta.updateTag({ name: 'apple-mobile-web-app-status-bar-style', content: `default` }, `name='apple-mobile-web-app-status-bar-style'`);
-      //console.log("3");
-      //console.log(document.documentElement.getAttribute('theme'));
-    });
-
   </script>
   <script type="module" src="/src/main.tsx"></script>
 </body>

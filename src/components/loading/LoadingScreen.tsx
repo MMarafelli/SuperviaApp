@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import type { FC } from 'react';
 import NProgress from 'nprogress';
 import './LoadingScreen.css';
-import logo from '../../../public/assets/icons/favicon.png';
+import logo from '/assets/icons/favicon.png';
 
 const LoadingScreen: FC = () => {
   useEffect(() => {

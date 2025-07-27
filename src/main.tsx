@@ -2,10 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 
-
-import { PwaPrompt } from 'react-ios-pwa-prompt-ts'
-
 import './index.css';
+import './styles/animations.css';
 import App from './App';
 
 //verificação da URL inicial
@@ -14,14 +12,6 @@ import App from './App';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/SuperviaApp/sw.js', { scope: '/SuperviaApp/' }).then((registration) => {
-    console.log('Service Worker registrado com sucesso:', registration);
-  }).catch((error) => {
-    console.error('Erro ao registrar o Service Worker:', error);
-  });
-}
 
 const checkForUpdates = async () => {
   const registration = await navigator.serviceWorker.getRegistration();
@@ -41,10 +31,8 @@ window.addEventListener('message', (event) => {
   }
 });
 
-
 root.render(
   <React.StrictMode>
-    <PwaPrompt promptOnVisit={3} timesToShow={3} permanentlyHideOnDismiss={false} />
     <App />
   </React.StrictMode>
 );

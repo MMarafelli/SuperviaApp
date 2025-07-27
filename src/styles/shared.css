@@ -1,0 +1,23 @@
+.page-title {
+    color: #ffcc29;
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 2rem 1.5rem 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: inline-block;
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 60px;
+    height: 4px;
+    background: #ffcc29;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

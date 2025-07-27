@@ -1,13 +1,22 @@
-// Formulario.jsmonodirecional
-import { useRef, useState, useEffect } from 'react';
+// Formulario.tsx
+import { useRef, useState, useEffect, useMemo, useCallback } from 'react';
+import { PageTitle } from '../../components/PageTitle';
 import './CalcTintaEsfera.css';
+import { StorageService } from '../../services/StorageService';
+import { formatDateToPtBR } from '../../utils/dateUtils';
+import { isDevelopment } from '../../utils/devUtils';
 
 import BlocoDivCompVariavel from '../../components/blocosCalcTintaEsfera/blocoDivComprimento'
 import BlocoDivUnidVariavel from '../../components/blocosCalcTintaEsfera/blocoDivUnidade'
 import BlocoTrVariavel from '../../components/blocosCalcTintaEsfera/blocoTr'
 
-const Formulario = () => {
+function getQueryParam(param: string) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
 
+
+const Formulario = () => {
     // ---------------------------------------------------------------------------------------------
     // Variáveis da página
     // --------------------------------------------------------------------------------------------
@@ -16,47 +25,60 @@ const Formulario = () => {
     //const [mostrarConteudo, setMostrarConteudo] = useState(false);
     const [levantamento, setLevantamento] = useState('');
 
-    const initialState = {
-        estado: localStorage.getItem('estado') || '',
-        equipe: localStorage.getItem('equipe') || '',
-        nomeEstrada: localStorage.getItem('nomeEstrada') || '',
-        kmInicial: localStorage.getItem('kmInicial') || '',
-        diaMesAno: localStorage.getItem('diaMesAno') || '',
-        kmFinal: localStorage.getItem('kmFinal') || '',
-        esquerdoX: localStorage.getItem('esquerdoX') || '',
-        esquerdoY: localStorage.getItem('esquerdoY') || '',
-        esquerdoZ: localStorage.getItem('esquerdoZ') || '',
-        esquerdoTipoTacha: localStorage.getItem('esquerdoTipoTacha') || '',
-        esquerdoQtdTacha: localStorage.getItem('esquerdoQtdTacha') || '',
-        direitoX: localStorage.getItem('direitoX') || '',
-        direitoY: localStorage.getItem('direitoY') || '',
-        direitoZ: localStorage.getItem('direitoZ') || '',
-        direitoTipoTacha: localStorage.getItem('direitoTipoTacha') || '',
-        direitoQtdTacha: localStorage.getItem('direitoQtdTacha') || '',
-        eixo4x12X: localStorage.getItem('eixo4x12X') || '',
-        eixo4x12Y: localStorage.getItem('eixo4x12Y') || '',
-        eixo4x12Z: localStorage.getItem('eixo4x12Z') || '',
-        eixo4x12TipoTacha: localStorage.getItem('eixo4x12TipoTacha') || '',
-        eixo4x12QtdTacha: localStorage.getItem('eixo4x12QtdTacha') || '',
-        eixo2x2X: localStorage.getItem('eixo2x2X') || '',
-        eixo2x2Y: localStorage.getItem('eixo2x2Y') || '',
-        eixo2x2Z: localStorage.getItem('eixo2x2Z') || '',
-        eixo2x2TipoTacha: localStorage.getItem('eixo2x2TipoTacha') || '',
-        eixo2x2QtdTacha: localStorage.getItem('eixo2x2QtdTacha') || '',
-        alcaX: localStorage.getItem('alcaX') || '',
-        alcaY: localStorage.getItem('alcaY') || '',
-        alcaZ: localStorage.getItem('alcaZ') || '',
-        alcaTipoTacha: localStorage.getItem('alcaTipoTacha') || '',
-        alcaQtdTacha: localStorage.getItem('alcaQtdTacha') || '',
-        totalMetrosPista: localStorage.getItem('totalMetrosPista') || '',
-        esfera: localStorage.getItem('esfera') || '',
-        resultadoEsferas: localStorage.getItem('resultadoEsferas') || '',
-        tinta: localStorage.getItem('tinta') || '',
-        resultadoTinta: localStorage.getItem('resultadoTinta') || '',
-        remocao: localStorage.getItem('remocao') || '',
-    };
+    const isDev = isDevelopment();
+
+    const initialState = useMemo(() => {
+        return StorageService.getInitialState(isDev);
+    }, [isDev]);
 
     const [campos, setCampos] = useState(initialState);
+    const [editId, setEditId] = useState<string | null>(null);
+
+    // Ao montar, verifica se há id na query e carrega o card correspondente
+    useEffect(() => {
+        const id = getQueryParam('id');
+        setEditId(id);
+
+        if (id) {
+            // Sempre que for editar, preenche tudo com os dados do card salvo
+            const cardsSalvos = localStorage.getItem('tintaEsferaCards');
+            if (cardsSalvos) {
+                try {
+                    type CardData = {
+                        quantidade: number;
+                        cor: string;
+                        data: string;
+                        nomeEstrada?: string;
+                    };
+                    type TintaEsferaCard = { id: string; resumo: string; data: CardData; show: boolean };
+                    const cardsArray: TintaEsferaCard[] = JSON.parse(cardsSalvos);
+                    const card = cardsArray.find((c) => c.id === id);
+                    if (card) {
+                        setCampos(prev => ({
+                            ...prev,
+                            nomeEstrada: card.data.nomeEstrada ?? '',
+                            estado: card.data.cor ?? '',
+                            diaMesAno: card.data.data ?? '',
+                            tinta: card.data.quantidade !== undefined ? card.data.quantidade.toString() : ''
+                        }));
+                    } else {
+                        setCampos(initialState);
+                    }
+                } catch {
+                    setCampos(initialState);
+                }
+            } else {
+                setCampos(initialState);
+            }
+        } else {
+            // Acesso direto à página (sem ID de edição)
+            // O initialState já foi criado com a lógica correta de DEV/PROD pelo StorageService
+            setCampos(initialState);
+        }
+    }, [initialState, isDev]);
+
+    // Ao montar, verifica se há id na query e carrega o card correspondente
+// ...existing code...
 
     // ---------------------------------------------------------------------------------------------
     // Handlers
@@ -75,18 +97,9 @@ const Formulario = () => {
         };
     }, []);
 
-    // Atualizador de cache
-    useEffect(() => {
-        Object.keys(campos).forEach((campo) => {
-            if (campo in campos) {
-                localStorage.setItem(campo, campos[campo as keyof typeof campos]);
-                // Usa a asserção de tipo para informar ao TypeScript que campo é uma chave válida de campos
-            }
-        });
-    }, [campos]);
 
     // handler de valor geral
-    const handleChange = (
+    const handleChange = useCallback((
         campo: keyof typeof campos,
         valor: string | boolean
     ) => {
@@ -94,32 +107,83 @@ const Formulario = () => {
             ...prevCampos,
             [campo]: valor,
         }));
-    };
+    }, []);
 
-    // 
+    // Funções usadas em hooks precisam ser estáveis
+    const parXeY = useCallback((campo: string) => {
+        const campoX = campo + 'X';
+        const campoY = campo + 'Y';
+        const campoZ = campo + 'Z';
+        
+        setCampos(prevCampos => {
+            const x = parseFloat(prevCampos[campoX as keyof typeof campos] as string) || 0;
+            let y = parseFloat(prevCampos[campoY as keyof typeof campos] as string) || 0;
+            if (campo === 'eixo4x12') y = y * 4;
+            if (campo === 'eixo2x2') y = y * 2;
+            let valorZ = calcularM2(x.toString(), y.toString()).toString();
+            if (valorZ === '0') valorZ = '';
+            
+            return {
+                ...prevCampos,
+                [campoZ]: valorZ
+            };
+        });
+    }, []);
+
+    const calcularMetrosPista = useCallback(() => {
+        setCampos(prevCampos => {
+            const handleNaN = (value: number) => isNaN(value) ? 0 : value;
+            const direitoZNumber = handleNaN(parseFloat(prevCampos.direitoZ));
+            const esquerdoZNumber = handleNaN(parseFloat(prevCampos.esquerdoZ));
+            const eixo2x2ZNumber = handleNaN(parseFloat(prevCampos.eixo2x2Z));
+            const eixo4x12ZNumber = handleNaN(parseFloat(prevCampos.eixo4x12Z));
+            const alcaZNumber = handleNaN(parseFloat(prevCampos.alcaZ));
+            const total = direitoZNumber + esquerdoZNumber + eixo2x2ZNumber + eixo4x12ZNumber + alcaZNumber;
+            const roundedResultado = Math.ceil(total * 100) / 100;
+            
+            return {
+                ...prevCampos,
+                totalMetrosPista: roundedResultado.toString()
+            };
+        });
+    }, []);
+
+    // Removido o useEffect que atualizava localStorage a cada mudança de campos para evitar loop infinito.
+
+    // Atualize os cálculos quando os valores X ou Y mudarem
     useEffect(() => {
-        parXeY('direito');
-    }, [campos.direitoX, campos.direitoY]);
+        const updatedFields = [];
+        
+        if (campos.direitoX || campos.direitoY) updatedFields.push('direito');
+        if (campos.esquerdoX || campos.esquerdoY) updatedFields.push('esquerdo');
+        if (campos.eixo4x12X || campos.eixo4x12Y) updatedFields.push('eixo4x12');
+        if (campos.eixo2x2X || campos.eixo2x2Y) updatedFields.push('eixo2x2');
+        if (campos.alcaX || campos.alcaY) updatedFields.push('alca');
+        
+        // Executa as atualizações em batch
+        if (updatedFields.length > 0) {
+            updatedFields.forEach(field => parXeY(field));
+        }
+    }, [
+        campos.direitoX, campos.direitoY,
+        campos.esquerdoX, campos.esquerdoY,
+        campos.eixo4x12X, campos.eixo4x12Y,
+        campos.eixo2x2X, campos.eixo2x2Y,
+        campos.alcaX, campos.alcaY,
+        parXeY
+    ]);
 
-    useEffect(() => {
-        parXeY('esquerdo');
-    }, [campos.esquerdoX, campos.esquerdoY]);
-
-    useEffect(() => {
-        parXeY('eixo4x12');
-    }, [campos.eixo4x12X, campos.eixo4x12Y]);
-
-    useEffect(() => {
-        parXeY('eixo2x2');
-    }, [campos.eixo2x2X, campos.eixo2x2Y]);
-
-    useEffect(() => {
-        parXeY('alca');
-    }, [campos.alcaX, campos.alcaY]);
-
+    // Atualize o total quando os valores Z mudarem
     useEffect(() => {
         calcularMetrosPista();
-    }, [campos.direitoZ, campos.esquerdoZ, campos.eixo4x12Z, campos.eixo2x2Z, campos.alcaZ]);
+    }, [
+        campos.direitoZ,
+        campos.esquerdoZ,
+        campos.eixo4x12Z,
+        campos.eixo2x2Z,
+        campos.alcaZ,
+        calcularMetrosPista
+    ]);
 
     // Libera ou trava a edição no campo
     /*     const handleEditEsfera = () => {
@@ -132,7 +196,6 @@ const Formulario = () => {
 
     // Controle se o campo está focado ou não.
     const handleInputFocus = (inputName: string) => {
-        //console.log(inputName);
         setIsFocused(inputName);
     };
 
@@ -177,7 +240,7 @@ const Formulario = () => {
         { valor: '', label: 'Selecione...' },
         { valor: 'Tacha monodirecional', label: 'Tacha monodirecional' },
         { valor: 'Tacha bidirecional', label: 'Tacha bidirecional' },
-        { valor: 'Tachão monodirecional', label: 'Tachão monodirecional ' },
+        { valor: 'Tachão monodirecional', label: 'Tachão monodirecional' },
         { valor: 'Tachão bidirecional', label: 'Tachão bidirecional' },
     ];
 
@@ -187,30 +250,6 @@ const Formulario = () => {
 
 
     //Pega o par X e Y correto em cache para o cálculo de M2.
-    const parXeY = (campo: string) => {
-        const campoX = campo + 'X';
-        const campoY = campo + 'Y';
-        const x = parseFloat(campos[campoX as keyof typeof campos] as string) || 0;
-        let y = parseFloat(campos[campoY as keyof typeof campos] as string) || 0;
-
-        if (campo === 'eixo4x12') {
-            y = y * 4
-            //console.log(y)
-        }
-
-        if (campo === 'eixo2x2') {
-            y = y * 2
-            //console.log(y)
-        }
-
-        let valorZ = calcularM2(x.toString(), y.toString()).toString();
-        if (valorZ == '0') {
-            valorZ = '';
-        }
-
-        const campoZ = campo + 'Z';
-        handleChange(campoZ as keyof typeof campos, valorZ)
-    }
 
     // Calcula metro quadro para a tabela 
     const calcularM2 = (x: string, y: string): number => {
@@ -226,60 +265,97 @@ const Formulario = () => {
         return roundedResult;
     };
 
-    const calcularMetrosPista = () => {
-
-        //console.log('calcularMetrosPista')
-        const handleNaN = (value: number) => isNaN(value) ? 0 : value;
-
-        const direitoZNumber = handleNaN(parseFloat(campos.direitoZ));
-        const esquerdoZNumber = handleNaN(parseFloat(campos.esquerdoZ));
-        const eixo2x2ZNumber = handleNaN(parseFloat(campos.eixo2x2Z));
-        const eixo4x12ZNumber = handleNaN(parseFloat(campos.eixo4x12Z));
-        const alcaZNumber = handleNaN(parseFloat(campos.alcaZ));
-
-        const total =
-            direitoZNumber + esquerdoZNumber + eixo2x2ZNumber + eixo4x12ZNumber + alcaZNumber;
-
-        const roundedResultado = Math.ceil(total * 100) / 100;
-        handleChange('totalMetrosPista', roundedResultado.toString());
-    };
 
     // ---------------------------------------------------------------------------------------------
     // Gerar texto do levantamento
     // ---------------------------------------------------------------------------------------------
     const gerarLevantamento = () => {
         let textoLevantamento = ``;
-        if (campos.nomeEstrada && campos.estado && campos.diaMesAno && campos.diaMesAno != '' && campos.equipe) {
+        if (campos.nomeEstrada && campos.estado && campos.diaMesAno && campos.diaMesAno !== '' && campos.equipe) {
             const partes = campos.diaMesAno.split('-');
             const dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
             textoLevantamento += `${campos.nomeEstrada} - ${campos.estado} - ${dataFormatada}\n\n`
             textoLevantamento += `Trecho: KM ${campos.kmInicial || '0'} ao KM ${campos.kmFinal || '0'} / Equipe: ${campos.equipe}\n\n`;
-        }
+        // não feche a função aqui!
 
         // Pintura Automática Definitiva
-        if ((campos.direitoZ && campos.direitoZ != '0')
-            || (campos.esquerdoZ && campos.esquerdoZ != '0')
-            || (campos.eixo4x12Z && campos.eixo4x12Z != '0')
-            || (campos.eixo2x2Z && campos.eixo2x2Z != '0')
-            || (campos.alcaZ && campos.alcaZ != '0')
-            || (campos.esfera && campos.esfera != '0')
-            || (campos.tinta && campos.tinta != '0')) {
+        if ((campos.direitoZ && campos.direitoZ !== '0')
+            || (campos.esquerdoZ && campos.esquerdoZ !== '0')
+            || (campos.eixo4x12Z && campos.eixo4x12Z !== '0')
+            || (campos.eixo2x2Z && campos.eixo2x2Z !== '0')
+            || (campos.alcaZ && campos.alcaZ !== '0')
+            || (campos.esfera && campos.esfera !== '0')
+            || (campos.tinta && campos.tinta !== '0')) {
             textoLevantamento += `*Pintura Automática Definitiva*\n`;
 
-            if (campos.direitoZ && campos.direitoZ != '0') textoLevantamento += `\u0020\u0020\u0020\u0020\u0020Bordo direito: ${campos.direitoY} metro(s)\n`;
-            if (campos.esquerdoZ && campos.esquerdoZ != '0') textoLevantamento += `Bordo esquerdo: ${campos.esquerdoY} metro(s)\n`;
-            if (campos.eixo4x12Z && campos.eixo4x12Z != '0') textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Eixo 4x12: ${campos.eixo4x12Y} unidade(s)\n`;
-            if (campos.eixo2x2Z && campos.eixo2x2Z != '0') textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u00202X2: ${campos.eixo2x2Y} unidade(s)\n`;
-            if (campos.alcaZ && campos.alcaZ != '0') textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Alça: ${campos.alcaY} metro(s)\n`;
+            if (campos.direitoZ && campos.direitoZ !== '0') textoLevantamento += `\u0020\u0020\u0020\u0020\u0020Bordo direito: ${campos.direitoY} metro(s)\n`;
+            if (campos.esquerdoZ && campos.esquerdoZ !== '0') textoLevantamento += `Bordo esquerdo: ${campos.esquerdoY} metro(s)\n`;
+        }
+
+        // --- Salvar no localStorage para exibir na Home ---
+        try {
+            const cardsSalvos = localStorage.getItem('tintaEsferaCards');
+            let cardsArray = [];
+            if (cardsSalvos) {
+                try {
+                    cardsArray = JSON.parse(cardsSalvos);
+                } catch {
+                    cardsArray = [];
+                }
+            }
+            const resumo = `${campos.nomeEstrada || ''} - ${campos.estado || ''} (${formatDateToPtBR(campos.diaMesAno || '')})`;
+            const cardData = {
+                quantidade: Number(campos.tinta) || 0,
+                cor: campos.estado || '',
+                data: campos.diaMesAno || '',
+                nomeEstrada: campos.nomeEstrada || '',
+                equipe: campos.equipe || '',
+                kmInicial: campos.kmInicial || '',
+                kmFinal: campos.kmFinal || '',
+                esfera: campos.esfera || '',
+                totalMetrosPista: campos.totalMetrosPista || '',
+                resultadoEsferas: campos.resultadoEsferas || '',
+                resultadoTinta: campos.resultadoTinta || '',
+            };
+            if (editId) {
+                // Atualizar card existente
+                const idx = cardsArray.findIndex((c: { id: string }) => c.id === editId);
+                if (idx !== -1) {
+                    cardsArray[idx] = {
+                        ...cardsArray[idx],
+                        resumo,
+                        data: cardData,
+                        show: true
+                    };
+                }
+            } else {
+                // Criar novo card
+                const id = Date.now().toString() + Math.random().toString(36).substring(2, 8);
+                const novoCard = {
+                    id,
+                    resumo,
+                    data: cardData,
+                    show: true
+                };
+                cardsArray.push(novoCard);
+            }
+            localStorage.setItem('tintaEsferaCards', JSON.stringify(cardsArray));
+        } catch (e) {
+            // Erro ao salvar card, pode ser exibido para o usuário se necessário
+        }
+        
+        if (campos.eixo4x12Z && campos.eixo4x12Z !== '0') textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Eixo 4x12: ${campos.eixo4x12Y} unidade(s)\n`;
+        if (campos.eixo2x2Z && campos.eixo2x2Z !== '0') textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u00202X2: ${campos.eixo2x2Y} unidade(s)\n`;
+        if (campos.alcaZ && campos.alcaZ !== '0') textoLevantamento += `\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Alça: ${campos.alcaY} metro(s)\n`;
             textoLevantamento += `\n`;
         }
 
         // Implantação de Tachas monodirecional
         if ((campos.direitoTipoTacha == 'Tacha monodirecional' && campos.direitoQtdTacha)
-            || (campos.esquerdoTipoTacha == 'Tacha monodirecional' && campos.esquerdoTipoTacha)
-            || (campos.eixo4x12TipoTacha == 'Tacha monodirecional' && campos.eixo4x12TipoTacha)
-            || (campos.eixo2x2TipoTacha == 'Tacha monodirecional' && campos.eixo2x2TipoTacha)
-            || (campos.alcaTipoTacha == 'Tacha monodirecional' && campos.alcaTipoTacha)) {
+            || (campos.esquerdoTipoTacha == 'Tacha monodirecional' && campos.esquerdoQtdTacha)
+            || (campos.eixo4x12TipoTacha == 'Tacha monodirecional' && campos.eixo4x12QtdTacha)
+            || (campos.eixo2x2TipoTacha == 'Tacha monodirecional' && campos.eixo2x2QtdTacha)
+            || (campos.alcaTipoTacha == 'Tacha monodirecional' && campos.alcaQtdTacha)) {
             textoLevantamento += `*Implantação de Tachas monodirecionais*\n`;
 
             if (campos.direitoTipoTacha == 'Tacha monodirecional' && campos.direitoQtdTacha) textoLevantamento += `\u0020\u0020\u0020\u0020\u0020Bordo direito: ${campos.direitoQtdTacha} unidade(s)\n`;
@@ -343,10 +419,9 @@ const Formulario = () => {
             textoLevantamento += `*Remoção*: ${campos.remocao} unidade(s)\n`;
         }
 
-        if (textoLevantamento == '') {
+        if (textoLevantamento === '') {
             textoLevantamento = 'Favor preencher os campos do formulário';
         }
-        //console.log(textoLevantamento)
         setLevantamento(textoLevantamento);
     };
 
@@ -354,14 +429,18 @@ const Formulario = () => {
     // Controle do compatilhamento
     // ---------------------------------------------------------------------------------------------
     const compartilharTexto = () => {
-        if (levantamento && levantamento != 'Favor preencher os campos do formulário' && navigator.share) {
+        if (levantamento && levantamento !== 'Favor preencher os campos do formulário' && navigator.share) {
             navigator.share({
                 title: 'Compartilhar Levantamento',
                 text: levantamento,
             })
-                .then(() => console.log('Levantamento compartilhado com sucesso!'))
-                .catch((error) => console.error('Erro ao compartilhar levantamento:', error));
-        } else if (!levantamento || levantamento == 'Favor preencher os campos do formulário') {
+                .then(() => {
+                    // Compartilhamento realizado com sucesso
+                })
+                .catch((error) => {
+                    console.error('Erro ao compartilhar levantamento:', error);
+                });
+        } else if (!levantamento || levantamento === 'Favor preencher os campos do formulário') {
             alert('O levantamento precisa ser gerado antes de compartilhar.');
         } else {
             alert('A funcionalidade de compartilhamento não é suportada neste navegador.');
@@ -425,8 +504,7 @@ const Formulario = () => {
     };
 
     const limparCampos = (campo: string) => {
-        //console.log('limpar campo ' + campo)
-        handleChange(`${campo + 'X' as keyof typeof campos}`, '');
+        handleChange(`${campo + 'X' as keyof typeof campos}`, '0.10'); // valor default válido para select
         handleChange(`${campo + 'Y' as keyof typeof campos}`, '');
         handleChange(`${campo + 'TipoTacha' as keyof typeof campos}`, '');
         handleChange(`${campo + 'QtdTacha' as keyof typeof campos}`, '');
@@ -443,6 +521,7 @@ const Formulario = () => {
 
     return (
         <div>
+            <PageTitle title="Pintura Automática" />
 
             {/* Primeiro quadro */}
             <div className="primeiroQuadro p-2 m-4 mb-4 flex flex-col">
@@ -947,6 +1026,8 @@ const Formulario = () => {
                     <button
                         className="flex-grow bg-green-500 text-white p-4 m-2 rounded-md"
                         onClick={gerarLevantamento}
+                        type="button"
+                        aria-label="Gerar levantamento de pintura automática"
                     >
                         <svg fill="#ffffff" strokeWidth="0.05" height="24" width="24" stroke="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                             <path className="cls-1" d="M11,5H5A2,2,0,0,1,7,3H7V2A1,1,0,0,1,9,2V3H9a2,2,0,0,1,2,2Zm1-2v9H4V3H3A1,1,0,0,0,2,4v9a1,1,0,0,0,1,1H13a1,1,0,0,0,1-1V4a1,1,0,0,0-1-1ZM10,7H5V8h5ZM8,9H5v1H8Z">
@@ -957,6 +1038,8 @@ const Formulario = () => {
                     <button
                         className="flex-grow bg-red-500 text-white p-4 m-2 rounded-md"
                         onClick={resetarFormulario}
+                        type="button"
+                        aria-label="Resetar formulário"
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -966,6 +1049,8 @@ const Formulario = () => {
                     <button
                         className="flex-grow bg-blue-500 text-white p-4 m-2 rounded-md"
                         onClick={compartilharTexto}
+                        type="button"
+                        aria-label="Compartilhar levantamento"
                     >
                         <svg fill="#ffffff" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                             <path d="M12,10c-.6012,0-1.13403,.27069-1.50067,.69055l-4.54468-2.27234c.02881-.13507,.04535-.2746,.04535-.41821,0-.14368-.01654-.28314-.04535-.41821l4.54468-2.2724c.36664,.4198,.89954,.69061,1.50067,.69061,1.10455,0,2-.89545,2-2,0-1.10461-.89545-2-2-2s-2,.89539-2,2c0,.14362,.01654,.28314,.04535,.41821l-4.54468,2.27234c-.36664-.41986-.89948-.69055-1.50067-.69055-1.10455,0-2,.89539-2,2,0,1.10455,.89545,2,2,2,.60114,0,1.13403-.27081,1.50067-.69061l4.54468,2.2724c-.02881,.13507-.04535,.27454-.04535,.41821,0,1.10455,.89545,2,2,2s2-.89545,2-2c0-1.10461-.89545-2-2-2Z">

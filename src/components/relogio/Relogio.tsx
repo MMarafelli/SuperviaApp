@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react';
 function Relogio() {
 
     // ---------------------------------------------------------------------------------------------
-    // Controle de tema
+    // Controle de tema (temporário - usando detecção manual)
     // ---------------------------------------------------------------------------------------------
     const theme = document.documentElement.getAttribute('theme');
-    const corDoSVG = theme == 'dark' ? 'white' : 'black';
+    const corDoSVG = theme === 'dark' ? 'white' : 'black';
 
 
     const [time, setTime] = useState(new Date());
