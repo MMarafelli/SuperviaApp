@@ -1,48 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { usePWAUpdate } from '../../hooks/usePWAUpdate';
 
-interface UpdateNotificationProps {
-  registration?: ServiceWorkerRegistration;
-}
-
-const UpdateNotification: React.FC<UpdateNotificationProps> = ({ registration }) => {
-  const [showUpdatePrompt, setShowUpdatePrompt] = useState(false);
+const UpdateNotification: React.FC = () => {
+  const { needRefresh, updateServiceWorker, isOnline } = usePWAUpdate();
+  const [isDismissed, setIsDismissed] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
 
-  useEffect(() => {
-    if (registration && registration.waiting) {
-      setShowUpdatePrompt(true);
-    }
-
-    const handleStateChange = () => {
-      if (registration?.waiting) {
-        setShowUpdatePrompt(true);
-      }
-    };
-
-    registration?.addEventListener('updatefound', handleStateChange);
-
-    return () => {
-      registration?.removeEventListener('updatefound', handleStateChange);
-    };
-  }, [registration]);
-
   const handleUpdate = () => {
-    if (registration?.waiting) {
-      setIsUpdating(true);
-      registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-      
-      // Recarrega a página após aplicar a atualização
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
-    }
+    setIsUpdating(true);
+    updateServiceWorker();
   };
 
   const handleDismiss = () => {
-    setShowUpdatePrompt(false);
+    setIsDismissed(true);
   };
 
-  if (!showUpdatePrompt) {
+  // Não mostra se foi dispensado, se não precisa de refresh ou se está offline
+  if (isDismissed || !needRefresh || !isOnline) {
     return null;
   }
 

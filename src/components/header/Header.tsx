@@ -1,5 +1,4 @@
 import "./Header.css"
-import logo from '/assets/icons/logo-sv.png';
 
 const Header = () => {
     return (
@@ -7,7 +6,7 @@ const Header = () => {
             <div className="header-container">
                 <div className="logo-section">
                     <div className="brand-info">
-                        <img src={logo} className="logo-main" alt="Logo da Super Via" title="Logo da Super Via" />
+                        <img src="/SuperviaApp/assets/icons/logo-sv.png" className="logo-main" alt="Logo da Super Via" title="Logo da Super Via" />
                         <span className="brand-tagline">Engenharia & Sinalização</span>
                     </div>
                 </div>
