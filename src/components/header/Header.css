@@ -123,7 +123,7 @@
   }
   
   .brand-tagline {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
   }
   
   .user-details {
@@ -136,15 +136,15 @@
 }
 
 @media (max-width: 480px) {
-  .brand-tagline {
-    display: none;
-  }
-  
   .header-actions {
     gap: 0.5rem;
   }
   
   .logo-main {
     height: 25px;
+  }
+  
+  .brand-tagline {
+    font-size: 0.6rem;
   }
 }

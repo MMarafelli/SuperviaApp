@@ -1,10 +1,10 @@
 // Formulario.tsx
 import { useRef, useState, useEffect, useMemo, useCallback } from 'react';
-import { PageTitle } from '../../components/PageTitle';
 import './CalcTintaEsfera.css';
 import { StorageService } from '../../services/StorageService';
 import { formatDateToPtBR } from '../../utils/dateUtils';
 import { isDevelopment } from '../../utils/devUtils';
+import { PageTitle } from '../../components/PageTitle';
 
 import BlocoDivCompVariavel from '../../components/blocosCalcTintaEsfera/blocoDivComprimento'
 import BlocoDivUnidVariavel from '../../components/blocosCalcTintaEsfera/blocoDivUnidade'
@@ -520,11 +520,11 @@ const Formulario = () => {
     // ---------------------------------------------------------------------------------------------
 
     return (
-        <div>
+        <div className="calc-tinta-container">
             <PageTitle title="Pintura Automática" />
 
             {/* Primeiro quadro */}
-            <div className="primeiroQuadro p-2 m-4 mb-4 flex flex-col">
+            <div className="primeiroQuadro">
 
                 <div className="inputsDoPrimeiroQuadro flex flex-col lg:flex-row lg:flex-wrap mt-2">
 
@@ -658,7 +658,7 @@ const Formulario = () => {
             </div>
 
             {/* Segundo quadro */}
-            <div className="segundoQuadro  m-4">
+            <div className="segundoQuadro">
                 {larguraDaJanela <= 900 ? (
                     <>
                         <div className='divsSegundoQuadroTelaPequena'>
@@ -822,7 +822,7 @@ const Formulario = () => {
             </div>
 
             {/* Terceiro quadro */}
-            <div className="terceiroQuadro mx-4 mb-4">
+            <div className="terceiroQuadro">
                 <table className="w-full">
                     <tbody>
                         <tr>
@@ -846,8 +846,8 @@ const Formulario = () => {
                 </table>
             </div>
 
-            {/* Terceiro quadro */}
-            <div className="terceiroQuadro mx-4 mb-4">
+            {/* Quarto quadro - Remoção */}
+            <div className="terceiroQuadro">
                 <table className="w-full">
                     <tbody>
                         <tr>

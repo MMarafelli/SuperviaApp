@@ -1,119 +1,613 @@
-/* Gerais */
+/* Estilos modernos seguindo o padrão da Home */
+.calc-tinta-container {
+    padding: 1rem;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+/* Cards modernos seguindo padrão da Home */
+.modern-card {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin: 1rem;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.modern-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 204, 41, 0.1), 
+        transparent);
+    transition: left 0.6s ease;
+}
+
+.modern-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 8px 25px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 204, 41, 0.4);
+}
+
+.modern-card:hover::before {
+    left: 100%;
+}
+
+/* Estilos para inputs e formulários seguindo padrão da Home */
+.modern-card input,
+.modern-card select,
+.modern-card textarea {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 0.875rem 1rem;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.modern-card input:focus,
+.modern-card select:focus,
+.modern-card textarea:focus {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(255, 255, 255, 0.08) 100%);
+    border-color: #ffcc29;
+    outline: none;
+    box-shadow: 
+        0 0 0 3px rgba(255, 204, 41, 0.2),
+        0 4px 12px rgba(255, 204, 41, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+.modern-card input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 400;
+}
+
+/* Botões modernos seguindo padrão da Home */
+.modern-button {
+    background: linear-gradient(135deg, #ffcc29 0%, #ffd952 50%, #ffcc29 100%);
+    border: none;
+    border-radius: 14px;
+    padding: 0.875rem 1.75rem;
+    color: #1a1a1a;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 6px 20px rgba(255, 204, 41, 0.3),
+        0 2px 8px rgba(255, 204, 41, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.modern-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent);
+    transition: left 0.6s ease;
+}
+
+.modern-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 10px 30px rgba(255, 204, 41, 0.4),
+        0 4px 15px rgba(255, 204, 41, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    background: linear-gradient(135deg, #ffd952 0%, #ffe066 50%, #ffd952 100%);
+}
+
+.modern-button:hover::before {
+    left: 100%;
+}
+
+.modern-button:active {
+    transform: translateY(-1px) scale(1.01);
+    transition: all 0.1s ease;
+}
+
+/* Gerais seguindo padrão da Home */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    min-height: 100vh;
+}
+
 table {
     border-collapse: collapse;
+    width: 100%;
 }
 
-.primeiroQuadro,
-.segundoQuadro,
-.terceiroQuadro,
-.quartoQuadro,
-.tabela1TelaGrande {
-    /* border-width: 1px; */
+/* Placeholders e estados globais */
+input::placeholder,
+textarea::placeholder,
+select option[value=""] {
+    color: rgba(255, 255, 255, 0.4) !important;
+    font-style: italic;
 }
 
+/* Estados de validação */
+.input-valid {
+    border-color: #10b981 !important;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2) !important;
+}
 
-/* ---------------------------------------------------------------------------------- */
-/* CSS da tabela do primeiro quadro em tela grande */
+.input-invalid {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2) !important;
+}
 
+/* Scrollbar personalizada seguindo o tema */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #ffcc29, #ffd952);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #ffd952, #ffe066);
+}
+
+/* Animações de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.calc-tinta-container > * {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.calc-tinta-container > *:nth-child(2) { animation-delay: 0.1s; }
+.calc-tinta-container > *:nth-child(3) { animation-delay: 0.2s; }
+.calc-tinta-container > *:nth-child(4) { animation-delay: 0.3s; }
+.calc-tinta-container > *:nth-child(5) { animation-delay: 0.4s; }
+
+/* CSS da tabela do primeiro quadro - Estilo moderno seguindo padrão da Home */
 .primeiroQuadro {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin: 1rem;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.primeiroQuadro::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 204, 41, 0.05), 
+        transparent);
+    transition: left 0.8s ease;
+}
+
+.primeiroQuadro:hover {
+    transform: translateY(-2px) scale(1.005);
+    box-shadow: 
+        0 15px 50px rgba(0, 0, 0, 0.35),
+        0 6px 20px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 204, 41, 0.3);
+}
+
+.primeiroQuadro:hover::before {
+    left: 100%;
 }
 
 .inputsDoPrimeiroQuadro>input,
 .inputsDoPrimeiroQuadro>select {
     min-width: 200px;
-    padding: .5rem;
-    margin-bottom: .5rem;
+    padding: 0.875rem 1rem;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: #ffffff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* ---------------------------------------------------------------------------------- */
-/* CSS da tabela do segundo quadro em tela grande */
+.inputsDoPrimeiroQuadro>input:focus,
+.inputsDoPrimeiroQuadro>select:focus {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(255, 255, 255, 0.08) 100%);
+    border-color: #ffcc29;
+    outline: none;
+    box-shadow: 
+        0 0 0 3px rgba(255, 204, 41, 0.2),
+        0 4px 12px rgba(255, 204, 41, 0.15);
+    transform: translateY(-1px);
+}
+
+/* CSS da tabela do segundo quadro */
+.segundoQuadro {
+    margin: 0;
+    padding: 0;
+}
+
+.terceiroQuadro,
+.quartoQuadro {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin: 1rem;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.terceiroQuadro::before,
+.quartoQuadro::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 204, 41, 0.05), 
+        transparent);
+    transition: left 0.8s ease;
+}
+
+.terceiroQuadro:hover,
+.quartoQuadro:hover {
+    transform: translateY(-2px) scale(1.005);
+    box-shadow: 
+        0 15px 50px rgba(0, 0, 0, 0.35),
+        0 6px 20px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 204, 41, 0.3);
+}
+
+.terceiroQuadro:hover::before,
+.quartoQuadro:hover::before {
+    left: 100%;
+}
+
 .tabela1TelaGrande {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.08) 0%, 
+        rgba(255, 255, 255, 0.04) 100%);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    margin: 1rem;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.25),
+        0 4px 15px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     white-space: nowrap;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tabela1TelaGrande:hover {
+    transform: translateY(-1px) scale(1.005);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.3),
+        0 6px 20px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 204, 41, 0.3);
 }
 
 .tabela1TelaGrande>thead>tr,
 .tabela1TelaGrande>thead>tr>th {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.8);
-    padding: .5rem;
+    border-bottom: 2px solid rgba(255, 204, 41, 0.3);
+    padding: 1rem 0.75rem;
+    background: linear-gradient(135deg, 
+        rgba(255, 204, 41, 0.1) 0%, 
+        rgba(255, 204, 41, 0.05) 100%);
+    color: #ffcc29;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.05em;
 }
 
 .tabela1TelaGrande>tbody>tr,
 .tabela1TelaGrande>tbody>tr>td {
-    padding: .5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 0.875rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.tabela1TelaGrande>tbody>tr:hover {
+    background: rgba(255, 204, 41, 0.05);
 }
 
 .tabela1TelaGrande>tbody>tr:not(:last-child),
 .tabela1TelaGrande>tbody>tr>td {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .tabela1TelaGrande>tbody>tr>td>select,
 .tabela1TelaGrande>tbody>tr>td>input {
     width: 95%;
-    /* padding: .5rem;*/
+    padding: 0.75rem;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: #ffffff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.tabela1TelaGrande>tbody>tr>td>select:focus,
+.tabela1TelaGrande>tbody>tr>td>input:focus {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(255, 255, 255, 0.08) 100%);
+    border-color: #ffcc29;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 204, 41, 0.2);
+    transform: translateY(-1px);
 }
 
 /* ---------------------------------------------------------------------------------- */
 /* CSS das divs do segundo quadro em tela pequena */
-.divsSegundoQuadroTelaPequena div {
-    /* border-width: 1px; */
+.divsSegundoQuadroTelaPequena {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
 }
 
-.divsSegundoQuadroTelaPequena .tituloDaDivBloco>svg {
-    float: right;
+.divsSegundoQuadroTelaPequena .tituloDaDivBloco {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.divsSegundoQuadroTelaPequena .tituloDaDivBloco > svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.divsSegundoQuadroTelaPequena .tituloDaDivBloco > svg:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
 }
 
 .divsSegundoQuadroTelaPequena .grupo {
-    /* border-width: 1px; */
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
+    padding: 1.25rem;
+    margin: 1rem;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.25),
+        0 4px 15px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.divsSegundoQuadroTelaPequena .grupo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 204, 41, 0.05), 
+        transparent);
+    transition: left 0.8s ease;
+}
+
+.divsSegundoQuadroTelaPequena .grupo:hover {
+    transform: translateY(-2px) scale(1.005);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.3),
+        0 6px 20px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 204, 41, 0.3);
+}
+
+.divsSegundoQuadroTelaPequena .grupo:hover::before {
+    left: 100%;
 }
 
 .divsSegundoQuadroTelaPequena .bloco {
     display: flex;
     width: 100%;
+    margin-bottom: 0.5rem;
+    align-items: center;
+}
+
+.divsSegundoQuadroTelaPequena .bloco:last-child {
+    margin-bottom: 0;
 }
 
 
 .divsSegundoQuadroTelaPequena .quadro {
-    padding: .5rem;
+    padding: 0.5rem;
     width: 45%;
-    white-space: nowrap;
+    white-space: normal;
+    word-wrap: break-word;
+    font-weight: 500;
 }
 
 .segundoQuadro>div>div>div>div>select,
 .segundoQuadro>div>div>div>div>input,
 .segundoQuadro>div>div>div>div>.resultado {
     width: 55%;
-    padding: .5rem;
-    margin-right: .5rem;
+    padding: 0.875rem 1rem;
+    margin-right: 0.75rem;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: #ffffff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.segundoQuadro>div>div>div>div>select:focus,
+.segundoQuadro>div>div>div>div>input:focus {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(255, 255, 255, 0.08) 100%);
+    border-color: #ffcc29;
+    outline: none;
+    box-shadow: 
+        0 0 0 2px rgba(255, 204, 41, 0.2),
+        0 4px 12px rgba(255, 204, 41, 0.15);
+    transform: translateY(-1px);
 }
 
 /* ---------------------------------------------------------------------------------- */
 /* CSS da tabela do terceiro quadro */
 
 .terceiroQuadro {
-    /* border-width: 1px; */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    cursor: pointer;
 }
 
-.terceiroQuadro,
 .terceiroQuadro .colapsavelCursorPointer {
     cursor: pointer;
 }
 
 .tabela2TelaGrande>tbody>tr>td {
-    /* border-width: 1px; */
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.tabela2TelaGrande>tbody>tr:hover {
+    background: rgba(255, 204, 41, 0.05);
+    border-radius: 8px;
 }
 
 .tabela2TelaGrande>tbody>tr>td>input,
 .tabela2TelaGrande>tbody>tr>td>div>input {
     width: 97%;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: #ffffff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.tabela2TelaGrande>tbody>tr>td>input:focus,
+.tabela2TelaGrande>tbody>tr>td>div>input:focus {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(255, 255, 255, 0.08) 100%);
+    border-color: #ffcc29;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 204, 41, 0.2);
+    transform: translateY(-1px);
 }
 
 .teceiroQuadroHabilitarEdicao {
@@ -128,15 +622,63 @@ table {
 }
 
 .svgHabilitarEdicao {
-    width: 2rem;
-    height: 2rem;
+    width: 2.25rem;
+    height: 2.25rem;
     margin-top: 1rem;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.svgHabilitarEdicao:hover {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 4px 8px rgba(255, 204, 41, 0.3));
 }
 
 /* ---------------------------------------------------------------------------------- */
-/* CSS do levantamento */
+/* CSS do levantamento seguindo padrão da Home */
 .levantamento {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin: 1rem;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.levantamento::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 204, 41, 0.05), 
+        transparent);
+    transition: left 0.8s ease;
+}
+
+.levantamento:hover {
+    transform: translateY(-2px) scale(1.005);
+    box-shadow: 
+        0 15px 50px rgba(0, 0, 0, 0.35),
+        0 6px 20px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 204, 41, 0.3);
+}
+
+.levantamento:hover::before {
+    left: 100%;
 }
 
 /* ---------------------------------------------------------------------------------- */
@@ -146,12 +688,173 @@ table {
     overflow-wrap: break-word;
     white-space: pre-wrap;
     resize: none;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.05) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+    color: #ffffff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.quartoQuadro textarea:focus {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(255, 255, 255, 0.08) 100%);
+    border-color: #ffcc29;
+    outline: none;
+    box-shadow: 
+        0 0 0 3px rgba(255, 204, 41, 0.2),
+        0 4px 12px rgba(255, 204, 41, 0.15);
+    transform: translateY(-1px);
 }
 
 .quartoQuadro button {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 14px;
+    padding: 0.875rem 1.75rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin: 0.5rem;
+}
+
+.quartoQuadro button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent);
+    transition: left 0.6s ease;
+}
+
+.quartoQuadro button:hover::before {
+    left: 100%;
+}
+
+/* Botão Salvar - Verde moderno seguindo padrão da Home */
+.quartoQuadro button:nth-child(1) {
+    background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+    box-shadow: 
+        0 6px 20px rgba(16, 185, 129, 0.4),
+        0 2px 8px rgba(16, 185, 129, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.quartoQuadro button:nth-child(1):hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 10px 30px rgba(16, 185, 129, 0.5),
+        0 4px 15px rgba(16, 185, 129, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, #059669 0%, #047857 50%, #065f46 100%);
+}
+
+/* Botão Deletar - Vermelho moderno seguindo padrão da Home */
+.quartoQuadro button:nth-child(2) {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
+    box-shadow: 
+        0 6px 20px rgba(239, 68, 68, 0.4),
+        0 2px 8px rgba(239, 68, 68, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.quartoQuadro button:nth-child(2):hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 10px 30px rgba(239, 68, 68, 0.5),
+        0 4px 15px rgba(239, 68, 68, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%);
+}
+
+/* Botão Compartilhar - Azul moderno seguindo padrão da Home */
+.quartoQuadro button:nth-child(3) {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
+    box-shadow: 
+        0 6px 20px rgba(59, 130, 246, 0.4),
+        0 2px 8px rgba(59, 130, 246, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.quartoQuadro button:nth-child(3):hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 10px 30px rgba(59, 130, 246, 0.5),
+        0 4px 15px rgba(59, 130, 246, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e40af 100%);
 }
 
 .quartoQuadro svg {
     display: inline;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+    transition: all 0.3s ease;
+}
+
+.quartoQuadro button:hover svg {
+    transform: scale(1.1);
+}
+
+/* Estilos para labels seguindo padrão da Home */
+.calc-tinta-container label,
+.primeiroQuadro label,
+.segundoQuadro label,
+.terceiroQuadro label,
+.quartoQuadro label {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.025em;
+}
+
+/* Estilos para títulos de seção */
+.calc-tinta-container h2,
+.calc-tinta-container h3 {
+    color: #ffcc29;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.05em;
+}
+
+/* Ajustes para títulos colapsáveis */
+.divsSegundoQuadroTelaPequena .tituloDaDivBloco {
+    color: #ffcc29;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 204, 41, 0.2);
+    margin-bottom: 1rem;
+}
+
+/* Melhorias para resultados e campos readonly */
+.resultado,
+.tabela2TelaGrande .resultado {
+    background: linear-gradient(135deg, 
+        rgba(255, 204, 41, 0.2) 0%, 
+        rgba(255, 204, 41, 0.1) 100%) !important;
+    border: 1px solid rgba(255, 204, 41, 0.4) !important;
+    color: #ffcc29 !important;
+    font-weight: 700 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+    pointer-events: none;
 }

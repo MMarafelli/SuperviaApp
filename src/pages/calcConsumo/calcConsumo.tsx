@@ -3,7 +3,6 @@ import { ICampos } from '../../types/calcConsumo.types';
 import { useCalculos } from '../../hooks/useCalculos';
 import { StorageService } from '../../services/StorageService';
 import { InputField } from '../../components/InputField';
-import { PageTitle } from '../../components/PageTitle';
 import { isDevelopment } from '../../utils/devUtils';
 import './calcConsumo.css';
 import '../../styles/shared.css';
@@ -79,9 +78,9 @@ const TabelaConsumo = () => {
     const corDoSVG = isDark ? 'white' : 'hsl(300, 1%, 30%)';
 
     return (
-        <div className="consumo-container">
-            <PageTitle title="Cálculo de Consumo" />
-            <div className="quadro-consumo m-4">
+        <div className="calc-consumo-container">
+            <h1>Cálculo de Consumo</h1>
+            <div className="quadro-consumo">
                 <div className="p-2 flex flex-col w-full">
                     <InputField
                         label="Total m²:"

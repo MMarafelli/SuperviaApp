@@ -1,6 +1,98 @@
+/* Estilos modernos baseados na Home */
+.calc-consumo-container {
+    padding: 1rem;
+}
+
+.calc-consumo-container h1 {
+    color: #ffcc29;
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 2rem 1.5rem 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: inline-block;
+}
+
+.calc-consumo-container h1::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 60px;
+    height: 4px;
+    background: #ffcc29;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 .quadro-consumo {
-    /* border-width: 1px; */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 1rem;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.quadro-consumo:hover {
+    transform: scale(1.01);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.25),
+        0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 204, 41, 0.3);
+}
+
+/* Estilos para inputs e formulários */
+.quadro-consumo input,
+.quadro-consumo select,
+.quadro-consumo textarea {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 0.75rem;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.quadro-consumo input:focus,
+.quadro-consumo select:focus,
+.quadro-consumo textarea:focus {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #ffcc29;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 204, 41, 0.2);
+}
+
+.quadro-consumo input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Botões modernos */
+.modern-button {
+    background: linear-gradient(135deg, #ffcc29, #ffd952);
+    border: none;
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    color: #1a1a1a;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 204, 41, 0.3);
+}
+
+.modern-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 204, 41, 0.4);
+}
+
+.modern-button:active {
+    transform: translateY(0);
 }
 
 .consumo-container {
@@ -28,7 +120,23 @@
 
 /* Ajustes para desktop */
 .tabela2TelaGrande {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.tabela2TelaGrande:hover {
+    transform: scale(1.01);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.25),
+        0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 204, 41, 0.3);
 }
 
 .svgHabilitarEdicao {
