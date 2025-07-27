@@ -2,3 +2,37 @@
     /* border-width: 1px; */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }
+
+.consumo-container {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Responsividade para mobile */
+@media only screen and (max-width: 900px) {
+    .consumo-container {
+        padding: 0;
+    }
+    
+    .quadro-consumo {
+        margin: 1rem 0.5rem;
+        padding: 0.5rem;
+    }
+    
+    .svgHabilitarEdicao {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Ajustes para desktop */
+.tabela2TelaGrande {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.svgHabilitarEdicao {
+    width: 2rem;
+    height: 2rem;
+    margin-top: 1rem;
+}
