@@ -1,0 +1,19 @@
+/* Posicionamento responsivo da notificação de atualização */
+.update-notification-position {
+  /* Desktop - posição normal */
+  bottom: 1rem;
+}
+
+/* Mobile - acima da barra de navegação */
+@media only screen and (max-width: 600px) {
+  .update-notification-position {
+    bottom: 6rem; /* Espaço suficiente para a navbar mobile */
+  }
+}
+
+/* Tablet - posição intermediária */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .update-notification-position {
+    bottom: 2rem;
+  }
+}

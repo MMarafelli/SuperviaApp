@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { usePWAUpdate } from '../../hooks/usePWAUpdate';
 import { usePushNotifications } from '../../hooks/usePushNotifications';
+import './UpdateNotification.css';
 
 const UpdateNotification: React.FC = () => {
   const { needRefresh, updateServiceWorker, isOnline } = usePWAUpdate();
@@ -38,7 +39,7 @@ const UpdateNotification: React.FC = () => {
   }
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 z-50 max-w-md mx-auto">
+    <div className="fixed left-4 right-4 z-50 max-w-md mx-auto update-notification-position">
       <div className="bg-blue-600 text-white p-4 rounded-lg shadow-lg border border-blue-500">
         <div className="flex items-start space-x-3">
           <div className="flex-shrink-0">
