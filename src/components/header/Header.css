@@ -136,11 +136,15 @@
 }
 
 @media (max-width: 480px) {
-  .brand-info {
+  .brand-tagline {
     display: none;
   }
   
   .header-actions {
     gap: 0.5rem;
+  }
+  
+  .logo-main {
+    height: 25px;
   }
 }
