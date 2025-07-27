@@ -6,9 +6,28 @@ import { formatDateToPtBR } from '../../utils/dateUtils';
 import { isDevelopment } from '../../utils/devUtils';
 import { PageTitle } from '../../design-system';
 
+// Novos componentes do design system
+import {
+    SVButton,
+    SVInputField,
+    SVSelectField
+} from '../../components/ui';
+import { 
+    CalculationSection,
+    FieldGroup,
+    ResultDisplay,
+    ActionButtons,
+    ResponsiveCalculationLayout,
+    CalculationTable
+} from '../../components/calculation/CalculationComponents';
+
 import BlocoDivCompVariavel from '../../components/blocosCalcTintaEsfera/blocoDivComprimento'
 import BlocoDivUnidVariavel from '../../components/blocosCalcTintaEsfera/blocoDivUnidade'
 import BlocoTrVariavel from '../../components/blocosCalcTintaEsfera/blocoTr'
+
+// Styles
+import '../../styles/shared.css';
+import '../../design-system/styles/global.css';
 
 function getQueryParam(param: string) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -24,6 +43,10 @@ const Formulario = () => {
     const [isFocused, setIsFocused] = useState('');
     //const [mostrarConteudo, setMostrarConteudo] = useState(false);
     const [levantamento, setLevantamento] = useState('');
+    
+    // Estados para edição de esfera e tinta
+    const [editarEsferas, setEditarEsferas] = useState(false);
+    const [editarTinta, setEditarTinta] = useState(false);
 
     const isDev = isDevelopment();
 
@@ -185,14 +208,14 @@ const Formulario = () => {
         calcularMetrosPista
     ]);
 
-    // Libera ou trava a edição no campo
-    /*     const handleEditEsfera = () => {
-            setEditarEsferas(!editarEsferas);
-        };
-        // Libera ou trava a edição no campo
-        const handleEditTinta = () => {
-            setEditarTinta(!editarTinta);
-        }; */
+    // Handlers de edição - memoizados
+    const handleEditEsfera = useCallback(() => {
+        setEditarEsferas(!editarEsferas);
+    }, [editarEsferas]);
+    
+    const handleEditTinta = useCallback(() => {
+        setEditarTinta(!editarTinta);
+    }, [editarTinta]);
 
     // Controle se o campo está focado ou não.
     const handleInputFocus = (inputName: string) => {
@@ -520,142 +543,95 @@ const Formulario = () => {
     // ---------------------------------------------------------------------------------------------
 
     return (
-        <div className="calc-tinta-container">
+        <div className="sv-container sv-fade-in">
             <PageTitle title="PINTURA AUTOMÁTICA" />
 
-            {/* Primeiro quadro */}
-            <div className="primeiroQuadro">
+            {/* Primeiro quadro - Migrado para Design System */}
+            <CalculationSection 
+                title="📋 Informações do Projeto"
+            >
+                <div className="sv-grid sv-grid-cols-1 md:sv-grid-cols-2 lg:sv-grid-cols-3 sv-gap-4">
+                    <SVInputField
+                        label="🛣️ Estrada"
+                        value={campos.nomeEstrada}
+                        onChange={(e) => handleChange('nomeEstrada', e.target.value)}
+                        variant="calculation"
+                        placeholder="Nome da estrada"
+                    />
+                    
+                    <SVSelectField
+                        label="🗺️ Estado"
+                        value={campos.estado}
+                        onChange={(e) => handleChange('estado', e.target.value)}
+                        options={[
+                            { value: '', label: 'Selecione um estado' },
+                            { value: 'AC', label: 'Acre' },
+                            { value: 'AL', label: 'Alagoas' },
+                            { value: 'AP', label: 'Amapá' },
+                            { value: 'AM', label: 'Amazonas' },
+                            { value: 'BA', label: 'Bahia' },
+                            { value: 'CE', label: 'Ceará' },
+                            { value: 'DF', label: 'Distrito Federal' },
+                            { value: 'ES', label: 'Espírito Santo' },
+                            { value: 'GO', label: 'Goiás' },
+                            { value: 'MA', label: 'Maranhão' },
+                            { value: 'MT', label: 'Mato Grosso' },
+                            { value: 'MS', label: 'Mato Grosso do Sul' },
+                            { value: 'MG', label: 'Minas Gerais' },
+                            { value: 'PA', label: 'Pará' },
+                            { value: 'PB', label: 'Paraíba' },
+                            { value: 'PR', label: 'Paraná' },
+                            { value: 'PE', label: 'Pernambuco' },
+                            { value: 'PI', label: 'Piauí' },
+                            { value: 'RJ', label: 'Rio de Janeiro' },
+                            { value: 'RN', label: 'Rio Grande do Norte' },
+                            { value: 'RS', label: 'Rio Grande do Sul' },
+                            { value: 'RO', label: 'Rondônia' },
+                            { value: 'RR', label: 'Roraima' },
+                            { value: 'SC', label: 'Santa Catarina' },
+                            { value: 'SP', label: 'São Paulo' },
+                            { value: 'SE', label: 'Sergipe' },
+                            { value: 'TO', label: 'Tocantins' }
+                        ]}
+                    />
 
-                <div className="inputsDoPrimeiroQuadro flex flex-col lg:flex-row lg:flex-wrap mt-2">
+                    <SVInputField
+                        label="📅 Data"
+                        value={campos.diaMesAno}
+                        onChange={(e) => handleChange('diaMesAno', e.target.value)}
+                        variant="calculation"
+                        type="date"
+                    />
 
-                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
-                        <label className={`input-label ${campos.nomeEstrada ? 'input-label-active' : (isFocused == 'nomeEstrada' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                            🛣️ Estrada
-                        </label>
-                        <input
-                            type="text"
-                            placeholder=" "
-                            value={campos.nomeEstrada}
-                            onChange={(e) => handleChange('nomeEstrada', e.target.value)}
-                            onFocus={() => handleInputFocus('nomeEstrada')}
-                            onBlur={handleInputBlur}
-                        />
-                    </div>
+                    <SVSelectField
+                        label="👥 Equipe"
+                        value={campos.equipe}
+                        onChange={(e) => handleChange('equipe', e.target.value)}
+                        options={[
+                            { value: '', label: 'Selecione uma equipe' },
+                            { value: '01', label: '01' },
+                            { value: '02', label: '02' },
+                            { value: '03', label: '03' }
+                        ]}
+                    />
 
-                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
-                        <label className={`input-label ${campos.estado ? 'input-label-active' : (isFocused == 'estado' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                            🗺️ Estado
-                        </label>
-                        <select
-                            className={`
-                            ${campos.estado ? 'input-label-active border-green' : (isFocused == 'estado' ? 'input-label-focus border-yellow' : 'input-label-inactive border-white')}
-                        `}
-                            value={campos.estado}
-                            onChange={(e) => handleChange('estado', e.target.value)}
-                            onFocus={() => handleInputFocus('estado')}
-                            onBlur={handleInputBlur}
-                        >
-                            <option value=''>
-                                Selecione um estado
-                            </option>
-                            <option value="AC">Acre</option>
-                            <option value="AL">Alagoas</option>
-                            <option value="AP">Amapá</option>
-                            <option value="AM">Amazonas</option>
-                            <option value="BA">Bahia</option>
-                            <option value="CE">Ceará</option>
-                            <option value="DF">Distrito Federal</option>
-                            <option value="ES">Espírito Santo</option>
-                            <option value="GO">Goiás</option>
-                            <option value="MA">Maranhão</option>
-                            <option value="MT">Mato Grosso</option>
-                            <option value="MS">Mato Grosso do Sul</option>
-                            <option value="MG">Minas Gerais</option>
-                            <option value="PA">Pará</option>
-                            <option value="PB">Paraíba</option>
-                            <option value="PR">Paraná</option>
-                            <option value="PE">Pernambuco</option>
-                            <option value="PI">Piauí</option>
-                            <option value="RJ">Rio de Janeiro</option>
-                            <option value="RN">Rio Grande do Norte</option>
-                            <option value="RS">Rio Grande do Sul</option>
-                            <option value="RO">Rondônia</option>
-                            <option value="RR">Roraima</option>
-                            <option value="SC">Santa Catarina</option>
-                            <option value="SP">São Paulo</option>
-                            <option value="SE">Sergipe</option>
-                            <option value="TO">Tocantins</option>
-                        </select>
-                    </div>
+                    <SVInputField
+                        label="📍 Km inicial/Estaca inicial"
+                        value={campos.kmInicial}
+                        onChange={(e) => handleChange('kmInicial', e.target.value)}
+                        variant="calculation"
+                        placeholder="Km inicial"
+                    />
 
-                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
-                        <label className={`input-label ${campos.diaMesAno ? 'input-label-active' : (isFocused == 'diaMesAno' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                            📅 Data
-                        </label>
-                        <input
-                            type="date"
-                            className={`date-input 
-                            ${campos.diaMesAno ? 'input-label-active border-green' : (isFocused == 'diaMesAno' ? 'input-label-focus border-yellow' : 'input-label-inactive border-white')}
-                            `}
-                            value={campos.diaMesAno}
-                            onChange={(e) => handleChange('diaMesAno', e.target.value)}
-                            onFocus={() => handleInputFocus('diaMesAno')}
-                            onBlur={handleInputBlur}
-                        />
-                    </div>
-
-                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
-                        <label className={`input-label ${campos.equipe ? 'input-label-active' : (isFocused == 'equipe' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                            👥 Equipe
-                        </label>
-                        <select
-                            className={`
-                            ${campos.equipe ? 'input-label-active border-green' : (isFocused == 'equipe' ? 'input-label-focus border-yellow' : 'input-label-inactive border-white')}
-                        `}
-                            value={campos.equipe}
-                            onChange={(e) => handleChange('equipe', e.target.value)}
-                            onFocus={() => handleInputFocus('equipe')}
-                            onBlur={handleInputBlur}
-                        >
-                            <option value=''>
-                                Selecione uma equipe
-                            </option>
-                            <option value="01">01</option>
-                            <option value="02">02</option>
-                            <option value="03">03</option>
-                        </select>
-                    </div>
-
-                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
-                        <label className={`input-label ${campos.kmInicial ? 'input-label-active' : (isFocused == 'kmInicial' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                            📍 Km inicial/Estaca inicial
-                        </label>
-                        <input
-                            type="text"
-                            placeholder=" "
-                            value={campos.kmInicial}
-                            onChange={(e) => handleChange('kmInicial', e.target.value)}
-                            onFocus={() => handleInputFocus('kmInicial')}
-                            onBlur={handleInputBlur}
-                        />
-                    </div>
-
-                    <div className="interacaoBox flex flex-col lg:mr-2 lg:w-1/5">
-                        <label className={`input-label ${campos.kmFinal ? 'input-label-active' : (isFocused == 'kmFinal' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                            🏁 Km final/Estaca final
-                        </label>
-                        <input
-                            type="text"
-                            placeholder=" "
-                            value={campos.kmFinal}
-                            onChange={(e) => handleChange('kmFinal', e.target.value)}
-                            onFocus={() => handleInputFocus('kmFinal')}
-                            onBlur={handleInputBlur}
-                        />
-                    </div>
-
+                    <SVInputField
+                        label="🏁 Km final/Estaca final"
+                        value={campos.kmFinal}
+                        onChange={(e) => handleChange('kmFinal', e.target.value)}
+                        variant="calculation"
+                        placeholder="Km final"
+                    />
                 </div>
-            </div>
+            </CalculationSection>
 
             {/* Segundo quadro */}
             <div className="segundoQuadro">
@@ -821,191 +797,92 @@ const Formulario = () => {
                 )}
             </div>
 
-            {/* Terceiro quadro */}
-            <div className="terceiroQuadro">
-                <table className="w-full">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div className="interacaoBox flex flex-col lg:mr-2">
-                                    <label className={`input-label ${campos.totalMetrosPista ? 'input-label-active' : (isFocused == 'totalMetrosPista' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                                        Total m²:
-                                    </label>
-                                    <input
-                                        type="text"
-                                        placeholder=" "
-                                        readOnly
-                                        value={campos.totalMetrosPista}
-                                        onFocus={() => handleInputFocus('totalMetrosPista')}
-                                        onBlur={handleInputBlur}
-                                    />
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            {/* Terceiro quadro - Migrado para Design System */}
+            <CalculationSection 
+                title="📊 Totais Calculados"
+            >
+                <SVInputField
+                    label="📐 Total m²"
+                    value={campos.totalMetrosPista}
+                    readOnly
+                    variant="result"
+                    helperText="Valor calculado automaticamente"
+                />
+            </CalculationSection>
 
-            {/* Quarto quadro - Remoção */}
-            <div className="terceiroQuadro">
-                <table className="w-full">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div className="interacaoBox flex flex-col lg:mr-2">
-                                    <label className={`input-label ${campos.remocao ? 'input-label-active' : (isFocused == 'remocao' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                                        Remoção(unidade(s)):
-                                    </label>
-                                    <input
-                                        type="text"
-                                        placeholder=" "
-                                        value={campos.remocao}
-                                        onChange={(e) => handleChange('remocao', handleInputChangeNumeric(e.target.value))}
-                                        onFocus={() => handleInputFocus('remocao')}
-                                        onBlur={handleInputBlur}
-                                    />
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            {/* Quarto quadro - Remoção - Migrado para Design System */}
+            <CalculationSection 
+                title="🗑️ Remoção"
+            >
+                <SVInputField
+                    label="Remoção (unidade(s))"
+                    value={campos.remocao}
+                    onChange={(e) => handleChange('remocao', handleInputChangeNumeric(e.target.value))}
+                    variant="calculation"
+                    placeholder="Quantidade a remover"
+                />
+            </CalculationSection>
 
-            {/* Quadro de consumo */}
-            {/*             <div className="terceiroQuadro mx-4 mb-4">
-                <div
-                    className="colapsavelCursorPointer p-4 flex justify-between items-center transition-all duration-300"
-                    onClick={() => setMostrarConteudo(!mostrarConteudo)}
-                >
-                    <label className="colapsavelCursorPointer text-lg font-bold mb-2 lg:mb-0 lg:mr-2 lg:w-full">Consumo</label>
-                    <svg
-                        className={`w-6 h-6 ${mostrarConteudo ? 'transform rotate-180' : ''}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                    </svg>
+            {/* Seção de Consumo - Migrada para Design System */}
+            <CalculationSection 
+                title="⚙️ Cálculos de Consumo"
+            >
+                <div className="sv-space-y-6">
+                    {/* Grupo Esfera */}
+                    <FieldGroup title="⚪ Cálculo de Esfera" columns={1}>
+                        <SVInputField
+                            label="Esfera (kg)"
+                            value={campos.esfera}
+                            onChange={(e) => handleChange('esfera', e.target.value)}
+                            variant="calculation"
+                            placeholder="Digite a quantidade em kg"
+                        />
+                        <ResultDisplay
+                            label="📊 Resultado (kg/m²)"
+                            value={campos.resultadoEsferas}
+                            unit="kg/m²"
+                            editable={editarEsferas}
+                            onEdit={(newValue) => handleChange('resultadoEsferas', newValue)}
+                            actionButton={
+                                <SVButton
+                                    variant={editarEsferas ? "success" : "info"}
+                                    size="sm"
+                                    onClick={handleEditEsfera}
+                                >
+                                    {editarEsferas ? "🔒 Bloquear" : "✏️ Editar"}
+                                </SVButton>
+                            }
+                        />
+                    </FieldGroup>
+
+                    {/* Grupo Tinta */}
+                    <FieldGroup title="🎨 Cálculo de Tinta" columns={1}>
+                        <SVInputField
+                            label="Tinta (baldes)"
+                            value={campos.tinta}
+                            onChange={(e) => handleChange('tinta', e.target.value)}
+                            variant="calculation"
+                            placeholder="Digite a quantidade em baldes"
+                        />
+                        <ResultDisplay
+                            label="📊 Resultado (m²/balde)"
+                            value={campos.resultadoTinta}
+                            unit="m²/balde"
+                            editable={editarTinta}
+                            onEdit={(newValue) => handleChange('resultadoTinta', newValue)}
+                            actionButton={
+                                <SVButton
+                                    variant={editarTinta ? "success" : "info"}
+                                    size="sm"
+                                    onClick={handleEditTinta}
+                                >
+                                    {editarTinta ? "🔒 Bloquear" : "✏️ Editar"}
+                                </SVButton>
+                            }
+                        />
+                    </FieldGroup>
                 </div>
-                <div className={`transition-all duration-300 overflow-hidden ${mostrarConteudo ? 'max-h-96' : 'max-h-0'}`}>
-                    <div className="p-2 flex flex-col w-full">
-                        <table className="tabela2TelaGrande w-full border-collapse">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div className="interacaoBox flex flex-col lg:mr-2">
-                                            <label className={`input-label ${campos.esfera ? 'input-label-active' : (isFocused == 'esfera' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                                                Esfera(kg):
-                                            </label>
-                                            <input
-                                                type="text"
-                                                placeholder=" "
-                                                value={campos.esfera}
-                                                onChange={(e) => handleChange('esfera', e.target.value)}
-                                                onFocus={() => handleInputFocus('esfera')}
-                                                onBlur={handleInputBlur}
-                                            />
-                                        </div>
-                                    </td>
-                                    <td className="flex items-center">
-                                        <div className="w-4/5 pr-2">
-                                            <div className="interacaoBox flex flex-col lg:mr-2">
-                                                <label className={`input-label ${editarEsferas ? 'input-label-focus' : (campos.resultadoEsferas ? 'input-label-active' : 'input-label-inactive')}`}>
-                                                    Resultado(kg/m²):
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    placeholder=' '
-                                                    className={`
-                                                    ${editarEsferas ? 'border-yellow' : (campos.resultadoEsferas ? 'border-green' : 'border-white')}
-                                                `}
-                                                    readOnly={!editarEsferas}
-                                                    value={campos.resultadoEsferas}
-                                                    onChange={(e) => handleChange('resultadoEsferas', e.target.value)}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="teceiroQuadroHabilitarEdicao w-1/5">
-                                            <div
-                                                className={`cursor-pointer flex items-center ${editarEsferas ? 'text-blue-500' : ''}`}
-                                                onClick={handleEditEsfera}
-                                            >
-                                                <svg className='svgHabilitarEdicao' viewBox="-13 0 32 32" version="1.1">
-                                                    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                                                    <g id="SVGRepo_tracerCarrier" strokeLinecap="round"></g>
-                                                    <g id="SVGRepo_iconCarrier">
-                                                        <g id="Page-1" stroke="none" strokeWidth="1" fill="none">
-                                                            <g id="svgCanetaEditar" transform="translate(-583.000000, -101.000000)" fill={editarEsferas ? '#ffcc29' : corDoSVG}>
-                                                                <path d="M583,123 L589,123 L589,110 L583,110 L583,123 Z M586,133.009 L589,125 L583,125 L586,133.009 L586,133.009 Z M587,101 L585,101 C583.367,100.963 582.947,101.841 583,103 L583,108 L589,108 L589,103 C589.007,101.788 588.635,101.008 587,101 L587,101 Z"></path>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div className="interacaoBox flex flex-col lg:mr-2">
-                                            <label className={`input-label ${campos.tinta ? 'input-label-active' : (isFocused == 'tinta' ? 'input-label-focus' : 'input-label-inactive')}`}>
-                                                Tinta(baldes):
-                                            </label>
-                                            <input
-                                                type="text"
-                                                placeholder=" "
-                                                value={campos.tinta}
-                                                onChange={(e) => handleChange('tinta', e.target.value)}
-                                                onFocus={() => handleInputFocus('tinta')}
-                                                onBlur={handleInputBlur}
-                                            />
-                                        </div>
-                                    </td>
-                                    <td className="flex items-center">
-                                        <div className="w-4/5 pr-2">
-                                            <div className="interacaoBox flex flex-col lg:mr-2">
-                                                <label className={`input-label ${editarTinta ? 'input-label-focus' : (campos.resultadoTinta ? 'input-label-active' : 'input-label-inactive')}`}>
-                                                    Resultado(m²/balde):
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    placeholder=' '
-                                                    className={`
-                                                    ${editarTinta ? 'border-yellow' : (campos.resultadoTinta ? 'border-green' : 'border-white')}
-                                                `}
-                                                    readOnly={!editarTinta}
-                                                    value={campos.resultadoTinta}
-                                                    onChange={(e) => handleChange('resultadoTinta', e.target.value)}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="teceiroQuadroHabilitarEdicao w-1/5">
-                                            <div
-                                                className={`flex items-center ${editarTinta ? 'text-blue-500' : ''}`}
-                                                onClick={handleEditTinta}
-                                            >
-                                                <svg className='svgHabilitarEdicao' viewBox="-13 0 32 32" version="1.1">
-                                                    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                                                    <g id="SVGRepo_tracerCarrier" strokeLinecap="round"></g>
-                                                    <g id="SVGRepo_iconCarrier">
-                                                        <g id="Page-1" stroke="none" strokeWidth="1" fill="none">
-                                                            <g id="svgCanetaEditar" transform="translate(-583.000000, -101.000000)" fill={editarTinta ? '#ffcc29' : corDoSVG}>
-                                                                <path d="M583,123 L589,123 L589,110 L583,110 L583,123 Z M586,133.009 L589,125 L583,125 L586,133.009 L586,133.009 Z M587,101 L585,101 C583.367,100.963 582.947,101.841 583,103 L583,108 L589,108 L589,103 C589.007,101.788 588.635,101.008 587,101 L587,101 Z"></path>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div> */}
+            </CalculationSection>
 
             {/* Levantamento gerado - fora do quartoQuadro para evitar card dentro de card */}
             {levantamento && (

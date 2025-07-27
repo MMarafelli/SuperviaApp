@@ -1,4 +1,6 @@
 import React from 'react';
+import { SVInputField, SVSelectField } from '../ui';
+import '../../styles/shared.css';
 
 interface OpcaoSelect {
     valor: string;
@@ -37,59 +39,51 @@ const BlocoDivCompVariavel: React.FC<BlocoDivVariavelProps> = ({ label, valorX, 
             <div>
                 <div className='bloco'>
                     <div className='texto-a-direita quadro'>Largura:</div>
-                    <select
-                        className={`${(!valorX) ? 'border-white' : ''}
-                                    ${(valorX) ? 'border-green' : ''}`}
+                    <SVSelectField
                         value={valorX}
-                        onChange={(e) => onChange('X', e.target.value)}>
-                        {opcoesLargura.map((opcao) => (
-                            <option key={opcao.valor} value={opcao.valor}>
-                                {opcao.label}
-                            </option>
-                        ))}
-                    </select>
+                        onChange={(e) => onChange('X', e.target.value)}
+                        options={opcoesLargura.map(opcao => ({
+                            value: opcao.valor,
+                            label: opcao.label
+                        }))}
+                    />
                 </div>
                 <div className='bloco'>
                     <div className='texto-a-direita quadro'>Comprimento(m):</div>
-                    <input
-                        type="text"
-                        placeholder=" "
+                    <SVInputField
                         value={valorY}
                         onChange={(e) => onChange('Y', handleInputChangeNumeric(e.target.value))}
+                        variant="calculation"
+                        placeholder=" "
                     />
                 </div>
                 <div className='bloco'>
                     <div className='texto-a-direita quadro'>Resultado(m²):</div>
-                    <input
-                        className={`${(!valorZ) ? 'border-white' : ''}
-                        ${(valorZ) ? 'border-green' : ''}`}
-                        disabled
-                        type="text"
-                        placeholder=" "
+                    <SVInputField
                         value={valorZ}
+                        readOnly
+                        variant="result"
+                        placeholder=" "
                     />
                 </div>
                 <div className='bloco'>
                     <div className='texto-a-direita quadro'>Tipo de tacha:</div>
-                    <select
-                        className={`${(!tipoTacha) ? 'border-white' : ''}
-                                    ${(tipoTacha) ? 'border-green' : ''}`}
+                    <SVSelectField
                         value={tipoTacha}
-                        onChange={(e) => onChange('TipoTacha', e.target.value)}>
-                        {opcoesTacha.map((opcao) => (
-                            <option key={opcao.valor} value={opcao.valor}>
-                                {opcao.label}
-                            </option>
-                        ))}
-                    </select>
+                        onChange={(e) => onChange('TipoTacha', e.target.value)}
+                        options={opcoesTacha.map(opcao => ({
+                            value: opcao.valor,
+                            label: opcao.label
+                        }))}
+                    />
                 </div>
                 <div className='bloco'>
                     <div className='texto-a-direita quadro'>Quantidade de tacha:</div>
-                    <input
-                        type="text"
+                    <SVInputField
                         value={qtdTacha}
-                        placeholder=" "
                         onChange={(e) => onChange('QtdTacha', handleInputChangeNumeric(e.target.value))}
+                        variant="calculation"
+                        placeholder=" "
                     />
                 </div>
             </div>

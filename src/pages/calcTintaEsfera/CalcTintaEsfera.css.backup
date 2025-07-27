@@ -327,10 +327,10 @@ table {
 
 /* Headers da tabela */
 .tabela1TelaGrande thead th {
-  background: var(--color-bg-gray-50) !important;
+  background: var(--color-bg-transparent);
   border-bottom: 2px solid var(--color-primary);
   padding: var(--spacing-md) var(--spacing-sm);
-  color: #374151 !important; /* Texto escuro forçado */
+  color: var(--color-text-primary);
   font-weight: 700;
   text-align: left;
   overflow: hidden;
@@ -580,7 +580,7 @@ table {
 
 /* Título do levantamento */
 .levantamento-title {
-  color: #374151 !important; /* Texto escuro forçado */
+  color: var(--color-text-secondary);
   font-weight: 600;
   font-size: var(--font-size-lg);
   margin-bottom: var(--spacing-md);

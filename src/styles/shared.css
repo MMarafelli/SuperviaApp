@@ -506,7 +506,7 @@
 .sv-input {
     width: 100%;
     padding: var(--sv-space-2) var(--sv-space-3);
-    border: 1px solid var(--sv-gray-300);
+    border: 2px solid white; /* Borda branca quando vazio */
     border-radius: var(--sv-radius-md);
     font-size: var(--sv-text-sm);
     transition: all 0.15s ease-in-out;
@@ -516,8 +516,14 @@
 
 .sv-input:focus {
     outline: none;
-    border-color: var(--sv-primary);
-    box-shadow: 0 0 0 3px var(--sv-primary-light);
+    border-color: #fbbf24 !important; /* Borda amarela quando focado */
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+}
+
+/* Estado com valor válido - borda verde */
+.sv-input:not(:placeholder-shown):not(:focus):valid,
+.sv-input[data-has-value="true"]:not(:focus) {
+    border-color: #10b981 !important; /* Verde quando tem valor válido */
 }
 
 .sv-input:disabled {
@@ -590,6 +596,87 @@
     border-color: var(--sv-success);
 }
 
+/* ===== SELECT STYLES ===== */
+.sv-select {
+    width: 100%;
+    padding: var(--sv-space-2) var(--sv-space-3);
+    border: 2px solid white; /* Borda branca quando vazio */
+    border-radius: var(--sv-radius-md);
+    font-size: var(--sv-text-sm);
+    transition: all 0.15s ease-in-out;
+    background-color: white !important;
+    color: var(--sv-gray-900) !important;
+    cursor: pointer;
+}
+
+.sv-select:focus {
+    outline: none;
+    border-color: #fbbf24 !important; /* Borda amarela quando focado */
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+}
+
+/* Estado com valor válido - borda verde para select */
+.sv-select:not([value=""]):not(:focus),
+.sv-select[data-has-value="true"]:not(:focus) {
+    border-color: #10b981 !important; /* Verde quando tem valor válido */
+}
+
+/* ===== TEXTAREA STYLES ===== */
+.sv-textarea {
+    width: 100%;
+    padding: var(--sv-space-2) var(--sv-space-3);
+    border: 2px solid white; /* Borda branca quando vazio */
+    border-radius: var(--sv-radius-md);
+    font-size: var(--sv-text-sm);
+    transition: all 0.15s ease-in-out;
+    background-color: white;
+    color: var(--sv-gray-900);
+    resize: vertical;
+    min-height: 80px;
+}
+
+.sv-textarea:focus {
+    outline: none;
+    border-color: #fbbf24 !important; /* Borda amarela quando focado */
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+}
+
+/* Estado com valor válido - borda verde para textarea */
+.sv-textarea:not(:placeholder-shown):not(:focus),
+.sv-textarea[data-has-value="true"]:not(:focus) {
+    border-color: #10b981 !important; /* Verde quando tem valor válido */
+}
+
+.sv-select:disabled {
+    background-color: var(--sv-gray-100) !important;
+    color: var(--sv-gray-500) !important;
+    cursor: not-allowed;
+}
+
+.sv-select.sv-invalid {
+    border-color: var(--sv-error);
+}
+
+.sv-select.sv-invalid:focus {
+    border-color: var(--sv-error);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.sv-select.sv-valid {
+    border-color: var(--sv-success);
+}
+
+.sv-select.sv-valid:focus {
+    border-color: var(--sv-success);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Select option styles */
+.sv-select option {
+    background-color: white !important;
+    color: var(--sv-gray-900) !important;
+}
+
 /* Text utilities */
 .sv-text-sm {
     font-size: var(--sv-text-sm);
@@ -603,10 +690,162 @@
     color: #374151 !important;
 }
 
-.calculation-section .sv-input {
+.calculation-section .sv-input,
+.calculation-section .sv-select {
+    color: #111827 !important;
+    background-color: white !important;
+}
+
+.calculation-section .sv-select option {
+    color: #111827 !important;
+    background-color: white !important;
+}
+
+/* Override legacy CSS with higher specificity */
+.sv-container .calculation-section .sv-select,
+.sv-container .sv-select {
+    background-color: white !important;
+    color: #111827 !important;
+    border: 2px solid white !important; /* Borda branca por padrão */
+}
+
+.sv-container .calculation-section .sv-select:focus,
+.sv-container .sv-select:focus {
+    border-color: #fbbf24 !important; /* Amarelo quando focado */
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1) !important;
+}
+
+.sv-container .calculation-section .sv-select:not([value=""]):not(:focus),
+.sv-container .sv-select:not([value=""]):not(:focus),
+.sv-container .calculation-section .sv-select[data-has-value="true"]:not(:focus),
+.sv-container .sv-select[data-has-value="true"]:not(:focus) {
+    border-color: #10b981 !important; /* Verde quando tem valor */
+}
+
+.sv-container .calculation-section .sv-input,
+.sv-container .sv-input {
+    background-color: white !important;
+    color: #111827 !important;
+    border: 2px solid white !important; /* Borda branca por padrão */
+}
+
+.sv-container .calculation-section .sv-input:focus,
+.sv-container .sv-input:focus {
+    border-color: #fbbf24 !important; /* Amarelo quando focado */
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1) !important;
+}
+
+.sv-container .calculation-section .sv-input:not(:placeholder-shown):not(:focus),
+.sv-container .sv-input:not(:placeholder-shown):not(:focus),
+.sv-container .calculation-section .sv-input[data-has-value="true"]:not(:focus),
+.sv-container .sv-input[data-has-value="true"]:not(:focus) {
+    border-color: #10b981 !important; /* Verde quando tem valor */
+}
+
+.sv-container .calculation-section .sv-textarea,
+.sv-container .sv-textarea {
+    background-color: white !important;
+    color: #111827 !important;
+    border: 2px solid white !important; /* Borda branca por padrão */
+}
+
+.sv-container .calculation-section .sv-textarea:focus,
+.sv-container .sv-textarea:focus {
+    border-color: #fbbf24 !important; /* Amarelo quando focado */
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1) !important;
+}
+
+.sv-container .calculation-section .sv-textarea:not(:placeholder-shown):not(:focus),
+.sv-container .sv-textarea:not(:placeholder-shown):not(:focus),
+.sv-container .calculation-section .sv-textarea[data-has-value="true"]:not(:focus),
+.sv-container .sv-textarea[data-has-value="true"]:not(:focus) {
+    border-color: #10b981 !important; /* Verde quando tem valor */
+}
+
+.sv-container .calculation-section .sv-select option,
+.sv-container .sv-select option {
+    background-color: white !important;
     color: #111827 !important;
 }
 
 .calculation-section .sv-label {
     color: #374151 !important;
+}
+
+/* ===== CORREÇÕES PARA TEXTO BRANCO ===== */
+
+/* Force dark text for table headers and legends */
+.tabela1TelaGrande th,
+.tabela1TelaGrande thead th,
+.tdLegendaTelaGrande,
+.levantamento-title,
+table th,
+thead th {
+    color: #374151 !important;
+    background-color: #f9fafb !important;
+}
+
+/* Force dark text for all labels and legends across the app */
+.sv-label,
+label,
+.field-group-title,
+.calculation-section-title {
+    color: #374151 !important;
+}
+
+/* Force dark text for result displays */
+.result-label,
+.result-value,
+.result-unit {
+    color: #374151 !important;
+}
+
+/* Override any legacy white text - but preserve button colors */
+.sv-container *:not(.btn):not(button):not(.modern-button) {
+    color: #374151 !important;
+}
+
+/* Ensure calculation table text is dark */
+.calculation-table th,
+.calculation-table td {
+    color: #374151 !important;
+}
+
+/* Page title should remain with its original styling */
+.page-title,
+.sv-page-title {
+    color: #ffcc29 !important;
+}
+
+/* ===== ESTILOS ESPECÍFICOS PARA MOBILE/TABLET ===== */
+
+/* Inputs dentro de células de tabela */
+td .sv-input,
+td .sv-select {
+    margin: 0 !important;
+    min-width: auto !important;
+}
+
+/* Inputs dentro dos blocos mobile */
+.bloco .sv-input,
+.bloco .sv-select {
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+/* Labels dos blocos mobile */
+.texto-a-direita.quadro {
+    color: #374151 !important;
+    font-weight: 500 !important;
+}
+
+/* Título dos blocos mobile */
+.tituloDaDivBloco .quadro {
+    color: #374151 !important;
+    font-weight: 600 !important;
+}
+
+/* Garantir que field groups dentro dos blocos não tenham margin */
+.bloco .sv-field-group {
+    margin-bottom: 0 !important;
 }

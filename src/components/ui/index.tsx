@@ -180,11 +180,15 @@ export const InputField: React.FC<InputFieldProps> = ({
   className = '',
   icon,
   variant = 'default',
+  value,
   ...props
 }) => {
   const validationClass = error ? 'sv-invalid' : success ? 'sv-valid' : '';
   const inputClass = props.readOnly ? 'sv-readonly' : '';
   const variantClass = variant ? `sv-input-${variant}` : '';
+  
+  // Determina se o campo tem valor válido
+  const hasValue = value !== undefined && value !== null && value !== '';
 
   return (
     <div className={`sv-field-group ${containerClassName}`}>
@@ -201,6 +205,8 @@ export const InputField: React.FC<InputFieldProps> = ({
         )}
         <input 
           className={`sv-input ${validationClass} ${inputClass} ${variantClass} ${icon ? 'sv-input-with-icon' : ''} ${className}`}
+          data-has-value={hasValue}
+          value={value}
           {...props}
         />
       </div>
@@ -229,9 +235,13 @@ export const SelectField: React.FC<SelectFieldProps> = ({
   containerClassName = '',
   className = '',
   options,
+  value,
   ...props
 }) => {
   const validationClass = error ? 'sv-invalid' : success ? 'sv-valid' : '';
+  
+  // Determina se o select tem valor válido (não vazio)
+  const hasValue = value !== undefined && value !== null && value !== '';
 
   return (
     <div className={`sv-field-group ${containerClassName}`}>
@@ -242,6 +252,8 @@ export const SelectField: React.FC<SelectFieldProps> = ({
       )}
       <select 
         className={`sv-select ${validationClass} ${className}`}
+        data-has-value={hasValue}
+        value={value}
         {...props}
       >
         {options.map((option) => (
@@ -278,10 +290,14 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
   helperText,
   containerClassName = '',
   className = '',
+  value,
   ...props
 }) => {
   const validationClass = error ? 'sv-invalid' : success ? 'sv-valid' : '';
   const textareaClass = props.readOnly ? 'sv-readonly' : '';
+  
+  // Determina se o textarea tem valor válido
+  const hasValue = value !== undefined && value !== null && value !== '';
 
   return (
     <div className={`sv-field-group ${containerClassName}`}>
@@ -292,6 +308,8 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
       )}
       <textarea 
         className={`sv-textarea ${validationClass} ${textareaClass} ${className}`}
+        data-has-value={hasValue}
+        value={value}
         {...props}
       />
       {error && (

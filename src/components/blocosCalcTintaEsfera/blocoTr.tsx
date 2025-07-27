@@ -1,4 +1,6 @@
 import React from 'react';
+import { SVInputField, SVSelectField } from '../ui';
+import '../../styles/shared.css';
 
 interface OpcaoSelect {
     valor: string;
@@ -29,48 +31,40 @@ const BlocoTrVariavel: React.FC<BlocoTrVariavelProps> = ({ label, valorX, valorY
         <tr>
             <td className="tdLegendaTelaGrande">{label}</td>
             <td>
-                <select
-                    className={`${(!valorX) ? 'border-white' : ''}
-          ${(valorX) ? 'border-green' : ''}`}
+                <SVSelectField
                     value={valorX}
                     onChange={(e) => onChange('X', e.target.value)}
-                >
-                    {opcoesLargura.map((opcao) => (
-                        <option key={opcao.valor} value={opcao.valor}>
-                            {opcao.label}
-                        </option>
-                    ))}
-                </select>
+                    options={opcoesLargura.map(opcao => ({
+                        value: opcao.valor,
+                        label: opcao.label
+                    }))}
+                />
             </td>
             <td>
-                <input
-                    type="text"
+                <SVInputField
                     value={valorY}
-                    placeholder=" "
                     onChange={(e) => onChange('Y', handleInputChangeNumeric(e.target.value))}
+                    variant="calculation"
+                    placeholder=" "
                 />
             </td>
             <td className='tdResultadoTelaGrande'>{valorZ}</td>
             <td>
-                <select
-                    className={`${(!tipoTacha) ? 'border-white' : ''}
-          ${(tipoTacha) ? 'border-green' : ''}`}
+                <SVSelectField
                     value={tipoTacha}
                     onChange={(e) => onChange('TipoTacha', e.target.value)}
-                >
-                    {opcoesTacha.map((opcao) => (
-                        <option key={opcao.valor} value={opcao.valor}>
-                            {opcao.label}
-                        </option>
-                    ))}
-                </select>
+                    options={opcoesTacha.map(opcao => ({
+                        value: opcao.valor,
+                        label: opcao.label
+                    }))}
+                />
             </td>
             <td>
-                <input
-                    type="text"
+                <SVInputField
                     value={qtdTacha}
-                    placeholder=" "
                     onChange={(e) => onChange('QtdTacha', handleInputChangeNumeric(e.target.value))}
+                    variant="calculation"
+                    placeholder=" "
                 />
             </td>
         </tr>
