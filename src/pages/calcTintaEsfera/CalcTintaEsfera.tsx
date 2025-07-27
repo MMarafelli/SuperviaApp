@@ -4,7 +4,7 @@ import './CalcTintaEsfera.css';
 import { StorageService } from '../../services/StorageService';
 import { formatDateToPtBR } from '../../utils/dateUtils';
 import { isDevelopment } from '../../utils/devUtils';
-import { PageTitle } from '../../components/PageTitle';
+import { PageTitle } from '../../design-system';
 
 import BlocoDivCompVariavel from '../../components/blocosCalcTintaEsfera/blocoDivComprimento'
 import BlocoDivUnidVariavel from '../../components/blocosCalcTintaEsfera/blocoDivUnidade'
@@ -521,7 +521,7 @@ const Formulario = () => {
 
     return (
         <div className="calc-tinta-container">
-            <PageTitle title="Pintura Automática" />
+            <PageTitle title="PINTURA AUTOMÁTICA" />
 
             {/* Primeiro quadro */}
             <div className="primeiroQuadro">

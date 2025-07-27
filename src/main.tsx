@@ -4,6 +4,8 @@ import reportWebVitals from './reportWebVitals';
 
 import './index.css';
 import './styles/animations.css';
+// Design System - PRESERVANDO total compatibilidade com estilos existentes
+import './design-system/styles/global.css';
 import App from './App';
 
 //verificação da URL inicial

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import "./Home.css";
 import styles from "./HomeCarousel.module.css";
-import { PageTitle } from "../../components/PageTitle";
+import { PageTitle } from "../../design-system";
 import { formatDateToPtBR } from "../../utils/dateUtils";
 
 interface CalcTintaEsferaData {
@@ -88,7 +88,7 @@ const Home = () => {
     localStorage.setItem("tintaEsferaCards", JSON.stringify(updated));
   };    return (
     <div className="home-container">
-      <PageTitle title="Seus Cálculos Salvos" />
+      <PageTitle title="SEUS CÁLCULOS SALVOS" />
       {cards.length === 0 ? (
         <div className="mt-8 text-center text-gray-500 px-4">
           <div className="mb-2 text-lg">📋 Nenhum cálculo salvo ainda</div>

@@ -1,0 +1,281 @@
+/**
+ * SECTION - ESTILOS UNIFICADOS
+ * 
+ * Preservando TODOS os estilos de quadros existentes e adicionando melhorias.
+ */
+
+/* ===== BASE UNIFICADA ===== */
+.sv-unified-section {
+  position: relative;
+  transition: var(--transition-normal);
+  overflow: visible;
+}
+
+/* ===== PRESERVANDO ESTILOS EXISTENTES DOS QUADROS ===== */
+
+/* Primeiro Quadro (preservando exatamente) */
+.primeiroQuadro {
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-lg);
+  margin: 0 0 var(--spacing-lg) 0;
+  transition: var(--transition-normal);
+  overflow: hidden;
+}
+
+/* Segundo Quadro (preservando comportamento especial) */
+.segundoQuadro {
+  background: var(--color-bg-transparent);
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0 0 var(--spacing-lg) 0;
+  overflow: visible;
+}
+
+/* Terceiro Quadro (preservando exatamente) */
+.terceiroQuadro {
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-lg);
+  margin: 0 0 var(--spacing-lg) 0;
+  transition: var(--transition-normal);
+  overflow: hidden;
+}
+
+/* Quarto Quadro (preservando exatamente) */
+.quartoQuadro {
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-lg);
+  margin: 0;
+  transition: var(--transition-normal);
+  overflow: hidden;
+}
+
+/* ===== ESTILOS DO DESIGN SYSTEM ATUAL (preservando) ===== */
+
+/* Card base */
+.sv-card {
+  background: var(--sv-white);
+  border-radius: var(--sv-radius-lg);
+  box-shadow: var(--sv-shadow-lg);
+  padding: var(--sv-space-4);
+  margin-bottom: var(--sv-space-4);
+  transition: var(--sv-transition);
+}
+
+/* Seção de cálculo */
+.sv-calculation-section {
+  background: var(--sv-white);
+  border-radius: var(--sv-radius-lg);
+  box-shadow: var(--sv-shadow-md);
+  padding: var(--sv-space-4);
+  margin-bottom: var(--sv-space-4);
+  border-left: 4px solid var(--sv-primary);
+  transition: var(--sv-transition);
+}
+
+/* Seção de resultado */
+.sv-result-section {
+  background: linear-gradient(135deg, var(--sv-primary-light), var(--sv-white));
+  border-radius: var(--sv-radius-lg);
+  box-shadow: var(--sv-shadow-lg);
+  padding: var(--sv-space-4);
+  margin-bottom: var(--sv-space-4);
+  border: 2px solid var(--sv-primary);
+  transition: var(--sv-transition);
+}
+
+/* Seção transparente */
+.sv-transparent-section {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: var(--sv-space-2);
+  margin-bottom: var(--sv-space-4);
+}
+
+/* ===== MODIFICADORES UNIFICADOS ===== */
+
+/* Hover */
+.sv-section--hoverable:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.primeiroQuadro.sv-section--hoverable:hover,
+.terceiroQuadro.sv-section--hoverable:hover,
+.quartoQuadro.sv-section--hoverable:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
+}
+
+/* Clickable */
+.sv-section--clickable {
+  cursor: pointer;
+}
+
+/* Background variants */
+.sv-section--bg-transparent {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.sv-section--bg-gradient {
+  background: linear-gradient(135deg, var(--sv-primary-light), var(--sv-white)) !important;
+}
+
+/* Padding variants */
+.sv-section--padding-none {
+  padding: 0 !important;
+}
+
+.sv-section--padding-sm {
+  padding: var(--sv-space-2) !important;
+}
+
+.sv-section--padding-lg {
+  padding: var(--sv-space-6) !important;
+}
+
+/* Margin variants */
+.sv-section--margin-none {
+  margin: 0 !important;
+}
+
+.sv-section--margin-sm {
+  margin-bottom: var(--sv-space-2) !important;
+}
+
+.sv-section--margin-lg {
+  margin-bottom: var(--sv-space-6) !important;
+}
+
+/* ===== HEADER E CONTEÚDO ===== */
+
+.sv-unified-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sv-space-4);
+  padding-bottom: var(--sv-space-2);
+  border-bottom: 1px solid var(--sv-gray-200);
+}
+
+.sv-unified-section__header--clickable {
+  cursor: pointer;
+  transition: var(--sv-transition);
+}
+
+.sv-unified-section__header--clickable:hover {
+  opacity: 0.8;
+}
+
+.sv-unified-section__header-content {
+  display: flex;
+  align-items: center;
+  gap: var(--sv-space-2);
+}
+
+.sv-unified-section__icon {
+  font-size: var(--sv-font-size-lg);
+  opacity: 0.8;
+}
+
+.sv-unified-section__title {
+  color: var(--sv-gray-800);
+  font-size: var(--sv-font-size-lg);
+  font-weight: 600;
+  margin: 0;
+}
+
+.sv-unified-section__collapse-indicator {
+  color: var(--sv-gray-500);
+  font-size: var(--sv-font-size-sm);
+  transition: transform 0.2s ease;
+}
+
+.sv-unified-section__content {
+  transition: var(--sv-transition);
+}
+
+.sv-unified-section__content--collapsed {
+  display: none;
+}
+
+/* ===== RESPONSIVIDADE (preservando comportamentos existentes) ===== */
+
+/* Mobile (preservando comportamento dos grupos) */
+@media (max-width: 900px) {
+  .segundoQuadro {
+    /* Em mobile, grupos ficam com fundo branco */
+    background: var(--color-bg-white);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-lg);
+    margin: 0 0 var(--spacing-lg) 0;
+  }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .segundoQuadro {
+    /* Em tablets, também fica com fundo branco */
+    background: var(--color-bg-white);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-lg);
+    margin: 0 0 var(--spacing-lg) 0;
+  }
+}
+
+/* Desktop - preserva transparência do segundo quadro */
+@media (min-width: 1025px) {
+  .segundoQuadro {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* ===== ANIMAÇÕES (preservando fadeInUp) ===== */
+.sv-unified-section {
+  animation: fadeInUp var(--transition-slow) forwards;
+}
+
+.sv-unified-section:nth-child(2) { animation-delay: 0.1s; }
+.sv-unified-section:nth-child(3) { animation-delay: 0.2s; }
+.sv-unified-section:nth-child(4) { animation-delay: 0.3s; }
+.sv-unified-section:nth-child(5) { animation-delay: 0.4s; }
+
+/* ===== DARK MODE (preservando compatibilidade) ===== */
+@media (prefers-color-scheme: dark) {
+  .primeiroQuadro,
+  .terceiroQuadro,
+  .quartoQuadro,
+  .sv-card,
+  .sv-calculation-section {
+    background: var(--color-bg-white) !important;
+    color: var(--color-text-primary) !important;
+    border-color: var(--color-border-light);
+  }
+  
+  .sv-unified-section__title {
+    color: var(--sv-gray-800);
+  }
+}
