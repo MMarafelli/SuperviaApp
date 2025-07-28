@@ -862,7 +862,7 @@ const Formulario = () => {
             )}
 
             {/* Botões */}
-            <div className='quartoQuadro'>
+            <CalculationSection title="">
                 <div className="flex items-center justify-center m-2"
                     style={{ padding: '1rem 0' }}
                 >
@@ -912,7 +912,7 @@ const Formulario = () => {
                         📤 Enviar
                     </button>
                 </div>
-            </div>
+            </CalculationSection>
         </div >
     );
 };
