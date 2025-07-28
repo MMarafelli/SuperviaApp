@@ -79,12 +79,14 @@ A página calcTintaEsfera agora possui:
 ## Migração do Design System - Status
 
 ### ✅ **Páginas Completamente Migradas**
+
 - **Home**: Totalmente migrada com todos os componentes do design system
 - **CalcTintaEsfera**: **MIGRAÇÃO COMPLETA** - Todos os quartoQuadro convertidos para CalculationSection
+- **CalcConsumo**: **MIGRAÇÃO COMPLETA** - Layout responsivo, botões funcionais, design system 100% aplicado
 
 ### 🔄 **Próximas Páginas para Migração**
-- **CalcConsumo**: Aguardando migração
-- **About**: Aguardando migração
+
+- **About**: Aguardando migração completa e limpeza de CSS legado
 
 ### 🧩 **Componentes do Design System Utilizados**
 - ✅ **PageTitle**: Implementado em Home e CalcTintaEsfera

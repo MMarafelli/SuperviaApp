@@ -50,6 +50,34 @@ const TabelaConsumo = () => {
     const handleEditEsfera = useCallback(() => setEditarEsferas(!editarEsferas), [editarEsferas]);
     const handleEditTinta = useCallback(() => setEditarTinta(!editarTinta), [editarTinta]);
 
+    // Função para limpar todos os campos
+    const limparTudo = useCallback(() => {
+        setCampos(StorageService.getInitialState(isDev));
+        setEditarEsferas(false);
+        setEditarTinta(false);
+    }, [isDev]);
+
+    // Função para compartilhar dados
+    const compartilharDados = useCallback(() => {
+        const dadosParaCompartilhar = `📊 CÁLCULO DE CONSUMO SuperVia\n\n` +
+            `📐 Total m²: ${campos.totalMetrosPista || '0'}\n` +
+            `⚪ Esfera: ${campos.esfera || '0'} kg\n` +
+            `📊 Resultado Esfera: ${campos.resultadoEsferas || '0'} kg/m²\n` +
+            `🎨 Tinta: ${campos.tinta || '0'} baldes\n` +
+            `📊 Resultado Tinta: ${campos.resultadoTinta || '0'} m²/balde`;
+
+        if (navigator.share) {
+            navigator.share({
+                title: 'Cálculo de Consumo - SuperVia',
+                text: dadosParaCompartilhar,
+            }).catch(console.error);
+        } else {
+            navigator.clipboard?.writeText(dadosParaCompartilhar)
+                .then(() => alert('📋 Dados copiados para a área de transferência!'))
+                .catch(() => alert('❌ Erro ao copiar dados'));
+        }
+    }, [campos]);
+
     // Cálculos
     const { resultadoEsferas, resultadoTinta } = useCalculos(campos);
 
@@ -260,10 +288,10 @@ const TabelaConsumo = () => {
                 title="🎯 Ações"
             >
                 <ActionButtons align="stretch">
-                    <SVButton variant="error" size="lg">
+                    <SVButton variant="error" size="lg" onClick={limparTudo}>
                         🗑️ Limpar Tudo
                     </SVButton>
-                    <SVButton variant="info" size="lg">
+                    <SVButton variant="info" size="lg" onClick={compartilharDados}>
                         📤 Compartilhar
                     </SVButton>
                 </ActionButtons>
