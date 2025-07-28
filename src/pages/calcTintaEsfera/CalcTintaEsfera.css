@@ -88,7 +88,7 @@
 /* ===== 3. LAYOUT E CONTAINERS ===== */
 
 /* Container principal */
-.calc-tinta-container {
+.sv-container {
   padding: var(--spacing-sm);
   padding-bottom: var(--spacing-xs);
   overflow-x: hidden;
@@ -97,77 +97,49 @@
 }
 
 /* ESPAÇAMENTO PADRONIZADO - Força espaçamento consistente entre SEÇÕES, preserva título PageTitle */
-.calc-tinta-container > .calculation-section,
-.calc-tinta-container > .primeiroQuadro,
-.calc-tinta-container > .segundoQuadro,
-.calc-tinta-container > .terceiroQuadro,
-.calc-tinta-container > .quartoQuadro,
-.calc-tinta-container > .levantamento-container {
+.sv-container > .calculation-section,
+.sv-container > .primeiroQuadro,
+.sv-container > .segundoQuadro,
+.sv-container > .terceiroQuadro,
+.sv-container > .quartoQuadro,
+.sv-container > .levantamento-container {
   margin: 0 !important;
   margin-bottom: 1rem !important;
 }
 
-.calc-tinta-container > .calculation-section:last-child,
-.calc-tinta-container > .primeiroQuadro:last-child,
-.calc-tinta-container > .segundoQuadro:last-child,
-.calc-tinta-container > .terceiroQuadro:last-child,
-.calc-tinta-container > .quartoQuadro:last-child,
-.calc-tinta-container > .levantamento-container:last-child {
+.sv-container > .calculation-section:last-child,
+.sv-container > .primeiroQuadro:last-child,
+.sv-container > .segundoQuadro:last-child,
+.sv-container > .terceiroQuadro:last-child,
+.sv-container > .quartoQuadro:last-child,
+.sv-container > .levantamento-container:last-child {
   margin-bottom: 0 !important;
 }
 
-/* PageTitle preserva suas margens naturais */
-.calc-tinta-container > .sv-page-title,
-.calc-tinta-container > [class*="page-title"] {
-  margin: 2rem 1.5rem 1rem !important;
-}
-
 /* Reset de classes Tailwind e margens extras */
-.calc-tinta-container .m-2,
-.calc-tinta-container .lg\:mr-2,
-.calc-tinta-container .mt-2,
-.calc-tinta-container .quartoQuadro > .flex.m-2,
-.calc-tinta-container .primeiroQuadro .mt-2,
-.calc-tinta-container .segundoQuadro .mt-2,
-.calc-tinta-container .terceiroQuadro .mt-2,
-.calc-tinta-container .quartoQuadro .mt-2,
-.calc-tinta-container .sv-space-y-4,
-.calc-tinta-container .sv-space-y-6 {
+.sv-container .m-2,
+.sv-container .lg\:mr-2,
+.sv-container .mt-2,
+.sv-container .quartoQuadro > .flex.m-2,
+.sv-container .primeiroQuadro .mt-2,
+.sv-container .segundoQuadro .mt-2,
+.sv-container .terceiroQuadro .mt-2,
+.sv-container .quartoQuadro .mt-2,
+.sv-container .sv-space-y-4,
+.sv-container .sv-space-y-6 {
   margin: 0 !important;
 }
 
-.calc-tinta-container .quartoQuadro > .flex.m-2 {
+.sv-container .quartoQuadro > .flex.m-2 {
   padding: var(--spacing-sm) 0 !important;
 }
 
 /* ===== 4. COMPONENTES DE INTERFACE ===== */
 
 /* 4.1 TIPOGRAFIA */
+/* Título principal usa estilo global .page-title do shared.css */
 
-/* Título principal */
-.calc-tinta-container h1 {
-  color: #ffcc29 !important;
-  font-size: var(--font-size-2xl);
-  font-weight: 600;
-  margin: var(--spacing-2xl) var(--spacing-xl) var(--spacing-lg);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  position: relative;
-  display: inline-block;
-  line-height: 1.1;
-}
-
-/* FORÇA TÍTULO AMARELO EM QUALQUER CONTEXTO */
-h1,
-.page-title,
-.sv-page-title,
-[class*="title"],
-[class*="Title"] {
-  color: #ffcc29 !important;
-}
-
-.calc-tinta-container h1::after {
+.sv-container h1::after {
   content: '';
   position: absolute;
   left: 0;

@@ -86,8 +86,10 @@ const Home = () => {
     );
     setCards(updated.filter(card => card.show !== false));
     localStorage.setItem("tintaEsferaCards", JSON.stringify(updated));
-  };    return (
-    <div className="home-container">
+  };
+
+  return (
+    <div className="sv-container sv-fade-in">
       <PageTitle title="SEUS CÁLCULOS SALVOS" />
       {cards.length === 0 ? (
         <div className="mt-8 text-center text-gray-500 px-4">

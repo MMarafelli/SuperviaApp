@@ -45,8 +45,9 @@
   align-items: center;
   justify-content: center;
   gap: var(--sv-space-3);
-  margin: var(--sv-space-6) var(--sv-space-4) var(--sv-space-4);
+  margin: var(--sv-space-4) auto var(--sv-space-4);
   text-align: center;
+  padding: 0 var(--sv-space-4);
 }
 
 .sv-unified-page-title__icon {
@@ -97,8 +98,9 @@
 /* ===== RESPONSIVIDADE ===== */
 @media (max-width: 768px) {
   .sv-unified-page-title {
-    margin: var(--sv-space-4) var(--sv-space-2);
+    margin: var(--sv-space-3) auto var(--sv-space-3);
     gap: var(--sv-space-2);
+    padding: 0 var(--sv-space-2);
   }
   
   .sv-unified-page-title__title {

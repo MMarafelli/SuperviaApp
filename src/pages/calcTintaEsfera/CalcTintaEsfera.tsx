@@ -513,7 +513,7 @@ const Formulario = () => {
     // ---------------------------------------------------------------------------------------------
 
     return (
-        <div className="calc-tinta-container sv-fade-in">
+        <div className="sv-container sv-fade-in">
             <PageTitle title="PINTURA AUTOMÁTICA" />
 
             {/* Primeiro quadro - Migrado para Design System */}

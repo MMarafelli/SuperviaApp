@@ -20,7 +20,7 @@ export const PageTitle = memo<PageTitleProps>(({
   title, 
   subtitle, 
   icon, 
-  variant = 'legacy',  // PADRÃO ALTERADO PARA LEGACY - ESTILO UNIFICADO
+  variant = 'legacy',  // VOLTANDO PARA LEGACY - APARÊNCIA ORIGINAL CORRETA
   className = '' 
 }) => {
   // Renderização baseada na variante para manter compatibilidade
