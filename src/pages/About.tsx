@@ -1,4 +1,3 @@
-import { useLoaderData } from "react-router-dom";
 import NotificationTest from "../components/NotificationTest/NotificationTest";
 import { PageTitle, Section } from "../design-system";
 
@@ -8,30 +7,41 @@ export async function loader() {
 }
 
 export function Component() {
-  const data = useLoaderData() as string;
-
   return (
     <div className="sv-container sv-fade-in">
-      {/* PageTitle seguindo o padrão: maiúsculas com sublinhado amarelo */}
       <PageTitle title="SOBRE O SUPERVIA APP" />
 
-      {/* ANTES: <p className="mb-6">{data}</p> */}
-      {/* DEPOIS: Section organizada */}
+      {/* Informações principais do app */}
       <Section 
-        title="Informações do Sistema" 
+        title="Informações do Aplicativo" 
         variant="card" 
-        icon="📋"
+        icon="📱"
         className="sv-mb-6"
       >
-        <p className="sv-text-base">{data}</p>
-        <div className="sv-mt-4 sv-p-4 sv-bg-primary sv-rounded-lg sv-text-center">
-          <span className="sv-font-bold">🎨 Design System Ativo!</span>
-          <p className="sv-text-sm sv-mt-2">Esta página agora usa o design system unificado</p>
+        <div className="sv-space-y-4">
+          <div>
+            <h4 className="sv-font-bold sv-text-primary sv-mb-2">🎯 Funcionalidades</h4>
+            <ul className="sv-text-sm sv-space-y-1">
+              <li>• Cálculo de Pintura Automática</li>
+              <li>• Cálculo de Consumo de Materiais</li>
+              <li>• Geração de Levantamentos</li>
+              <li>• Compartilhamento de Resultados</li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="sv-font-bold sv-text-primary sv-mb-2">⚙️ Tecnologias</h4>
+            <p className="sv-text-sm">React + TypeScript + Vite + PWA</p>
+          </div>
+
+          <div className="sv-mt-4 sv-p-4 sv-bg-primary sv-rounded-lg sv-text-center">
+            <span className="sv-font-bold">🎨 Design System Unificado</span>
+            <p className="sv-text-sm sv-mt-2">Interface padronizada em todas as páginas</p>
+          </div>
         </div>
       </Section>
       
-      {/* ANTES: <div className="mb-6"><h3>Teste de Notificações</h3>... */}
-      {/* DEPOIS: Section padronizada */}
+      {/* Teste de notificações */}
       <Section 
         title="Teste de Notificações Push" 
         variant="calculation" 
@@ -44,20 +54,30 @@ export function Component() {
         <NotificationTest />
       </Section>
 
-      {/* NOVA: Section demonstrando recursos do design system */}
+      {/* Status da migração */}
       <Section 
-        title="Recursos do Design System" 
+        title="Status da Migração" 
         variant="result" 
-        icon="✨"
+        icon="✅"
       >
-        <div className="sv-grid sv-grid--2 sv-grid--gap-md">
-          <div className="sv-p-4 sv-border sv-border-primary sv-rounded-lg sv-hover-lift">
-            <h4 className="sv-font-bold sv-text-primary sv-mb-2">🎯 Padronização</h4>
-            <p className="sv-text-sm">Componentes uniformes em todas as páginas</p>
+        <div className="sv-grid sv-grid-cols-1 md:sv-grid-cols-2 sv-gap-4">
+          <div className="sv-p-4 sv-border sv-border-success sv-rounded-lg">
+            <h4 className="sv-font-bold sv-text-success sv-mb-2">✅ Páginas Migradas</h4>
+            <ul className="sv-text-sm sv-space-y-1">
+              <li>• Home - 100%</li>
+              <li>• CalcTintaEsfera - 100%</li>
+              <li>• CalcConsumo - 100%</li>
+              <li>• About - 100%</li>
+            </ul>
           </div>
-          <div className="sv-p-4 sv-border sv-border-primary sv-rounded-lg sv-hover-lift">
-            <h4 className="sv-font-bold sv-text-primary sv-mb-2">🔧 Facilidade</h4>
-            <p className="sv-text-sm">Uma importação, todos os componentes</p>
+          <div className="sv-p-4 sv-border sv-border-primary sv-rounded-lg">
+            <h4 className="sv-font-bold sv-text-primary sv-mb-2">🎨 Componentes Ativos</h4>
+            <ul className="sv-text-sm sv-space-y-1">
+              <li>• CalculationSection</li>
+              <li>• SVInputField & SVSelectField</li>
+              <li>• ResponsiveCalculationLayout</li>
+              <li>• PageTitle & Section</li>
+            </ul>
           </div>
         </div>
       </Section>
