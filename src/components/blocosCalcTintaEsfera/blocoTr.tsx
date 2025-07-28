@@ -1,5 +1,6 @@
 import React from 'react';
 import { SVInputField, SVSelectField } from '../ui';
+import { ResultDisplay } from '../calculation/CalculationComponents';
 import '../../styles/shared.css';
 
 interface OpcaoSelect {
@@ -48,7 +49,17 @@ const BlocoTrVariavel: React.FC<BlocoTrVariavelProps> = ({ label, valorX, valorY
                     placeholder=" "
                 />
             </td>
-            <td className='tdResultadoTelaGrande'>{valorZ}</td>
+            <td className='tdResultadoTelaGrande'>
+                <div className='resultado-table-container'>
+                    <ResultDisplay
+                        label=""
+                        value={valorZ}
+                        unit="m²"
+                        editable={true}
+                        onEdit={(newValue) => onChange('Z', newValue)}
+                    />
+                </div>
+            </td>
             <td>
                 <SVSelectField
                     value={tipoTacha}

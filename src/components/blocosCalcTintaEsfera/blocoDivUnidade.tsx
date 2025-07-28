@@ -1,5 +1,6 @@
 import React from 'react';
 import { SVInputField, SVSelectField } from '../ui';
+import { ResultDisplay } from '../calculation/CalculationComponents';
 import '../../styles/shared.css';
 
 interface OpcaoSelect {
@@ -59,12 +60,15 @@ const BlocoDivUnidVariavel: React.FC<BlocoDivVariavelProps> = ({ label, valorX, 
                 </div>
                 <div className='bloco'>
                     <div className='texto-a-direita quadro'>Resultado(m²):</div>
-                    <SVInputField
-                        value={valorZ}
-                        readOnly
-                        variant="result"
-                        placeholder=" "
-                    />
+                    <div className='resultado-input-container'>
+                        <ResultDisplay
+                            label=""
+                            value={valorZ}
+                            unit="m²"
+                            editable={true}
+                            onEdit={(newValue) => onChange('Z', newValue)}
+                        />
+                    </div>
                 </div>
                 <div className='bloco'>
                     <div className='texto-a-direita quadro'>Tipo de tacha:</div>

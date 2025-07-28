@@ -92,6 +92,8 @@
   padding: var(--spacing-sm);
   padding-bottom: var(--spacing-xs);
   overflow-x: hidden;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Espaçamento padronizado entre elementos */
@@ -129,7 +131,7 @@
 
 /* Título principal */
 .calc-tinta-container h1 {
-  color: var(--color-primary);
+  color: #ffcc29 !important;
   font-size: var(--font-size-2xl);
   font-weight: 600;
   margin: var(--spacing-2xl) var(--spacing-xl) var(--spacing-lg);
@@ -141,6 +143,15 @@
   line-height: 1.1;
 }
 
+/* FORÇA TÍTULO AMARELO EM QUALQUER CONTEXTO */
+h1,
+.page-title,
+.sv-page-title,
+[class*="title"],
+[class*="Title"] {
+  color: #ffcc29 !important;
+}
+
 .calc-tinta-container h1::after {
   content: '';
   position: absolute;
@@ -149,7 +160,7 @@
   width: 60px;
   height: 4px;
   background: var(--color-primary);
-  border-radius: 2px;
+  border-radius: var(--border-radius-sm);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -205,15 +216,16 @@
   transition: var(--transition-normal);
   overflow: hidden;
   margin: 0 0 var(--spacing-lg) 0;
+  width: 100%;
+  max-width: 100%;
 }
 
-/* Ajustes de margens específicos */
-.primeiroQuadro {
-  margin: 0 0 var(--spacing-lg) 0;
-}
-
-.segundoQuadro {
-  margin: 0 0 var(--spacing-lg) 0;
+/* Ajustes de margens específicos - TODOS com a mesma margem padrão */
+.primeiroQuadro,
+.segundoQuadro,
+.terceiroQuadro,
+.quartoQuadro {
+  margin: 0 auto var(--spacing-xl) auto;
 }
 
 .terceiroQuadro {
@@ -240,6 +252,9 @@
   border-radius: 0;
   padding: 0;
   overflow: visible;
+  margin: var(--spacing-xl) auto;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Container do levantamento */
@@ -323,26 +338,29 @@ table {
   box-shadow: var(--shadow-md);
   border: 1px solid var(--color-border-light);
   overflow: hidden;
+  margin: 2rem auto;
 }
 
 /* Headers da tabela */
 .tabela1TelaGrande thead th {
   background: var(--color-bg-gray-50) !important;
   border-bottom: 2px solid var(--color-primary);
-  padding: var(--spacing-md) var(--spacing-sm);
+  padding: var(--spacing-lg) var(--spacing-md);
   color: #374151 !important; /* Texto escuro forçado */
   font-weight: 700;
-  text-align: left;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  text-align: center;
+  font-size: 14px;
+  vertical-align: middle;
+  line-height: 1.2;
 }
 
 /* Células da tabela */
 .tabela1TelaGrande tbody td {
-  padding: var(--spacing-sm) var(--spacing-xl);
+  padding: 12px 8px;
   border-bottom: 1px solid var(--color-border-light);
   transition: var(--transition-normal);
+  vertical-align: middle;
+  text-align: center;
 }
 
 .tabela1TelaGrande tbody tr:last-child td {
@@ -352,20 +370,25 @@ table {
 /* Inputs dentro da tabela */
 .tabela1TelaGrande input,
 .tabela1TelaGrande select {
-  width: 90%;
-  padding: var(--spacing-sm);
-  font-size: var(--font-size-sm);
-  margin: 0.1rem 0;
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  margin: 0;
   box-shadow: none;
+  text-align: center;
 }
 
-/* Larguras das colunas */
-.tabela1TelaGrande th:nth-child(1), .tabela1TelaGrande td:nth-child(1) { width: 15%; }
-.tabela1TelaGrande th:nth-child(2), .tabela1TelaGrande td:nth-child(2) { width: 12%; }
-.tabela1TelaGrande th:nth-child(3), .tabela1TelaGrande td:nth-child(3) { width: 18%; }
-.tabela1TelaGrande th:nth-child(4), .tabela1TelaGrande td:nth-child(4) { width: 12%; }
-.tabela1TelaGrande th:nth-child(5), .tabela1TelaGrande td:nth-child(5) { width: 25%; }
-.tabela1TelaGrande th:nth-child(6), .tabela1TelaGrande td:nth-child(6) { width: 18%; }
+/* Larguras otimizadas das colunas para melhor aproveitamento do espaço */
+.tabela1TelaGrande th:nth-child(1), .tabela1TelaGrande td:nth-child(1) { 
+  width: 18%; 
+  text-align: left;
+  padding-left: var(--spacing-lg);
+}
+.tabela1TelaGrande th:nth-child(2), .tabela1TelaGrande td:nth-child(2) { width: 14%; }
+.tabela1TelaGrande th:nth-child(3), .tabela1TelaGrande td:nth-child(3) { width: 16%; }
+.tabela1TelaGrande th:nth-child(4), .tabela1TelaGrande td:nth-child(4) { width: 14%; }
+.tabela1TelaGrande th:nth-child(5), .tabela1TelaGrande td:nth-child(5) { width: 22%; }
+.tabela1TelaGrande th:nth-child(6), .tabela1TelaGrande td:nth-child(6) { width: 16%; }
 
 /* Border radius nas bordas da tabela */
 .tabela1TelaGrande thead:first-child tr:first-child th:first-child {
@@ -408,7 +431,7 @@ table {
   transition: var(--transition-fast);
   margin: var(--spacing-xs);
   white-space: nowrap;
-  min-height: 2.5rem;
+  min-height: var(--sv-space-10);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -480,7 +503,7 @@ table {
 /* Títulos das seções */
 .divsSegundoQuadroTelaPequena .tituloDaDivBloco {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start; /* Alinhado à esquerda */
   align-items: center;
   margin-bottom: var(--spacing-sm);
   font-weight: 600;
@@ -502,6 +525,7 @@ table {
   height: var(--spacing-xl);
   cursor: pointer;
   transition: var(--transition-fast);
+  margin-left: auto; /* Move o SVG para a direita */
 }
 
 .divsSegundoQuadroTelaPequena .tituloDaDivBloco svg:hover {
@@ -515,24 +539,61 @@ table {
   width: 100%;
   margin-bottom: var(--spacing-sm);
   align-items: center;
+  /* Remove gap para manter layout original das legendas */
 }
 
 .divsSegundoQuadroTelaPequena .bloco:last-child {
   margin-bottom: 0;
 }
 
+/* Container dos inputs dentro do bloco */
+.divsSegundoQuadroTelaPequena .bloco .sv-field-group {
+  flex: 1 !important; /* Ocupa o espaço restante */
+  margin: 0 !important;
+  width: 55% !important; /* Largura original dos inputs */
+}
+
+.divsSegundoQuadroTelaPequena .bloco .sv-input,
+.divsSegundoQuadroTelaPequena .bloco .sv-select {
+  width: 100% !important;
+  padding: 12px 14px !important;
+  font-size: 14px !important;
+  min-height: var(--sv-space-12) !important;
+  max-height: var(--sv-space-12) !important;
+  height: var(--sv-space-12) !important;
+  border-radius: var(--border-radius-sm) !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  color: #111827 !important;
+  background-color: white !important;
+  box-sizing: border-box !important;
+}
+
 .divsSegundoQuadroTelaPequena .quadro {
   padding: var(--spacing-sm);
-  width: 45%;
+  width: 45% !important; /* Volta para a largura original das legendas */
+  text-align: right !important; /* Alinhamento à direita das legendas */
   font-weight: 500;
+  font-size: 14px !important;
+  color: #374151 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   word-wrap: break-word;
 }
 
 .segundoQuadro .bloco input,
 .segundoQuadro .bloco select,
 .segundoQuadro .bloco .resultado {
-  width: 55%;
-  margin-right: var(--spacing-md);
+  width: 100% !important; /* Largura total para inputs */
+  margin-right: 0 !important;
+  padding: 12px 14px !important;
+  font-size: 14px !important;
+  min-height: var(--sv-space-12) !important;
+  max-height: var(--sv-space-12) !important;
+  height: var(--sv-space-12) !important;
+  border-radius: var(--border-radius-sm) !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  color: #111827 !important;
+  background-color: white !important;
+  box-sizing: border-box !important;
 }
 
 /* 4.7 ELEMENTOS ESPECIAIS */
@@ -568,6 +629,7 @@ table {
   min-width: 100px;
   text-align: center;
   vertical-align: middle;
+  padding: 8px 4px !important;
 }
 
 /* Cursor para terceiro quadro */
@@ -807,5 +869,71 @@ table {
 
 .calc-tinta-container > *:nth-child(2) { animation-delay: 0.1s; }
 .calc-tinta-container > *:nth-child(3) { animation-delay: 0.2s; }
+
+/* ===== MELHORIAS RESPONSIVAS PARA ORGANIZACAO ===== */
+
+/* Large screens - melhor organização da tabela */
+@media (min-width: 1024px) {
+  /* Container principal com largura controlada */
+  .calc-tinta-container {
+    max-width: 1200px;
+    padding: var(--spacing-lg);
+  }
+  
+  /* TODOS os quadros com a MESMA largura máxima */
+  .primeiroQuadro,
+  .segundoQuadro,
+  .terceiroQuadro,
+  .quartoQuadro {
+    max-width: 1000px;
+    margin: var(--spacing-xl) auto;
+  }
+  
+  /* Tabela também com a mesma largura */
+  .tabela1TelaGrande {
+    max-width: 1000px;
+    margin: var(--spacing-2xl) auto;
+  }
+  
+  /* Melhor alinhamento dos títulos dos quadros */
+  .primeiroQuadro .text-center,
+  .terceiroQuadro .text-center,
+  .quartoQuadro .text-center {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+/* Extra large screens */
+@media (min-width: 1280px) {
+  .calc-tinta-container {
+    max-width: 1400px;
+    padding: var(--spacing-xl);
+  }
+  
+  /* TODOS os quadros mantêm a mesma largura */
+  .primeiroQuadro,
+  .segundoQuadro,
+  .terceiroQuadro,
+  .quartoQuadro {
+    max-width: 1100px;
+  }
+  
+  /* Tabela também com a mesma largura */
+  .tabela1TelaGrande {
+    max-width: 1100px;
+  }
+}
+
+/* Medium screens - tablet landscape */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .calc-tinta-container {
+    padding: var(--spacing-md);
+  }
+  
+  .tabela1TelaGrande {
+    margin: var(--spacing-xl) auto;
+  }
+}
 .calc-tinta-container > *:nth-child(4) { animation-delay: 0.3s; }
 .calc-tinta-container > *:nth-child(5) { animation-delay: 0.4s; }

@@ -235,7 +235,7 @@
     margin-bottom: 1.5rem;
     padding: 1rem;
     border: 1px solid #e5e7eb;
-    border-radius: 8px;
+    border-radius: var(--border-radius-sm);
     background-color: white;
 }
 
@@ -358,7 +358,107 @@
     min-width: 60px;
 }
 
-/* Action Buttons */
+/* Resultado fixo nos blocos */
+.resultado-display {
+    padding: 12px 14px;
+    background-color: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: var(--border-radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+    color: #059669;
+    text-align: center;
+    min-height: var(--sv-space-12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Container para resultado editável nos blocos */
+.resultado-input-container {
+    flex: 1;
+}
+
+.resultado-input-container .result-display {
+    margin-bottom: 0;
+}
+
+.resultado-input-container .result-row {
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+.resultado-input-container .result-label {
+    display: none; /* Esconde o label pois já temos na div anterior */
+}
+
+.resultado-input-container .result-value {
+    background-color: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: var(--border-radius-sm);
+    padding: 12px 14px;
+    min-height: var(--sv-space-12);
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #059669;
+    flex: 1;
+}
+
+/* Container para resultado editável na tabela */
+.resultado-table-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+}
+
+.resultado-table-container .result-display {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.resultado-table-container .result-row {
+  justify-content: center;
+  gap: 4px;
+  align-items: center;
+}
+
+.resultado-table-container .result-label {
+  display: none; /* Esconde o label pois já temos no header da tabela */
+}
+
+.resultado-table-container .result-value {
+  background-color: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  padding: var(--spacing-sm) 10px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 500;
+  color: #059669;
+  text-align: center;
+  width: 80px;
+  min-width: 60px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.resultado-table-container .result-value:hover {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.resultado-table-container .edit-indicator {
+  margin-left: 4px;
+  font-size: 11px;
+  opacity: 0.7;
+}/* Action Buttons */
 .action-buttons {
     display: flex;
     gap: 0.5rem;
@@ -381,7 +481,7 @@
     width: 100%;
     border-collapse: collapse;
     background-color: white;
-    border-radius: 8px;
+    border-radius: var(--border-radius-sm);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -505,13 +605,20 @@
 
 .sv-input {
     width: 100%;
-    padding: var(--sv-space-2) var(--sv-space-3);
+    padding: 12px 14px !important; /* Padding fixo padronizado */
     border: 2px solid white; /* Borda branca quando vazio */
-    border-radius: var(--sv-radius-md);
-    font-size: var(--sv-text-sm);
+    border-radius: var(--border-radius-sm) !important; /* Border radius fixo */
+    font-size: 14px !important; /* Tamanho de fonte fixo */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-weight: 400 !important;
+    line-height: 1.4 !important;
+    min-height: var(--sv-space-12) !important; /* Altura mínima aumentada para uniformizar */
+    max-height: var(--sv-space-12) !important; /* Altura máxima fixa */
+    height: var(--sv-space-12) !important; /* Altura fixa */
     transition: all 0.15s ease-in-out;
-    background-color: white;
-    color: var(--sv-gray-900);
+    background-color: white !important;
+    color: #111827 !important;
+    box-sizing: border-box !important;
 }
 
 .sv-input:focus {
@@ -599,14 +706,27 @@
 /* ===== SELECT STYLES ===== */
 .sv-select {
     width: 100%;
-    padding: var(--sv-space-2) var(--sv-space-3);
+    padding: 12px 14px !important; /* Padding fixo padronizado - igual aos inputs */
     border: 2px solid white; /* Borda branca quando vazio */
-    border-radius: var(--sv-radius-md);
-    font-size: var(--sv-text-sm);
+    border-radius: var(--border-radius-sm) !important; /* Border radius fixo - igual aos inputs */
+    font-size: 14px !important; /* Tamanho de fonte fixo - igual aos inputs */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-weight: 400 !important;
+    line-height: 1.4 !important;
+    min-height: var(--sv-space-12) !important; /* Altura mínima aumentada - igual aos inputs */
+    max-height: var(--sv-space-12) !important; /* Altura máxima fixa */
+    height: var(--sv-space-12) !important; /* Altura fixa - igual aos inputs */
     transition: all 0.15s ease-in-out;
     background-color: white !important;
-    color: var(--sv-gray-900) !important;
+    color: #111827 !important;
     cursor: pointer;
+    box-sizing: border-box !important;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 12px center !important;
+    background-size: var(--spacing-lg) !important;
+    padding-right: 40px !important;
 }
 
 .sv-select:focus {
@@ -674,7 +794,21 @@
 /* Select option styles */
 .sv-select option {
     background-color: white !important;
-    color: var(--sv-gray-900) !important;
+    color: #111827 !important;
+    font-size: 14px !important;
+    padding: var(--spacing-sm) var(--spacing-md) !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* Labels padronizadas */
+.sv-label {
+    display: block;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #374151 !important;
+    margin-bottom: 6px !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    line-height: 1.4 !important;
 }
 
 /* Text utilities */
@@ -800,20 +934,17 @@ label,
     color: #374151 !important;
 }
 
-/* Override any legacy white text - but preserve button colors */
-.sv-container *:not(.btn):not(button):not(.modern-button) {
-    color: #374151 !important;
-}
-
 /* Ensure calculation table text is dark */
 .calculation-table th,
 .calculation-table td {
     color: #374151 !important;
 }
 
-/* Page title should remain with its original styling */
+/* Page title should have yellow text with yellow underline - FORÇA MÁXIMA */
 .page-title,
-.sv-page-title {
+.sv-page-title,
+h1.page-title,
+h1.sv-page-title {
     color: #ffcc29 !important;
 }
 
@@ -824,6 +955,11 @@ td .sv-input,
 td .sv-select {
     margin: 0 !important;
     min-width: auto !important;
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+    min-height: var(--sv-space-12) !important;
+    max-height: var(--sv-space-12) !important;
+    height: var(--sv-space-12) !important;
 }
 
 /* Inputs dentro dos blocos mobile */
@@ -831,21 +967,118 @@ td .sv-select {
 .bloco .sv-select {
     margin: 0 !important;
     width: 100% !important;
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+    min-height: var(--sv-space-12) !important;
+    max-height: var(--sv-space-12) !important;
+    height: var(--sv-space-12) !important;
+    border-radius: var(--border-radius-sm) !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    color: #111827 !important;
+    background-color: white !important;
+    border: 2px solid white !important;
+    box-sizing: border-box !important;
+}
+
+/* Ajuste específico para select dentro de blocos */
+.bloco .sv-select {
+    padding-right: 40px !important;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 12px center !important;
+    background-size: var(--spacing-lg) !important;
+    appearance: none !important;
+}
+
+/* Regras super específicas para sobrescrever qualquer conflito */
+.divsSegundoQuadroTelaPequena .bloco .sv-input,
+.divsSegundoQuadroTelaPequena .bloco .sv-select,
+.segundoQuadro .bloco .sv-input,
+.segundoQuadro .bloco .sv-select {
+    margin: 0 !important;
+    width: 100% !important;
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+    min-height: var(--sv-space-12) !important;
+    max-height: var(--sv-space-12) !important;
+    height: var(--sv-space-12) !important;
+    border-radius: var(--border-radius-sm) !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    color: #111827 !important;
+    background-color: white !important;
+    border: 2px solid white !important;
+    box-sizing: border-box !important;
+}
+
+.divsSegundoQuadroTelaPequena .bloco .sv-select,
+.segundoQuadro .bloco .sv-select {
+    padding-right: 40px !important;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 12px center !important;
+    background-size: var(--spacing-lg) !important;
+    appearance: none !important;
 }
 
 /* Labels dos blocos mobile */
 .texto-a-direita.quadro {
     color: #374151 !important;
     font-weight: 500 !important;
+    font-size: 14px !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    line-height: 1.4 !important;
+    text-align: right !important; /* Mantém alinhamento à direita */
+    width: 45% !important; /* Largura original das legendas */
 }
 
 /* Título dos blocos mobile */
 .tituloDaDivBloco .quadro {
     color: #374151 !important;
     font-weight: 600 !important;
+    font-size: 16px !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    line-height: 1.4 !important;
+    text-align: left !important; /* Garantir alinhamento à esquerda */
 }
 
-/* Garantir que field groups dentro dos blocos não tenham margin */
+/* Container do título dos blocos mobile */
+.tituloDaDivBloco {
+    display: flex !important;
+    justify-content: flex-start !important; /* Alinhado à esquerda */
+    align-items: center !important;
+    text-align: left !important;
+}
+
+/* SVG dentro do título */
+.tituloDaDivBloco svg {
+    margin-left: auto !important; /* Move o SVG para a direita */
+}
+
+/* Garantir que field groups dentro dos blocos tenham a largura correta */
 .bloco .sv-field-group {
     margin-bottom: 0 !important;
+    width: 55% !important; /* Largura original dos inputs */
+    flex: none !important; /* Remove flex para manter largura fixa */
+}
+
+/* Padronização global de labels */
+.sv-field-group .sv-label,
+.campo-grupo .sv-label,
+.calculation-section .sv-label {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #374151 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    line-height: 1.4 !important;
+    margin-bottom: 6px !important;
+}
+
+/* ===== FORCE YELLOW TITLE - ÚLTIMA PALAVRA ===== */
+.page-title,
+.sv-page-title,
+h1.page-title,
+h1.sv-page-title,
+[class*="page-title"],
+[class*="PageTitle"] {
+    color: #ffcc29 !important;
 }

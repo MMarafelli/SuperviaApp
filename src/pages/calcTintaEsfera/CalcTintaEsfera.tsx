@@ -12,16 +12,11 @@ import {
     SVInputField,
     SVSelectField
 } from '../../components/ui';
-import { 
+import {
     CalculationSection,
     FieldGroup,
     ResultDisplay,
-    ActionButtons,
-    ResponsiveCalculationLayout,
-    CalculationTable
-} from '../../components/calculation/CalculationComponents';
-
-import BlocoDivCompVariavel from '../../components/blocosCalcTintaEsfera/blocoDivComprimento'
+} from '../../components/calculation/CalculationComponents';import BlocoDivCompVariavel from '../../components/blocosCalcTintaEsfera/blocoDivComprimento'
 import BlocoDivUnidVariavel from '../../components/blocosCalcTintaEsfera/blocoDivUnidade'
 import BlocoTrVariavel from '../../components/blocosCalcTintaEsfera/blocoTr'
 
@@ -40,7 +35,6 @@ const Formulario = () => {
     // Variáveis da página
     // --------------------------------------------------------------------------------------------
     const [larguraDaJanela, setLarguraDaJanela] = useState(window.innerWidth);
-    const [isFocused, setIsFocused] = useState('');
     //const [mostrarConteudo, setMostrarConteudo] = useState(false);
     const [levantamento, setLevantamento] = useState('');
     
@@ -216,15 +210,6 @@ const Formulario = () => {
     const handleEditTinta = useCallback(() => {
         setEditarTinta(!editarTinta);
     }, [editarTinta]);
-
-    // Controle se o campo está focado ou não.
-    const handleInputFocus = (inputName: string) => {
-        setIsFocused(inputName);
-    };
-
-    const handleInputBlur = () => {
-        setIsFocused('');
-    };
 
     const handleInputChangeNumeric = (value: string) => {
         const numericValue = value.replace(/[^\d.]/g, '');
@@ -519,7 +504,6 @@ const Formulario = () => {
         // O useeffect toma conta de atualizar o localStorage.
         setCampos(initialState);
 
-        setIsFocused('');
         /*      setMostrarConteudo(false);
                 setEditarEsferas(false);
                 setEditarTinta(false); */
@@ -801,12 +785,10 @@ const Formulario = () => {
             <CalculationSection 
                 title="📊 Totais Calculados"
             >
-                <SVInputField
+                <ResultDisplay
                     label="📐 Total m²"
                     value={campos.totalMetrosPista}
-                    readOnly
-                    variant="result"
-                    helperText="Valor calculado automaticamente"
+                    unit="m²"
                 />
             </CalculationSection>
 
