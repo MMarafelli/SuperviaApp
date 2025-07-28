@@ -96,20 +96,33 @@
   margin: 0 auto;
 }
 
-/* Espaçamento padronizado entre elementos */
-.calc-tinta-container > * {
-  margin: 0;
+/* ESPAÇAMENTO PADRONIZADO - Força espaçamento consistente entre SEÇÕES, preserva título PageTitle */
+.calc-tinta-container > .calculation-section,
+.calc-tinta-container > .primeiroQuadro,
+.calc-tinta-container > .segundoQuadro,
+.calc-tinta-container > .terceiroQuadro,
+.calc-tinta-container > .quartoQuadro,
+.calc-tinta-container > .levantamento-container {
+  margin: 0 !important;
+  margin-bottom: 1rem !important;
 }
 
-.calc-tinta-container > *:first-child {
-  margin-top: 0;
+.calc-tinta-container > .calculation-section:last-child,
+.calc-tinta-container > .primeiroQuadro:last-child,
+.calc-tinta-container > .segundoQuadro:last-child,
+.calc-tinta-container > .terceiroQuadro:last-child,
+.calc-tinta-container > .quartoQuadro:last-child,
+.calc-tinta-container > .levantamento-container:last-child {
+  margin-bottom: 0 !important;
 }
 
-.calc-tinta-container > *:last-child {
-  margin-bottom: 0;
+/* PageTitle preserva suas margens naturais */
+.calc-tinta-container > .sv-page-title,
+.calc-tinta-container > [class*="page-title"] {
+  margin: 2rem 1.5rem 1rem !important;
 }
 
-/* Reset de classes Tailwind */
+/* Reset de classes Tailwind e margens extras */
 .calc-tinta-container .m-2,
 .calc-tinta-container .lg\:mr-2,
 .calc-tinta-container .mt-2,
@@ -117,7 +130,9 @@
 .calc-tinta-container .primeiroQuadro .mt-2,
 .calc-tinta-container .segundoQuadro .mt-2,
 .calc-tinta-container .terceiroQuadro .mt-2,
-.calc-tinta-container .quartoQuadro .mt-2 {
+.calc-tinta-container .quartoQuadro .mt-2,
+.calc-tinta-container .sv-space-y-4,
+.calc-tinta-container .sv-space-y-6 {
   margin: 0 !important;
 }
 
@@ -215,33 +230,37 @@ h1,
   flex-direction: column;
   transition: var(--transition-normal);
   overflow: hidden;
-  margin: 0 0 var(--spacing-lg) 0;
+  margin: 0 auto 1rem auto;
   width: 100%;
   max-width: 100%;
 }
 
-/* Ajustes de margens específicos - TODOS com a mesma margem padrão */
+/* Ajustes de margens específicos - PADRONIZAÇÃO TOTAL */
 .primeiroQuadro,
 .segundoQuadro,
 .terceiroQuadro,
 .quartoQuadro {
-  margin: 0 auto var(--spacing-xl) auto;
+  margin: 0 auto 1rem auto !important;
 }
 
 .terceiroQuadro {
-  margin: 0 0 var(--spacing-lg) 0;
+  margin: 0 auto 1rem auto !important;
 }
 
 .quartoQuadro {
-  margin: 0;
+  margin: 0 auto 1rem auto !important;
 }
 
 .divsSegundoQuadroTelaPequena .grupo {
-  margin: 0 0 var(--spacing-lg) 0;
+  margin: 0 0 1rem 0 !important;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: hidden;
+  width: 100% !important;
 }
 
 .divsSegundoQuadroTelaPequena .grupo:last-child {
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
 }
 
 /* Container do segundo quadro (transparente) */
@@ -252,22 +271,22 @@ h1,
   border-radius: 0;
   padding: 0;
   overflow: visible;
-  margin: var(--spacing-xl) auto;
+  margin: 0 auto 1rem auto !important;
   width: 100%;
   max-width: 100%;
 }
 
 /* Container do levantamento */
 .levantamento-container {
-  margin: 0 0 var(--spacing-lg) 0;
-  padding: var(--spacing-lg);
-  background: var(--color-bg-white);
-  border: 1px solid var(--color-border-light);
-  box-shadow: var(--shadow-md);
-  border-radius: var(--border-radius-md);
-  display: flex;
-  flex-direction: column;
-  transition: var(--transition-normal);
+  margin: 0 0 1rem 0 !important;
+  padding: var(--spacing-lg) !important;
+  background: var(--color-bg-white) !important;
+  border: 1px solid var(--color-border-light) !important;
+  box-shadow: var(--shadow-md) !important;
+  border-radius: var(--border-radius-md) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transition: var(--transition-normal) !important;
 }
 
 /* 4.3 FORMULÁRIOS E INPUTS */
@@ -332,13 +351,13 @@ table {
 /* Tabela principal */
 .tabela1TelaGrande {
   width: 100%;
-  table-layout: fixed;
+  table-layout: auto;
   background: var(--color-bg-white);
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-md);
   border: 1px solid var(--color-border-light);
   overflow: hidden;
-  margin: 2rem auto;
+  margin: 0 auto 1rem auto;
 }
 
 /* Headers da tabela */
@@ -378,17 +397,17 @@ table {
   text-align: center;
 }
 
-/* Larguras otimizadas das colunas para melhor aproveitamento do espaço */
+/* Larguras flexíveis das colunas para melhor adaptação */
 .tabela1TelaGrande th:nth-child(1), .tabela1TelaGrande td:nth-child(1) { 
-  width: 18%; 
+  min-width: 140px; 
   text-align: left;
   padding-left: var(--spacing-lg);
 }
-.tabela1TelaGrande th:nth-child(2), .tabela1TelaGrande td:nth-child(2) { width: 14%; }
-.tabela1TelaGrande th:nth-child(3), .tabela1TelaGrande td:nth-child(3) { width: 16%; }
-.tabela1TelaGrande th:nth-child(4), .tabela1TelaGrande td:nth-child(4) { width: 14%; }
-.tabela1TelaGrande th:nth-child(5), .tabela1TelaGrande td:nth-child(5) { width: 22%; }
-.tabela1TelaGrande th:nth-child(6), .tabela1TelaGrande td:nth-child(6) { width: 16%; }
+.tabela1TelaGrande th:nth-child(2), .tabela1TelaGrande td:nth-child(2) { min-width: 100px; }
+.tabela1TelaGrande th:nth-child(3), .tabela1TelaGrande td:nth-child(3) { min-width: 120px; }
+.tabela1TelaGrande th:nth-child(4), .tabela1TelaGrande td:nth-child(4) { min-width: 100px; }
+.tabela1TelaGrande th:nth-child(5), .tabela1TelaGrande td:nth-child(5) { min-width: 180px; }
+.tabela1TelaGrande th:nth-child(6), .tabela1TelaGrande td:nth-child(6) { min-width: 120px; }
 
 /* Border radius nas bordas da tabela */
 .tabela1TelaGrande thead:first-child tr:first-child th:first-child {
@@ -498,6 +517,10 @@ table {
   flex-direction: column;
   gap: 0;
   padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 /* Títulos das seções */
@@ -539,6 +562,8 @@ table {
   width: 100%;
   margin-bottom: var(--spacing-sm);
   align-items: center;
+  gap: var(--spacing-xs); /* Adiciona gap para melhor espaçamento */
+  box-sizing: border-box;
   /* Remove gap para manter layout original das legendas */
 }
 
@@ -550,7 +575,8 @@ table {
 .divsSegundoQuadroTelaPequena .bloco .sv-field-group {
   flex: 1 !important; /* Ocupa o espaço restante */
   margin: 0 !important;
-  width: 55% !important; /* Largura original dos inputs */
+  width: auto !important; /* Mudança de 55% para auto */
+  max-width: none !important;
 }
 
 .divsSegundoQuadroTelaPequena .bloco .sv-input,
@@ -570,13 +596,15 @@ table {
 
 .divsSegundoQuadroTelaPequena .quadro {
   padding: var(--spacing-sm);
-  width: 45% !important; /* Volta para a largura original das legendas */
+  width: auto !important; /* Mudança de 45% para auto */
+  max-width: 45% !important; /* Mantém limite máximo */
   text-align: right !important; /* Alinhamento à direita das legendas */
   font-weight: 500;
   font-size: 14px !important;
   color: #374151 !important;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   word-wrap: break-word;
+  flex-shrink: 0 !important; /* Não encolhe */
 }
 
 .segundoQuadro .bloco input,
@@ -796,6 +824,26 @@ table {
     border-color: var(--color-primary);
   }
   
+  /* Ajustes para dispositivos muito pequenos */
+  @media (max-width: 480px) {
+    .divsSegundoQuadroTelaPequena .bloco {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--spacing-xs);
+    }
+    
+    .divsSegundoQuadroTelaPequena .quadro {
+      width: 100% !important;
+      max-width: none !important;
+      text-align: left !important;
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .divsSegundoQuadroTelaPequena .bloco .sv-field-group {
+      width: 100% !important;
+    }
+  }
+  
   .tabela1TelaGrande tbody tr:hover,
   .tabela2TelaGrande tbody tr:hover {
     background: var(--color-bg-gray-50);
@@ -820,12 +868,12 @@ table {
 
 /* Responsividade para tablets */
 @media (max-width: 1200px) {
-  .tabela1TelaGrande th:nth-child(1), .tabela1TelaGrande td:nth-child(1) { width: 15%; }
-  .tabela1TelaGrande th:nth-child(2), .tabela1TelaGrande td:nth-child(2) { width: 12%; }
-  .tabela1TelaGrande th:nth-child(3), .tabela1TelaGrande td:nth-child(3) { width: 18%; }
-  .tabela1TelaGrande th:nth-child(4), .tabela1TelaGrande td:nth-child(4) { width: 12%; }
-  .tabela1TelaGrande th:nth-child(5), .tabela1TelaGrande td:nth-child(5) { width: 25%; }
-  .tabela1TelaGrande th:nth-child(6), .tabela1TelaGrande td:nth-child(6) { width: 18%; }
+  .tabela1TelaGrande th:nth-child(1), .tabela1TelaGrande td:nth-child(1) { min-width: 120px; }
+  .tabela1TelaGrande th:nth-child(2), .tabela1TelaGrande td:nth-child(2) { min-width: 90px; }
+  .tabela1TelaGrande th:nth-child(3), .tabela1TelaGrande td:nth-child(3) { min-width: 110px; }
+  .tabela1TelaGrande th:nth-child(4), .tabela1TelaGrande td:nth-child(4) { min-width: 90px; }
+  .tabela1TelaGrande th:nth-child(5), .tabela1TelaGrande td:nth-child(5) { min-width: 160px; }
+  .tabela1TelaGrande th:nth-child(6), .tabela1TelaGrande td:nth-child(6) { min-width: 110px; }
 }
 
 /* ===== 7. UTILITÁRIOS ===== */
@@ -880,19 +928,32 @@ table {
     padding: var(--spacing-lg);
   }
   
-  /* TODOS os quadros com a MESMA largura máxima */
+  /* TODOS os quadros com a MESMA largura máxima apenas em telas grandes */
   .primeiroQuadro,
   .segundoQuadro,
   .terceiroQuadro,
   .quartoQuadro {
-    max-width: 1000px;
-    margin: var(--spacing-xl) auto;
+    max-width: 1000px !important;
+    margin: 0 auto 1rem auto !important;
   }
   
-  /* Tabela também com a mesma largura */
+  /* Tabela também com a mesma largura apenas em telas grandes */
   .tabela1TelaGrande {
-    max-width: 1000px;
-    margin: var(--spacing-2xl) auto;
+    max-width: 1000px !important;
+    margin: 0 auto 1rem auto !important;
+  }
+  
+  /* ResponsiveCalculationLayout também deve seguir a largura */
+  .responsive-calculation-layout {
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+  }
+  
+  /* Cards base também seguem a mesma largura apenas em telas grandes */
+  .modern-card,
+  .divsSegundoQuadroTelaPequena .grupo {
+    max-width: 1000px !important;
+    margin: 0 auto 1rem auto !important;
   }
   
   /* Melhor alinhamento dos títulos dos quadros */
@@ -911,17 +972,32 @@ table {
     padding: var(--spacing-xl);
   }
   
-  /* TODOS os quadros mantêm a mesma largura */
+  /* TODOS os quadros mantêm a mesma largura apenas em telas extra grandes */
   .primeiroQuadro,
   .segundoQuadro,
   .terceiroQuadro,
   .quartoQuadro {
-    max-width: 1100px;
+    max-width: 1100px !important;
+    margin: 0 auto 1rem auto !important;
   }
   
-  /* Tabela também com a mesma largura */
+  /* Tabela também com a mesma largura apenas em telas extra grandes */
   .tabela1TelaGrande {
-    max-width: 1100px;
+    max-width: 1100px !important;
+    margin: 0 auto 1rem auto !important;
+  }
+  
+  /* ResponsiveCalculationLayout também deve seguir a largura */
+  .responsive-calculation-layout {
+    max-width: 1100px !important;
+    margin: 0 auto !important;
+  }
+  
+  /* Cards base também seguem a mesma largura apenas em telas extra grandes */
+  .modern-card,
+  .divsSegundoQuadroTelaPequena .grupo {
+    max-width: 1100px !important;
+    margin: 0 auto 1rem auto !important;
   }
 }
 
@@ -932,7 +1008,7 @@ table {
   }
   
   .tabela1TelaGrande {
-    margin: var(--spacing-xl) auto;
+    margin: 0 auto 1rem auto !important;
   }
 }
 .calc-tinta-container > *:nth-child(4) { animation-delay: 0.3s; }

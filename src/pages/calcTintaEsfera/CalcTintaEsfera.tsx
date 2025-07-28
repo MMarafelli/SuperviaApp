@@ -16,6 +16,7 @@ import {
     CalculationSection,
     FieldGroup,
     ResultDisplay,
+    ResponsiveCalculationLayout,
 } from '../../components/calculation/CalculationComponents';import BlocoDivCompVariavel from '../../components/blocosCalcTintaEsfera/blocoDivComprimento'
 import BlocoDivUnidVariavel from '../../components/blocosCalcTintaEsfera/blocoDivUnidade'
 import BlocoTrVariavel from '../../components/blocosCalcTintaEsfera/blocoTr'
@@ -34,7 +35,6 @@ const Formulario = () => {
     // ---------------------------------------------------------------------------------------------
     // Variáveis da página
     // --------------------------------------------------------------------------------------------
-    const [larguraDaJanela, setLarguraDaJanela] = useState(window.innerWidth);
     //const [mostrarConteudo, setMostrarConteudo] = useState(false);
     const [levantamento, setLevantamento] = useState('');
     
@@ -100,20 +100,6 @@ const Formulario = () => {
     // ---------------------------------------------------------------------------------------------
     // Handlers
     // --------------------------------------------------------------------------------------------
-
-    //Controle do tamanho da tela, para responsividade
-    useEffect(() => {
-        const handleResize = () => {
-            setLarguraDaJanela(window.innerWidth);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
 
     // handler de valor geral
     const handleChange = useCallback((
@@ -527,7 +513,7 @@ const Formulario = () => {
     // ---------------------------------------------------------------------------------------------
 
     return (
-        <div className="sv-container sv-fade-in">
+        <div className="calc-tinta-container sv-fade-in">
             <PageTitle title="PINTURA AUTOMÁTICA" />
 
             {/* Primeiro quadro - Migrado para Design System */}
@@ -617,81 +603,79 @@ const Formulario = () => {
                 </div>
             </CalculationSection>
 
-            {/* Segundo quadro */}
-            <div className="segundoQuadro">
-                {larguraDaJanela <= 900 ? (
-                    <>
-                        <div className='divsSegundoQuadroTelaPequena'>
+            {/* Segundo quadro - Migrado para Design System */}
+            <ResponsiveCalculationLayout
+                breakpoint={900}
+                mobileLayout={
+                    <div className='divsSegundoQuadroTelaPequena'>
+                        <BlocoDivCompVariavel
+                            label="Bordo Direito"
+                            valorX={campos.direitoX}
+                            valorY={campos.direitoY}
+                            valorZ={campos.direitoZ}
+                            tipoTacha={campos.direitoTipoTacha}
+                            qtdTacha={campos.direitoQtdTacha}
+                            opcoesLargura={opcoesDeSelectLargura}
+                            opcoesTacha={opcoesDeSelectTacha}
+                            onChange={(campo, valor) => handleChange(`${'direito' + campo as keyof typeof campos}`, valor)}
+                            onClickIcon={() => limparCampos('direito')}
+                        />
 
-                            <BlocoDivCompVariavel
-                                label="Bordo Direito"
-                                valorX={campos.direitoX}
-                                valorY={campos.direitoY}
-                                valorZ={campos.direitoZ}
-                                tipoTacha={campos.direitoTipoTacha}
-                                qtdTacha={campos.direitoQtdTacha}
-                                opcoesLargura={opcoesDeSelectLargura}
-                                opcoesTacha={opcoesDeSelectTacha}
-                                onChange={(campo, valor) => handleChange(`${'direito' + campo as keyof typeof campos}`, valor)}
-                                onClickIcon={() => limparCampos('direito')}
-                            />
+                        <BlocoDivCompVariavel
+                            label="Bordo Esquerdo"
+                            valorX={campos.esquerdoX}
+                            valorY={campos.esquerdoY}
+                            valorZ={campos.esquerdoZ}
+                            tipoTacha={campos.esquerdoTipoTacha}
+                            qtdTacha={campos.esquerdoQtdTacha}
+                            opcoesLargura={opcoesDeSelectLargura}
+                            opcoesTacha={opcoesDeSelectTacha}
+                            onChange={(campo, valor) => handleChange(`${'esquerdo' + campo as keyof typeof campos}`, valor)}
+                            onClickIcon={() => limparCampos('esquerdo')}
+                        />
 
-                            <BlocoDivCompVariavel
-                                label="Bordo Esquerdo"
-                                valorX={campos.esquerdoX}
-                                valorY={campos.esquerdoY}
-                                valorZ={campos.esquerdoZ}
-                                tipoTacha={campos.esquerdoTipoTacha}
-                                qtdTacha={campos.esquerdoQtdTacha}
-                                opcoesLargura={opcoesDeSelectLargura}
-                                opcoesTacha={opcoesDeSelectTacha}
-                                onChange={(campo, valor) => handleChange(`${'esquerdo' + campo as keyof typeof campos}`, valor)}
-                                onClickIcon={() => limparCampos('esquerdo')}
-                            />
+                        <BlocoDivUnidVariavel
+                            label="Eixo 4x12"
+                            valorX={campos.eixo4x12X}
+                            valorY={campos.eixo4x12Y}
+                            valorZ={campos.eixo4x12Z}
+                            tipoTacha={campos.eixo4x12TipoTacha}
+                            qtdTacha={campos.eixo4x12QtdTacha}
+                            opcoesLargura={opcoesDeSelectLargura}
+                            opcoesTacha={opcoesDeSelectTacha}
+                            onChange={(campo, valor) => handleChange(`${'eixo4x12' + campo as keyof typeof campos}`, valor)}
+                            onClickIcon={() => limparCampos('eixo4x12')}
+                        />
 
-                            <BlocoDivUnidVariavel
-                                label="Eixo 4x12"
-                                valorX={campos.eixo4x12X}
-                                valorY={campos.eixo4x12Y}
-                                valorZ={campos.eixo4x12Z}
-                                tipoTacha={campos.eixo4x12TipoTacha}
-                                qtdTacha={campos.eixo4x12QtdTacha}
-                                opcoesLargura={opcoesDeSelectLargura}
-                                opcoesTacha={opcoesDeSelectTacha}
-                                onChange={(campo, valor) => handleChange(`${'eixo4x12' + campo as keyof typeof campos}`, valor)}
-                                onClickIcon={() => limparCampos('eixo4x12')}
-                            />
+                        <BlocoDivUnidVariavel
+                            label="2x2"
+                            valorX={campos.eixo2x2X}
+                            valorY={campos.eixo2x2Y}
+                            valorZ={campos.eixo2x2Z}
+                            tipoTacha={campos.eixo2x2TipoTacha}
+                            qtdTacha={campos.eixo2x2QtdTacha}
+                            opcoesLargura={opcoesDeSelectLargura}
+                            opcoesTacha={opcoesDeSelectTacha}
+                            onChange={(campo, valor) => handleChange(`${'eixo2x2' + campo as keyof typeof campos}`, valor)}
+                            onClickIcon={() => limparCampos('eixo2x2')}
+                        />
 
-                            <BlocoDivUnidVariavel
-                                label="2x2"
-                                valorX={campos.eixo2x2X}
-                                valorY={campos.eixo2x2Y}
-                                valorZ={campos.eixo2x2Z}
-                                tipoTacha={campos.eixo2x2TipoTacha}
-                                qtdTacha={campos.eixo2x2QtdTacha}
-                                opcoesLargura={opcoesDeSelectLargura}
-                                opcoesTacha={opcoesDeSelectTacha}
-                                onChange={(campo, valor) => handleChange(`${'eixo2x2' + campo as keyof typeof campos}`, valor)}
-                                onClickIcon={() => limparCampos('eixo2x2')}
-                            />
-
-                            <BlocoDivCompVariavel
-                                label="Alça"
-                                valorX={campos.alcaX}
-                                valorY={campos.alcaY}
-                                valorZ={campos.alcaZ}
-                                tipoTacha={campos.alcaTipoTacha}
-                                qtdTacha={campos.alcaQtdTacha}
-                                opcoesLargura={opcoesDeSelectLargura}
-                                opcoesTacha={opcoesDeSelectTacha}
-                                onChange={(campo, valor) => handleChange(`${'alca' + campo as keyof typeof campos}`, valor)}
-                                onClickIcon={() => limparCampos('alca')}
-                            />
-                        </div>
-
-                    </>
-                ) : (
-                    <table className="tabela1TelaGrande w-full">
+                        <BlocoDivCompVariavel
+                            label="Alça"
+                            valorX={campos.alcaX}
+                            valorY={campos.alcaY}
+                            valorZ={campos.alcaZ}
+                            tipoTacha={campos.alcaTipoTacha}
+                            qtdTacha={campos.alcaQtdTacha}
+                            opcoesLargura={opcoesDeSelectLargura}
+                            opcoesTacha={opcoesDeSelectTacha}
+                            onChange={(campo, valor) => handleChange(`${'alca' + campo as keyof typeof campos}`, valor)}
+                            onClickIcon={() => limparCampos('alca')}
+                        />
+                    </div>
+                }
+                desktopLayout={
+                    <table className="tabela1TelaGrande">
                         <thead>
                             <tr>
                                 <th className="tdLegendaTelaGrande"></th>
@@ -703,7 +687,6 @@ const Formulario = () => {
                             </tr>
                         </thead>
                         <tbody>
-
                             <BlocoTrVariavel
                                 label="Bordo Direito:"
                                 valorX={campos.direitoX}
@@ -739,7 +722,6 @@ const Formulario = () => {
                                 opcoesTacha={opcoesDeSelectTacha}
                                 onChange={(campo, valor) => handleChange(`${'alca' + campo as keyof typeof campos}`, valor)}
                             />
-
                         </tbody>
                         <thead>
                             <tr>
@@ -775,11 +757,10 @@ const Formulario = () => {
                                 opcoesTacha={opcoesDeSelectTacha}
                                 onChange={(campo, valor) => handleChange(`${'eixo2x2' + campo as keyof typeof campos}`, valor)}
                             />
-
                         </tbody>
                     </table>
-                )}
-            </div>
+                }
+            />
 
             {/* Terceiro quadro - Migrado para Design System */}
             <CalculationSection 
@@ -882,7 +863,9 @@ const Formulario = () => {
 
             {/* Botões */}
             <div className='quartoQuadro'>
-                <div className="flex items-center justify-center h-16 m-2">
+                <div className="flex items-center justify-center m-2"
+                    style={{ padding: '1rem 0' }}
+                >
                     <button
                         className="modern-button"
                         onClick={gerarLevantamento}
