@@ -19,14 +19,23 @@ const UpdateNotification: React.FC = () => {
   const handleUpdate = async () => {
     setIsUpdating(true);
     
-    // Envia notificação de que a atualização foi aplicada
     try {
-      await sendUpdateNotification();
+      // Envia notificação de que a atualização está sendo aplicada
+      try {
+        await sendUpdateNotification();
+      } catch (error) {
+        console.log('Erro ao enviar notificação:', error);
+      }
+      
+      // Aguarda um pouco para mostrar o estado "Atualizando..."
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Executa a atualização do service worker
+      await updateServiceWorker();
     } catch (error) {
-      console.log('Erro ao enviar notificação:', error);
+      console.error('Erro durante a atualização:', error);
+      setIsUpdating(false);
     }
-    
-    updateServiceWorker();
   };
 
   const handleDismiss = () => {

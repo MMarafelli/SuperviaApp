@@ -102,27 +102,39 @@ export const usePWAUpdate = (): PWAUpdateHook => {
     registerSW();
   }, []);
 
-  const updateServiceWorker = () => {
-    if (registration?.waiting) {
-      // Força o service worker em espera a se tornar ativo
-      registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-      
-      // Limpa todos os caches
-      if ('caches' in window) {
-        caches.keys().then(cacheNames => {
-          return Promise.all(
-            cacheNames.map(cacheName => {
-              return caches.delete(cacheName);
-            })
+  const updateServiceWorker = async () => {
+    try {
+      if (registration?.waiting) {
+        // Força o service worker em espera a se tornar ativo
+        registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+        
+        // Aguarda um pouco para o service worker processar
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // Limpa todos os caches
+        if ('caches' in window) {
+          const cacheNames = await caches.keys();
+          await Promise.all(
+            cacheNames.map(cacheName => caches.delete(cacheName))
           );
-        }).then(() => {
-          // Recarrega a página após limpar o cache
-          (window as any).location.reload();
-        });
+        }
+        
+        // Recarrega a página
+        window.location.reload();
       } else {
-        // Fallback se não há suporte a caches
-        (window as any).location.reload();
+        // Se não há service worker em espera, tenta forçar uma atualização
+        if (registration) {
+          await registration.update();
+          window.location.reload();
+        } else {
+          // Fallback - apenas recarrega a página
+          window.location.reload();
+        }
       }
+    } catch (error) {
+      console.error('Erro ao atualizar service worker:', error);
+      // Em caso de erro, apenas recarrega a página
+      window.location.reload();
     }
   };
 
