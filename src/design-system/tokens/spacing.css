@@ -1,0 +1,43 @@
+/**
+ * DESIGN SYSTEM - SPACING TOKENS
+ * Consistent spacing system using 8px base unit
+ */
+
+:root {
+  /* ===== SPACING SCALE ===== */
+  /* Base unit: 4px (0.25rem) */
+  --sv-space-0: 0;
+  --sv-space-1: 0.25rem;   /* 4px */
+  --sv-space-2: 0.5rem;    /* 8px */
+  --sv-space-3: 0.75rem;   /* 12px */
+  --sv-space-4: 1rem;      /* 16px */
+  --sv-space-5: 1.25rem;   /* 20px */
+  --sv-space-6: 1.5rem;    /* 24px */
+  --sv-space-8: 2rem;      /* 32px */
+  --sv-space-10: 2.5rem;   /* 40px */
+  --sv-space-12: 3rem;     /* 48px */
+  --sv-space-16: 4rem;     /* 64px */
+  --sv-space-20: 5rem;     /* 80px */
+  --sv-space-24: 6rem;     /* 96px */
+  
+  /* ===== SEMANTIC SPACING ===== */
+  /* Component-specific spacing */
+  --sv-space-xs: var(--sv-space-1);
+  --sv-space-sm: var(--sv-space-2);
+  --sv-space-md: var(--sv-space-4);
+  --sv-space-lg: var(--sv-space-6);
+  --sv-space-xl: var(--sv-space-8);
+  --sv-space-2xl: var(--sv-space-12);
+  
+  /* ===== LAYOUT SPACING ===== */
+  /* Container and layout spacing */
+  --sv-container-padding: var(--sv-space-6);
+  --sv-section-gap: var(--sv-space-8);
+  --sv-component-gap: var(--sv-space-4);
+  
+  /* ===== RESPONSIVE SPACING ===== */
+  /* Mobile-specific spacing (smaller) */
+  --sv-mobile-container-padding: var(--sv-space-4);
+  --sv-mobile-section-gap: var(--sv-space-6);
+  --sv-mobile-component-gap: var(--sv-space-3);
+}

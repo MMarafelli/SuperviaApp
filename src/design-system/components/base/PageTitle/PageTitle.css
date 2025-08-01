@@ -1,77 +1,31 @@
 /**
- * PAGE TITLE - ESTILOS UNIFICADOS
+ * PAGE TITLE - ESTILOS MÍNIMOS
  * 
- * Preservando TODOS os estilos existentes e adicionando melhorias.
+ * A regra principal está em backgrounds.css para garantir precedência
  */
 
-/* ===== ESTILO LEGACY (preservando exatamente como está) ===== */
-.page-title {
-    color: #ffcc29;
-    font-size: 1.75rem;
-    font-weight: 600;
-    margin: 2rem 1.5rem 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    position: relative;
-    display: inline-block;
-}
-
-.page-title::after {
+/* ===== APENAS ELEMENTOS DECORATIVOS ===== */
+.page-title::after,
+.sv-page-title::after {
     content: '';
     position: absolute;
     left: 0;
     bottom: -4px;
     width: 60px;
     height: 4px;
-    background: #ffcc29;
+    background: #ffcc29 !important;
     border-radius: 2px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* ===== ESTILO MODERNO (preservando do design-system.css) ===== */
-.sv-page-title {
-  font-size: var(--sv-font-size-3xl);
-  font-weight: 700;
-  color: var(--sv-primary);
-  text-align: center;
-  margin-bottom: var(--sv-space-2);
-  text-shadow: none;
-}
-
-/* ===== ESTILO UNIFICADO NOVO (combinando o melhor) ===== */
-.sv-unified-page-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--sv-space-3);
-  margin: var(--sv-space-4) auto var(--sv-space-4);
-  text-align: center;
-  padding: 0 var(--sv-space-4);
-}
-
-.sv-unified-page-title__icon {
-  font-size: var(--sv-font-size-2xl);
-  opacity: 0.8;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-}
-
-.sv-unified-page-title__content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--sv-space-1);
-}
-
-.sv-unified-page-title__title {
-  color: var(--sv-primary);
-  font-size: var(--sv-font-size-3xl);
-  font-weight: 700;
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative;
+/* ===== RESPONSIVIDADE MOBILE PARA DECORAÇÃO ===== */
+@media (max-width: 768px) {
+  .page-title::after,
+  .sv-page-title::after {
+    width: 40px;
+    height: 3px;
+    bottom: -3px;
+  }
 }
 
 .sv-unified-page-title__title::after {

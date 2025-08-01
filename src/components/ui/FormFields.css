@@ -1,0 +1,372 @@
+/* ===== INPUT FIELD STYLES ===== */
+.sv-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sv-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-top: 0.125rem;
+    margin-bottom: 0.0625rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* RESPONSIVIDADE MOBILE - Labels ainda menores */
+@media (max-width: 768px) {
+    .sv-label {
+        font-size: 0.75rem;
+        margin-top: 0.0625rem;
+        margin-bottom: 0.0625rem;
+        max-width: 100%;
+    }
+}
+
+.sv-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.sv-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid white;
+    border-radius: 0.125rem;
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 400;
+    line-height: 1.4;
+    min-height: 3rem;
+    max-height: 3rem;
+    height: 3rem;
+    transition: all 0.15s ease-in-out;
+    background-color: white;
+    color: #111827;
+    box-sizing: border-box;
+}
+
+/* RESPONSIVIDADE MOBILE - Inputs compactos mas funcionais */
+@media (max-width: 768px) {
+    .sv-input {
+        padding: 6px 8px;
+        font-size: 12px;
+        min-height: 36px;
+        max-height: 36px;
+        height: 36px;
+        border-width: 1px;
+    }
+}
+
+.sv-input:focus {
+    outline: none;
+    border-color: #fbbf24;
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+}
+
+/* Estado com valor válido - borda verde */
+.sv-input:not(:placeholder-shown):not(:focus):valid,
+.sv-input[data-has-value="true"]:not(:focus) {
+    border-color: #10b981;
+}
+
+.sv-input:disabled {
+    background-color: #f3f4f6;
+    color: #6b7280;
+    cursor: not-allowed;
+}
+
+.sv-input.sv-readonly {
+    background-color: #f9fafb;
+    border-color: #e5e7eb;
+}
+
+.sv-input.sv-invalid {
+    border-color: #ef4444;
+}
+
+.sv-input.sv-invalid:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.sv-input.sv-valid {
+    border-color: #10b981;
+}
+
+.sv-input.sv-valid:focus {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Input com ícone */
+.sv-input-with-icon {
+    padding-left: 2.5rem;
+}
+
+.sv-input-icon {
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    font-size: 0.875rem;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Variantes de input para cálculos */
+.sv-input-calculation {
+    background-color: #f8fafc;
+    border-color: #93c5fd;
+    font-family: 'Courier New', monospace;
+}
+
+.sv-input-calculation:focus {
+    background-color: white;
+    border-color: #3b82f6;
+}
+
+.sv-input-result {
+    background-color: #f0fdf4;
+    border-color: #86efac;
+    font-weight: 600;
+    color: #047857;
+    font-family: 'Courier New', monospace;
+}
+
+.sv-input-result:focus {
+    background-color: #f0fdf4;
+    border-color: #10b981;
+}
+
+/* ===== SELECT STYLES ===== */
+.sv-select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid white;
+    border-radius: 0.125rem;
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 400;
+    line-height: 1.4;
+    min-height: 3rem;
+    max-height: 3rem;
+    height: 3rem;
+    transition: all 0.15s ease-in-out;
+    background-color: white;
+    color: #111827;
+    cursor: pointer;
+    box-sizing: border-box;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 1rem;
+    padding-right: 40px;
+}
+
+/* RESPONSIVIDADE MOBILE - Selects compactos */
+@media (max-width: 768px) {
+    .sv-select {
+        padding: 6px 8px;
+        font-size: 12px;
+        min-height: 36px;
+        max-height: 36px;
+        height: 36px;
+        padding-right: 28px;
+        background-position: right 6px center;
+        border-width: 1px;
+    }
+}
+
+.sv-select:focus {
+    outline: none;
+    border-color: #fbbf24;
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+}
+
+/* Estado com valor válido - borda verde para select */
+.sv-select:not([value=""]):not(:focus),
+.sv-select[data-has-value="true"]:not(:focus) {
+    border-color: #10b981;
+}
+
+.sv-select:disabled {
+    background-color: #f3f4f6;
+    color: #6b7280;
+    cursor: not-allowed;
+}
+
+.sv-select.sv-invalid {
+    border-color: #ef4444;
+}
+
+.sv-select.sv-invalid:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.sv-select.sv-valid {
+    border-color: #10b981;
+}
+
+.sv-select.sv-valid:focus {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Select option styles */
+.sv-select option {
+    background-color: white;
+    color: #111827;
+    font-size: 14px;
+    padding: 0.25rem 0.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ===== TEXTAREA STYLES ===== */
+.sv-textarea {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 2px solid white;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    transition: all 0.15s ease-in-out;
+    background-color: white;
+    color: #111827;
+    resize: vertical;
+    min-height: 80px;
+}
+
+.sv-textarea:focus {
+    outline: none;
+    border-color: #fbbf24;
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+}
+
+/* Estado com valor válido - borda verde para textarea */
+.sv-textarea:not(:placeholder-shown):not(:focus),
+.sv-textarea[data-has-value="true"]:not(:focus) {
+    border-color: #10b981;
+}
+
+/* Labels padronizadas */
+.sv-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 6px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.4;
+}
+
+/* Force dark text in calculation sections */
+.calculation-section,
+.calculation-section *,
+.field-group,
+.field-group * {
+    color: #374151;
+}
+
+.calculation-section .sv-input,
+.calculation-section .sv-select {
+    color: #111827;
+    background-color: white;
+}
+
+.calculation-section .sv-select option {
+    color: #111827;
+    background-color: white;
+}
+
+/* Override legacy CSS with higher specificity */
+.sv-container .calculation-section .sv-select,
+.sv-container .sv-select {
+    background-color: white;
+    color: #111827;
+    border: 2px solid white;
+}
+
+.sv-container .calculation-section .sv-select:focus,
+.sv-container .sv-select:focus {
+    border-color: #fbbf24;
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+}
+
+.sv-container .calculation-section .sv-select:not([value=""]):not(:focus),
+.sv-container .sv-select:not([value=""]):not(:focus),
+.sv-container .calculation-section .sv-select[data-has-value="true"]:not(:focus),
+.sv-container .sv-select[data-has-value="true"]:not(:focus) {
+    border-color: #10b981;
+}
+
+.sv-container .calculation-section .sv-input,
+.sv-container .sv-input {
+    background-color: white;
+    color: #111827;
+    border: 2px solid white;
+}
+
+.sv-container .calculation-section .sv-input:focus,
+.sv-container .sv-input:focus {
+    border-color: #fbbf24;
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+}
+
+.sv-container .calculation-section .sv-input:not(:placeholder-shown):not(:focus),
+.sv-container .sv-input:not(:placeholder-shown):not(:focus),
+.sv-container .calculation-section .sv-input[data-has-value="true"]:not(:focus),
+.sv-container .sv-input[data-has-value="true"]:not(:focus) {
+    border-color: #10b981;
+}
+
+.sv-container .calculation-section .sv-textarea,
+.sv-container .sv-textarea {
+    background-color: white;
+    color: #111827;
+    border: 2px solid white;
+}
+
+.sv-container .calculation-section .sv-textarea:focus,
+.sv-container .sv-textarea:focus {
+    border-color: #fbbf24;
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+}
+
+.sv-container .calculation-section .sv-textarea:not(:placeholder-shown):not(:focus),
+.sv-container .sv-textarea:not(:placeholder-shown):not(:focus),
+.sv-container .calculation-section .sv-textarea[data-has-value="true"]:not(:focus),
+.sv-container .sv-textarea[data-has-value="true"]:not(:focus) {
+    border-color: #10b981;
+}
+
+.sv-container .calculation-section .sv-select option,
+.sv-container .sv-select option {
+    background-color: white;
+    color: #111827;
+}
+
+.calculation-section .sv-label {
+    color: #374151;
+}
+
+/* Padronização global de labels */
+.sv-field-group .sv-label,
+.campo-grupo .sv-label,
+.calculation-section .sv-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.4;
+    margin-bottom: 6px;
+}

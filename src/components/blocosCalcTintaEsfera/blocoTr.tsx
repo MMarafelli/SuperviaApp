@@ -1,7 +1,7 @@
 import React from 'react';
-import { SVInputField, SVSelectField } from '../ui';
+import { SVInputField, SVSelectField, SVButton } from '../ui';
 import { ResultDisplay } from '../calculation/CalculationComponents';
-import '../../styles/shared.css';
+import '../../design-system/styles/index.css';
 
 interface OpcaoSelect {
     valor: string;
@@ -18,10 +18,25 @@ interface BlocoTrVariavelProps {
     opcoesLargura: OpcaoSelect[];
     opcoesTacha: OpcaoSelect[];
     onChange: (campo: string, valor: string) => void;
+    // Props para edição
+    editavel?: boolean;
+    onEditToggle?: () => void;
 }
 
 
-const BlocoTrVariavel: React.FC<BlocoTrVariavelProps> = ({ label, valorX, valorY, valorZ, tipoTacha, qtdTacha, opcoesLargura, opcoesTacha, onChange }) => {
+const BlocoTrVariavel: React.FC<BlocoTrVariavelProps> = ({ 
+    label, 
+    valorX, 
+    valorY, 
+    valorZ, 
+    tipoTacha, 
+    qtdTacha, 
+    opcoesLargura, 
+    opcoesTacha, 
+    onChange,
+    editavel = false,
+    onEditToggle
+}) => {
     
     const handleInputChangeNumeric = (value: string) => {
         const numericValue = value.replace(/[^\d.]/g, '');
@@ -55,8 +70,17 @@ const BlocoTrVariavel: React.FC<BlocoTrVariavelProps> = ({ label, valorX, valorY
                         label=""
                         value={valorZ}
                         unit="m²"
-                        editable={true}
+                        editable={editavel}
                         onEdit={(newValue) => onChange('Z', newValue)}
+                        actionButton={
+                            <SVButton
+                                variant={editavel ? "success" : "info"}
+                                size="sm"
+                                onClick={onEditToggle}
+                            >
+                                {editavel ? "🔒 Bloquear" : "✏️ Editar"}
+                            </SVButton>
+                        }
                     />
                 </div>
             </td>

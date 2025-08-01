@@ -24,10 +24,10 @@
 .card {
   width: 280px;
   min-height: 260px;
-  background: #fff;
+  background: #ffffff !important;
   border-radius: 1rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e5e7eb;
+  box-shadow: var(--sv-shadow-md, 0 4px 16px rgba(0, 0, 0, 0.1));
+  border: 1px solid var(--sv-border-light, #e5e7eb);
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
@@ -37,14 +37,14 @@
 
 .card:hover {
   transform: scale(1.02);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  border-color: #ffcc29;
+  box-shadow: var(--sv-shadow-lg, 0 8px 24px rgba(0, 0, 0, 0.15));
+  border-color: var(--sv-primary, #ffcc29);
 }
 
 .card-content {
   flex: 1;
   margin-bottom: 1rem;
-  color: #374151;
+  color: var(--sv-text-secondary, #374151);
   font-size: 0.95rem;
   line-height: 1.5;
 }
@@ -65,30 +65,32 @@
 }
 
 .edit-btn {
-  background-color: #ffcc29;
-  color: #1f2937;
-  box-shadow: 0 2px 4px rgba(255, 204, 41, 0.2);
+  background-color: var(--sv-primary, #ffcc29);
+  color: var(--sv-text-primary, #1f2937);
+  border: 2px solid var(--sv-primary, #ffcc29);
+  box-shadow: 0 2px 4px rgba(var(--sv-primary-rgb, 255, 204, 41), 0.2);
   font-size: 0.875rem;
 }
 .edit-btn:hover {
-  background-color: #ffd952;
+  background-color: var(--sv-primary-hover, #ffd952);
+  border-color: var(--sv-primary-hover, #ffd952);
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(255, 204, 41, 0.3);
+  box-shadow: 0 4px 8px rgba(var(--sv-primary-rgb, 255, 204, 41), 0.3);
 }
 
 .delete-btn {
-  background: #fff;
-  color: #ef4444;
-  border: 1.5px solid #ef4444;
-  box-shadow: 0 2px 4px rgba(239,68,68,0.1);
+  background: var(--sv-white, #fff);
+  color: var(--sv-error, #ef4444);
+  border: 1.5px solid var(--sv-error, #ef4444);
+  box-shadow: 0 2px 4px rgba(var(--sv-error-rgb, 239, 68, 68), 0.1);
   font-size: 0.875rem;
 }
 .delete-btn:hover {
-  background: #ef4444;
-  color: #fff;
-  border-color: #b91c1c;
+  background: var(--sv-error, #ef4444);
+  color: var(--sv-white, #fff);
+  border-color: var(--sv-error-dark, #b91c1c);
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(239,68,68,0.2);
+  box-shadow: 0 4px 8px rgba(var(--sv-error-rgb, 239, 68, 68), 0.2);
 }
 
 @media (max-width: 768px) {

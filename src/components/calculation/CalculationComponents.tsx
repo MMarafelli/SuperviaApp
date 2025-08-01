@@ -73,11 +73,26 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
   onEdit,
   actionButton
 }) => {
-  const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(value.toString());
 
+  // Sincronizar o valor interno quando o valor externo mudar
+  useEffect(() => {
+    setEditValue(value.toString());
+  }, [value]);
+
   const handleEditToggle = () => {
-    if (editable) {
+    if (editable && onEdit) {
+      onEdit(editValue);
+    }
+  };
+
+  // Se há actionButton, usar o estado editable diretamente
+  // Se não há actionButton, usar estado interno isEditing
+  const [isEditing, setIsEditing] = useState(false);
+  const shouldShowInput = actionButton ? editable : isEditing;
+
+  const handleInternalEditToggle = () => {
+    if (!actionButton && editable) {
       setIsEditing(!isEditing);
       if (isEditing && onEdit) {
         onEdit(editValue);
@@ -89,19 +104,19 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
     <div className={`result-display ${className} ${editable ? 'editable' : ''}`}>
       <div className="result-row">
         <span className="result-label">{label}:</span>
-        {isEditing ? (
+        {shouldShowInput ? (
           <div className="result-edit">
             <input
               type="text"
               value={editValue}
               onChange={(e) => setEditValue(e.target.value)}
-              onBlur={handleEditToggle}
-              onKeyPress={(e) => e.key === 'Enter' && handleEditToggle()}
+              onBlur={actionButton ? handleEditToggle : handleInternalEditToggle}
+              onKeyPress={(e) => e.key === 'Enter' && (actionButton ? handleEditToggle() : handleInternalEditToggle())}
               autoFocus
             />
           </div>
         ) : (
-          <span className="result-value" onClick={handleEditToggle}>
+          <span className="result-value" onClick={actionButton ? undefined : handleInternalEditToggle}>
             {value} {unit}
             {editable && !actionButton && <span className="edit-indicator">✏️</span>}
           </span>

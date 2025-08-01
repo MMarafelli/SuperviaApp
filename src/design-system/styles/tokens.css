@@ -1,144 +1,158 @@
 /**
- * DESIGN SYSTEM - TOKENS CSS
+ * DESIGN SYSTEM - TOKENS CONSOLIDADOS
  * 
- * Aplicando todos os design tokens como CSS Custom Properties.
- * Isso preserva total compatibilidade com todos os estilos existentes.
+ * Todos os tokens do design system consolidados em um único arquivo.
+ * Removidos imports para evitar problemas de carregamento com o Vite.
  */
 
+/* ===== DEFININDO TODOS OS TOKENS INLINE ===== */
+/* Adicionando tokens que estavam faltando e causando o problema */
 :root {
-  /* ===== CORES ===== */
-  /* Cor primária SuperVia (preservando exatamente como está) */
+  /* ===== CORES PRIMÁRIAS ===== */
   --sv-primary: #ffcc29;
-  --sv-primary-dark: #e6b824;
-  --sv-primary-light: #fff3cc;
+  --sv-primary-hover: #e6b324;
+  --sv-primary-alpha-10: rgba(255, 204, 41, 0.1);
   
-  /* Cores semânticas (preservando valores atuais) */
-  --sv-success: #10b981;
-  --sv-success-light: #d1fae5;
-  --sv-error: #ef4444;
-  --sv-error-light: #fecaca;
-  --sv-info: #3b82f6;
-  --sv-info-light: #dbeafe;
-  --sv-warning: #f59e0b;
-  --sv-warning-light: #fef3c7;
+  /* ===== CORES DE TEXTO ===== */
+  --sv-text-primary: #1a1a1a;
+  --sv-text-secondary: #4a4a4a;
+  --sv-text-muted: #6a6a6a;
+  --sv-text-disabled: #a1a1a1;
+  --sv-text-white: #ffffff;
   
-  /* Cores neutras */
+  /* ===== CORES DE FUNDO ===== */
   --sv-white: #ffffff;
-  --sv-gray-50: #f9fafb;
-  --sv-gray-100: #f3f4f6;
-  --sv-gray-200: #e5e7eb;
-  --sv-gray-300: #d1d5db;
-  --sv-gray-400: #9ca3af;
-  --sv-gray-500: #6b7280;
-  --sv-gray-600: #4b5563;
-  --sv-gray-700: #374151;
-  --sv-gray-800: #1f2937;
-  --sv-gray-900: #111827;
+  --sv-gray-50: #f9f9f9;
+  --sv-gray-100: #f0f0f0;
+  --sv-gray-600: #4e4e4e;
+  --sv-gray-800: #333333;
   
-  /* Background */
-  --sv-bg-color: #1a2332;
-  --sv-bg-gradient: #1a2332;
+  /* ===== BACKGROUNDS DA APLICAÇÃO - CORRIGINDO O PROBLEMA ===== */
+  --sv-bg-primary: #1e3a8a; /* Azul marinho principal */
+  --sv-bg-primary-dark: #1e40af;
+  --sv-bg-primary-light: #3b82f6;
+  --sv-bg-secondary: #374151;
+  --sv-bg-dark: #111827;
+  --sv-bg-light: #f8fafc;
   
-  /* Variáveis específicas do projeto atual (preservando TODAS) */
-  --color-primary: #ffcc29;
-  --color-primary-dark: #e6b824;
-  --color-text-primary: #1f2937;
-  --color-text-secondary: #374151;
-  --color-text-muted: #6b7280;
-  --color-text-placeholder: #9ca3af;
-  --color-bg-white: #ffffff;
-  --color-bg-gray-50: #f9fafb;
-  --color-bg-gray-100: #f3f4f6;
-  --color-bg-transparent: transparent;
-  --color-border-gray: #d1d5db;
-  --color-border-light: #e5e7eb;
-  --color-success: #10b981;
-  --color-success-dark: #059669;
-  --color-error: #ef4444;
-  --color-error-dark: #dc2626;
-  --color-info: #3b82f6;
-  --color-info-dark: #2563eb;
-
+  /* ===== BORDAS ===== */
+  --sv-border-light: #e0e0e0;
+  --sv-border-medium: #d0d0d0;
+  --sv-border-1: 1px;
+  
+  /* ===== CORES DE STATUS ===== */
+  --sv-success: #22c55e;
+  --sv-success-hover: #16a34a;
+  --sv-error: #ef4444;
+  --sv-error-hover: #dc2626;
+  --sv-info: #3b82f6;
+  --sv-info-hover: #2563eb;
+  
   /* ===== ESPAÇAMENTOS ===== */
-  /* Espaçamentos do design system */
-  --sv-space-1: 0.25rem;
-  --sv-space-2: 0.5rem;
-  --sv-space-3: 0.75rem;
-  --sv-space-4: 1rem;
-  --sv-space-5: 1.25rem;
-  --sv-space-6: 1.5rem;
-  --sv-space-8: 2rem;
-  --sv-space-10: 2.5rem;
-  --sv-space-12: 3rem;
+  --sv-space-xs: 4px;
+  --sv-space-sm: 8px;
+  --sv-space-md: 16px;
+  --sv-space-lg: 24px;
+  --sv-space-xl: 32px;
+  --sv-space-2xl: 48px;
   
-  /* Variáveis específicas do projeto atual (preservando) */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 0.75rem;
-  --spacing-lg: 1rem;
-  --spacing-xl: 1.5rem;
-  --spacing-2xl: 2rem;
-
   /* ===== TIPOGRAFIA ===== */
-  /* Tamanhos de fonte */
-  --sv-font-size-xs: 0.75rem;
-  --sv-font-size-sm: 0.875rem;
-  --sv-font-size-base: 1rem;
-  --sv-font-size-lg: 1.125rem;
-  --sv-font-size-xl: 1.25rem;
-  --sv-font-size-2xl: 1.5rem;
-  --sv-font-size-3xl: 1.875rem;
+  --sv-text-xs: 12px;
+  --sv-text-sm: 14px;
+  --sv-text-base: 16px;
+  --sv-text-lg: 18px;
+  --sv-text-xl: 20px;
+  --sv-text-2xl: 24px;
   
-  /* Variáveis específicas do projeto atual (preservando) */
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 0.95rem;
-  --font-size-lg: 1rem;
-  --font-size-xl: 1.125rem;
-  --font-size-2xl: 1.75rem;
+  --sv-font-normal: 400;
+  --sv-font-medium: 500;
+  --sv-font-bold: 700;
+  --sv-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  --sv-leading-normal: 1.5;
+  --sv-leading-tight: 1.25;
+  --sv-leading-relaxed: 1.75;
+  
+  /* ===== RADIUS ===== */
+  --sv-radius-sm: 4px;
+  --sv-radius-md: 8px;
+  --sv-radius-lg: 12px;
+  --sv-radius-xl: 16px;
+  
+  /* ===== TRANSIÇÕES ===== */
+  --sv-transition-fast: 150ms;
+  --sv-transition-normal: 300ms;
+  --sv-transition-slow: 500ms;
+  
+  /* ===== TIPOGRAFIA ADICIONAL ===== */
+  --sv-heading-font: var(--sv-font-sans);
+  --sv-heading-weight: var(--sv-font-bold);
+  --sv-heading-line-height: var(--sv-leading-tight);
+}
 
-  /* ===== BORDAS E RAIOS ===== */
-  /* Raios de borda */
-  --sv-radius-sm: 0.375rem;
-  --sv-radius-md: 0.5rem;
-  --sv-radius-lg: 0.75rem;
-  --sv-radius-xl: 1rem;
+/* ===== BACKWARD COMPATIBILITY ===== */
+/* Mantendo variáveis legacy para não quebrar componentes existentes */
+:root {
+  /* Legacy color variables */
+  --color-primary: var(--sv-primary);
+  --color-primary-dark: var(--sv-primary-hover);
+  --color-text-primary: var(--sv-text-primary);
+  --color-text-secondary: var(--sv-text-secondary);
+  --color-text-muted: var(--sv-text-muted);
+  --color-text-placeholder: var(--sv-text-disabled);
+  --color-bg-white: var(--sv-white);
+  --color-bg-gray-50: var(--sv-gray-50);
+  --color-bg-gray-100: var(--sv-gray-100);
+  --color-bg-transparent: transparent;
   
-  /* Variáveis específicas do projeto atual (preservando) */
-  --border-radius-sm: 0.5rem;
-  --border-radius-md: 1rem;
-  --border-width: 1.5px;
-
-  /* ===== SOMBRAS ===== */
-  /* Sombras do design system */
-  --sv-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --sv-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --sv-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --sv-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  /* ===== BACKGROUNDS LEGACY ESPECÍFICOS DA APP ===== */
+  --color-bg-primary: var(--sv-bg-primary);
+  --color-bg-primary-dark: var(--sv-bg-primary-dark);
+  --color-bg-secondary: var(--sv-bg-secondary);
+  --color-bg-dark: var(--sv-bg-dark);
+  --color-bg-light: var(--sv-bg-light);
   
-  /* Variáveis específicas do projeto atual (preservando) */
+  --color-border-gray: var(--sv-border-medium);
+  --color-border-light: var(--sv-border-light);
+  --color-success: var(--sv-success);
+  --color-success-dark: var(--sv-success-hover);
+  --color-error: var(--sv-error);
+  --color-error-dark: var(--sv-error-hover);
+  --color-info: var(--sv-info);
+  --color-info-dark: var(--sv-info-hover);
+  
+  /* Legacy spacing variables */
+  --spacing-xs: var(--sv-space-xs);
+  --spacing-sm: var(--sv-space-sm);
+  --spacing-md: var(--sv-space-md);
+  --spacing-lg: var(--sv-space-lg);
+  --spacing-xl: var(--sv-space-xl);
+  --spacing-2xl: var(--sv-space-2xl);
+  
+  /* Legacy typography variables */
+  --font-size-xs: var(--sv-text-xs);
+  --font-size-sm: var(--sv-text-sm);
+  --font-size-base: var(--sv-text-base);
+  --font-size-lg: var(--sv-text-lg);
+  --font-size-xl: var(--sv-text-xl);
+  --font-size-2xl: var(--sv-text-2xl);
+  
+  /* Legacy border radius */
+  --border-radius-sm: var(--sv-radius-md);
+  --border-radius-md: var(--sv-radius-lg);
+  
+  /* Legacy shadows */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
   --shadow-focus: 0 0 0 3px rgba(255, 204, 41, 0.1);
-
-  /* ===== TRANSIÇÕES ===== */
-  /* Transições do design system */
-  --sv-transition: all 0.2s ease-in-out;
   
-  /* Variáveis específicas do projeto atual (preservando) */
-  --transition-fast: all 0.2s ease;
-  --transition-normal: all 0.3s ease;
-  --transition-slow: all 0.6s ease-out;
+  /* Legacy transitions */
+  --transition-fast: var(--sv-transition-fast);
+  --transition-normal: var(--sv-transition-normal);
+  --transition-slow: var(--sv-transition-slow);
   --transition-speed: 600ms;
-
-  /* ===== BREAKPOINTS ===== */
-  /* Breakpoints do design system */
-  --breakpoint-mobile: 600px;
-  --breakpoint-tablet: 768px;
-  --breakpoint-desktop: 1024px;
   
-  /* Variáveis específicas do projeto atual (preservando) */
-  --breakpoint-calc-mobile: 900px;
-  --breakpoint-calc-tablet: 1200px;
+  /* Legacy border width */
+  --border-width: var(--sv-border-1);
 }

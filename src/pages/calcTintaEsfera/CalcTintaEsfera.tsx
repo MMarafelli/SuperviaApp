@@ -8,22 +8,14 @@ import { PageTitle } from '../../design-system';
 
 // Novos componentes do design system
 import {
-    SVButton,
     SVInputField,
     SVSelectField
 } from '../../components/ui';
 import {
     CalculationSection,
-    FieldGroup,
-    ResultDisplay,
-    ResponsiveCalculationLayout,
+    ResultDisplay
 } from '../../components/calculation/CalculationComponents';import BlocoDivCompVariavel from '../../components/blocosCalcTintaEsfera/blocoDivComprimento'
 import BlocoDivUnidVariavel from '../../components/blocosCalcTintaEsfera/blocoDivUnidade'
-import BlocoTrVariavel from '../../components/blocosCalcTintaEsfera/blocoTr'
-
-// Styles
-import '../../styles/shared.css';
-import '../../design-system/styles/global.css';
 
 function getQueryParam(param: string) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -38,9 +30,11 @@ const Formulario = () => {
     //const [mostrarConteudo, setMostrarConteudo] = useState(false);
     const [levantamento, setLevantamento] = useState('');
     
-    // Estados para edição de esfera e tinta
-    const [editarEsferas, setEditarEsferas] = useState(false);
-    const [editarTinta, setEditarTinta] = useState(false);
+    // Estados para edição dos blocos (alça, bordos, etc.)
+    const [editarAlca, setEditarAlca] = useState(false);
+    const [editarDireito, setEditarDireito] = useState(false);
+    const [editarEsquerdo, setEditarEsquerdo] = useState(false);
+    const [editarFundo, setEditarFundo] = useState(false);
 
     const isDev = isDevelopment();
 
@@ -75,8 +69,7 @@ const Formulario = () => {
                             ...prev,
                             nomeEstrada: card.data.nomeEstrada ?? '',
                             estado: card.data.cor ?? '',
-                            diaMesAno: card.data.data ?? '',
-                            tinta: card.data.quantidade !== undefined ? card.data.quantidade.toString() : ''
+                            diaMesAno: card.data.data ?? ''
                         }));
                     } else {
                         setCampos(initialState);
@@ -188,14 +181,22 @@ const Formulario = () => {
         calcularMetrosPista
     ]);
 
-    // Handlers de edição - memoizados
-    const handleEditEsfera = useCallback(() => {
-        setEditarEsferas(!editarEsferas);
-    }, [editarEsferas]);
-    
-    const handleEditTinta = useCallback(() => {
-        setEditarTinta(!editarTinta);
-    }, [editarTinta]);
+    // Handlers para edição dos blocos
+    const handleEditAlca = useCallback(() => {
+        setEditarAlca(!editarAlca);
+    }, [editarAlca]);
+
+    const handleEditDireito = useCallback(() => {
+        setEditarDireito(!editarDireito);
+    }, [editarDireito]);
+
+    const handleEditEsquerdo = useCallback(() => {
+        setEditarEsquerdo(!editarEsquerdo);
+    }, [editarEsquerdo]);
+
+    const handleEditFundo = useCallback(() => {
+        setEditarFundo(!editarFundo);
+    }, [editarFundo]);
 
     const handleInputChangeNumeric = (value: string) => {
         const numericValue = value.replace(/[^\d.]/g, '');
@@ -277,9 +278,7 @@ const Formulario = () => {
             || (campos.esquerdoZ && campos.esquerdoZ !== '0')
             || (campos.eixo4x12Z && campos.eixo4x12Z !== '0')
             || (campos.eixo2x2Z && campos.eixo2x2Z !== '0')
-            || (campos.alcaZ && campos.alcaZ !== '0')
-            || (campos.esfera && campos.esfera !== '0')
-            || (campos.tinta && campos.tinta !== '0')) {
+            || (campos.alcaZ && campos.alcaZ !== '0')) {
             textoLevantamento += `*Pintura Automática Definitiva*\n`;
 
             if (campos.direitoZ && campos.direitoZ !== '0') textoLevantamento += `\u0020\u0020\u0020\u0020\u0020Bordo direito: ${campos.direitoY} metro(s)\n`;
@@ -299,17 +298,14 @@ const Formulario = () => {
             }
             const resumo = `${campos.nomeEstrada || ''} - ${campos.estado || ''} (${formatDateToPtBR(campos.diaMesAno || '')})`;
             const cardData = {
-                quantidade: Number(campos.tinta) || 0,
+                quantidade: 0, // Removido campos.tinta pois não faz parte da pintura automática
                 cor: campos.estado || '',
                 data: campos.diaMesAno || '',
                 nomeEstrada: campos.nomeEstrada || '',
                 equipe: campos.equipe || '',
                 kmInicial: campos.kmInicial || '',
                 kmFinal: campos.kmFinal || '',
-                esfera: campos.esfera || '',
                 totalMetrosPista: campos.totalMetrosPista || '',
-                resultadoEsferas: campos.resultadoEsferas || '',
-                resultadoTinta: campos.resultadoTinta || '',
             };
             if (editId) {
                 // Atualizar card existente
@@ -515,6 +511,8 @@ const Formulario = () => {
     return (
         <div className="sv-container sv-fade-in">
             <PageTitle title="PINTURA AUTOMÁTICA" />
+            
+            <div className="calc-tinta-container">{/* Conteúdo dos formulários */}
 
             {/* Primeiro quadro - Migrado para Design System */}
             <CalculationSection 
@@ -603,11 +601,8 @@ const Formulario = () => {
                 </div>
             </CalculationSection>
 
-            {/* Segundo quadro - Migrado para Design System */}
-            <ResponsiveCalculationLayout
-                breakpoint={900}
-                mobileLayout={
-                    <div className='divsSegundoQuadroTelaPequena'>
+            {/* Segundo quadro - Layout simples para match com a imagem */}
+            <div className='divsSegundoQuadroTelaPequena'>
                         <BlocoDivCompVariavel
                             label="Bordo Direito"
                             valorX={campos.direitoX}
@@ -619,6 +614,8 @@ const Formulario = () => {
                             opcoesTacha={opcoesDeSelectTacha}
                             onChange={(campo, valor) => handleChange(`${'direito' + campo as keyof typeof campos}`, valor)}
                             onClickIcon={() => limparCampos('direito')}
+                            editavel={editarDireito}
+                            onEditToggle={handleEditDireito}
                         />
 
                         <BlocoDivCompVariavel
@@ -632,6 +629,8 @@ const Formulario = () => {
                             opcoesTacha={opcoesDeSelectTacha}
                             onChange={(campo, valor) => handleChange(`${'esquerdo' + campo as keyof typeof campos}`, valor)}
                             onClickIcon={() => limparCampos('esquerdo')}
+                            editavel={editarEsquerdo}
+                            onEditToggle={handleEditEsquerdo}
                         />
 
                         <BlocoDivUnidVariavel
@@ -645,6 +644,8 @@ const Formulario = () => {
                             opcoesTacha={opcoesDeSelectTacha}
                             onChange={(campo, valor) => handleChange(`${'eixo4x12' + campo as keyof typeof campos}`, valor)}
                             onClickIcon={() => limparCampos('eixo4x12')}
+                            editavel={editarFundo}
+                            onEditToggle={handleEditFundo}
                         />
 
                         <BlocoDivUnidVariavel
@@ -658,6 +659,8 @@ const Formulario = () => {
                             opcoesTacha={opcoesDeSelectTacha}
                             onChange={(campo, valor) => handleChange(`${'eixo2x2' + campo as keyof typeof campos}`, valor)}
                             onClickIcon={() => limparCampos('eixo2x2')}
+                            editavel={editarFundo}
+                            onEditToggle={handleEditFundo}
                         />
 
                         <BlocoDivCompVariavel
@@ -671,96 +674,10 @@ const Formulario = () => {
                             opcoesTacha={opcoesDeSelectTacha}
                             onChange={(campo, valor) => handleChange(`${'alca' + campo as keyof typeof campos}`, valor)}
                             onClickIcon={() => limparCampos('alca')}
+                            editavel={editarAlca}
+                            onEditToggle={handleEditAlca}
                         />
                     </div>
-                }
-                desktopLayout={
-                    <table className="tabela1TelaGrande">
-                        <thead>
-                            <tr>
-                                <th className="tdLegendaTelaGrande"></th>
-                                <th className="tdLegendaTelaGrande">Largura</th>
-                                <th className="tdLegendaTelaGrande">Comprimento (m)</th>
-                                <th className="tdLegendaTelaGrande">m²</th>
-                                <th className="tdLegendaTelaGrande">Tipo de tacha</th>
-                                <th className="tdLegendaTelaGrande">Quantidade de tachas</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <BlocoTrVariavel
-                                label="Bordo Direito:"
-                                valorX={campos.direitoX}
-                                valorY={campos.direitoY}
-                                valorZ={campos.direitoZ}
-                                tipoTacha={campos.direitoTipoTacha}
-                                qtdTacha={campos.direitoQtdTacha}
-                                opcoesLargura={opcoesDeSelectLargura}
-                                opcoesTacha={opcoesDeSelectTacha}
-                                onChange={(campo, valor) => handleChange(`${'direito' + campo as keyof typeof campos}`, valor)}
-                            />
-
-                            <BlocoTrVariavel
-                                label="Bordo Esquerdo:"
-                                valorX={campos.esquerdoX}
-                                valorY={campos.esquerdoY}
-                                valorZ={campos.esquerdoZ}
-                                tipoTacha={campos.esquerdoTipoTacha}
-                                qtdTacha={campos.esquerdoQtdTacha}
-                                opcoesLargura={opcoesDeSelectLargura}
-                                opcoesTacha={opcoesDeSelectTacha}
-                                onChange={(campo, valor) => handleChange(`${'esquerdo' + campo as keyof typeof campos}`, valor)}
-                            />
-
-                            <BlocoTrVariavel
-                                label="Alça:"
-                                valorX={campos.alcaX}
-                                valorY={campos.alcaY}
-                                valorZ={campos.alcaZ}
-                                tipoTacha={campos.alcaTipoTacha}
-                                qtdTacha={campos.alcaQtdTacha}
-                                opcoesLargura={opcoesDeSelectLargura}
-                                opcoesTacha={opcoesDeSelectTacha}
-                                onChange={(campo, valor) => handleChange(`${'alca' + campo as keyof typeof campos}`, valor)}
-                            />
-                        </tbody>
-                        <thead>
-                            <tr>
-                                <th className="tdLegendaTelaGrande"></th>
-                                <th className="tdLegendaTelaGrande">Largura</th>
-                                <th className="tdLegendaTelaGrande">Unidades</th>
-                                <th className="tdLegendaTelaGrande">Qtd</th>
-                                <th className="tdLegendaTelaGrande">Tipo de tacha</th>
-                                <th className="tdLegendaTelaGrande">Quantidade de tachas</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <BlocoTrVariavel
-                                label="Eixo 4x12:"
-                                valorX={campos.eixo4x12X}
-                                valorY={campos.eixo4x12Y}
-                                valorZ={campos.eixo4x12Z}
-                                tipoTacha={campos.eixo4x12TipoTacha}
-                                qtdTacha={campos.eixo4x12QtdTacha}
-                                opcoesLargura={opcoesDeSelectLargura}
-                                opcoesTacha={opcoesDeSelectTacha}
-                                onChange={(campo, valor) => handleChange(`${'eixo4x12' + campo as keyof typeof campos}`, valor)}
-                            />
-
-                            <BlocoTrVariavel
-                                label="2X2:"
-                                valorX={campos.eixo2x2X}
-                                valorY={campos.eixo2x2Y}
-                                valorZ={campos.eixo2x2Z}
-                                tipoTacha={campos.eixo2x2TipoTacha}
-                                qtdTacha={campos.eixo2x2QtdTacha}
-                                opcoesLargura={opcoesDeSelectLargura}
-                                opcoesTacha={opcoesDeSelectTacha}
-                                onChange={(campo, valor) => handleChange(`${'eixo2x2' + campo as keyof typeof campos}`, valor)}
-                            />
-                        </tbody>
-                    </table>
-                }
-            />
 
             {/* Terceiro quadro - Migrado para Design System */}
             <CalculationSection 
@@ -786,67 +703,6 @@ const Formulario = () => {
                 />
             </CalculationSection>
 
-            {/* Seção de Consumo - Migrada para Design System */}
-            <CalculationSection 
-                title="⚙️ Cálculos de Consumo"
-            >
-                <div className="sv-space-y-6">
-                    {/* Grupo Esfera */}
-                    <FieldGroup title="⚪ Cálculo de Esfera" columns={1}>
-                        <SVInputField
-                            label="Esfera (kg)"
-                            value={campos.esfera}
-                            onChange={(e) => handleChange('esfera', e.target.value)}
-                            variant="calculation"
-                            placeholder="Digite a quantidade em kg"
-                        />
-                        <ResultDisplay
-                            label="📊 Resultado (kg/m²)"
-                            value={campos.resultadoEsferas}
-                            unit="kg/m²"
-                            editable={editarEsferas}
-                            onEdit={(newValue) => handleChange('resultadoEsferas', newValue)}
-                            actionButton={
-                                <SVButton
-                                    variant={editarEsferas ? "success" : "info"}
-                                    size="sm"
-                                    onClick={handleEditEsfera}
-                                >
-                                    {editarEsferas ? "🔒 Bloquear" : "✏️ Editar"}
-                                </SVButton>
-                            }
-                        />
-                    </FieldGroup>
-
-                    {/* Grupo Tinta */}
-                    <FieldGroup title="🎨 Cálculo de Tinta" columns={1}>
-                        <SVInputField
-                            label="Tinta (baldes)"
-                            value={campos.tinta}
-                            onChange={(e) => handleChange('tinta', e.target.value)}
-                            variant="calculation"
-                            placeholder="Digite a quantidade em baldes"
-                        />
-                        <ResultDisplay
-                            label="📊 Resultado (m²/balde)"
-                            value={campos.resultadoTinta}
-                            unit="m²/balde"
-                            editable={editarTinta}
-                            onEdit={(newValue) => handleChange('resultadoTinta', newValue)}
-                            actionButton={
-                                <SVButton
-                                    variant={editarTinta ? "success" : "info"}
-                                    size="sm"
-                                    onClick={handleEditTinta}
-                                >
-                                    {editarTinta ? "🔒 Bloquear" : "✏️ Editar"}
-                                </SVButton>
-                            }
-                        />
-                    </FieldGroup>
-                </div>
-            </CalculationSection>
-
             {/* Levantamento gerado - fora do quartoQuadro para evitar card dentro de card */}
             {levantamento && (
                 <div className="levantamento-container" ref={levantamentoRef}>
@@ -863,9 +719,15 @@ const Formulario = () => {
 
             {/* Botões */}
             <CalculationSection title="">
-                <div className="flex items-center justify-center m-2"
-                    style={{ padding: '1rem 0' }}
-                >
+                <div className="action-buttons" style={{ 
+                    display: 'flex', 
+                    flexDirection: 'row',
+                    flexWrap: 'nowrap',
+                    gap: '1rem', 
+                    justifyContent: 'center', 
+                    alignItems: 'center',
+                    width: '100%'
+                }}>
                     <button
                         className="modern-button"
                         onClick={gerarLevantamento}
@@ -874,6 +736,7 @@ const Formulario = () => {
                         style={{
                             backgroundColor: '#10b981',
                             color: '#ffffff',
+                            border: '2px solid #10b981',
                             boxShadow: '0 2px 4px rgba(16, 185, 129, 0.2)',
                             fontSize: '0.875rem'
                         }}
@@ -889,7 +752,7 @@ const Formulario = () => {
                         style={{
                             background: '#fff',
                             color: '#ef4444',
-                            border: '1.5px solid #ef4444',
+                            border: '2px solid #ef4444',
                             boxShadow: '0 2px 4px rgba(239,68,68,0.1)',
                             fontSize: '0.875rem'
                         }}
@@ -905,6 +768,7 @@ const Formulario = () => {
                         style={{
                             backgroundColor: '#3b82f6',
                             color: '#ffffff',
+                            border: '2px solid #3b82f6',
                             boxShadow: '0 2px 4px rgba(59, 130, 246, 0.2)',
                             fontSize: '0.875rem'
                         }}
@@ -913,6 +777,7 @@ const Formulario = () => {
                     </button>
                 </div>
             </CalculationSection>
+            </div>{/* fim calc-tinta-container */}
         </div >
     );
 };

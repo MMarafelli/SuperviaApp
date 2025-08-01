@@ -1,52 +1,39 @@
+/**
+ * INDEX CSS - ENTRY POINT LIMPO
+ * 
+ * Mantém apenas Tailwind e estilos globais essenciais
+ * Todo o resto está no Design System
+ */
+
+/* ===== TAILWIND CSS ===== */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Animações personalizadas */
-@keyframes slide-in {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-.animate-slide-in {
-  animation: slide-in 0.3s ease-out;
+/* ===== GLOBAL ESSENTIALS ===== */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   margin: 0;
   height: 100vh;
-  /* Melhorias de performance */
   box-sizing: border-box;
 }
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
--webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  --transition-speed: 600ms;
-}
-
+/* ===== APP LAYOUT ===== */
+/* Layout controlado pelo backgrounds.css */
 #base {
   height: 100vh;
   margin: 0;
   display: flex;
   flex-direction: column;
-}
-
-#content {
-  margin-top: 70px;
 }
 
 /* Small screens */
@@ -59,198 +46,8 @@ body {
 
 /* Large screens */
 @media only screen and (min-width: 600px) {
-  #content {
-    margin-left: 5rem;
-  }
+  /* Configurações movidas para backgrounds.css */
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #4e4e4e;
-  /* Cor do polegar (thumb) da barra de rolagem */
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: #333;
-  /* Cor do fundo da barra de rolagem */
-}
-
-@media (prefers-color-scheme: dark) {
-
-  html,
-  body {
-    background-color: hsl(0, 0%, 17%);
-    color: white;
-  }
-
-  input,
-  select,
-  textarea {
-    background-color: hsl(0, 0%, 17%);
-    color: white !important;
-  }
-
-}
-
-@media (prefers-color-scheme: light) {
-
-  html,
-  body {
-    background-color: #f5f5f5;
-    color: black;
-  }
-
-  input,
-  select,
-  textarea {
-    background-color: #f5f5f5;
-    color: black !important;
-  }
-}
-
-/* ------------------------------------------------------ */
-/* Ajuste estético dos inputs */
-
-.texto-a-direita {
-  text-align: right;
-}
-
-.interacaoBox {
-  padding-bottom: .5rem;
-  min-width: 100px;
-}
-
-.bg-amarelo {
-  background-color: #ffcc29;
-}
-
-.bg-cinza {
-  background-color: #9A9B9E;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  input {
-    border: none;
-    border-bottom: 2px solid white;
-    outline: none;
-    transition: border-color 0.3s, background-color 0.3s;
-  }
-
-  select {
-    border: none;
-    border-bottom: 2px solid white;
-    outline: none;
-    transition: border-color 0.3s, background-color 0.3s;
-  }
-
-  input:focus {
-    border-color: #ffcc29;
-  }
-
-  input:not(.date-input):not(:placeholder-shown):valid {
-    border-color: #8fda8f;
-  }
-
-  .border-white {
-    border-color: #ffffff !important;
-  }
-
-  .border-green {
-    border-color: #8fda8f !important;
-  }
-
-  .border-yellow {
-    border-color: #ffcc29 !important;
-  }
-
-  .input-label {
-    font-size: 0.7em;
-  }
-
-  .input-label-active {
-    color: #8fda8f;
-  }
-
-  .input-label-inactive {
-    color: #ffffff;
-  }
-
-  .input-label-focus {
-    color: #ffcc29;
-  }
-
-}
-
-@media (prefers-color-scheme: light) {
-
-  input {
-    border: none;
-    border-bottom: 2px solid hsl(300, 1%, 30%);
-    outline: none;
-    transition: border-color 0.3s, background-color 0.3s;
-  }
-
-  select {
-    border: none;
-    border-bottom: 2px solid hsl(300, 1%, 30%);
-    outline: none;
-    transition: border-color 0.3s, background-color 0.3s;
-  }
-
-  input:focus {
-    border-color: #ffcc29;
-  }
-
-  input:not(.date-input):not(:placeholder-shown):valid {
-    border-color: #8fda8f;
-  }
-
-  .border-white {
-    border-color: hsl(300, 1%, 30%);
-  }
-
-  .border-green {
-    border-color: #8fda8f;
-  }
-
-}
+/* ===== SCROLLBAR CUSTOMIZATION REMOVIDO ===== */
+/* Controle de scrollbar movido para backgrounds.css */

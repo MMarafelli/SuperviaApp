@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 
+// CSS Entry Point - Ordem importante para precedência
+import './styles/backgrounds.css'; // PRIMEIRO: Sistema centralizado de backgrounds
 import './index.css';
-import './styles/animations.css';
-// Design System - PRESERVANDO total compatibilidade com estilos existentes
-import './design-system/styles/global.css';
+import './design-system/styles/index.css';
+
 import App from './App';
 
 //verificação da URL inicial

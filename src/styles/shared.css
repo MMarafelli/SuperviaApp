@@ -1,1154 +1,208 @@
-/* === DESIGN SYSTEM TOKENS === */
-:root {
-    /* Cores primárias */
-    --sv-primary: #3b82f6;
-    --sv-primary-light: #93c5fd;
-    --sv-primary-dark: #1d4ed8;
-    
-    /* Cores de status */
-    --sv-success: #10b981;
-    --sv-success-light: #86efac;
-    --sv-success-dark: #047857;
-    
-    --sv-error: #ef4444;
-    --sv-error-light: #fca5a5;
-    --sv-error-dark: #dc2626;
-    
-    --sv-warning: #f59e0b;
-    --sv-warning-light: #fbbf24;
-    --sv-warning-dark: #d97706;
-    
-    --sv-info: #3b82f6;
-    --sv-info-light: #93c5fd;
-    --sv-info-dark: #1d4ed8;
-    
-    /* Tons de cinza */
-    --sv-gray-50: #f9fafb;
-    --sv-gray-100: #f3f4f6;
-    --sv-gray-200: #e5e7eb;
-    --sv-gray-300: #d1d5db;
-    --sv-gray-400: #9ca3af;
-    --sv-gray-500: #6b7280;
-    --sv-gray-600: #4b5563;
-    --sv-gray-700: #374151;
-    --sv-gray-800: #1f2937;
-    --sv-gray-900: #111827;
-    
-    /* Espaçamentos */
-    --sv-space-1: 0.25rem;
-    --sv-space-2: 0.5rem;
-    --sv-space-3: 0.75rem;
-    --sv-space-4: 1rem;
-    --sv-space-5: 1.25rem;
-    --sv-space-6: 1.5rem;
-    --sv-space-8: 2rem;
-    
-    /* Tamanhos de texto */
-    --sv-text-xs: 0.75rem;
-    --sv-text-sm: 0.875rem;
-    --sv-text-base: 1rem;
-    --sv-text-lg: 1.125rem;
-    --sv-text-xl: 1.25rem;
-    --sv-text-2xl: 1.5rem;
-    
-    /* Border radius */
-    --sv-radius-sm: 0.125rem;
-    --sv-radius-md: 0.375rem;
-    --sv-radius-lg: 0.5rem;
-    --sv-radius-xl: 0.75rem;
+/**
+ * SUPERVIA APP - ESTILOS PRINCIPAIS
+ * 
+ * Sistema CSS moderno baseado em Design System
+ * Arquivo principal que importa todos os componentes e utilitários
+ */
+
+/* ===== DESIGN SYSTEM IMPORTS ===== */
+@import '../design-system/styles/tokens.css';
+@import '../design-system/styles/base.css';
+@import '../design-system/components/layout.css';
+@import '../design-system/components/button.css';
+@import '../design-system/styles/utilities.css';
+
+/* ===== GLOBAL OVERRIDES ===== */
+/* Backgrounds controlados pelo arquivo backgrounds.css */
+html,
+body,
+#root {
+  background-color: var(--sv-bg-primary);
+  min-height: 100vh;
 }
 
-.page-title {
-    color: #ffcc29;
-    font-size: 1.75rem;
-    font-weight: 600;
-    margin: 2rem 1.5rem 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    position: relative;
-    display: inline-block;
-}
+/* ===== LEGACY SUPPORT ===== */
+/* Mantém compatibilidade com componentes existentes */
 
-.page-title::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 60px;
-    height: 4px;
-    background: #ffcc29;
-    border-radius: 2px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* ===== ESTILOS PARA COMPONENTES UI ===== */
-
-/* Page Container Padronizado */
-.sv-page-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--sv-space-4);
-}
-
-/* Container Principal do SuperVia */
-.sv-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0.5rem;
-    padding-bottom: 0.25rem;
-    overflow-x: hidden;
-}
-
-/* ESPAÇAMENTO PADRONIZADO - Força espaçamento consistente entre TODAS as seções */
-.sv-container > * {
-    margin: 0 !important;
-    margin-bottom: 1rem !important;
-}
-
-.sv-container > *:last-child {
-    margin-bottom: 0 !important;
-}
-
-/* Classes de espaçamento vertical */
-.sv-space-y-4 > * + * {
-    margin-top: 1rem !important;
-}
-
-.sv-space-y-6 > * + * {
-    margin-top: 0.75rem !important;
-}
-
-/* Page Container Legacy */
+/* Container legacy */
 .page-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem;
+  width: 100%;
+  max-width: var(--sv-max-width-default);
+  margin: 0 auto;
+  padding: var(--sv-space-4) var(--sv-container-padding);
 }
 
-/* Buttons */
+@media (max-width: 768px) {
+  .page-container {
+    padding: var(--sv-space-3) var(--sv-mobile-container-padding);
+  }
+}
+
+/* Botões legacy */
 .btn {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
+  /* Herda estilos do novo sistema de botões */
+  appearance: none;
+  border: none;
+  background: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sv-space-2);
+  font-family: var(--sv-font-sans);
+  font-size: var(--sv-text-sm);
+  font-weight: var(--sv-font-medium);
+  line-height: var(--sv-leading-tight);
+  text-align: center;
+  white-space: nowrap;
+  padding: var(--sv-space-3) var(--sv-space-4);
+  min-height: 2.5rem;
+  border-radius: var(--sv-radius-md);
+  border: var(--sv-border-1) solid transparent;
+  cursor: pointer;
+  user-select: none;
+  transition: var(--sv-transition-fast);
+  transform: translateY(0);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
 }
 
 .btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
-/* Button Variants */
 .btn-primary {
-    background-color: #ffcc29;
-    color: #000;
+  background-color: var(--sv-primary);
+  color: var(--sv-black);
 }
 
 .btn-primary:hover:not(:disabled) {
-    background-color: #e6b824;
+  background-color: var(--sv-primary-hover);
 }
 
 .btn-secondary {
-    background-color: #6b7280;
-    color: white;
+  background-color: var(--sv-gray-600);
+  color: var(--sv-white);
 }
 
 .btn-secondary:hover:not(:disabled) {
-    background-color: #4b5563;
+  background-color: var(--sv-gray-700);
 }
 
 .btn-success {
-    background-color: #10b981;
-    color: white;
+  background-color: var(--sv-success);
+  color: var(--sv-white);
 }
 
 .btn-success:hover:not(:disabled) {
-    background-color: #059669;
-}
-
-.btn-info {
-    background-color: #3b82f6;
-    color: white;
-}
-
-.btn-info:hover:not(:disabled) {
-    background-color: #2563eb;
-}
-
-.btn-warning {
-    background-color: #f59e0b;
-    color: white;
-}
-
-.btn-warning:hover:not(:disabled) {
-    background-color: #d97706;
+  background-color: var(--sv-success-hover);
 }
 
 .btn-danger {
-    background-color: #ef4444;
-    color: white;
+  background-color: var(--sv-error);
+  color: var(--sv-white);
 }
 
 .btn-danger:hover:not(:disabled) {
-    background-color: #dc2626;
+  background-color: var(--sv-error-hover);
 }
 
-/* Button Sizes */
+.btn-warning {
+  background-color: var(--sv-warning);
+  color: var(--sv-white);
+}
+
+.btn-warning:hover:not(:disabled) {
+  background-color: var(--sv-warning-hover);
+}
+
+.btn-info {
+  background-color: var(--sv-info);
+  color: var(--sv-white);
+}
+
+.btn-info:hover:not(:disabled) {
+  background-color: var(--sv-info-hover);
+}
+
 .btn-sm {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
-}
-
-.btn-md {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+  padding: var(--sv-space-2) var(--sv-space-3);
+  font-size: var(--sv-text-sm);
+  min-height: 2rem;
 }
 
 .btn-lg {
-    padding: 0.75rem 1.5rem;
-    font-size: 1.125rem;
+  padding: var(--sv-space-4) var(--sv-space-6);
+  font-size: var(--sv-text-lg);
+  min-height: 3rem;
 }
 
-/* Input Fields */
+/* Input fields legacy */
 .input-field-container {
-    margin-bottom: 1rem;
+  margin-bottom: var(--sv-space-4);
 }
 
 .input-label {
-    display: block;
-    margin-bottom: 0.25rem;
-    font-weight: 500;
-    color: #374151;
+  display: block;
+  margin-bottom: var(--sv-space-1);
+  font-weight: var(--sv-font-medium);
+  font-size: var(--sv-text-sm);
+  color: var(--sv-text-secondary);
 }
 
 .input-field {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.2s ease;
+  width: 100%;
+  padding: var(--sv-space-2) var(--sv-space-3);
+  border: var(--sv-border-1) solid var(--sv-border-light);
+  border-radius: var(--sv-radius-md);
+  font-size: var(--sv-text-base);
+  font-family: var(--sv-font-sans);
+  color: var(--sv-text-primary);
+  background-color: var(--sv-white);
+  transition: var(--sv-transition-fast);
 }
 
 .input-field:focus {
-    outline: none;
-    border-color: #ffcc29;
-    box-shadow: 0 0 0 2px rgba(255, 204, 41, 0.2);
+  outline: none;
+  border-color: var(--sv-border-focus);
+  box-shadow: 0 0 0 3px rgba(255, 204, 41, 0.1);
 }
 
 .input-field:read-only {
-    background-color: #f9fafb;
-    color: #6b7280;
+  background-color: var(--sv-bg-muted);
+  color: var(--sv-text-muted);
 }
 
 .helper-text {
-    display: block;
-    margin-top: 0.25rem;
-    font-size: 0.875rem;
-    color: #6b7280;
+  display: block;
+  margin-top: var(--sv-space-1);
+  font-size: var(--sv-text-sm);
+  color: var(--sv-text-muted);
 }
 
-/* ===== CALCULATION COMPONENTS ===== */
+/* ===== COMPONENT SPECIFIC STYLES ===== */
+/* Estilos específicos que não se encaixam no design system geral */
 
-/* Calculation Section */
-.calculation-section {
-    margin-bottom: 1rem !important;
-    padding: 1rem !important;
-    border: 1px solid #e5e7eb !important;
-    border-radius: var(--border-radius-sm) !important;
-    background-color: white !important;
+.calc-tinta-container {
+  /* Mantém o background dark específico deste componente */
+  background-color: rgb(4, 1, 34);
 }
 
-.calculation-section-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: #374151 !important;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+/* ===== RESPONSIVE UTILITIES LEGACY ===== */
+@media (max-width: 768px) {
+  .sv-hidden-mobile { display: none; }
+  .sv-block-mobile { display: block; }
+  .sv-flex-mobile { display: flex; }
 }
 
-.calculation-section-content {
-    display: block;
-    color: var(--sv-gray-900) !important;
-}
-
-.calculation-section .sv-label {
-    color: var(--sv-gray-700) !important;
-}
-
-/* Field Group */
-.field-group {
-    margin-bottom: 0.75rem !important;
-}
-
-.field-group-title {
-    font-size: 1rem !important;
-    font-weight: 500 !important;
-    margin-bottom: 0.5rem !important;
-    color: #374151 !important;
-}
-
-.field-group-content {
-    display: grid !important;
-    gap: 0.75rem !important;
-}
-
-.field-group-content.columns-1 {
-    grid-template-columns: 1fr;
-}
-
-.field-group-content.columns-2 {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-
-.field-group-content.columns-3 {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}
-
-/* Result Display - Reset completo e aplicação direta */
-.result-display {
-    margin-bottom: 0.75rem !important;
-    padding: 0.75rem !important;
-    background-color: #f8fafc !important;
-    border-radius: 0.5rem !important;
-    border: 1px solid #e2e8f0 !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    display: block !important;
-}
-
-.result-row {
-    display: flex !important;
-    align-items: center !important;
-    gap: 1rem !important;
-    justify-content: space-between !important;
-    min-height: 2.5rem !important;
-    width: 100% !important;
-    flex-wrap: nowrap !important;
-}
-
-.result-label {
-    min-width: 120px !important;
-    font-weight: 500 !important;
-    color: #374151 !important;
-    font-size: 0.95rem !important;
-    white-space: nowrap !important;
-    flex-shrink: 0 !important;
-}
-
-.result-value {
-    flex: 1 !important;
-    font-weight: 600 !important;
-    color: #059669 !important;
-    cursor: pointer !important;
-    font-size: 1.1rem !important;
-    text-align: right !important;
-    padding: 0.5rem 0.75rem !important;
-    background-color: white !important;
-    border-radius: 0.375rem !important;
-    border: 1px solid #d1d5db !important;
-    min-height: 2rem !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-end !important;
-    margin-left: auto !important;
-    min-width: 80px !important;
-}
-
-.result-action {
-    flex-shrink: 0;
-    margin-left: 0.5rem;
-}
-
-.result-edit {
-    flex: 1;
-}
-
-.result-edit input {
-    width: 100%;
-    padding: 0.5rem 0.75rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.375rem;
-    font-size: 1rem;
-    background-color: #fff7ed;
-    border-color: #ffcc29;
-    font-weight: 600;
-    color: #059669;
-    min-height: 2rem;
-}
-
-.edit-indicator {
-    margin-left: 0.5rem;
-    opacity: 0.6;
-    font-size: 0.875rem;
-}
-
-.result-input {
-    flex: 1;
-    padding: 0.25rem 0.5rem;
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
-    font-size: 0.875rem;
-}
-
-.result-input.editable {
-    background-color: #fff7ed;
-    border-color: #ffcc29;
-}
-
-.result-input.readonly {
-    background-color: #f9fafb;
-    color: #6b7280;
-}
-
-.result-unit {
-    font-size: 0.875rem;
-    color: #6b7280;
-    min-width: 60px;
-}
-
-/* Resultado fixo nos blocos */
-.resultado-display {
-    padding: 12px 14px;
-    background-color: #f8fafc;
-    border: 2px solid #e2e8f0;
-    border-radius: var(--border-radius-sm);
-    font-size: 14px;
-    font-weight: 500;
-    color: #059669;
-    text-align: center;
-    min-height: var(--sv-space-12);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Container para resultado editável nos blocos */
-.resultado-input-container {
-    flex: 1;
-}
-
-.resultado-input-container .result-display {
-    margin-bottom: 0;
-}
-
-.resultado-input-container .result-row {
-    justify-content: flex-start;
-    gap: 0.5rem;
-}
-
-.resultado-input-container .result-label {
-    display: none; /* Esconde o label pois já temos na div anterior */
-}
-
-.resultado-input-container .result-value {
-    background-color: #f8fafc;
-    border: 2px solid #e2e8f0;
-    border-radius: var(--border-radius-sm);
-    padding: 12px 14px;
-    min-height: var(--sv-space-12);
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    font-weight: 500;
-    color: #059669;
-    flex: 1;
-}
-
-/* Container para resultado editável na tabela */
-.resultado-table-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 4px;
-}
-
-.resultado-table-container .result-display {
-  margin-bottom: 0;
-  width: 100%;
-}
-
-.resultado-table-container .result-row {
-  justify-content: center;
-  gap: 4px;
-  align-items: center;
-}
-
-.resultado-table-container .result-label {
-  display: none; /* Esconde o label pois já temos no header da tabela */
-}
-
-.resultado-table-container .result-value {
-  background-color: #f8fafc;
-  border: 2px solid #e2e8f0;
-  border-radius: 6px;
-  padding: var(--spacing-sm) 10px;
-  min-height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 500;
-  color: #059669;
-  text-align: center;
-  width: 80px;
-  min-width: 60px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.resultado-table-container .result-value:hover {
-  background-color: #f1f5f9;
-  border-color: #cbd5e1;
-}
-
-.resultado-table-container .edit-indicator {
-  margin-left: 4px;
-  font-size: 11px;
-  opacity: 0.7;
-}/* Action Buttons */
-.action-buttons {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-}
-
-/* Responsive Layout */
-.responsive-calculation-layout {
-    width: 100% !important;
-    overflow-x: hidden !important;
-    box-sizing: border-box !important;
-}
-
-.responsive-calculation-layout.mobile {
-    display: block !important;
-}
-
-.responsive-calculation-layout.desktop {
-    display: block !important;
-}
-
-/* Calculation Table */
-.calculation-table-container {
-    overflow-x: auto;
-    margin: 1rem 0;
-}
-
-.calculation-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    border-radius: var(--border-radius-sm);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.calculation-table th {
-    background-color: #f9fafb;
-    padding: 0.75rem;
-    text-align: left;
-    font-weight: 600;
-    color: #374151;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.calculation-table td {
-    padding: 0.75rem;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.calculation-table tr:last-child td {
-    border-bottom: none;
-}
-
-.calculation-table tr:hover {
-    background-color: #f9fafb;
-}
-
-/* Utility Classes */
-.sv-space-y-4 > * + * {
-    margin-top: 1rem;
-}
-
-.sv-space-y-6 > * + * {
-    margin-top: 1.5rem;
-}
-
-/* Cards Padronizados */
-.sv-card {
-    background: #fff;
-    border-radius: 1rem;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e5e7eb;
-    padding: 1.25rem;
-    transition: all 0.3s ease-in-out;
-    position: relative;
-    overflow: hidden;
-}
-
-.sv-card-compact {
-    padding: 0.75rem;
-}
-
-.sv-card-spacious {
-    padding: 2rem;
-}
-
-.sv-card.sv-hover-lift:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    border-color: #ffcc29;
-}
-
-.sv-card-content {
-    flex: 1;
-    margin-bottom: 1rem;
-    color: #374151;
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
-
-.sv-card-actions {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.sv-card-actions .sv-card-content + & {
-    margin-top: 1rem;
-}
-
-/* Flex Utilities */
-.sv-flex {
-    display: flex;
-}
-
-.sv-gap-2 {
-    gap: 0.5rem;
-}
-
-.sv-justify-start {
-    justify-content: flex-start;
-}
-
-.sv-justify-center {
-    justify-content: center;
-}
-
-.sv-justify-end {
-    justify-content: flex-end;
-}
-
-.sv-justify-between {
-    justify-content: space-between;
-}
-
-/* === INPUT FIELD STYLES === */
-.sv-field-group {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sv-space-1);
-}
-
-.sv-label {
-    font-size: var(--sv-text-sm);
-    font-weight: 500;
-    color: var(--sv-gray-700) !important;
-}
-
-.sv-input-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.sv-input {
-    width: 100%;
-    padding: 12px 14px !important; /* Padding fixo padronizado */
-    border: 2px solid white; /* Borda branca quando vazio */
-    border-radius: var(--border-radius-sm) !important; /* Border radius fixo */
-    font-size: 14px !important; /* Tamanho de fonte fixo */
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-    font-weight: 400 !important;
-    line-height: 1.4 !important;
-    min-height: var(--sv-space-12) !important; /* Altura mínima aumentada para uniformizar */
-    max-height: var(--sv-space-12) !important; /* Altura máxima fixa */
-    height: var(--sv-space-12) !important; /* Altura fixa */
-    transition: all 0.15s ease-in-out;
-    background-color: white !important;
-    color: #111827 !important;
-    box-sizing: border-box !important;
-}
-
-.sv-input:focus {
-    outline: none;
-    border-color: #fbbf24 !important; /* Borda amarela quando focado */
-    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
-}
-
-/* Estado com valor válido - borda verde */
-.sv-input:not(:placeholder-shown):not(:focus):valid,
-.sv-input[data-has-value="true"]:not(:focus) {
-    border-color: #10b981 !important; /* Verde quando tem valor válido */
-}
-
-.sv-input:disabled {
-    background-color: var(--sv-gray-100);
-    color: var(--sv-gray-500);
-    cursor: not-allowed;
-}
-
-.sv-input.sv-readonly {
-    background-color: var(--sv-gray-50);
-    border-color: var(--sv-gray-200);
-}
-
-.sv-input.sv-invalid {
-    border-color: var(--sv-error);
-}
-
-.sv-input.sv-invalid:focus {
-    border-color: var(--sv-error);
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-}
-
-.sv-input.sv-valid {
-    border-color: var(--sv-success);
-}
-
-.sv-input.sv-valid:focus {
-    border-color: var(--sv-success);
-    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-}
-
-/* Input com ícone */
-.sv-input-with-icon {
-    padding-left: 2.5rem;
-}
-
-.sv-input-icon {
-    position: absolute;
-    left: var(--sv-space-2);
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--sv-gray-400);
-    font-size: var(--sv-text-sm);
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* Variantes de input para cálculos */
-.sv-input-calculation {
-    background-color: #f8fafc;
-    border-color: var(--sv-primary-light);
-    font-family: 'Courier New', monospace;
-}
-
-.sv-input-calculation:focus {
-    background-color: white;
-    border-color: var(--sv-primary);
-}
-
-.sv-input-result {
-    background-color: #f0fdf4;
-    border-color: var(--sv-success-light);
-    font-weight: 600;
-    color: var(--sv-success-dark);
-    font-family: 'Courier New', monospace;
-}
-
-.sv-input-result:focus {
-    background-color: #f0fdf4;
-    border-color: var(--sv-success);
-}
-
-/* ===== SELECT STYLES ===== */
-.sv-select {
-    width: 100%;
-    padding: 12px 14px !important; /* Padding fixo padronizado - igual aos inputs */
-    border: 2px solid white; /* Borda branca quando vazio */
-    border-radius: var(--border-radius-sm) !important; /* Border radius fixo - igual aos inputs */
-    font-size: 14px !important; /* Tamanho de fonte fixo - igual aos inputs */
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-    font-weight: 400 !important;
-    line-height: 1.4 !important;
-    min-height: var(--sv-space-12) !important; /* Altura mínima aumentada - igual aos inputs */
-    max-height: var(--sv-space-12) !important; /* Altura máxima fixa */
-    height: var(--sv-space-12) !important; /* Altura fixa - igual aos inputs */
-    transition: all 0.15s ease-in-out;
-    background-color: white !important;
-    color: #111827 !important;
-    cursor: pointer;
-    box-sizing: border-box !important;
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
-    background-repeat: no-repeat !important;
-    background-position: right 12px center !important;
-    background-size: var(--spacing-lg) !important;
-    padding-right: 40px !important;
-}
-
-.sv-select:focus {
-    outline: none;
-    border-color: #fbbf24 !important; /* Borda amarela quando focado */
-    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
-}
-
-/* Estado com valor válido - borda verde para select */
-.sv-select:not([value=""]):not(:focus),
-.sv-select[data-has-value="true"]:not(:focus) {
-    border-color: #10b981 !important; /* Verde quando tem valor válido */
-}
-
-/* ===== TEXTAREA STYLES ===== */
-.sv-textarea {
-    width: 100%;
-    padding: var(--sv-space-2) var(--sv-space-3);
-    border: 2px solid white; /* Borda branca quando vazio */
-    border-radius: var(--sv-radius-md);
-    font-size: var(--sv-text-sm);
-    transition: all 0.15s ease-in-out;
-    background-color: white;
-    color: var(--sv-gray-900);
-    resize: vertical;
-    min-height: 80px;
-}
-
-.sv-textarea:focus {
-    outline: none;
-    border-color: #fbbf24 !important; /* Borda amarela quando focado */
-    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
-}
-
-/* Estado com valor válido - borda verde para textarea */
-.sv-textarea:not(:placeholder-shown):not(:focus),
-.sv-textarea[data-has-value="true"]:not(:focus) {
-    border-color: #10b981 !important; /* Verde quando tem valor válido */
-}
-
-.sv-select:disabled {
-    background-color: var(--sv-gray-100) !important;
-    color: var(--sv-gray-500) !important;
-    cursor: not-allowed;
-}
-
-.sv-select.sv-invalid {
-    border-color: var(--sv-error);
-}
-
-.sv-select.sv-invalid:focus {
-    border-color: var(--sv-error);
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-}
-
-.sv-select.sv-valid {
-    border-color: var(--sv-success);
-}
-
-.sv-select.sv-valid:focus {
-    border-color: var(--sv-success);
-    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-}
-
-/* Select option styles */
-.sv-select option {
-    background-color: white !important;
-    color: #111827 !important;
-    font-size: 14px !important;
-    padding: var(--spacing-sm) var(--spacing-md) !important;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-}
-
-/* Labels padronizadas */
-.sv-label {
-    display: block;
-    font-size: 14px !important;
-    font-weight: 500 !important;
-    color: #374151 !important;
-    margin-bottom: 6px !important;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-    line-height: 1.4 !important;
-}
-
-/* Text utilities */
-.sv-text-sm {
-    font-size: var(--sv-text-sm);
-}
-
-/* Force dark text in calculation sections */
-.calculation-section,
-.calculation-section *,
-.field-group,
-.field-group * {
-    color: #374151 !important;
-}
-
-.calculation-section .sv-input,
-.calculation-section .sv-select {
-    color: #111827 !important;
-    background-color: white !important;
-}
-
-.calculation-section .sv-select option {
-    color: #111827 !important;
-    background-color: white !important;
-}
-
-/* Override legacy CSS with higher specificity */
-.sv-container .calculation-section .sv-select,
-.sv-container .sv-select {
-    background-color: white !important;
-    color: #111827 !important;
-    border: 2px solid white !important; /* Borda branca por padrão */
-}
-
-.sv-container .calculation-section .sv-select:focus,
-.sv-container .sv-select:focus {
-    border-color: #fbbf24 !important; /* Amarelo quando focado */
-    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1) !important;
-}
-
-.sv-container .calculation-section .sv-select:not([value=""]):not(:focus),
-.sv-container .sv-select:not([value=""]):not(:focus),
-.sv-container .calculation-section .sv-select[data-has-value="true"]:not(:focus),
-.sv-container .sv-select[data-has-value="true"]:not(:focus) {
-    border-color: #10b981 !important; /* Verde quando tem valor */
-}
-
-.sv-container .calculation-section .sv-input,
-.sv-container .sv-input {
-    background-color: white !important;
-    color: #111827 !important;
-    border: 2px solid white !important; /* Borda branca por padrão */
-}
-
-.sv-container .calculation-section .sv-input:focus,
-.sv-container .sv-input:focus {
-    border-color: #fbbf24 !important; /* Amarelo quando focado */
-    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1) !important;
-}
-
-.sv-container .calculation-section .sv-input:not(:placeholder-shown):not(:focus),
-.sv-container .sv-input:not(:placeholder-shown):not(:focus),
-.sv-container .calculation-section .sv-input[data-has-value="true"]:not(:focus),
-.sv-container .sv-input[data-has-value="true"]:not(:focus) {
-    border-color: #10b981 !important; /* Verde quando tem valor */
-}
-
-.sv-container .calculation-section .sv-textarea,
-.sv-container .sv-textarea {
-    background-color: white !important;
-    color: #111827 !important;
-    border: 2px solid white !important; /* Borda branca por padrão */
-}
-
-.sv-container .calculation-section .sv-textarea:focus,
-.sv-container .sv-textarea:focus {
-    border-color: #fbbf24 !important; /* Amarelo quando focado */
-    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1) !important;
-}
-
-.sv-container .calculation-section .sv-textarea:not(:placeholder-shown):not(:focus),
-.sv-container .sv-textarea:not(:placeholder-shown):not(:focus),
-.sv-container .calculation-section .sv-textarea[data-has-value="true"]:not(:focus),
-.sv-container .sv-textarea[data-has-value="true"]:not(:focus) {
-    border-color: #10b981 !important; /* Verde quando tem valor */
-}
-
-.sv-container .calculation-section .sv-select option,
-.sv-container .sv-select option {
-    background-color: white !important;
-    color: #111827 !important;
-}
-
-.calculation-section .sv-label {
-    color: #374151 !important;
-}
-
-/* ===== CORREÇÕES PARA TEXTO BRANCO ===== */
-
-/* Force dark text for table headers and legends */
-.tabela1TelaGrande th,
-.tabela1TelaGrande thead th,
-.tdLegendaTelaGrande,
-.levantamento-title,
-table th,
-thead th {
-    color: #374151 !important;
-    background-color: #f9fafb !important;
-}
-
-/* Force dark text for all labels and legends across the app */
-.sv-label,
-label,
-.field-group-title,
-.calculation-section-title {
-    color: #374151 !important;
-}
-
-/* Force dark text for result displays */
-.result-label,
-.result-value,
-.result-unit {
-    color: #374151 !important;
-}
-
-/* Ensure calculation table text is dark */
-.calculation-table th,
-.calculation-table td {
-    color: #374151 !important;
-}
-
-/* Page title should have yellow text with yellow underline - FORÇA MÁXIMA */
-.page-title,
-.sv-page-title,
-h1.page-title,
-h1.sv-page-title {
-    color: #ffcc29 !important;
-}
-
-/* ===== ESTILOS ESPECÍFICOS PARA MOBILE/TABLET ===== */
-
-/* Inputs dentro de células de tabela */
-td .sv-input,
-td .sv-select {
-    margin: 0 !important;
-    min-width: auto !important;
-    padding: 12px 14px !important;
-    font-size: 14px !important;
-    min-height: var(--sv-space-12) !important;
-    max-height: var(--sv-space-12) !important;
-    height: var(--sv-space-12) !important;
-}
-
-/* Inputs dentro dos blocos mobile */
-.bloco .sv-input,
-.bloco .sv-select {
-    margin: 0 !important;
-    width: 100% !important;
-    padding: 12px 14px !important;
-    font-size: 14px !important;
-    min-height: var(--sv-space-12) !important;
-    max-height: var(--sv-space-12) !important;
-    height: var(--sv-space-12) !important;
-    border-radius: var(--border-radius-sm) !important;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-    color: #111827 !important;
-    background-color: white !important;
-    border: 2px solid white !important;
-    box-sizing: border-box !important;
-}
-
-/* Ajuste específico para select dentro de blocos */
-.bloco .sv-select {
-    padding-right: 40px !important;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
-    background-repeat: no-repeat !important;
-    background-position: right 12px center !important;
-    background-size: var(--spacing-lg) !important;
-    appearance: none !important;
-}
-
-/* Regras super específicas para sobrescrever qualquer conflito */
-.divsSegundoQuadroTelaPequena .bloco .sv-input,
-.divsSegundoQuadroTelaPequena .bloco .sv-select,
-.segundoQuadro .bloco .sv-input,
-.segundoQuadro .bloco .sv-select {
-    margin: 0 !important;
-    width: 100% !important;
-    padding: 12px 14px !important;
-    font-size: 14px !important;
-    min-height: var(--sv-space-12) !important;
-    max-height: var(--sv-space-12) !important;
-    height: var(--sv-space-12) !important;
-    border-radius: var(--border-radius-sm) !important;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-    color: #111827 !important;
-    background-color: white !important;
-    border: 2px solid white !important;
-    box-sizing: border-box !important;
-}
-
-.divsSegundoQuadroTelaPequena .bloco .sv-select,
-.segundoQuadro .bloco .sv-select {
-    padding-right: 40px !important;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
-    background-repeat: no-repeat !important;
-    background-position: right 12px center !important;
-    background-size: var(--spacing-lg) !important;
-    appearance: none !important;
-}
-
-/* Labels dos blocos mobile */
-.texto-a-direita.quadro {
-    color: #374151 !important;
-    font-weight: 500 !important;
-    font-size: 14px !important;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-    line-height: 1.4 !important;
-    text-align: right !important; /* Mantém alinhamento à direita */
-    width: 45% !important; /* Largura original das legendas */
-}
-
-/* Título dos blocos mobile */
-.tituloDaDivBloco .quadro {
-    color: #374151 !important;
-    font-weight: 600 !important;
-    font-size: 16px !important;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-    line-height: 1.4 !important;
-    text-align: left !important; /* Garantir alinhamento à esquerda */
-}
-
-/* Container do título dos blocos mobile */
-.tituloDaDivBloco {
-    display: flex !important;
-    justify-content: flex-start !important; /* Alinhado à esquerda */
-    align-items: center !important;
-    text-align: left !important;
-}
-
-/* SVG dentro do título */
-.tituloDaDivBloco svg {
-    margin-left: auto !important; /* Move o SVG para a direita */
-}
-
-/* Garantir que field groups dentro dos blocos tenham a largura correta */
-.bloco .sv-field-group {
-    margin-bottom: 0 !important;
-    width: 55% !important; /* Largura original dos inputs */
-    flex: none !important; /* Remove flex para manter largura fixa */
-}
-
-/* Padronização global de labels */
-.sv-field-group .sv-label,
-.campo-grupo .sv-label,
-.calculation-section .sv-label {
-    font-size: 14px !important;
-    font-weight: 500 !important;
-    color: #374151 !important;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-    line-height: 1.4 !important;
-    margin-bottom: 6px !important;
-}
-
-/* ===== FORCE YELLOW TITLE - ÚLTIMA PALAVRA ===== */
-.page-title,
-.sv-page-title,
-h1.page-title,
-h1.sv-page-title,
-[class*="page-title"],
-[class*="PageTitle"] {
-    color: #ffcc29 !important;
+@media (min-width: 769px) {
+  .sv-hidden-desktop { display: none; }
+  .sv-block-desktop { display: block; }
+  .sv-flex-desktop { display: flex; }
 }

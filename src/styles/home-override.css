@@ -1,0 +1,56 @@
+/**
+ * OVERRIDE ESPECÍFICO PARA PÁGINA HOME
+ * Força o background azul marinho na página inicial
+ */
+
+/* Force background azul marinho na estrutura principal */
+html {
+  background-color: #1e3a8a !important;
+}
+
+body {
+  background-color: #1e3a8a !important;
+  color: #ffffff !important;
+}
+
+#root {
+  background-color: #1e3a8a !important;
+  min-height: 100vh !important;
+}
+
+#base {
+  background-color: #1e3a8a !important;
+}
+
+#content {
+  background-color: #1e3a8a !important;
+}
+
+/* Específico para a página HOME */
+.home-container,
+.home-page,
+[data-testid="home"],
+div[data-route="/SuperviaApp"] {
+  background-color: #1e3a8a !important;
+  color: #ffffff !important;
+  min-height: 100vh !important;
+}
+
+/* Garantir que cards permaneçam brancos */
+.sv-card,
+.calculation-section,
+.div-geral-bloco-de-notas {
+  background-color: #ffffff !important;
+  color: #1a1a1a !important;
+}
+
+/* Textos que devem ser brancos no fundo azul */
+.home-title,
+.home-subtitle {
+  color: #ffffff !important;
+}
+
+/* PageTitle deve seguir padrão global amarelo */
+.page-title {
+  color: #ffcc29 !important;
+}

@@ -20,8 +20,7 @@ import {
 } from '../../components/calculation/CalculationComponents';
 
 // Styles
-import '../../styles/shared.css';
-import '../../design-system/styles/global.css';
+// Removido import duplicado do design-system
 
 const TabelaConsumo = () => {
     // Estados

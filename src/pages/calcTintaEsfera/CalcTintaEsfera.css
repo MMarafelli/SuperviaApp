@@ -1,987 +1,475 @@
 /**
  * =====================================================================
- * CALC TINTA ESFERA - CSS PADRONIZADO E OTIMIZADO
+ * CALC TINTA ESFERA - CSS ESPECÍFICO OTIMIZADO
  * =====================================================================
  * 
- * Estrutura organizacional:
- * 1. Variáveis CSS
- * 2. Reset e configurações base
- * 3. Layout e containers
- * 4. Componentes de interface
- * 5. Estados e interações
- * 6. Responsividade
- * 7. Utilitários
+ * Layout baseado na imagem fornecida pelo usuário
+ * 
+ * NOTA: Título agora segue regra global em backgrounds.css
  */
 
-/* ===== 1. VARIÁVEIS CSS ===== */
-:root {
-  /* Cores do sistema SuperVia */
-  --color-primary: #ffcc29;
-  --color-primary-dark: #e6b824;
-  --color-text-primary: #1f2937;
-  --color-text-secondary: #374151;
-  --color-text-muted: #6b7280;
-  --color-text-placeholder: #9ca3af;
-  
-  /* Cores de background */
-  --color-bg-white: #ffffff;
-  --color-bg-gray-50: #f9fafb;
-  --color-bg-gray-100: #f3f4f6;
-  --color-bg-transparent: transparent;
-  
-  /* Cores de borda */
-  --color-border-gray: #d1d5db;
-  --color-border-light: #e5e7eb;
-  
-  /* Cores de estado */
-  --color-success: #10b981;
-  --color-success-dark: #059669;
-  --color-error: #ef4444;
-  --color-error-dark: #dc2626;
-  --color-info: #3b82f6;
-  --color-info-dark: #2563eb;
-  
-  /* Espacamentos */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 0.75rem;
-  --spacing-lg: 1rem;
-  --spacing-xl: 1.5rem;
-  --spacing-2xl: 2rem;
-  
-  /* Tipografia */
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 0.95rem;
-  --font-size-lg: 1rem;
-  --font-size-xl: 1.125rem;
-  --font-size-2xl: 1.75rem;
-  
-  /* Bordas e raios */
-  --border-radius-sm: 0.5rem;
-  --border-radius-md: 1rem;
-  --border-width: 1.5px;
-  
-  /* Sombras */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
-  --shadow-focus: 0 0 0 3px rgba(255, 204, 41, 0.1);
-  
-  /* Transições */
-  --transition-fast: all 0.2s ease;
-  --transition-normal: all 0.3s ease;
-  --transition-slow: all 0.6s ease-out;
-  
-  /* Breakpoints */
-  --breakpoint-mobile: 900px;
-  --breakpoint-tablet: 1200px;
-}
-
-/* ===== 2. RESET E CONFIGURAÇÕES BASE ===== */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/* ===== 3. LAYOUT E CONTAINERS ===== */
-
-/* Container principal */
-.sv-container {
-  padding: var(--spacing-sm);
-  padding-bottom: var(--spacing-xs);
-  overflow-x: hidden;
+/* ===== COMPONENTE ESPECÍFICO ===== */
+.calc-tinta-container {
+  /* Mantém o background específico deste componente */
+  background-color: var(--sv-bg-primary);
+  min-height: 100vh;
+  /* REMOVENDO TODO PADDING - deixando o sv-container controlar */
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* ESPAÇAMENTO PADRONIZADO - Força espaçamento consistente entre SEÇÕES, preserva título PageTitle */
-.sv-container > .calculation-section,
-.sv-container > .primeiroQuadro,
-.sv-container > .segundoQuadro,
-.sv-container > .terceiroQuadro,
-.sv-container > .quartoQuadro,
-.sv-container > .levantamento-container {
-  margin: 0 !important;
+/* ===== LAYOUT DOS CARDS PRINCIPAIS ===== */
+.calc-tinta-container .calculation-section {
+  background: #fff !important;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  margin-bottom: 1.25rem;
+  border: 1px solid #e5e7eb;
+}
+
+/* ===== ESPAÇAMENTO ESPECÍFICO PARA O ÚLTIMO CARD ===== */
+.calc-tinta-container .calculation-section:last-child {
+  margin-bottom: 1.25rem;
+}
+
+/* ===== ESPAÇAMENTO CONSISTENTE ENTRE TODOS OS ELEMENTOS ===== */
+.calc-tinta-container > .calculation-section,
+.calc-tinta-container > .divsSegundoQuadroTelaPequena,
+.calc-tinta-container > .levantamento-container {
+  margin-bottom: 1.25rem;
+}
+
+.calc-tinta-container .calculation-section-content {
+  background: #fff !important;
+  color: #374151 !important;
+}
+
+/* ===== LAYOUT DOS GRUPOS (BORDOS) ===== */
+.calc-tinta-container .divsSegundoQuadroTelaPequena {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 0;
+  background: transparent;
+}
+
+.calc-tinta-container .divsSegundoQuadroTelaPequena .grupo {
+  background: #fff !important;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  margin: 0;
+  border: 1px solid #e5e7eb;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+/* ===== FORÇAR FUNDO BRANCO NOS INPUTS ===== */
+.calc-tinta-container .sv-input,
+.calc-tinta-container .sv-select,
+.calc-tinta-container input,
+.calc-tinta-container select,
+.calc-tinta-container input[type="text"],
+.calc-tinta-container input[type="number"],
+.calc-tinta-container input[type="date"] {
+  background: #fff !important;
+  color: #374151 !important;
+  border: 1.5px solid #d1d5db !important;
+  border-radius: 8px !important;
+  padding: 0.75rem 1rem !important;
+  display: block !important;
+  width: 100% !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  min-height: 40px !important;
+  font-size: 1rem !important;
+}
+
+.calc-tinta-container .sv-input::placeholder,
+.calc-tinta-container input::placeholder {
+  color: #9ca3af !important;
+  opacity: 1 !important;
+}
+
+.calc-tinta-container .sv-input:focus,
+.calc-tinta-container .sv-select:focus,
+.calc-tinta-container input:focus,
+.calc-tinta-container select:focus,
+.calc-tinta-container input[type="text"]:focus,
+.calc-tinta-container input[type="number"]:focus,
+.calc-tinta-container input[type="date"]:focus {
+  background: #fff !important;
+  border-color: #a0aec0 !important;
+  box-shadow: 0 0 0 2px #e5e7eb !important;
+}
+
+/* ===== CONTAINER DE INPUTS ===== */
+.calc-tinta-container .sv-input-container {
+  display: block !important;
+  position: relative !important;
+  width: 100% !important;
+}
+
+/* ===== FIELD GROUP ===== */
+.calc-tinta-container .sv-field-group {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
   margin-bottom: 1rem !important;
 }
 
-.sv-container > .calculation-section:last-child,
-.sv-container > .primeiroQuadro:last-child,
-.sv-container > .segundoQuadro:last-child,
-.sv-container > .terceiroQuadro:last-child,
-.sv-container > .quartoQuadro:last-child,
-.sv-container > .levantamento-container:last-child {
-  margin-bottom: 0 !important;
+/* ===== FORÇA MÁXIMA: TUDO BRANCO DENTRO DOS CARDS ===== */
+.calc-tinta-container .grupo *:not(svg):not(path),
+.calc-tinta-container .calculation-section *:not(svg):not(path),
+.calc-tinta-container .levantamento-container *:not(svg):not(path) {
+  background-color: #fff !important;
+  color: #374151 !important;
 }
 
-/* Reset de classes Tailwind e margens extras */
-.sv-container .m-2,
-.sv-container .lg\:mr-2,
-.sv-container .mt-2,
-.sv-container .quartoQuadro > .flex.m-2,
-.sv-container .primeiroQuadro .mt-2,
-.sv-container .segundoQuadro .mt-2,
-.sv-container .terceiroQuadro .mt-2,
-.sv-container .quartoQuadro .mt-2,
-.sv-container .sv-space-y-4,
-.sv-container .sv-space-y-6 {
-  margin: 0 !important;
+/* ===== EXCEÇÕES PARA TÍTULOS ===== */
+.calc-tinta-container .calculation-section-title,
+.calc-tinta-container .tituloDaDivBloco {
+  background-color: #f8fafc !important;
+  color: #374151 !important;
 }
 
-.sv-container .quartoQuadro > .flex.m-2 {
-  padding: var(--spacing-sm) 0 !important;
+/* ===== EXCEÇÕES PARA CONTAINER DE RESULTADO ===== */
+.calc-tinta-container .resultado-input-container,
+.calc-tinta-container .resultado-input-container * {
+  background-color: #f8fafc !important;
+  color: #374151 !important;
 }
 
-/* ===== 4. COMPONENTES DE INTERFACE ===== */
-
-/* 4.1 TIPOGRAFIA */
-/* Título principal usa estilo global .page-title do shared.css */
-
-.sv-container h1::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 60px;
-  height: 4px;
-  background: var(--color-primary);
-  border-radius: var(--border-radius-sm);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+/* ===== TÍTULOS DOS GRUPOS ===== */
+.calc-tinta-container .tituloDaDivBloco {
+  background: #f8fafc !important;
+  color: #374151 !important;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.75rem 1rem;
+  margin: -1.5rem -1.5rem 1rem -1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  border-radius: 12px 12px 0 0;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-direction: row !important;
+  gap: 0.5rem;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
-/* Reset do container do título */
-.calc-tinta-container .mt-4.text-center {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  padding: 0 !important;
+.calc-tinta-container .tituloDaDivBloco span {
+  flex: 1 !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
   text-align: left !important;
 }
 
-/* Subtítulos */
-.calc-tinta-container h2,
-.calc-tinta-container h3 {
-  color: var(--color-text-primary);
-  font-weight: 700;
-  margin-bottom: var(--spacing-sm);
-  font-size: var(--font-size-xl);
+.calc-tinta-container .tituloDaDivBloco svg {
+  transition: all 0.2s !important;
+  color: #ef4444 !important;
+  fill: #ef4444 !important;
+  flex-shrink: 0 !important;
+  cursor: pointer !important;
+  width: 20px !important;
+  height: 20px !important;
+  opacity: 0.7 !important;
+  margin-left: auto !important;
 }
 
-/* Labels e textos */
-.calc-tinta-container label,
-.calc-tinta-container .quadro {
-  color: var(--color-text-secondary);
-  font-weight: 500;
-  font-size: var(--font-size-base);
-  line-height: 1.5;
+.calc-tinta-container .tituloDaDivBloco svg:hover {
+  opacity: 1 !important;
+  transform: scale(1.1) !important;
 }
 
-/* Textos secundários */
-.calc-tinta-container .text-gray-500,
-.calc-tinta-container .text-gray-600 {
-  color: var(--color-text-muted);
-  font-weight: 400;
-  font-size: var(--font-size-sm);
+.calc-tinta-container .tituloDaDivBloco svg path {
+  fill: #ef4444 !important;
 }
 
-/* 4.2 CARDS E CONTAINERS */
-
-/* Cards base */
-.modern-card,
-.primeiroQuadro,
-.terceiroQuadro,
-.quartoQuadro,
-.divsSegundoQuadroTelaPequena .grupo {
-  background: var(--color-bg-white);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-md);
-  padding: var(--spacing-lg);
-  display: flex;
-  flex-direction: column;
-  transition: var(--transition-normal);
-  overflow: hidden;
-  margin: 0 auto 1rem auto;
-  width: 100%;
-  max-width: 100%;
+/* ===== CAMPOS DENTRO DOS GRUPOS ===== */
+.calc-tinta-container .bloco {
+  margin-bottom: 1rem !important;
+  display: block !important;
 }
 
-/* Ajustes de margens específicos - PADRONIZAÇÃO TOTAL */
-.primeiroQuadro,
-.segundoQuadro,
-.terceiroQuadro,
-.quartoQuadro {
-  margin: 0 auto 1rem auto !important;
-}
-
-.terceiroQuadro {
-  margin: 0 auto 1rem auto !important;
-}
-
-.quartoQuadro {
-  margin: 0 auto 1rem auto !important;
-}
-
-.divsSegundoQuadroTelaPequena .grupo {
-  margin: 0 0 1rem 0 !important;
-  box-sizing: border-box;
-  max-width: 100%;
-  overflow-x: hidden;
-  width: 100% !important;
-}
-
-.divsSegundoQuadroTelaPequena .grupo:last-child {
-  margin-bottom: 0 !important;
-}
-
-/* Container do segundo quadro (transparente) */
-.segundoQuadro {
-  background: var(--color-bg-transparent);
-  border: none;
-  box-shadow: none;
-  border-radius: 0;
-  padding: 0;
-  overflow: visible;
-  margin: 0 auto 1rem auto !important;
-  width: 100%;
-  max-width: 100%;
-}
-
-/* Container do levantamento */
-.levantamento-container {
-  margin: 0 0 1rem 0 !important;
-  padding: var(--spacing-lg) !important;
-  background: var(--color-bg-white) !important;
-  border: 1px solid var(--color-border-light) !important;
-  box-shadow: var(--shadow-md) !important;
-  border-radius: var(--border-radius-md) !important;
+.calc-tinta-container .field-inline {
   display: flex !important;
   flex-direction: column !important;
-  transition: var(--transition-normal) !important;
-}
-
-/* 4.3 FORMULÁRIOS E INPUTS */
-
-/* Base para todos os inputs */
-.calc-tinta-container input,
-.calc-tinta-container select,
-.calc-tinta-container textarea {
-  background: var(--color-bg-white);
-  border: var(--border-width) solid var(--color-border-light);
-  border-radius: var(--border-radius-sm);
-  padding: var(--spacing-md);
-  color: var(--color-text-primary) !important;
-  font-size: var(--font-size-base);
-  font-weight: 400;
-  line-height: 1.5;
-  transition: var(--transition-fast);
-  box-shadow: var(--shadow-sm);
-}
-
-/* Inputs específicos para tabelas */
-.calc-tinta-container .segundoQuadro input,
-.calc-tinta-container .segundoQuadro select,
-.tabela1TelaGrande input,
-.tabela1TelaGrande select {
-  background: var(--color-bg-transparent);
-  border-color: var(--color-border-light);
-  color: var(--color-text-primary) !important;
-}
-
-/* Placeholders */
-input::placeholder,
-textarea::placeholder,
-select option[value=""] {
-  color: var(--color-text-placeholder);
-  font-style: normal;
-  font-weight: 400;
-}
-
-/* Campos de resultado readonly */
-.resultado,
-.segundoQuadro .resultado {
-  background: var(--color-bg-gray-100) !important;
-  border: var(--border-width) solid var(--color-border-light) !important;
-  color: var(--color-text-primary) !important;
-  font-weight: 500;
-  pointer-events: none;
-  border-radius: var(--border-radius-sm);
-  padding: var(--spacing-md);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1) !important;
-}
-
-/* 4.4 TABELAS */
-
-/* Reset global de tabelas */
-table {
-  border-collapse: separate;
-  border-spacing: 0;
-  width: 100%;
-}
-
-/* Tabela principal */
-.tabela1TelaGrande {
-  width: 100%;
-  table-layout: auto;
-  background: var(--color-bg-white);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--color-border-light);
-  overflow: hidden;
-  margin: 0 auto 1rem auto;
-}
-
-/* Headers da tabela */
-.tabela1TelaGrande thead th {
-  background: var(--color-bg-gray-50) !important;
-  border-bottom: 2px solid var(--color-primary);
-  padding: var(--spacing-lg) var(--spacing-md);
-  color: #374151 !important; /* Texto escuro forçado */
-  font-weight: 700;
-  text-align: center;
-  font-size: 14px;
-  vertical-align: middle;
-  line-height: 1.2;
-}
-
-/* Células da tabela */
-.tabela1TelaGrande tbody td {
-  padding: 12px 8px;
-  border-bottom: 1px solid var(--color-border-light);
-  transition: var(--transition-normal);
-  vertical-align: middle;
-  text-align: center;
-}
-
-.tabela1TelaGrande tbody tr:last-child td {
-  border-bottom: none;
-}
-
-/* Inputs dentro da tabela */
-.tabela1TelaGrande input,
-.tabela1TelaGrande select {
-  width: 100%;
-  padding: 10px 12px;
-  font-size: 14px;
-  margin: 0;
-  box-shadow: none;
-  text-align: center;
-}
-
-/* Larguras flexíveis das colunas para melhor adaptação */
-.tabela1TelaGrande th:nth-child(1), .tabela1TelaGrande td:nth-child(1) { 
-  min-width: 140px; 
-  text-align: left;
-  padding-left: var(--spacing-lg);
-}
-.tabela1TelaGrande th:nth-child(2), .tabela1TelaGrande td:nth-child(2) { min-width: 100px; }
-.tabela1TelaGrande th:nth-child(3), .tabela1TelaGrande td:nth-child(3) { min-width: 120px; }
-.tabela1TelaGrande th:nth-child(4), .tabela1TelaGrande td:nth-child(4) { min-width: 100px; }
-.tabela1TelaGrande th:nth-child(5), .tabela1TelaGrande td:nth-child(5) { min-width: 180px; }
-.tabela1TelaGrande th:nth-child(6), .tabela1TelaGrande td:nth-child(6) { min-width: 120px; }
-
-/* Border radius nas bordas da tabela */
-.tabela1TelaGrande thead:first-child tr:first-child th:first-child {
-  border-top-left-radius: var(--border-radius-md);
-}
-
-.tabela1TelaGrande thead:first-child tr:first-child th:last-child {
-  border-top-right-radius: var(--border-radius-md);
-}
-
-.tabela1TelaGrande tbody:last-child tr:last-child td:first-child {
-  border-bottom-left-radius: var(--border-radius-md);
-}
-
-.tabela1TelaGrande tbody:last-child tr:last-child td:last-child {
-  border-bottom-right-radius: var(--border-radius-md);
-}
-
-/* Tabela do terceiro quadro */
-.tabela2TelaGrande tbody td {
-  padding: var(--spacing-lg);
-  border-bottom: 1px solid var(--color-border-light);
-  transition: var(--transition-normal);
-}
-
-.tabela2TelaGrande input {
-  width: 97%;
-}
-
-/* 4.5 BOTÕES */
-
-/* Base para botões */
-.modern-button {
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border: var(--border-width) solid transparent;
-  border-radius: var(--border-radius-sm);
-  cursor: pointer;
-  font-weight: 500;
-  font-size: var(--font-size-sm);
-  transition: var(--transition-fast);
-  margin: var(--spacing-xs);
-  white-space: nowrap;
-  min-height: var(--sv-space-10);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-xs);
-  flex: 1;
-}
-
-/* Container dos botões */
-.quartoQuadro .flex {
-  display: flex;
-  gap: var(--spacing-sm);
-  align-items: stretch;
-}
-
-/* Botão Gerar */
-.calc-tinta-container .quartoQuadro button.modern-button:nth-child(1) {
-  background: var(--color-success);
-  color: var(--color-bg-white);
-  border-color: var(--color-success);
-  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
-}
-
-.calc-tinta-container .quartoQuadro button.modern-button:nth-child(1):hover {
-  background: var(--color-success-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
-}
-
-/* Botão Limpar */
-.calc-tinta-container .quartoQuadro button.modern-button:nth-child(2) {
-  background: var(--color-bg-white) !important;
-  color: var(--color-error) !important;
-  border: var(--border-width) solid var(--color-error) !important;
-  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.1);
-}
-
-.calc-tinta-container .quartoQuadro button.modern-button:nth-child(2):hover {
-  background: var(--color-error);
-  color: var(--color-bg-white);
-  border-color: var(--color-error-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.2);
-}
-
-/* Botão Compartilhar */
-.calc-tinta-container .quartoQuadro button.modern-button:nth-child(3) {
-  background: var(--color-info);
-  color: var(--color-bg-white);
-  border-color: var(--color-info);
-  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
-}
-
-.calc-tinta-container .quartoQuadro button.modern-button:nth-child(3):hover {
-  background: var(--color-info-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
-}
-
-/* 4.6 LAYOUT RESPONSIVO PARA TELAS PEQUENAS */
-
-/* Container das divs do segundo quadro */
-.divsSegundoQuadroTelaPequena {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  padding: 0;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-  box-sizing: border-box;
-}
-
-/* Títulos das seções */
-.divsSegundoQuadroTelaPequena .tituloDaDivBloco {
-  display: flex;
-  justify-content: flex-start; /* Alinhado à esquerda */
-  align-items: center;
-  margin-bottom: var(--spacing-sm);
-  font-weight: 600;
-  font-size: var(--font-size-lg);
-  color: var(--color-text-primary);
-  padding: var(--spacing-sm) 0;
-  border-bottom: 1px solid var(--color-border-light);
-}
-
-.divsSegundoQuadroTelaPequena .tituloDaDivBloco::before {
-  content: "📊";
-  margin-right: var(--spacing-sm);
-  font-size: var(--font-size-lg);
-}
-
-/* SVG nos títulos */
-.divsSegundoQuadroTelaPequena .tituloDaDivBloco svg {
-  width: var(--spacing-xl);
-  height: var(--spacing-xl);
-  cursor: pointer;
-  transition: var(--transition-fast);
-  margin-left: auto; /* Move o SVG para a direita */
-}
-
-.divsSegundoQuadroTelaPequena .tituloDaDivBloco svg:hover {
-  transform: scale(1.1);
-  opacity: 0.8;
-}
-
-/* Blocos de conteúdo */
-.divsSegundoQuadroTelaPequena .bloco {
-  display: flex;
-  width: 100%;
-  margin-bottom: var(--spacing-sm);
-  align-items: center;
-  gap: var(--spacing-xs); /* Adiciona gap para melhor espaçamento */
-  box-sizing: border-box;
-  /* Remove gap para manter layout original das legendas */
-}
-
-.divsSegundoQuadroTelaPequena .bloco:last-child {
-  margin-bottom: 0;
-}
-
-/* Container dos inputs dentro do bloco */
-.divsSegundoQuadroTelaPequena .bloco .sv-field-group {
-  flex: 1 !important; /* Ocupa o espaço restante */
-  margin: 0 !important;
-  width: auto !important; /* Mudança de 55% para auto */
-  max-width: none !important;
-}
-
-.divsSegundoQuadroTelaPequena .bloco .sv-input,
-.divsSegundoQuadroTelaPequena .bloco .sv-select {
+  gap: 0.5rem !important;
+  margin-bottom: 1rem !important;
   width: 100% !important;
-  padding: 12px 14px !important;
-  font-size: 14px !important;
-  min-height: var(--sv-space-12) !important;
-  max-height: var(--sv-space-12) !important;
-  height: var(--sv-space-12) !important;
-  border-radius: var(--border-radius-sm) !important;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-  color: #111827 !important;
-  background-color: white !important;
-  box-sizing: border-box !important;
 }
 
-.divsSegundoQuadroTelaPequena .quadro {
-  padding: var(--spacing-sm);
-  width: auto !important; /* Mudança de 45% para auto */
-  max-width: 45% !important; /* Mantém limite máximo */
-  text-align: right !important; /* Alinhamento à direita das legendas */
-  font-weight: 500;
-  font-size: 14px !important;
+.calc-tinta-container .sv-field-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important;
+  width: 100% !important;
+}
+
+/* ===== DEBUG: FORÇA VISIBILIDADE TOTAL ===== */
+.calc-tinta-container .sv-field-group,
+.calc-tinta-container .sv-input-container,
+.calc-tinta-container .field-inline,
+.calc-tinta-container .bloco {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  overflow: visible !important;
+  height: auto !important;
+  width: 100% !important;
+}
+
+/* ===== GARANTIR VISIBILIDADE DOS INPUTS ===== */
+.calc-tinta-container .sv-field-group input,
+.calc-tinta-container .sv-field-group select,
+.calc-tinta-container input,
+.calc-tinta-container select {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 1 !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 40px !important;
+  transform: none !important;
+  clip: none !important;
+  clip-path: none !important;
+}
+
+/* ===== CONTAINER DE RESULTADO ===== */
+.calc-tinta-container .resultado-input-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  margin-top: 0.5rem !important;
+  padding: 0.75rem !important;
+  background: #f8fafc !important;
+  border-radius: 8px !important;
+  border: 1px solid #e5e7eb !important;
+  flex-wrap: nowrap !important;
+  width: 100% !important;
+}
+
+/* ===== RESULTADO DISPLAY ===== */
+.calc-tinta-container .resultado-input-container .result-display,
+.calc-tinta-container .resultado-input-container .result-display-value,
+.calc-tinta-container .result-display,
+.calc-tinta-container .result-display .result-value,
+.calc-tinta-container .result-display .result-edit input {
+  background: transparent !important;
   color: #374151 !important;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-  word-wrap: break-word;
-  flex-shrink: 0 !important; /* Não encolhe */
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-.segundoQuadro .bloco input,
-.segundoQuadro .bloco select,
-.segundoQuadro .bloco .resultado {
-  width: 100% !important; /* Largura total para inputs */
-  margin-right: 0 !important;
-  padding: 12px 14px !important;
-  font-size: 14px !important;
-  min-height: var(--sv-space-12) !important;
-  max-height: var(--sv-space-12) !important;
-  height: var(--sv-space-12) !important;
-  border-radius: var(--border-radius-sm) !important;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-  color: #111827 !important;
-  background-color: white !important;
-  box-sizing: border-box !important;
+.calc-tinta-container .result-display {
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  flex: 1 !important;
 }
 
-/* 4.7 ELEMENTOS ESPECIAIS */
-
-/* Textarea do quarto quadro */
-.quartoQuadro textarea {
-  overflow-wrap: break-word;
-  white-space: pre-wrap;
-  resize: none;
+.calc-tinta-container .result-display .result-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  width: 100% !important;
 }
 
-/* SVG de edição */
-.svgHabilitarEdicao {
-  width: var(--spacing-xl);
-  height: var(--spacing-xl);
-  margin-top: var(--spacing-sm);
-  transition: var(--transition-fast);
-  cursor: pointer;
+.calc-tinta-container .result-display .result-value {
+  background: transparent !important;
+  color: #374151 !important;
+  font-weight: 600 !important;
+  border: none !important;
+  padding: 0 !important;
 }
 
-.svgHabilitarEdicao:hover {
-  transform: scale(1.1);
-  opacity: 0.7;
+.calc-tinta-container .result-display .result-action {
+  flex-shrink: 0 !important;
 }
 
-/* Células especiais da tabela */
-.teceiroQuadroHabilitarEdicao {
-  text-align: center;
-  vertical-align: middle;
+/* ===== BLOCO ESPECÍFICO DO RESULTADO ===== */
+.calc-tinta-container .bloco {
+  margin-bottom: 1rem !important;
+  display: block !important;
 }
 
-.tdResultadoTelaGrande {
-  min-width: 100px;
-  text-align: center;
-  vertical-align: middle;
-  padding: 8px 4px !important;
+.calc-tinta-container .bloco .sv-label {
+  color: #374151 !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.5rem !important;
+  display: block !important;
 }
 
-/* Cursor para terceiro quadro */
-.terceiroQuadro,
-.terceiroQuadro .colapsavelCursorPointer {
-  cursor: pointer;
+/* ===== OVERRIDE COMPLETO DO RESULT DISPLAY ===== */
+.calc-tinta-container .result-display {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
 }
 
-/* 4.8 LEVANTAMENTO */
+.calc-tinta-container .result-display .result-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  gap: 0.75rem !important;
+  flex-wrap: nowrap !important;
+  min-height: auto !important;
+}
 
-/* Título do levantamento */
-.levantamento-title {
-  color: #374151 !important; /* Texto escuro forçado */
-  font-weight: 600;
-  font-size: var(--font-size-lg);
-  margin-bottom: var(--spacing-md);
+.calc-tinta-container .result-display .result-label {
+  display: none !important; /* Esconder o label pois já temos um acima */
+}
+
+.calc-tinta-container .result-display .result-value {
+  flex: 1 !important;
+  background: transparent !important;
+  color: #374151 !important;
+  font-weight: 600 !important;
+  border: none !important;
+  padding: 0 !important;
+  font-size: 1rem !important;
+}
+
+.calc-tinta-container .result-display .result-action {
+  flex-shrink: 0 !important;
+}
+
+/* ===== MELHORIAS NOS LABELS ===== */
+.calc-tinta-container .sv-label {
+  font-weight: 500;
+  color: #374151 !important;
+  margin-bottom: 0.5rem;
   display: block;
 }
 
-/* Textarea do levantamento */
-.levantamento-textarea {
-  width: 100%;
-  padding: var(--spacing-sm);
-  background: var(--color-bg-gray-50);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--border-radius-sm);
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
-  font-weight: 400;
-  line-height: 1.6;
-  font-family: 'Courier New', monospace;
-  resize: none;
-  overflow-wrap: break-word;
-  white-space: pre-wrap;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-  margin-bottom: var(--spacing-sm);
-  transition: var(--transition-fast);
-}
-
-.levantamento-textarea:focus {
-  outline: none;
-  border-color: var(--color-primary);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), var(--shadow-focus);
-}
-
-/* Divisor do levantamento */
-.levantamento-divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-border-light) 10%, var(--color-border-light) 90%, transparent);
-  margin: var(--spacing-sm) 0;
-  position: relative;
-}
-
-.levantamento-divider::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 6px;
-  height: 6px;
-  background: var(--color-primary);
-  border-radius: 50%;
-  box-shadow: 0 0 0 2px var(--color-bg-white), 0 0 0 3px var(--color-border-light);
-}
-
-/* ===== 5. ESTADOS E INTERAÇÕES ===== */
-
-/* Estado padrão - inputs vazios = borda branca/cinza clara */
-.calc-tinta-container input,
-.calc-tinta-container select,
-.calc-tinta-container textarea {
-  border-color: var(--color-border-light) !important;
-  box-shadow: var(--shadow-sm) !important;
-}
-
-/* Estado de foco/selecionado - amarelo SuperVia */
-.calc-tinta-container input:focus,
-.calc-tinta-container select:focus,
-.calc-tinta-container textarea:focus {
-  border-color: var(--color-primary) !important;
-  outline: none !important;
-  box-shadow: var(--shadow-focus) !important;
-}
-
-/* Estados de validação - aplicados apenas com classes específicas */
-.calc-tinta-container input.input-valid,
-.calc-tinta-container select.input-valid,
-.calc-tinta-container textarea.input-valid {
-  border-color: var(--color-success) !important;
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2) !important;
-  color: var(--color-text-primary) !important;
-}
-
-/* Aplicar verde automaticamente quando input tem valor (não está vazio) */
-.calc-tinta-container input:not([value=""]):not([value]):not(.input-invalid):not(.resultado),
-.calc-tinta-container input[value]:not([value=""]):not(.input-invalid):not(.resultado),
-.calc-tinta-container select:not([value=""]):not(.input-invalid):not(.resultado),
-.calc-tinta-container textarea:not(:placeholder-shown):not(.input-invalid):not(.resultado) {
-  border-color: var(--color-success) !important;
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2) !important;
-}
-
-.calc-tinta-container input.input-invalid,
-.calc-tinta-container select.input-invalid,
-.calc-tinta-container textarea.input-invalid {
-  border-color: var(--color-error) !important;
-  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2) !important;
-  color: var(--color-text-primary) !important;
-}
-
-/* Sobrescrever foco quando há validação */
-.calc-tinta-container input.input-valid:focus,
-.calc-tinta-container select.input-valid:focus,
-.calc-tinta-container textarea.input-valid:focus,
-.calc-tinta-container input:not([value=""]):not([value]):not(.input-invalid):not(.resultado):focus,
-.calc-tinta-container input[value]:not([value=""]):not(.input-invalid):not(.resultado):focus,
-.calc-tinta-container select:not([value=""]):not(.input-invalid):not(.resultado):focus,
-.calc-tinta-container textarea:not(:placeholder-shown):not(.input-invalid):not(.resultado):focus {
-  border-color: var(--color-success) !important;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3) !important;
-}
-
-.calc-tinta-container input.input-invalid:focus,
-.calc-tinta-container select.input-invalid:focus,
-.calc-tinta-container textarea.input-invalid:focus {
-  border-color: var(--color-error) !important;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3) !important;
-}
-
-/* Remove pseudo-elementos shimmer */
-.modern-card::before,
-.primeiroQuadro::before,
-.segundoQuadro::before,
-.terceiroQuadro::before,
-.quartoQuadro::before,
-.divsSegundoQuadroTelaPequena .grupo::before {
-  display: none;
-}
-
-/* Override para dark mode */
-@media (prefers-color-scheme: dark) {
-  .calc-tinta-container input,
-  .calc-tinta-container select,
-  .calc-tinta-container textarea {
-    background: var(--color-bg-white) !important;
-    color: var(--color-text-primary) !important;
-    border-color: var(--color-border-light);
-  }
-}
-
-/* ===== 6. RESPONSIVIDADE ===== */
-
-/* Hover para telas pequenas */
-@media (max-width: 900px) {
-  .modern-card:hover,
-  .primeiroQuadro:hover,
-  .terceiroQuadro:hover,
-  .quartoQuadro:hover,
-  .divsSegundoQuadroTelaPequena .grupo:hover {
-    transform: scale(1.02);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--color-primary);
+/* ===== RESPONSIVIDADE MOBILE ===== */
+@media (max-width: 768px) {
+  .calc-tinta-container {
+    padding: 0.5rem;
   }
   
-  /* Ajustes para dispositivos muito pequenos */
-  @media (max-width: 480px) {
-    .divsSegundoQuadroTelaPequena .bloco {
-      flex-direction: column;
-      align-items: stretch;
-      gap: var(--spacing-xs);
-    }
-    
-    .divsSegundoQuadroTelaPequena .quadro {
-      width: 100% !important;
-      max-width: none !important;
-      text-align: left !important;
-      margin-bottom: var(--spacing-xs);
-    }
-    
-    .divsSegundoQuadroTelaPequena .bloco .sv-field-group {
-      width: 100% !important;
-    }
+  /* Título segue regra global em backgrounds.css */
+  
+  .calc-tinta-container .calculation-section {
+    margin-bottom: 1.25rem;
+    border-radius: 8px;
   }
   
-  .tabela1TelaGrande tbody tr:hover,
-  .tabela2TelaGrande tbody tr:hover {
-    background: var(--color-bg-gray-50);
+  .calc-tinta-container .divsSegundoQuadroTelaPequena {
+    gap: 1.25rem;
   }
   
-  .tabela1TelaGrande:hover,
-  .tabela2TelaGrande:hover {
-    transform: scale(1.02);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--color-primary);
+  .calc-tinta-container .divsSegundoQuadroTelaPequena .grupo {
+    padding: 1rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
   }
   
-  .svgHabilitarEdicao:hover {
-    transform: scale(1.1) rotate(5deg);
-    filter: drop-shadow(0 4px 8px rgba(255, 204, 41, 0.3));
-  }
-  
-  .tabela2TelaGrande tbody tr:hover {
-    border-radius: var(--border-radius-sm);
+  .calc-tinta-container .tituloDaDivBloco {
+    margin: -1rem -1rem 0.75rem -1rem;
+    padding: 0.75rem;
+    font-size: 1rem;
   }
 }
 
-/* Responsividade para tablets */
-@media (max-width: 1200px) {
-  .tabela1TelaGrande th:nth-child(1), .tabela1TelaGrande td:nth-child(1) { min-width: 120px; }
-  .tabela1TelaGrande th:nth-child(2), .tabela1TelaGrande td:nth-child(2) { min-width: 90px; }
-  .tabela1TelaGrande th:nth-child(3), .tabela1TelaGrande td:nth-child(3) { min-width: 110px; }
-  .tabela1TelaGrande th:nth-child(4), .tabela1TelaGrande td:nth-child(4) { min-width: 90px; }
-  .tabela1TelaGrande th:nth-child(5), .tabela1TelaGrande td:nth-child(5) { min-width: 160px; }
-  .tabela1TelaGrande th:nth-child(6), .tabela1TelaGrande td:nth-child(6) { min-width: 110px; }
+/* ===== GRID RESPONSIVO PARA INFORMAÇÕES DO PROJETO ===== */
+.calc-tinta-container .sv-grid {
+  display: grid;
+  gap: 1rem;
 }
 
-/* ===== 7. UTILITÁRIOS ===== */
-
-/* Scrollbar personalizada */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+.calc-tinta-container .sv-grid-cols-1 {
+  grid-template-columns: 1fr;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--color-bg-gray-100);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-border-gray);
-  border-radius: 4px;
-  transition: var(--transition-normal);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary);
-}
-
-/* Animações */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+@media (min-width: 768px) {
+  .calc-tinta-container .md\:sv-grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.calc-tinta-container > * {
-  animation: fadeInUp var(--transition-slow) forwards;
-}
-
-.calc-tinta-container > *:nth-child(2) { animation-delay: 0.1s; }
-.calc-tinta-container > *:nth-child(3) { animation-delay: 0.2s; }
-
-/* ===== MELHORIAS RESPONSIVAS PARA ORGANIZACAO ===== */
-
-/* Large screens - melhor organização da tabela */
 @media (min-width: 1024px) {
-  /* Container principal com largura controlada */
-  .calc-tinta-container {
-    max-width: 1200px;
-    padding: var(--spacing-lg);
-  }
-  
-  /* TODOS os quadros com a MESMA largura máxima apenas em telas grandes */
-  .primeiroQuadro,
-  .segundoQuadro,
-  .terceiroQuadro,
-  .quartoQuadro {
-    max-width: 1000px !important;
-    margin: 0 auto 1rem auto !important;
-  }
-  
-  /* Tabela também com a mesma largura apenas em telas grandes */
-  .tabela1TelaGrande {
-    max-width: 1000px !important;
-    margin: 0 auto 1rem auto !important;
-  }
-  
-  /* ResponsiveCalculationLayout também deve seguir a largura */
-  .responsive-calculation-layout {
-    max-width: 1000px !important;
-    margin: 0 auto !important;
-  }
-  
-  /* Cards base também seguem a mesma largura apenas em telas grandes */
-  .modern-card,
-  .divsSegundoQuadroTelaPequena .grupo {
-    max-width: 1000px !important;
-    margin: 0 auto 1rem auto !important;
-  }
-  
-  /* Melhor alinhamento dos títulos dos quadros */
-  .primeiroQuadro .text-center,
-  .terceiroQuadro .text-center,
-  .quartoQuadro .text-center {
-    text-align: center;
-    margin-bottom: var(--spacing-md);
+  .calc-tinta-container .lg\:sv-grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* Extra large screens */
-@media (min-width: 1280px) {
-  .calc-tinta-container {
-    max-width: 1400px;
-    padding: var(--spacing-xl);
-  }
-  
-  /* TODOS os quadros mantêm a mesma largura apenas em telas extra grandes */
-  .primeiroQuadro,
-  .segundoQuadro,
-  .terceiroQuadro,
-  .quartoQuadro {
-    max-width: 1100px !important;
-    margin: 0 auto 1rem auto !important;
-  }
-  
-  /* Tabela também com a mesma largura apenas em telas extra grandes */
-  .tabela1TelaGrande {
-    max-width: 1100px !important;
-    margin: 0 auto 1rem auto !important;
-  }
-  
-  /* ResponsiveCalculationLayout também deve seguir a largura */
-  .responsive-calculation-layout {
-    max-width: 1100px !important;
-    margin: 0 auto !important;
-  }
-  
-  /* Cards base também seguem a mesma largura apenas em telas extra grandes */
-  .modern-card,
-  .divsSegundoQuadroTelaPequena .grupo {
-    max-width: 1100px !important;
-    margin: 0 auto 1rem auto !important;
-  }
+/* ===== BOTÕES DE AÇÃO ===== */
+.calc-tinta-container .action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  flex-wrap: nowrap;
 }
 
-/* Medium screens - tablet landscape */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .calc-tinta-container {
-    padding: var(--spacing-md);
-  }
-  
-  .tabela1TelaGrande {
-    margin: 0 auto 1rem auto !important;
-  }
+.calc-tinta-container .modern-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 100px;
+  flex-shrink: 0;
 }
-.calc-tinta-container > *:nth-child(4) { animation-delay: 0.3s; }
-.calc-tinta-container > *:nth-child(5) { animation-delay: 0.4s; }
+
+.calc-tinta-container .modern-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ===== LEVANTAMENTO ===== */
+.calc-tinta-container .levantamento-container {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.calc-tinta-container .levantamento-title {
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.calc-tinta-container .levantamento-textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  resize: vertical;
+  font-family: monospace;
+  font-size: 0.875rem;
+  background: #f8fafc;
+}
+
+.calc-tinta-container .levantamento-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin-top: 1rem;
+}

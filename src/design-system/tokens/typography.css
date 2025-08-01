@@ -1,0 +1,64 @@
+/**
+ * DESIGN SYSTEM - TYPOGRAPHY TOKENS
+ * Font system with proper hierarchy
+ */
+
+:root {
+  /* ===== FONT FAMILIES ===== */
+  --sv-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --sv-font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Courier New', monospace;
+  
+  /* ===== FONT SIZES ===== */
+  /* Scale based on modular scale (1.2 ratio) */
+  --sv-text-xs: 0.75rem;     /* 12px */
+  --sv-text-sm: 0.875rem;    /* 14px */
+  --sv-text-base: 1rem;      /* 16px */
+  --sv-text-lg: 1.125rem;    /* 18px */
+  --sv-text-xl: 1.25rem;     /* 20px */
+  --sv-text-2xl: 1.5rem;     /* 24px */
+  --sv-text-3xl: 1.875rem;   /* 30px */
+  --sv-text-4xl: 2.25rem;    /* 36px */
+  --sv-text-5xl: 3rem;       /* 48px */
+  
+  /* ===== FONT WEIGHTS ===== */
+  --sv-font-thin: 100;
+  --sv-font-light: 300;
+  --sv-font-normal: 400;
+  --sv-font-medium: 500;
+  --sv-font-semibold: 600;
+  --sv-font-bold: 700;
+  --sv-font-extrabold: 800;
+  --sv-font-black: 900;
+  
+  /* ===== LINE HEIGHTS ===== */
+  --sv-leading-none: 1;
+  --sv-leading-tight: 1.25;
+  --sv-leading-snug: 1.375;
+  --sv-leading-normal: 1.5;
+  --sv-leading-relaxed: 1.625;
+  --sv-leading-loose: 2;
+  
+  /* ===== LETTER SPACING ===== */
+  --sv-tracking-tighter: -0.05em;
+  --sv-tracking-tight: -0.025em;
+  --sv-tracking-normal: 0;
+  --sv-tracking-wide: 0.025em;
+  --sv-tracking-wider: 0.05em;
+  --sv-tracking-widest: 0.1em;
+  
+  /* ===== SEMANTIC TYPOGRAPHY ===== */
+  /* Heading styles */
+  --sv-heading-font: var(--sv-font-sans);
+  --sv-heading-weight: var(--sv-font-bold);
+  --sv-heading-line-height: var(--sv-leading-tight);
+  
+  /* Body text styles */
+  --sv-body-font: var(--sv-font-sans);
+  --sv-body-weight: var(--sv-font-normal);
+  --sv-body-line-height: var(--sv-leading-normal);
+  
+  /* Caption/small text styles */
+  --sv-caption-font: var(--sv-font-sans);
+  --sv-caption-weight: var(--sv-font-normal);
+  --sv-caption-line-height: var(--sv-leading-snug);
+}

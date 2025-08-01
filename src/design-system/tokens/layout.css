@@ -1,0 +1,74 @@
+/**
+ * DESIGN SYSTEM - LAYOUT TOKENS
+ * Breakpoints, borders, shadows, and layout utilities
+ */
+
+:root {
+  /* ===== BREAKPOINTS ===== */
+  --sv-breakpoint-sm: 480px;   /* Small mobile */
+  --sv-breakpoint-md: 768px;   /* Tablet */
+  --sv-breakpoint-lg: 1024px;  /* Desktop */
+  --sv-breakpoint-xl: 1280px;  /* Large desktop */
+  --sv-breakpoint-2xl: 1536px; /* Extra large */
+  
+  /* ===== BORDER RADIUS ===== */
+  --sv-radius-none: 0;
+  --sv-radius-sm: 0.125rem;    /* 2px */
+  --sv-radius-md: 0.375rem;    /* 6px */
+  --sv-radius-lg: 0.5rem;      /* 8px */
+  --sv-radius-xl: 0.75rem;     /* 12px */
+  --sv-radius-2xl: 1rem;       /* 16px */
+  --sv-radius-full: 9999px;    /* Circular */
+  
+  /* ===== BORDER WIDTHS ===== */
+  --sv-border-0: 0;
+  --sv-border-1: 1px;
+  --sv-border-2: 2px;
+  --sv-border-4: 4px;
+  --sv-border-8: 8px;
+  
+  /* ===== SHADOWS ===== */
+  --sv-shadow-sm: 0 1px 2px 0 var(--sv-shadow-sm);
+  --sv-shadow-md: 0 4px 6px -1px var(--sv-shadow-md), 0 2px 4px -1px var(--sv-shadow-sm);
+  --sv-shadow-lg: 0 10px 15px -3px var(--sv-shadow-lg), 0 4px 6px -2px var(--sv-shadow-sm);
+  --sv-shadow-xl: 0 20px 25px -5px var(--sv-shadow-xl), 0 10px 10px -5px var(--sv-shadow-sm);
+  --sv-shadow-none: none;
+  
+  /* ===== Z-INDEX SCALE ===== */
+  --sv-z-hide: -1;
+  --sv-z-auto: auto;
+  --sv-z-base: 0;
+  --sv-z-docked: 10;
+  --sv-z-dropdown: 1000;
+  --sv-z-sticky: 1100;
+  --sv-z-banner: 1200;
+  --sv-z-overlay: 1300;
+  --sv-z-modal: 1400;
+  --sv-z-popover: 1500;
+  --sv-z-skiplink: 1600;
+  --sv-z-toast: 1700;
+  --sv-z-tooltip: 1800;
+  
+  /* ===== CONTAINER SIZES ===== */
+  --sv-container-sm: 640px;
+  --sv-container-md: 768px;
+  --sv-container-lg: 1024px;
+  --sv-container-xl: 1280px;
+  --sv-container-2xl: 1536px;
+  
+  /* ===== MAX WIDTH ===== */
+  --sv-max-width-default: 1200px;
+  --sv-max-width-narrow: 768px;
+  --sv-max-width-wide: 1440px;
+  
+  /* ===== TRANSITIONS ===== */
+  --sv-transition-fast: 150ms ease-in-out;
+  --sv-transition-normal: 250ms ease-in-out;
+  --sv-transition-slow: 350ms ease-in-out;
+  
+  /* ===== TIMING FUNCTIONS ===== */
+  --sv-ease-linear: linear;
+  --sv-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --sv-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --sv-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}

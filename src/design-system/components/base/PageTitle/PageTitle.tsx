@@ -18,36 +18,27 @@ export interface PageTitleProps {
 
 export const PageTitle = memo<PageTitleProps>(({ 
   title, 
-  subtitle, 
-  icon, 
-  variant = 'legacy',  // VOLTANDO PARA LEGACY - APARÊNCIA ORIGINAL CORRETA
   className = '' 
 }) => {
-  // Renderização baseada na variante para manter compatibilidade
-  if (variant === 'legacy') {
-    // Estilo original do shared.css (preservando exatamente)
-    return <h1 className={`page-title ${className}`}>{title}</h1>;
-  }
-
-  if (variant === 'modern') {
-    // Estilo do design system atual (preservando)
-    return (
-      <h1 className={`sv-page-title ${className}`}>
-        {title}
-      </h1>
-    );
-  }
-
-  // Estilo unificado padrão (combinando o melhor dos dois)
-  return (
-    <header className={`sv-unified-page-title ${className}`}>
-      {icon && <span className="sv-unified-page-title__icon">{icon}</span>}
-      <div className="sv-unified-page-title__content">
-        <h1 className="sv-unified-page-title__title">{title}</h1>
-        {subtitle && <p className="sv-unified-page-title__subtitle">{subtitle}</p>}
-      </div>
-    </header>
-  );
+  // FORÇANDO SEMPRE A VARIANTE LEGACY PARA GARANTIR CONSISTÊNCIA
+  // Estilo original do shared.css (preservando exatamente)
+  return <h1 className={`page-title sv-page-title ${className}`} style={{
+    color: '#ffcc29',
+    fontSize: '1.75rem',
+    fontWeight: '600',
+    margin: '1rem 0 2rem 0',
+    padding: '0',
+    textTransform: 'uppercase',
+    letterSpacing: '0.05em',
+    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
+    textAlign: 'left',
+    position: 'relative',
+    display: 'block',
+    background: 'transparent',
+    border: 'none',
+    width: '100%',
+    boxSizing: 'border-box'
+  }}>{title}</h1>;
 });
 
 PageTitle.displayName = 'PageTitle';

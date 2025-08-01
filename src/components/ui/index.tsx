@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/shared.css';
+import '../../design-system/styles/index.css';
 
 // ===== TIPOS =====
 export interface PageTitleProps {

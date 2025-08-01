@@ -1,0 +1,226 @@
+/* ===== RESULT DISPLAY COMPONENTS - OTIMIZADO ===== */
+
+/* Result Display */
+.result-display {
+    margin-bottom: var(--sv-space-3);
+    padding: var(--sv-space-3);
+    background-color: var(--sv-gray-50);
+    border-radius: var(--sv-radius-md);
+    border: var(--sv-border-1) solid var(--sv-border-light);
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+}
+
+/* RESPONSIVIDADE MOBILE */
+@media (max-width: 768px) {
+    .result-display {
+        margin-bottom: var(--sv-space-2);
+        padding: var(--sv-space-2);
+    }
+}
+
+.result-row {
+    display: flex;
+    align-items: center;
+    gap: var(--sv-space-4);
+    justify-content: space-between;
+    min-height: 2.5rem;
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
+/* RESPONSIVIDADE MOBILE */
+@media (max-width: 768px) {
+    .result-row {
+        gap: var(--sv-space-2);
+        min-height: auto;
+        flex-direction: row;
+        align-items: stretch;
+        flex-wrap: wrap;
+    }
+    
+    .result-row .result-label {
+        flex-basis: 100%;
+        order: 1;
+    }
+    
+    .result-row .result-value {
+        flex: 1;
+        order: 2;
+        margin-right: var(--sv-space-2);
+    }
+    
+    .result-row .result-edit {
+        flex: 1;
+        order: 2;
+        margin-right: var(--sv-space-2);
+    }
+    
+    .result-row .result-action {
+        flex-shrink: 0;
+        order: 3;
+        align-self: center;
+    }
+    
+    .result-row .result-action button,
+    .result-row .result-action .btn {
+        border: var(--sv-border-1) solid var(--sv-border-medium);
+        border-radius: var(--sv-radius-sm);
+        background-color: var(--sv-gray-50);
+        color: var(--sv-text-secondary);
+        padding: var(--sv-space-1) var(--sv-space-2);
+        font-size: var(--sv-text-xs);
+        font-weight: var(--sv-font-medium);
+        transition: var(--sv-transition-fast);
+        box-shadow: var(--sv-shadow-sm);
+        margin: 0;
+    }
+    
+    .result-row .result-action button:hover,
+    .result-row .result-action .btn:hover {
+        background-color: var(--sv-gray-100);
+        border-color: var(--sv-border-focus);
+        box-shadow: var(--sv-shadow-md);
+    }
+}
+
+.result-label {
+    min-width: 120px;
+    font-weight: var(--sv-font-medium);
+    color: var(--sv-text-secondary);
+    font-size: var(--sv-text-base);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.result-value {
+    font-weight: var(--sv-font-semibold);
+    color: var(--sv-text-primary);
+    font-size: var(--sv-text-base);
+    text-align: right;
+    flex: 1;
+    word-break: break-word;
+}
+
+.result-edit {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--sv-space-2);
+}
+
+.result-edit input {
+    width: 100%;
+    padding: var(--sv-space-1) var(--sv-space-2);
+    border: var(--sv-border-1) solid var(--sv-border-light);
+    border-radius: var(--sv-radius-sm);
+    font-size: var(--sv-text-sm);
+    color: var(--sv-text-primary);
+    background-color: var(--sv-white);
+    transition: var(--sv-transition-fast);
+}
+
+.result-edit input:focus {
+    border-color: var(--sv-border-focus);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 204, 41, 0.1);
+}
+
+.result-action {
+    flex-shrink: 0;
+    display: flex;
+    gap: var(--sv-space-1);
+}
+
+.result-action button,
+.result-action .btn {
+    padding: var(--sv-space-1) var(--sv-space-2);
+    font-size: var(--sv-text-xs);
+    border-radius: var(--sv-radius-sm);
+    border: var(--sv-border-1) solid var(--sv-border-light);
+    background-color: var(--sv-white);
+    color: var(--sv-text-secondary);
+    cursor: pointer;
+    transition: var(--sv-transition-fast);
+    font-weight: var(--sv-font-medium);
+}
+
+.result-action button:hover,
+.result-action .btn:hover {
+    background-color: var(--sv-gray-50);
+    border-color: var(--sv-border-focus);
+}
+
+.result-action .btn-success {
+    background-color: var(--sv-success);
+    color: var(--sv-white);
+    border-color: var(--sv-success);
+}
+
+.result-action .btn-success:hover {
+    background-color: var(--sv-success-hover);
+    border-color: var(--sv-success-hover);
+}
+
+.result-action .btn-danger {
+    background-color: var(--sv-error);
+    color: var(--sv-white);
+    border-color: var(--sv-error);
+}
+
+.result-action .btn-danger:hover {
+    background-color: var(--sv-error-hover);
+    border-color: var(--sv-error-hover);
+}
+
+/* Estados especiais */
+.result-highlighted {
+    background-color: var(--sv-primary-light);
+    border-color: var(--sv-primary);
+}
+
+.result-success {
+    background-color: var(--sv-success-light);
+    border-color: var(--sv-success);
+}
+
+.result-error {
+    background-color: var(--sv-error-light);
+    border-color: var(--sv-error);
+}
+
+/* Animações */
+.result-display {
+    transition: var(--sv-transition-base);
+}
+
+.result-display:hover {
+    box-shadow: var(--sv-shadow-md);
+}
+
+/* Loading state */
+.result-loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.result-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--sv-gray-300);
+    border-top-color: var(--sv-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

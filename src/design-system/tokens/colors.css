@@ -1,0 +1,93 @@
+/**
+ * DESIGN SYSTEM - COLOR TOKENS
+ * SuperVia App Color Palette
+ */
+
+:root {
+  /* ===== BRAND COLORS ===== */
+  /* Cor principal da SuperVia (amarelo característico) */
+  --sv-primary: #ffcc29;
+  --sv-primary-rgb: 255, 204, 41;
+  --sv-primary-hover: #e6b824;
+  --sv-primary-light: #fff3cc;
+  --sv-primary-dark: #cc9f20;
+  
+  /* ===== SEMANTIC COLORS ===== */
+  /* Success (Verde) */
+  --sv-success: #10b981;
+  --sv-success-rgb: 16, 185, 129;
+  --sv-success-hover: #059669;
+  --sv-success-light: #d1fae5;
+  --sv-success-dark: #047857;
+  
+  /* Error (Vermelho) */
+  --sv-error: #ef4444;
+  --sv-error-rgb: 239, 68, 68;
+  --sv-error-hover: #dc2626;
+  --sv-error-light: #fecaca;
+  --sv-error-dark: #b91c1c;
+  
+  /* Warning (Laranja) */
+  --sv-warning: #f59e0b;
+  --sv-warning-hover: #d97706;
+  --sv-warning-light: #fef3c7;
+  --sv-warning-dark: #92400e;
+  
+  /* Info (Azul) */
+  --sv-info: #3b82f6;
+  --sv-info-hover: #2563eb;
+  --sv-info-light: #dbeafe;
+  --sv-info-dark: #1d4ed8;
+  
+  /* ===== NEUTRAL COLORS ===== */
+  /* Grays (Escala completa) */
+  --sv-white: #ffffff;
+  --sv-gray-50: #f9fafb;
+  --sv-gray-100: #f3f4f6;
+  --sv-gray-200: #e5e7eb;
+  --sv-gray-300: #d1d5db;
+  --sv-gray-400: #9ca3af;
+  --sv-gray-500: #6b7280;
+  --sv-gray-600: #4b5563;
+  --sv-gray-700: #374151;
+  --sv-gray-800: #1f2937;
+  --sv-gray-900: #111827;
+  --sv-black: #000000;
+  
+  /* ===== BACKGROUND COLORS ===== */
+  --sv-bg-primary: var(--sv-gray-50);
+  --sv-bg-secondary: var(--sv-white);
+  --sv-bg-muted: var(--sv-gray-100);
+  --sv-bg-dark: var(--sv-gray-900);
+  
+  /* ===== TEXT COLORS ===== */
+  --sv-text-primary: var(--sv-gray-900);
+  --sv-text-secondary: var(--sv-gray-700);
+  --sv-text-muted: var(--sv-gray-500);
+  --sv-text-disabled: var(--sv-gray-400);
+  --sv-text-inverse: var(--sv-white);
+  
+  /* ===== BORDER COLORS ===== */
+  --sv-border-light: var(--sv-gray-200);
+  --sv-border-medium: var(--sv-gray-300);
+  --sv-border-dark: var(--sv-gray-400);
+  --sv-border-focus: var(--sv-primary);
+  
+  /* ===== SHADOW COLORS ===== */
+  --sv-shadow-sm: rgba(0, 0, 0, 0.05);
+  --sv-shadow-md: rgba(0, 0, 0, 0.1);
+  --sv-shadow-lg: rgba(0, 0, 0, 0.15);
+  --sv-shadow-xl: rgba(0, 0, 0, 0.25);
+}
+
+/* ===== DARK THEME SUPPORT ===== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sv-bg-primary: var(--sv-gray-900);
+    --sv-bg-secondary: var(--sv-gray-800);
+    --sv-bg-muted: var(--sv-gray-700);
+    --sv-text-primary: var(--sv-white);
+    --sv-text-secondary: var(--sv-gray-300);
+    --sv-text-muted: var(--sv-gray-400);
+  }
+}

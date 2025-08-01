@@ -1,0 +1,298 @@
+/**
+ * DESIGN SYSTEM - BUTTON COMPONENT
+ * Sistema completo de botões com variantes e estados
+ */
+
+/* ===== BASE BUTTON ===== */
+.sv-btn {
+  /* Reset */
+  appearance: none;
+  border: none;
+  background: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  
+  /* Base styles */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sv-space-2);
+  
+  /* Typography */
+  font-family: var(--sv-font-sans);
+  font-size: var(--sv-text-sm);
+  font-weight: var(--sv-font-medium);
+  line-height: var(--sv-leading-tight);
+  text-align: center;
+  white-space: nowrap;
+  
+  /* Spacing */
+  padding: var(--sv-space-3) var(--sv-space-4);
+  min-height: 2.5rem;
+  
+  /* Visual */
+  border-radius: var(--sv-radius-md);
+  border: var(--sv-border-1) solid transparent;
+  cursor: pointer;
+  user-select: none;
+  
+  /* Animation */
+  transition: var(--sv-transition-fast);
+  transform: translateY(0);
+}
+
+.sv-btn:hover {
+  transform: translateY(-1px);
+}
+
+.sv-btn:active {
+  transform: translateY(0);
+}
+
+.sv-btn:focus-visible {
+  outline: 2px solid var(--sv-border-focus);
+  outline-offset: 2px;
+}
+
+.sv-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===== BUTTON VARIANTS ===== */
+/* Primary Button */
+.sv-btn--primary {
+  background-color: var(--sv-primary);
+  color: var(--sv-black);
+}
+
+.sv-btn--primary:hover:not(:disabled) {
+  background-color: var(--sv-primary-hover);
+}
+
+.sv-btn--primary:active:not(:disabled) {
+  background-color: var(--sv-primary-dark);
+}
+
+/* Secondary Button */
+.sv-btn--secondary {
+  background-color: var(--sv-gray-600);
+  color: var(--sv-white);
+}
+
+.sv-btn--secondary:hover:not(:disabled) {
+  background-color: var(--sv-gray-700);
+}
+
+.sv-btn--secondary:active:not(:disabled) {
+  background-color: var(--sv-gray-800);
+}
+
+/* Success Button */
+.sv-btn--success {
+  background-color: var(--sv-success);
+  color: var(--sv-white);
+}
+
+.sv-btn--success:hover:not(:disabled) {
+  background-color: var(--sv-success-hover);
+}
+
+.sv-btn--success:active:not(:disabled) {
+  background-color: var(--sv-success-dark);
+}
+
+/* Error/Danger Button */
+.sv-btn--danger {
+  background-color: var(--sv-error);
+  color: var(--sv-white);
+}
+
+.sv-btn--danger:hover:not(:disabled) {
+  background-color: var(--sv-error-hover);
+}
+
+.sv-btn--danger:active:not(:disabled) {
+  background-color: var(--sv-error-dark);
+}
+
+/* Warning Button */
+.sv-btn--warning {
+  background-color: var(--sv-warning);
+  color: var(--sv-white);
+}
+
+.sv-btn--warning:hover:not(:disabled) {
+  background-color: var(--sv-warning-hover);
+}
+
+.sv-btn--warning:active:not(:disabled) {
+  background-color: var(--sv-warning-dark);
+}
+
+/* Info Button */
+.sv-btn--info {
+  background-color: var(--sv-info);
+  color: var(--sv-white);
+}
+
+.sv-btn--info:hover:not(:disabled) {
+  background-color: var(--sv-info-hover);
+}
+
+.sv-btn--info:active:not(:disabled) {
+  background-color: var(--sv-info-dark);
+}
+
+/* ===== OUTLINE VARIANTS ===== */
+.sv-btn--outline {
+  background-color: transparent;
+  border-color: var(--sv-primary);
+  color: var(--sv-primary);
+}
+
+.sv-btn--outline:hover:not(:disabled) {
+  background-color: var(--sv-primary);
+  color: var(--sv-black);
+}
+
+.sv-btn--outline-secondary {
+  background-color: transparent;
+  border-color: var(--sv-gray-600);
+  color: var(--sv-gray-600);
+}
+
+.sv-btn--outline-secondary:hover:not(:disabled) {
+  background-color: var(--sv-gray-600);
+  color: var(--sv-white);
+}
+
+/* ===== GHOST VARIANTS ===== */
+.sv-btn--ghost {
+  background-color: transparent;
+  color: var(--sv-primary);
+}
+
+.sv-btn--ghost:hover:not(:disabled) {
+  background-color: var(--sv-primary-light);
+}
+
+.sv-btn--ghost-secondary {
+  background-color: transparent;
+  color: var(--sv-gray-600);
+}
+
+.sv-btn--ghost-secondary:hover:not(:disabled) {
+  background-color: var(--sv-gray-100);
+}
+
+/* ===== BUTTON SIZES ===== */
+.sv-btn--xs {
+  padding: var(--sv-space-1) var(--sv-space-2);
+  font-size: var(--sv-text-xs);
+  min-height: 1.75rem;
+}
+
+.sv-btn--sm {
+  padding: var(--sv-space-2) var(--sv-space-3);
+  font-size: var(--sv-text-sm);
+  min-height: 2rem;
+}
+
+.sv-btn--lg {
+  padding: var(--sv-space-4) var(--sv-space-6);
+  font-size: var(--sv-text-lg);
+  min-height: 3rem;
+}
+
+.sv-btn--xl {
+  padding: var(--sv-space-5) var(--sv-space-8);
+  font-size: var(--sv-text-xl);
+  min-height: 3.5rem;
+}
+
+/* ===== FULL WIDTH ===== */
+.sv-btn--full {
+  width: 100%;
+}
+
+/* ===== ICON BUTTONS ===== */
+.sv-btn--icon {
+  padding: var(--sv-space-3);
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+}
+
+.sv-btn--icon.sv-btn--sm {
+  padding: var(--sv-space-2);
+  min-width: 2rem;
+  min-height: 2rem;
+}
+
+.sv-btn--icon.sv-btn--lg {
+  padding: var(--sv-space-4);
+  min-width: 3rem;
+  min-height: 3rem;
+}
+
+/* ===== LOADING STATE ===== */
+.sv-btn--loading {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+.sv-btn--loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1rem;
+  height: 1rem;
+  margin: -0.5rem 0 0 -0.5rem;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: sv-spin 0.8s linear infinite;
+}
+
+@keyframes sv-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+  .sv-btn {
+    min-height: 2.25rem;
+    padding: var(--sv-space-2) var(--sv-space-3);
+    font-size: var(--sv-text-xs);
+  }
+  
+  .sv-btn--sm {
+    min-height: 2rem;
+    padding: var(--sv-space-1) var(--sv-space-2);
+    font-size: 0.6875rem;
+  }
+  
+  .sv-btn--lg {
+    min-height: 2.5rem;
+    padding: var(--sv-space-3) var(--sv-space-4);
+    font-size: var(--sv-text-sm);
+  }
+  
+  .sv-btn--xl {
+    min-height: 2.75rem;
+    padding: var(--sv-space-3) var(--sv-space-5);
+    font-size: var(--sv-text-base);
+  }
+  
+  .sv-btn--icon {
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+    padding: var(--sv-space-2);
+  }
+}

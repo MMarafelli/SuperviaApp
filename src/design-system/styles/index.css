@@ -1,0 +1,114 @@
+/**
+ * DESIGN SYSTEM - CSS ENTRY POINT
+ * 
+ * Imports devem estar no topo, antes de qualquer outro CSS
+ */
+
+/* ===== 1. TOKENS E VARIÁVEIS ===== */
+@import './tokens.css';
+
+/* ===== 2. BASE E RESET ===== */
+/* @import './base.css'; */
+
+/* ===== 3. ANIMAÇÕES ===== */
+/* @import '../../styles/animations.css'; */
+
+/* ===== 4. COMPONENTES BASE ===== */
+@import '../components/base/PageTitle/PageTitle.css';
+/* @import '../components/base/Section/Section.css'; */
+
+/* ===== 4. COMPONENTES ESPECÍFICOS ===== */
+/* @import '../components/forms.css'; */
+/* @import '../components/calculation-layouts.css'; */
+/* @import '../components/layout.css'; */
+/* @import '../components/button.css'; */
+
+/* ===== 5. UTILITÁRIOS E HELPERS ===== */
+/* @import './utilities.css'; */
+
+/* ===== ESTILOS INLINE (TEMPORÁRIOS) ===== */
+
+/* FORÇA calculation-section COMO CARD BRANCO */
+.calculation-section {
+  background: #fff !important;
+  border-radius: 14px !important;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.07) !important;
+  padding: 1.5rem 1.5rem !important;
+  border: 1.5px solid #e5e7eb !important;
+  margin-bottom: 2rem !important;
+}
+
+/* QUADROS/CARDS - FUNDO BRANCO, SOMBRA LEVE, BORDAS ARREDONDADAS, ESPAÇAMENTO INTERNO */
+.sv-card {
+  background: #fff !important;
+  border-radius: 14px !important;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.07);
+  padding: 1.5rem 1.5rem !important;
+  border: 1.5px solid #e5e7eb;
+  margin-bottom: 2rem;
+}
+
+.sv-card-content {
+  padding: 0 !important;
+}
+
+/* Espaçamento entre cards/quadro */
+.sv-page-container {
+  background: none !important;
+  padding: 2rem 0 2rem 0;
+  max-width: 900px;
+  margin: 0 auto;
+}
+/* PADRÃO GLOBAL DE FORMULÁRIO - VISUAL CLARO, CLEAN, INTEGRADO AOS CARDS */
+.sv-input,
+.sv-select,
+.sv-textarea {
+  background: #fff !important;
+  border: 1.5px solid #d1d5db !important;
+  border-radius: 8px !important;
+  color: #222;
+  font-size: 1rem;
+  padding: 1rem 1.25rem !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none !important;
+}
+
+.sv-input:focus,
+.sv-select:focus,
+.sv-textarea:focus {
+  border-color: #a0aec0 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px #e5e7eb;
+}
+
+.sv-input.sv-valid,
+.sv-select.sv-valid,
+.sv-textarea.sv-valid {
+  border-color: #d1d5db !important;
+  box-shadow: none !important;
+}
+
+.sv-input.sv-invalid,
+.sv-select.sv-invalid,
+.sv-textarea.sv-invalid {
+  border-color: #e57373 !important;
+  box-shadow: none !important;
+}
+
+.sv-input::placeholder,
+.sv-select::placeholder,
+.sv-textarea::placeholder {
+  color: #bdbdbd;
+  opacity: 0.9;
+}
+
+.sv-label {
+  color: #222;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.sv-field-group {
+  margin-bottom: 1.75rem;
+}
