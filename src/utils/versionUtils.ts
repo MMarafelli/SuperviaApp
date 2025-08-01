@@ -5,8 +5,12 @@ export const BUILD_TIME = '__BUILD_TIME__';
 // Função para verificar se há uma nova versão disponível
 export const checkForNewVersion = async (): Promise<boolean> => {
   try {
+    // Detecta se está em desenvolvimento ou produção
+    const isDev = import.meta.env.DEV;
+    const baseUrl = isDev ? '' : '/SuperviaApp';
+    
     // Busca a versão atual do servidor
-    const response = await fetch('/SuperviaApp/version.json?t=' + Date.now());
+    const response = await fetch(`${baseUrl}/version.json?t=` + Date.now());
     if (!response.ok) return false;
     
     const serverVersion = await response.json();
