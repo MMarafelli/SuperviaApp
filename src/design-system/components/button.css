@@ -264,35 +264,36 @@
   }
 }
 
-/* ===== RESPONSIVE ADJUSTMENTS ===== */
+/* ===== RESPONSIVE ADJUSTMENTS - SUPER COMPACTO ===== */
 @media (max-width: 768px) {
   .sv-btn {
-    min-height: 2.25rem;
-    padding: var(--sv-space-2) var(--sv-space-3);
-    font-size: var(--sv-text-xs);
+    min-height: 1.75rem; /* Reduzido de 2.25rem */
+    padding: 6px 8px; /* Reduzido significativamente */
+    font-size: 10px; /* Reduzido para 10px */
+    line-height: 1.1; /* Mais compacto */
   }
   
   .sv-btn--sm {
-    min-height: 2rem;
-    padding: var(--sv-space-1) var(--sv-space-2);
-    font-size: 0.6875rem;
+    min-height: 1.5rem; /* Reduzido de 2rem */
+    padding: 4px 6px; /* Reduzido */
+    font-size: 9px; /* Reduzido de 0.6875rem */
   }
   
   .sv-btn--lg {
-    min-height: 2.5rem;
-    padding: var(--sv-space-3) var(--sv-space-4);
-    font-size: var(--sv-text-sm);
+    min-height: 2rem; /* Reduzido de 2.5rem */
+    padding: 8px 10px; /* Reduzido */
+    font-size: 11px; /* Reduzido */
   }
   
   .sv-btn--xl {
-    min-height: 2.75rem;
-    padding: var(--sv-space-3) var(--sv-space-5);
-    font-size: var(--sv-text-base);
+    min-height: 2.25rem; /* Reduzido de 2.75rem */
+    padding: 8px 12px; /* Reduzido */
+    font-size: 12px; /* Reduzido */
   }
   
   .sv-btn--icon {
-    min-width: 2.25rem;
-    min-height: 2.25rem;
-    padding: var(--sv-space-2);
+    min-width: 1.75rem; /* Reduzido de 2.25rem */
+    min-height: 1.75rem; /* Reduzido de 2.25rem */
+    padding: 4px; /* Reduzido */
   }
 }

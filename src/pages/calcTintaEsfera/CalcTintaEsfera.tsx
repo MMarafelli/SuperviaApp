@@ -516,7 +516,7 @@ const Formulario = () => {
     
     // Layout Mobile - Mantém os grupos separados como está
     const MobileLayout = useCallback(() => (
-        <div className='divsSegundoQuadroTelaPequena'>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <BlocoDivCompVariavel
                 label="Bordo Direito"
                 valorX={campos.direitoX}

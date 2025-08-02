@@ -24,52 +24,55 @@
     }
 }
 
-/* ===== MOBILE BUTTON ADJUSTMENTS ===== */
+/* ===== MOBILE BUTTON ADJUSTMENTS - SUPER COMPACTOS ===== */
 @media (max-width: 768px) {
     .sv-button {
-        padding: 8px 12px;
-        font-size: 0.875rem;
-        min-height: 36px;
+        padding: 4px 6px; /* Reduzido de 8px 12px */
+        font-size: 10px; /* Reduzido de 0.875rem */
+        min-height: 28px; /* Reduzido de 36px */
+        line-height: 1.1;
     }
     
     .sv-button-sm {
-        padding: 6px 10px;
-        font-size: 0.75rem;
-        min-height: 32px;
+        padding: 3px 5px; /* Reduzido de 6px 10px */
+        font-size: 9px; /* Reduzido de 0.75rem */
+        min-height: 24px; /* Reduzido de 32px */
+        line-height: 1.1;
     }
     
     .sv-button-lg {
-        padding: 10px 16px;
-        font-size: 1rem;
-        min-height: 40px;
+        padding: 5px 8px; /* Reduzido de 10px 16px */
+        font-size: 11px; /* Reduzido de 1rem */
+        min-height: 32px; /* Reduzido de 40px */
+        line-height: 1.1;
     }
 }
 
-/* ===== MOBILE SPACING ADJUSTMENTS ===== */
+/* ===== MOBILE SPACING ADJUSTMENTS - ULTRA COMPACTO ===== */
 @media (max-width: 768px) {
-    /* Reduzir espaçamentos gerais */
-    .mb-4 { margin-bottom: 0.75rem; }
-    .mb-6 { margin-bottom: 1rem; }
-    .mb-8 { margin-bottom: 1.25rem; }
+    /* Reduzir espaçamentos gerais drasticamente */
+    .mb-4 { margin-bottom: 0.25rem; } /* Reduzido de 0.375rem */
+    .mb-6 { margin-bottom: 0.375rem; } /* Reduzido de 0.5rem */
+    .mb-8 { margin-bottom: 0.5rem; } /* Reduzido de 0.625rem */
     
-    .mt-4 { margin-top: 0.75rem; }
-    .mt-6 { margin-top: 1rem; }
-    .mt-8 { margin-top: 1.25rem; }
+    .mt-4 { margin-top: 0.25rem; } /* Reduzido */
+    .mt-6 { margin-top: 0.375rem; } /* Reduzido */
+    .mt-8 { margin-top: 0.5rem; } /* Reduzido */
     
-    .gap-4 { gap: 0.75rem; }
-    .gap-6 { gap: 1rem; }
-    .gap-8 { gap: 1.25rem; }
+    .gap-4 { gap: 0.15rem; } /* Reduzido de 0.25rem */
+    .gap-6 { gap: 0.25rem; } /* Reduzido de 0.375rem */
+    .gap-8 { gap: 0.375rem; } /* Reduzido de 0.5rem */
     
-    /* Padding interno dos elementos */
-    .p-4 { padding: 0.75rem; }
-    .p-6 { padding: 1rem; }
-    .p-8 { padding: 1.25rem; }
+    /* Padding interno dos elementos - MUITO MENOR */
+    .p-4 { padding: 0.25rem; } /* Reduzido de 0.375rem */
+    .p-6 { padding: 0.375rem; } /* Reduzido de 0.5rem */
+    .p-8 { padding: 0.5rem; } /* Reduzido de 0.625rem */
     
-    .px-4 { padding-left: 0.75rem; padding-right: 0.75rem; }
-    .px-6 { padding-left: 1rem; padding-right: 1rem; }
+    .px-4 { padding-left: 0.25rem; padding-right: 0.25rem; } /* Reduzido */
+    .px-6 { padding-left: 0.375rem; padding-right: 0.375rem; } /* Reduzido */
     
-    .py-4 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
-    .py-6 { padding-top: 1rem; padding-bottom: 1rem; }
+    .py-4 { padding-top: 0.25rem; padding-bottom: 0.25rem; } /* Reduzido */
+    .py-6 { padding-top: 0.375rem; padding-bottom: 0.375rem; } /* Reduzido */
 }
 
 /* ===== MOBILE TYPOGRAPHY ADJUSTMENTS ===== */
@@ -320,5 +323,52 @@
     body {
         -webkit-text-size-adjust: 100%;
         text-size-adjust: 100%;
+    }
+}
+
+/* ===== TYPOGRAPHY MOBILE - ULTRA COMPACTA ===== */
+@media (max-width: 768px) {
+    /* Títulos principais */
+    h1, .sv-h1 {
+        font-size: 1.1rem !important; /* Reduzido de 1.25rem */
+        line-height: 1.1 !important;
+        margin-bottom: 0.3rem !important; /* Reduzido */
+    }
+    
+    h2, .sv-h2 {
+        font-size: 1rem !important; /* Reduzido de 1.1rem */
+        line-height: 1.1 !important;
+        margin-bottom: 0.25rem !important; /* Reduzido */
+    }
+    
+    h3, .sv-h3 {
+        font-size: 0.9rem !important; /* Reduzido de 1rem */
+        line-height: 1.1 !important;
+        margin-bottom: 0.2rem !important; /* Reduzido */
+    }
+    
+    h4, .sv-h4 {
+        font-size: 0.8rem !important; /* Reduzido de 0.9rem */
+        line-height: 1.0 !important;
+        margin-bottom: 0.15rem !important; /* Reduzido */
+    }
+    
+    /* Textos de corpo */
+    p, .sv-text {
+        font-size: 9px !important; /* Reduzido de 11px */
+        line-height: 1.2 !important;
+        margin-bottom: 0.3rem !important; /* Reduzido */
+    }
+    
+    /* Textos pequenos */
+    small, .sv-text-sm {
+        font-size: 8px !important; /* Reduzido de 9px */
+        line-height: 1.1 !important;
+    }
+    
+    /* Textos muito pequenos */
+    .sv-text-xs {
+        font-size: 7px !important; /* Reduzido de 8px */
+        line-height: 1.0 !important;
     }
 }

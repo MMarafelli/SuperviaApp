@@ -8,6 +8,27 @@ const UpdateNotification: React.FC = () => {
   const { requestPermission, sendUpdateNotification, permission } = usePushNotifications();
   const [isDismissed, setIsDismissed] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [hasShownUpdateToday, setHasShownUpdateToday] = useState(false);
+  const [isUpdateInProgress, setIsUpdateInProgress] = useState(false);
+
+  // Verifica se já foi mostrada uma atualização hoje ou se há atualização em progresso
+  useEffect(() => {
+    const today = new Date().toDateString();
+    const lastUpdateShown = localStorage.getItem('last-update-notification');
+    const lastUpdateExecuted = localStorage.getItem('sw-update-executed');
+    
+    if (lastUpdateShown === today) {
+      setHasShownUpdateToday(true);
+    }
+    
+    // Se uma atualização foi executada nos últimos 2 minutos, não mostra
+    if (lastUpdateExecuted) {
+      const timeSinceUpdate = Date.now() - parseInt(lastUpdateExecuted);
+      if (timeSinceUpdate < 120000) { // 2 minutos
+        setIsUpdateInProgress(true);
+      }
+    }
+  }, [needRefresh]); // Reexecuta quando needRefresh muda
 
   // Solicita permissão para notificações quando o componente monta
   useEffect(() => {
@@ -18,6 +39,13 @@ const UpdateNotification: React.FC = () => {
 
   const handleUpdate = async () => {
     setIsUpdating(true);
+    setIsDismissed(true); // Imediatamente esconde a notificação
+    
+    // Marca que uma atualização foi iniciada hoje e agora
+    const today = new Date().toDateString();
+    const now = Date.now().toString();
+    localStorage.setItem('last-update-notification', today);
+    localStorage.setItem('sw-update-executed', now);
     
     try {
       // Envia notificação de que a atualização está sendo aplicada
@@ -35,25 +63,29 @@ const UpdateNotification: React.FC = () => {
     } catch (error) {
       console.error('Erro durante a atualização:', error);
       setIsUpdating(false);
+      setIsDismissed(false); // Se houver erro, permite mostrar novamente
     }
   };
 
   const handleDismiss = () => {
     setIsDismissed(true);
+    // Marca que foi dispensada hoje
+    const today = new Date().toDateString();
+    localStorage.setItem('last-update-notification', today);
   };
 
-  // Não mostra se foi dispensado, se não precisa de refresh ou se está offline
-  if (isDismissed || !needRefresh || !isOnline) {
+  // Não mostra se foi dispensado, se não precisa de refresh, se está offline, se já foi mostrada hoje, ou se há atualização em progresso
+  if (isDismissed || !needRefresh || !isOnline || hasShownUpdateToday || isUpdateInProgress) {
     return null;
   }
 
   return (
-    <div className="fixed left-4 right-4 max-w-md mx-auto update-notification-position" style={{zIndex: 99999}}>
-      <div className="bg-blue-600 text-white p-4 rounded-lg shadow-lg border border-blue-500">
-        <div className="flex items-start space-x-3">
-          <div className="flex-shrink-0">
+    <div className="update-notification-container">
+      <div className="update-notification-card">
+        <div className="update-notification-header">
+          <div className="update-icon-container">
             <svg 
-              className="w-6 h-6 text-blue-200" 
+              className="update-icon" 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -66,27 +98,53 @@ const UpdateNotification: React.FC = () => {
               />
             </svg>
           </div>
-          <div className="flex-1 min-w-0">
-            <h4 className="text-sm font-medium">
+          <div className="update-content">
+            <h4 className="update-title">
               Nova versão disponível!
             </h4>
-            <p className="text-sm text-blue-100 mt-1">
+            <p className="update-description">
               Uma nova versão da aplicação está disponível. Atualize para obter as últimas melhorias.
             </p>
           </div>
+          <button
+            onClick={handleDismiss}
+            className="update-close-btn"
+            aria-label="Fechar notificação"
+          >
+            <svg 
+              className="close-icon" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M6 18L18 6M6 6l12 12" 
+              />
+            </svg>
+          </button>
         </div>
         
-        <div className="mt-4 flex space-x-2">
+        <div className="update-actions">
           <button
             onClick={handleUpdate}
             disabled={isUpdating}
-            className="flex-1 bg-white text-blue-600 px-3 py-2 rounded text-sm font-medium hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            className={`update-btn-primary ${isUpdating ? 'updating' : ''}`}
           >
-            {isUpdating ? 'Atualizando...' : 'Atualizar agora'}
+            {isUpdating ? (
+              <>
+                <div className="loading-spinner"></div>
+                Atualizando...
+              </>
+            ) : (
+              'Atualizar agora'
+            )}
           </button>
           <button
             onClick={handleDismiss}
-            className="px-3 py-2 text-blue-200 hover:text-white text-sm font-medium"
+            className="update-btn-secondary"
           >
             Depois
           </button>

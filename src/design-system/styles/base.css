@@ -76,6 +76,21 @@ input, textarea, select {
   transition: var(--sv-transition-fast);
 }
 
+/* MOBILE OVERRIDE - Força padronização para evitar inconsistências */
+@media (max-width: 767px) {
+  input, textarea, select {
+    padding: 3px 5px !important;
+    font-size: 10.35px !important;
+    height: 1.5rem !important;
+    min-height: 1.5rem !important;
+    max-height: 1.5rem !important;
+    line-height: 1.2 !important;
+    border-radius: 2px !important;
+    margin: 0 !important;
+    border-width: 1px !important;
+  }
+}
+
 input:focus, textarea:focus, select:focus {
   border-color: var(--sv-border-focus);
   box-shadow: 0 0 0 3px rgba(255, 204, 41, 0.1);

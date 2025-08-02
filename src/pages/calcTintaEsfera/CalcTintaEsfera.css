@@ -42,26 +42,8 @@
   color: #374151 !important;
 }
 
-/* ===== LAYOUT DOS GRUPOS (BORDOS) ===== */
-.calc-tinta-container .divsSegundoQuadroTelaPequena {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 0;
-  background: transparent;
-}
-
-.calc-tinta-container .divsSegundoQuadroTelaPequena .grupo {
-  background: #fff !important;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  padding: 1.5rem;
-  margin: 0;
-  border: 1px solid #e5e7eb;
-  width: 100%;
-  max-width: none;
-  box-sizing: border-box;
-}
+/* ===== LAYOUT DOS GRUPOS (BORDOS) - AGORA PADRONIZADO ===== */
+/* Removido classes customizadas - usando calculation-section padrão */
 
 /* ===== FORÇAR FUNDO BRANCO NOS INPUTS ===== */
 .calc-tinta-container .sv-input,
@@ -83,6 +65,25 @@
   height: auto !important;
   min-height: 40px !important;
   font-size: 1rem !important;
+}
+
+/* ===== MOBILE OVERRIDES - ULTRA COMPACTO ===== */
+@media (max-width: 767px) {
+  .calc-tinta-container .sv-input,
+  .calc-tinta-container .sv-select,
+  .calc-tinta-container input,
+  .calc-tinta-container select,
+  .calc-tinta-container input[type="text"],
+  .calc-tinta-container input[type="number"],
+  .calc-tinta-container input[type="date"] {
+    padding: 3px 5px !important;
+    font-size: 9px !important;
+    min-height: 1.5rem !important;
+    height: 1.5rem !important;
+    border-radius: 2px !important;
+    border-width: 1px !important;
+    line-height: 1.1 !important;
+  }
 }
 
 .calc-tinta-container .sv-input::placeholder,
@@ -118,17 +119,14 @@
   margin-bottom: 1rem !important;
 }
 
-/* ===== FORÇA MÁXIMA: TUDO BRANCO DENTRO DOS CARDS ===== */
-.calc-tinta-container .grupo *:not(svg):not(path),
-.calc-tinta-container .calculation-section *:not(svg):not(path),
-.calc-tinta-container .levantamento-container *:not(svg):not(path) {
+/* ===== FORÇA MÁXIMA: MANTÉM FUNDO BRANCO NOS CARDS ===== */
+.calc-tinta-container .calculation-section *:not(svg):not(path) {
   background-color: #fff !important;
   color: #374151 !important;
 }
 
 /* ===== EXCEÇÕES PARA TÍTULOS ===== */
-.calc-tinta-container .calculation-section-title,
-.calc-tinta-container .tituloDaDivBloco {
+.calc-tinta-container .calculation-section-title {
   background-color: #f8fafc !important;
   color: #374151 !important;
 }
@@ -140,105 +138,11 @@
   color: #374151 !important;
 }
 
-/* ===== TÍTULOS DOS GRUPOS ===== */
-.calc-tinta-container .tituloDaDivBloco {
-  background: #f8fafc !important;
-  color: #374151 !important;
-  font-weight: 600;
-  font-size: 1.1rem;
-  padding: 0.75rem 1rem;
-  margin: -1.5rem -1.5rem 1rem -1.5rem;
-  border-bottom: 1px solid #e5e7eb;
-  border-radius: 12px 12px 0 0;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  flex-direction: row !important;
-  gap: 0.5rem;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
+/* ===== TÍTULOS PADRONIZADOS - AGORA USANDO calculation-section-title ===== */
+/* Removido estilos customizados para tituloDaDivBloco */
 
-.calc-tinta-container .tituloDaDivBloco span {
-  flex: 1 !important;
-  font-weight: 600 !important;
-  color: #374151 !important;
-  text-align: left !important;
-}
-
-.calc-tinta-container .tituloDaDivBloco svg {
-  transition: all 0.2s !important;
-  color: #ef4444 !important;
-  fill: #ef4444 !important;
-  flex-shrink: 0 !important;
-  cursor: pointer !important;
-  width: 20px !important;
-  height: 20px !important;
-  opacity: 0.7 !important;
-  margin-left: auto !important;
-}
-
-.calc-tinta-container .tituloDaDivBloco svg:hover {
-  opacity: 1 !important;
-  transform: scale(1.1) !important;
-}
-
-.calc-tinta-container .tituloDaDivBloco svg path {
-  fill: #ef4444 !important;
-}
-
-/* ===== CAMPOS DENTRO DOS GRUPOS ===== */
-.calc-tinta-container .bloco {
-  margin-bottom: 1rem !important;
-  display: block !important;
-}
-
-.calc-tinta-container .field-inline {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0.5rem !important;
-  margin-bottom: 1rem !important;
-  width: 100% !important;
-}
-
-.calc-tinta-container .sv-field-group {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0.5rem !important;
-  width: 100% !important;
-}
-
-/* ===== DEBUG: FORÇA VISIBILIDADE TOTAL ===== */
-.calc-tinta-container .sv-field-group,
-.calc-tinta-container .sv-input-container,
-.calc-tinta-container .field-inline,
-.calc-tinta-container .bloco {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: relative !important;
-  overflow: visible !important;
-  height: auto !important;
-  width: 100% !important;
-}
-
-/* ===== GARANTIR VISIBILIDADE DOS INPUTS ===== */
-.calc-tinta-container .sv-field-group input,
-.calc-tinta-container .sv-field-group select,
-.calc-tinta-container input,
-.calc-tinta-container select {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: relative !important;
-  z-index: 1 !important;
-  width: 100% !important;
-  height: auto !important;
-  min-height: 40px !important;
-  transform: none !important;
-  clip: none !important;
-  clip-path: none !important;
-}
+/* ===== CAMPOS PADRONIZADOS - USANDO DESIGN SYSTEM ===== */
+/* Removido estilos customizados para field-inline e classes específicas */
 
 /* ===== CONTAINER DE RESULTADO ===== */
 .calc-tinta-container .resultado-input-container {
@@ -297,18 +201,8 @@
   flex-shrink: 0 !important;
 }
 
-/* ===== BLOCO ESPECÍFICO DO RESULTADO ===== */
-.calc-tinta-container .bloco {
-  margin-bottom: 1rem !important;
-  display: block !important;
-}
-
-.calc-tinta-container .bloco .sv-label {
-  color: #374151 !important;
-  font-weight: 500 !important;
-  margin-bottom: 0.5rem !important;
-  display: block !important;
-}
+/* ===== RESULTADO PADRONIZADO - USANDO DESIGN SYSTEM ===== */
+/* Removido estilos customizados para .bloco - agora usando estrutura padrão */
 
 /* ===== OVERRIDE COMPLETO DO RESULT DISPLAY ===== */
 .calc-tinta-container .result-display {
@@ -358,59 +252,27 @@
   display: block;
 }
 
-/* ===== RESPONSIVIDADE TABLET ===== */
+/* ===== RESPONSIVIDADE TABLET SIMPLIFICADA ===== */
 @media (min-width: 768px) and (max-width: 1023px) {
   .calc-tinta-container {
     padding: 1rem;
   }
   
-  .calc-tinta-container .calculation-section,
-  .calc-tinta-container .divsSegundoQuadroTelaPequena,
-  .calc-tinta-container .levantamento-container {
+  .calc-tinta-container .calculation-section {
     border-radius: 10px;
-  }
-  
-  .calc-tinta-container .divsSegundoQuadroTelaPequena {
-    gap: 1rem;
-  }
-  
-  .calc-tinta-container .divsSegundoQuadroTelaPequena .grupo {
     padding: 1.25rem;
-    border-radius: 10px;
-  }
-  
-  .calc-tinta-container .tituloDaDivBloco {
-    margin: -1.25rem -1.25rem 0.75rem -1.25rem;
-    padding: 0.75rem;
-    font-size: 1rem;
   }
 }
 
-/* ===== RESPONSIVIDADE MOBILE ===== */
+/* ===== RESPONSIVIDADE MOBILE SIMPLIFICADA ===== */
 @media (max-width: 767px) {
   .calc-tinta-container {
     padding: 0.75rem;
   }
   
-  .calc-tinta-container .calculation-section,
-  .calc-tinta-container .divsSegundoQuadroTelaPequena,
-  .calc-tinta-container .levantamento-container {
+  .calc-tinta-container .calculation-section {
     border-radius: 8px;
-  }
-  
-  .calc-tinta-container .divsSegundoQuadroTelaPequena {
-    gap: 1rem;
-  }
-  
-  .calc-tinta-container .divsSegundoQuadroTelaPequena .grupo {
     padding: 1rem;
-    border-radius: 8px;
-  }
-  
-  .calc-tinta-container .tituloDaDivBloco {
-    margin: -1rem -1rem 0.75rem -1rem;
-    padding: 0.75rem;
-    font-size: 1rem;
   }
 }
 
@@ -420,9 +282,16 @@
   gap: 1rem;
 }
 
+.calc-tinta-container .sv-gap-4 {
+  gap: 1rem;
+}
+
 /* RESPONSIVIDADE MOBILE - Gap adequado para legibilidade */
 @media (max-width: 767px) {
   .calc-tinta-container .sv-grid {
+    gap: 0.75rem;
+  }
+  .calc-tinta-container .sv-gap-4 {
     gap: 0.75rem;
   }
 }

@@ -46,14 +46,16 @@
     }
 }
 
-/* RESPONSIVIDADE MOBILE - Labels com tamanho legível */
+/* RESPONSIVIDADE MOBILE - Labels ULTRA COMPACTOS */
 @media (max-width: 767px) {
-    .sv-label {
-        font-size: 0.75rem; /* Tamanho legível */
-        margin-top: 0.125rem; /* Espaçamento adequado */
-        margin-bottom: 0.125rem; /* Espaçamento adequado */
+    .sv-label,
+    .sv-container .sv-label,
+    .sv-container .calculation-section .sv-label {
+        font-size: 8px !important; /* Reduzido de 10px */
+        margin-top: 0.02rem !important; /* Reduzido de 0.05rem */
+        margin-bottom: 0.02rem !important; /* Reduzido de 0.05rem */
         max-width: 100%;
-        line-height: 1.2;
+        line-height: 1.0 !important; /* Mais compacto ainda */
     }
 }
 
@@ -92,16 +94,19 @@
     }
 }
 
-/* RESPONSIVIDADE MOBILE - Inputs com tamanho adequado */
+/* RESPONSIVIDADE MOBILE - Inputs com tamanho ULTRA COMPACTO */
 @media (max-width: 767px) {
-    .sv-input {
-        padding: 8px 10px; /* Padding adequado */
-        font-size: 12px; /* Tamanho legível */
-        min-height: 2.25rem; /* Altura adequada */
-        max-height: 2.25rem;
-        height: 2.25rem;
-        border-width: 1px;
-        border-radius: 4px; /* Bordas menores */
+    .sv-input,
+    .sv-container .sv-input,
+    .sv-container .calculation-section .sv-input {
+        padding: 3px 5px !important; /* MANTIDO - sem mudança vertical */
+        font-size: 10.35px !important; /* 9px + 15% = 10.35px */
+        min-height: 1.5rem !important; /* REVERTIDO - volta ao original */
+        max-height: 1.5rem !important;
+        height: 1.5rem !important;
+        border-width: 1px !important;
+        border-radius: 2px !important; /* Bordas ainda menores */
+        line-height: 1.1 !important; /* Mais compacto */
     }
 }
 
@@ -226,19 +231,22 @@
     }
 }
 
-/* RESPONSIVIDADE MOBILE - Selects com tamanho adequado */
+/* RESPONSIVIDADE MOBILE - Selects com tamanho ULTRA COMPACTO */
 @media (max-width: 767px) {
-    .sv-select {
-        padding: 8px 10px; /* Padding adequado */
-        font-size: 12px; /* Tamanho legível */
-        min-height: 2.25rem; /* Altura adequada */
-        max-height: 2.25rem;
-        height: 2.25rem;
-        padding-right: 28px; /* Espaço para seta */
-        background-position: right 6px center;
-        border-width: 1px;
-        border-radius: 4px; /* Bordas menores */
-        background-size: 0.875rem; /* Ícone menor */
+    .sv-select,
+    .sv-container .sv-select,
+    .sv-container .calculation-section .sv-select {
+        padding: 3px 5px !important; /* Reduzido de 4px 6px */
+        font-size: 9px !important; /* Reduzido de 10px */
+        min-height: 1.5rem !important; /* Reduzido de 1.75rem */
+        max-height: 1.5rem !important;
+        height: 1.5rem !important;
+        padding-right: 20px !important; /* Reduzido de 24px */
+        background-position: right 3px center !important; /* Ajustado */
+        border-width: 1px !important;
+        border-radius: 2px !important; /* Bordas menores */
+        background-size: 0.65rem !important; /* Ícone menor */
+        line-height: 1.1 !important; /* Mais compacto */
     }
 }
 
@@ -311,14 +319,15 @@
     }
 }
 
-/* RESPONSIVIDADE MOBILE - Textarea com tamanho adequado */
+/* RESPONSIVIDADE MOBILE - Textarea com tamanho SUPER COMPACTO */
 @media (max-width: 767px) {
     .sv-textarea {
-        padding: 8px 10px; /* Padding adequado */
-        font-size: 12px; /* Tamanho legível */
-        min-height: 65px; /* Altura adequada */
+        padding: 4px 6px; /* Reduzido de 8px 10px */
+        font-size: 10px; /* Reduzido de 12px */
+        min-height: 55px; /* Reduzido de 65px */
         border-width: 1px;
-        border-radius: 4px;
+        border-radius: 3px; /* Menor */
+        line-height: 1.2; /* Mais compacto */
     }
 }
 
@@ -445,4 +454,19 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.4;
     margin-bottom: 6px;
+}
+
+/* MOBILE - Labels de cálculo ULTRA COMPACTOS */
+@media (max-width: 767px) {
+    .sv-field-group .sv-label,
+    .campo-grupo .sv-label,
+    .calculation-section .sv-label,
+    .sv-container .sv-field-group .sv-label,
+    .sv-container .campo-grupo .sv-label,
+    .sv-container .calculation-section .sv-label {
+        font-size: 8px !important; /* Reduzido de 9px */
+        line-height: 1.0 !important; /* Mais compacto ainda */
+        margin-bottom: 2px !important; /* Reduzido de 3px */
+        font-weight: 400 !important; /* Menos peso visual */
+    }
 }

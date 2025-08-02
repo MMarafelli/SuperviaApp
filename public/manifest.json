@@ -14,26 +14,8 @@
   "dir": "ltr",
   "icons": [
     {
-      "src": "assets/icons/logo-sv.png",
+      "src": "assets/icons/48x48.png",
       "sizes": "48x48",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "assets/icons/logo-sv.png",
-      "sizes": "72x72",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "assets/icons/logo-sv.png",
-      "sizes": "96x96",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "assets/icons/logo-sv.png",
-      "sizes": "144x144",
       "type": "image/png",
       "purpose": "any"
     },
@@ -68,8 +50,5 @@
       "purpose": "any"
     }
   ],
-  "prefer_related_applications": false,
-  "edge_side_panel": {
-    "preferred_width": 400
-  }
+  "prefer_related_applications": false
 }

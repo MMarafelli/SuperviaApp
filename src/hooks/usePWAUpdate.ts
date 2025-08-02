@@ -12,6 +12,19 @@ export const usePWAUpdate = (): PWAUpdateHook => {
   const [registration, setRegistration] = useState<ServiceWorkerRegistration>();
   const [isOnline, setIsOnline] = useState(navigator.onLine);
 
+  // Verifica se uma atualização foi executada recentemente (últimos 2 minutos)
+  useEffect(() => {
+    const lastUpdate = localStorage.getItem('sw-update-executed');
+    if (lastUpdate) {
+      const timeSinceUpdate = Date.now() - parseInt(lastUpdate);
+      // Se foi há menos de 2 minutos, não mostra a notificação
+      if (timeSinceUpdate < 120000) { // 2 minutos
+        setNeedRefresh(false);
+        return;
+      }
+    }
+  }, []);
+
   useEffect(() => {
     // Monitora o status de conexão
     const handleOnline = () => setIsOnline(true);
@@ -104,6 +117,12 @@ export const usePWAUpdate = (): PWAUpdateHook => {
 
   const updateServiceWorker = async () => {
     try {
+      // Primeiro, reseta o estado needRefresh para evitar que a notificação reapareça
+      setNeedRefresh(false);
+      
+      // Marca no localStorage que uma atualização foi executada
+      localStorage.setItem('sw-update-executed', Date.now().toString());
+      
       if (registration?.waiting) {
         // Força o service worker em espera a se tornar ativo
         registration.waiting.postMessage({ type: 'SKIP_WAITING' });
@@ -119,12 +138,17 @@ export const usePWAUpdate = (): PWAUpdateHook => {
           );
         }
         
+        // Aguarda mais um pouco antes de recarregar
+        await new Promise(resolve => setTimeout(resolve, 300));
+        
         // Recarrega a página
         window.location.reload();
       } else {
         // Se não há service worker em espera, tenta forçar uma atualização
         if (registration) {
           await registration.update();
+          // Aguarda um pouco antes de recarregar
+          await new Promise(resolve => setTimeout(resolve, 500));
           window.location.reload();
         } else {
           // Fallback - apenas recarrega a página
@@ -133,7 +157,8 @@ export const usePWAUpdate = (): PWAUpdateHook => {
       }
     } catch (error) {
       console.error('Erro ao atualizar service worker:', error);
-      // Em caso de erro, apenas recarrega a página
+      // Em caso de erro, reseta o estado e recarrega a página
+      setNeedRefresh(false);
       window.location.reload();
     }
   };

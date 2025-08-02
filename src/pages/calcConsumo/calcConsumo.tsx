@@ -21,6 +21,7 @@ import {
 
 // Styles
 // Removido import duplicado do design-system
+import './CalcConsumo.css';
 
 const TabelaConsumo = () => {
     // Estados
