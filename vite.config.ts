@@ -51,6 +51,9 @@ export default defineConfig({
     },
     VitePWA({
       registerType: 'autoUpdate',
+      injectManifest: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}']
+      },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
         cleanupOutdatedCaches: true,
@@ -75,39 +78,11 @@ export default defineConfig({
         'assets/icons/apple-touch-icon.png',
         'assets/icons/icon_192.png',
         'assets/icons/icon_512.png',
+        'assets/icons/sv_192x192.png'
       ],
-      manifest: {
-        name: 'Supervia App',
-        short_name: 'Supervia',
-        description: 'Aplicativo para cálculos de pintura e sinalização viária.',
-        theme_color: '#282c34',
-        background_color: '#282c34',
-        display: 'standalone',
-        scope: '/SuperviaApp/',
-        start_url: '/SuperviaApp/',
-        orientation: 'portrait',
-        icons: [
-          {
-            src: 'assets/icons/favicon.png',
-            sizes: '52x52',
-            type: 'image/png'
-          },
-          {
-            src: 'assets/icons/apple-touch-icon.png',
-            sizes: '192x192',
-            type: 'image/png'
-          },
-          {
-            src: 'assets/icons/icon_512.png',
-            sizes: '512x512',
-            type: 'image/png'
-          },
-          {
-            src: 'assets/icons/icon_192.png',
-            sizes: '192x192',
-            type: 'image/png'
-          }
-        ]
+      useCredentials: true,
+      devOptions: {
+        enabled: true
       }
     })
   ],
