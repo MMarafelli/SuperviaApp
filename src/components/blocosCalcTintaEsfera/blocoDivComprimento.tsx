@@ -1,6 +1,5 @@
 import React from 'react';
 import { SVInputField, SVSelectField, SVButton } from '../ui';
-import { ResultDisplay } from '../calculation/CalculationComponents';
 import '../../design-system/styles/index.css';
 
 interface OpcaoSelect {
@@ -83,34 +82,56 @@ const BlocoDivCompVariavel: React.FC<BlocoDivVariavelProps> = ({
                     type="number"
                 />
                 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <div className="sv-field-group">
                     <label className="sv-label">Resultado (m²)</label>
-                    <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '0.75rem',
-                        padding: '0.75rem',
-                        background: '#f8fafc',
-                        borderRadius: '8px',
-                        border: '1px solid #e5e7eb',
-                        minHeight: '60px'
-                    }}>
-                        <ResultDisplay
-                            label=""
-                            value={valorZ}
-                            unit="m²"
-                            editable={editavel}
-                            onEdit={(newValue) => onChange('Z', newValue)}
-                            actionButton={
-                                <SVButton
-                                    variant={editavel ? "success" : "info"}
-                                    size="sm"
-                                    onClick={onEditToggle}
-                                >
-                                    {editavel ? "🔒 Bloquear" : "✏️ Editar"}
-                                </SVButton>
-                            }
+                    <div className="sv-input-container">
+                        <input 
+                            className="sv-input"
+                            value={`${valorZ} m²`}
+                            readOnly
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                paddingRight: '80px' // Espaço para o botão
+                            }}
                         />
+                        <div style={{
+                            position: 'absolute',
+                            right: '8px',
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                            zIndex: 1
+                        }}>
+                            <SVButton
+                                variant={editavel ? "success" : "info"}
+                                size="sm"
+                                onClick={onEditToggle}
+                            >
+                                {editavel ? "🔒 Bloquear" : "✏️ Editar"}
+                            </SVButton>
+                        </div>
+                        {editavel && (
+                            <input
+                                type="text"
+                                value={valorZ}
+                                onChange={(e) => onChange('Z', e.target.value)}
+                                style={{
+                                    position: 'absolute',
+                                    left: '0',
+                                    right: '80px',
+                                    top: '0',
+                                    bottom: '0',
+                                    border: 'none',
+                                    padding: '15.87px 16.1px',
+                                    background: 'transparent',
+                                    fontSize: '18.5px',
+                                    fontWeight: '400',
+                                    color: '#111827',
+                                    outline: 'none',
+                                    zIndex: 2
+                                }}
+                            />
+                        )}
                     </div>
                 </div>
                 

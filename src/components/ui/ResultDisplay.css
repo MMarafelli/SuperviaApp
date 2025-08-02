@@ -229,8 +229,8 @@
 @media (max-width: 767px) {
     .result-edit input,
     .result-display input {
-        font-size: 10.35px !important; /* Força mesma fonte dos outros inputs */
-        padding: 3px 5px !important; /* Força mesmo padding dos outros inputs */
+        font-size: 12px !important; /* Força mesma fonte dos outros inputs */
+        padding: 15px 5px !important;
         height: 1.5rem !important; /* Força mesma altura dos outros inputs */
         min-height: 1.5rem !important;
         max-height: 1.5rem !important;
@@ -242,7 +242,7 @@
     
     .result-label,
     .result-display label {
-        font-size: 11.5px !important; /* Força mesma fonte dos outros labels */
+        font-size: 12px !important; /* Força mesma fonte dos outros labels */
         margin-bottom: 2px !important;
         line-height: 1.3 !important;
     }

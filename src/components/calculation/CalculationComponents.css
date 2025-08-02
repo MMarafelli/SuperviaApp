@@ -241,8 +241,8 @@
     .calculation-section .field-group input,
     .calculation-section .sv-select,
     .calculation-section select {
-        font-size: 10.35px !important; /* 9px + 15% = 10.35px */
-        padding: 3px 5px !important; /* MANTIDO - sem mudança vertical */
+        font-size: 12px !important; /* 10.35px + 15% = 11.9px */
+        padding: 15px 5px !important;
         height: 1.5rem !important; /* REVERTIDO - volta ao original */
         min-height: 1.5rem !important;
         line-height: 1.2 !important;
@@ -250,7 +250,7 @@
     
     .calculation-section .sv-label,
     .calculation-section label {
-        font-size: 11.5px !important; /* 10px + 15% = 11.5px */
+        font-size: 12px !important; /* 10px + 15% = 11.5px */
         margin-bottom: 2px !important;
     }
     

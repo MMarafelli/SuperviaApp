@@ -42,9 +42,6 @@
   color: #374151 !important;
 }
 
-/* ===== LAYOUT DOS GRUPOS (BORDOS) - AGORA PADRONIZADO ===== */
-/* Removido classes customizadas - usando calculation-section padrão */
-
 /* ===== FORÇAR FUNDO BRANCO NOS INPUTS ===== */
 .calc-tinta-container .sv-input,
 .calc-tinta-container .sv-select,
@@ -57,33 +54,14 @@
   color: #374151 !important;
   border: 1.5px solid #d1d5db !important;
   border-radius: 8px !important;
-  padding: 0.75rem 1rem !important;
+  padding: 0.8625rem 1.15rem !important;
   display: block !important;
   width: 100% !important;
   visibility: visible !important;
   opacity: 1 !important;
   height: auto !important;
   min-height: 40px !important;
-  font-size: 1rem !important;
-}
-
-/* ===== MOBILE OVERRIDES - ULTRA COMPACTO ===== */
-@media (max-width: 767px) {
-  .calc-tinta-container .sv-input,
-  .calc-tinta-container .sv-select,
-  .calc-tinta-container input,
-  .calc-tinta-container select,
-  .calc-tinta-container input[type="text"],
-  .calc-tinta-container input[type="number"],
-  .calc-tinta-container input[type="date"] {
-    padding: 3px 5px !important;
-    font-size: 9px !important;
-    min-height: 1.5rem !important;
-    height: 1.5rem !important;
-    border-radius: 2px !important;
-    border-width: 1px !important;
-    line-height: 1.1 !important;
-  }
+  font-size: 1.15rem !important;
 }
 
 .calc-tinta-container .sv-input::placeholder,
@@ -116,7 +94,6 @@
   display: flex !important;
   flex-direction: column !important;
   width: 100% !important;
-  margin-bottom: 1rem !important;
 }
 
 /* ===== FORÇA MÁXIMA: MANTÉM FUNDO BRANCO NOS CARDS ===== */
@@ -137,12 +114,6 @@
   background-color: #f8fafc !important;
   color: #374151 !important;
 }
-
-/* ===== TÍTULOS PADRONIZADOS - AGORA USANDO calculation-section-title ===== */
-/* Removido estilos customizados para tituloDaDivBloco */
-
-/* ===== CAMPOS PADRONIZADOS - USANDO DESIGN SYSTEM ===== */
-/* Removido estilos customizados para field-inline e classes específicas */
 
 /* ===== CONTAINER DE RESULTADO ===== */
 .calc-tinta-container .resultado-input-container {
@@ -201,9 +172,6 @@
   flex-shrink: 0 !important;
 }
 
-/* ===== RESULTADO PADRONIZADO - USANDO DESIGN SYSTEM ===== */
-/* Removido estilos customizados para .bloco - agora usando estrutura padrão */
-
 /* ===== OVERRIDE COMPLETO DO RESULT DISPLAY ===== */
 .calc-tinta-container .result-display {
   margin: 0 !important;
@@ -237,7 +205,7 @@
   font-weight: 600 !important;
   border: none !important;
   padding: 0 !important;
-  font-size: 1rem !important;
+  font-size: 1.15rem !important;
 }
 
 .calc-tinta-container .result-display .result-action {
@@ -252,30 +220,6 @@
   display: block;
 }
 
-/* ===== RESPONSIVIDADE TABLET SIMPLIFICADA ===== */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .calc-tinta-container {
-    padding: 1rem;
-  }
-  
-  .calc-tinta-container .calculation-section {
-    border-radius: 10px;
-    padding: 1.25rem;
-  }
-}
-
-/* ===== RESPONSIVIDADE MOBILE SIMPLIFICADA ===== */
-@media (max-width: 767px) {
-  .calc-tinta-container {
-    padding: 0.75rem;
-  }
-  
-  .calc-tinta-container .calculation-section {
-    border-radius: 8px;
-    padding: 1rem;
-  }
-}
-
 /* ===== GRID RESPONSIVO PARA INFORMAÇÕES DO PROJETO ===== */
 .calc-tinta-container .sv-grid {
   display: grid;
@@ -286,16 +230,6 @@
   gap: 1rem;
 }
 
-/* RESPONSIVIDADE MOBILE - Gap adequado para legibilidade */
-@media (max-width: 767px) {
-  .calc-tinta-container .sv-grid {
-    gap: 0.75rem;
-  }
-  .calc-tinta-container .sv-gap-4 {
-    gap: 0.75rem;
-  }
-}
-
 .calc-tinta-container .sv-grid-cols-1 {
   grid-template-columns: 1fr;
 }
@@ -303,13 +237,6 @@
 @media (min-width: 768px) {
   .calc-tinta-container .md\:sv-grid-cols-2 {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* RESPONSIVIDADE TABLET - Gap para melhor legibilidade */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .calc-tinta-container .sv-grid {
-    gap: 1rem;
   }
 }
 
@@ -353,19 +280,6 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* RESPONSIVIDADE PARA BOTÕES - Simples e eficaz */
-@media (max-width: 767px) {
-  .calc-tinta-container .action-buttons {
-    gap: 0.5rem;
-    padding: 0 0.25rem;
-  }
-  
-  .calc-tinta-container .modern-button {
-    padding: 0.6rem 0.8rem;
-    font-size: 0.8rem;
-  }
-}
-
 /* ===== LEVANTAMENTO ===== */
 .calc-tinta-container .levantamento-container {
   background: #fff;
@@ -398,4 +312,76 @@
   height: 1px;
   background: #e5e7eb;
   margin-top: 1rem;
+}
+
+/* ===== RESPONSIVIDADE TABLET ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .calc-tinta-container {
+    padding: 1rem;
+  }
+  
+  .calc-tinta-container .calculation-section {
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+  
+  .calc-tinta-container .sv-grid {
+    gap: 1rem;
+  }
+}
+
+/* ===== RESPONSIVIDADE MOBILE - CONSOLIDADA ===== */
+@media (max-width: 767px) {
+  /* Container principal */
+  .calc-tinta-container {
+    padding: 0.75rem;
+  }
+  
+  /* Cards e seções */
+  .calc-tinta-container .calculation-section {
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  
+  /* Grid system */
+  .calc-tinta-container .sv-grid {
+    gap: 0.75rem;
+  }
+  .calc-tinta-container .sv-gap-4 {
+    gap: 0.75rem;
+  }
+  
+  /* Inputs e selects - TAMANHO AUMENTADO EM 15% */
+  .calc-tinta-container .sv-input,
+  .calc-tinta-container .sv-select,
+  .calc-tinta-container input,
+  .calc-tinta-container select,
+  .calc-tinta-container input[type="text"],
+  .calc-tinta-container input[type="number"],
+  .calc-tinta-container input[type="date"],
+  body .calc-tinta-container input[type="text"],
+  body .calc-tinta-container input[type="number"], 
+  body .calc-tinta-container input[type="date"],
+  body .calc-tinta-container select,
+  body .calc-tinta-container .sv-input,
+  body .calc-tinta-container .sv-select {
+    padding: 3.45px 5.75px !important; /* 3px + 15% = 3.45px, 5px + 15% = 5.75px */
+    font-size: 11.9px !important; /* 10.35px + 15% = 11.9px */
+    min-height: 1.5rem !important;
+    height: 1.5rem !important;
+    border-radius: 2px !important;
+    border-width: 1px !important;
+    line-height: 1.1 !important;
+  }
+  
+  /* Botões de ação */
+  .calc-tinta-container .action-buttons {
+    gap: 0.5rem;
+    padding: 0 0.25rem;
+  }
+  
+  .calc-tinta-container .modern-button {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+  }
 }

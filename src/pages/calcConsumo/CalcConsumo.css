@@ -15,8 +15,8 @@
     input,
     textarea,
     select {
-        font-size: 10.35px !important; /* 9px + 15% = 10.35px */
-        padding: 3px 5px !important; /* MANTIDO - sem mudança vertical */
+        font-size: 12px !important; /* 9px + 15% = 10.35px */
+        padding: 15px 5px !important; /* MANTIDO - sem mudança vertical */
         height: 1.5rem !important; /* REVERTIDO - volta ao tamanho original */
         min-height: 1.5rem !important;
         max-height: 1.5rem !important;
@@ -52,8 +52,8 @@
     .calculation-section select,
     .sv-select,
     select {
-        font-size: 10.35px !important; /* 9px + 15% = 10.35px */
-        padding: 3px 5px !important; /* MANTIDO - sem mudança vertical */
+        font-size: 12px !important; /* 9px + 15% = 10.35px */
+        padding: 15px 5px !important; /* MANTIDO - sem mudança vertical */
         height: 1.5rem !important; /* REVERTIDO - volta ao tamanho original */
         min-height: 1.5rem !important;
         max-height: 1.5rem !important;
