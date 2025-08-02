@@ -20,9 +20,7 @@ function MainLayout() {
     <div id="base">
       <Header></Header>
       <div id="content">
-        <div style={{ position: "fixed", top: 0, right: 0 }}>
-          {navigation.state !== "idle" && <LoadingScreen></LoadingScreen>}
-        </div>
+        {navigation.state !== "idle" && <LoadingScreen></LoadingScreen>}
         <Outlet />
       </div>
       <NavBar></NavBar>

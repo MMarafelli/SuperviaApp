@@ -1,37 +1,324 @@
-  .logoLoader {
-    -webkit-animation: flickerAnimation 1s infinite;
-    -moz-animation: flickerAnimation 1s infinite;
-    -o-animation: flickerAnimation 1s infinite;
-    animation: flickerAnimation 1s infinite;
-    margin: auto;
-    size: 30px;
-  }
+/* ===== LOADING SCREEN MODERNO ===== */
 
-  .divLoader {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+}
 
-  @keyframes flickerAnimation {
-    0%   { opacity:1; }
-    50%  { opacity:0; }
-    100% { opacity:1; }
+.loading-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-content {
+  text-align: center;
+  z-index: 10;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* ===== LOGO E ANIMAÇÕES ===== */
+
+.logo-container {
+  position: relative;
+  margin-bottom: 2rem;
+  display: inline-block;
+}
+
+.logo-loading {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  filter: drop-shadow(0 8px 32px rgba(255, 204, 41, 0.3));
+  animation: logoFloat 3s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+}
+
+.logo-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border: 2px solid rgba(255, 204, 41, 0.3);
+  border-radius: 30px;
+  animation: pulseBorder 2s ease-in-out infinite;
+}
+
+/* ===== TEXTO ===== */
+
+.loading-text {
+  margin-bottom: 2.5rem;
+}
+
+.loading-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 0.5px;
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+.loading-subtitle {
+  font-size: 1rem;
+  color: #94a3b8;
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+}
+
+/* ===== BARRA DE PROGRESSO ===== */
+
+.progress-container {
+  margin-bottom: 2rem;
+}
+
+.progress-bar {
+  width: 250px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  margin: 0 auto 1rem auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+  background-size: 200% 100%;
+  border-radius: 2px;
+  animation: progressFill 2s ease-in-out infinite, gradientMove 3s linear infinite;
+}
+
+.loading-message {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  margin: 0;
+  animation: messageFade 2s ease-in-out infinite;
+}
+
+/* ===== SPINNER ===== */
+
+.spinner-container {
+  margin-top: 1.5rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid #ffcc29;
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: spin 1s linear infinite;
+}
+
+/* ===== EFEITOS DE FUNDO ===== */
+
+.loading-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(255, 204, 41, 0.1) 0%, transparent 70%);
+  animation: float 6s ease-in-out infinite;
+}
+
+.bg-circle-1 {
+  width: 300px;
+  height: 300px;
+  top: -150px;
+  left: -150px;
+  animation-delay: 0s;
+}
+
+.bg-circle-2 {
+  width: 200px;
+  height: 200px;
+  bottom: -100px;
+  right: -100px;
+  animation-delay: 2s;
+}
+
+.bg-circle-3 {
+  width: 150px;
+  height: 150px;
+  top: 50%;
+  right: -75px;
+  animation-delay: 4s;
+}
+
+/* ===== ANIMAÇÕES ===== */
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  @-o-keyframes flickerAnimation{
-    0%   { opacity:1; }
-    50%  { opacity:0; }
-    100% { opacity:1; }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
-  @-moz-keyframes flickerAnimation{
-    0%   { opacity:1; }
-    50%  { opacity:0; }
-    100% { opacity:1; }
+}
+
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
   }
-  @-webkit-keyframes flickerAnimation{
-    0%   { opacity:1; }
-    50%  { opacity:0; }
-    100% { opacity:1; }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
   }
+}
+
+@keyframes pulseBorder {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes textGlow {
+  0% {
+    text-shadow: 0 0 20px rgba(255, 204, 41, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 30px rgba(255, 204, 41, 0.8), 0 0 40px rgba(255, 204, 41, 0.3);
+  }
+}
+
+@keyframes progressFill {
+  0% {
+    width: 0%;
+  }
+  50% {
+    width: 70%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes messageFade {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+    opacity: 0.1;
+  }
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+@media (max-width: 768px) {
+  .loading-title {
+    font-size: 1.5rem;
+  }
+  
+  .loading-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .logo-loading {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .logo-pulse {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .progress-bar {
+    width: 200px;
+  }
+  
+  .bg-circle-1 {
+    width: 200px;
+    height: 200px;
+    top: -100px;
+    left: -100px;
+  }
+  
+  .bg-circle-2 {
+    width: 150px;
+    height: 150px;
+    bottom: -75px;
+    right: -75px;
+  }
+}
+
+@media (max-width: 480px) {
+  .progress-bar {
+    width: 150px;
+  }
+  
+  .loading-title {
+    font-size: 1.3rem;
+  }
+  
+  .logo-loading {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .logo-pulse {
+    width: 75px;
+    height: 75px;
+  }
+}

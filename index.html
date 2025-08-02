@@ -33,7 +33,195 @@
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <!-- Tela de Splash Inicial -->
+    <div id="initial-splash" style="
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      overflow: hidden;
+    ">
+      <div style="text-align: center; animation: fadeInUp 0.8s ease-out;">
+        <!-- Logo -->
+        <div style="position: relative; margin-bottom: 2rem; display: inline-block;">
+          <img 
+            src="/assets/icons/favicon.png" 
+            alt="SuperVia App" 
+            style="
+              width: 80px;
+              height: 80px;
+              border-radius: 20px;
+              filter: drop-shadow(0 8px 32px rgba(255, 204, 41, 0.3));
+              animation: logoFloat 3s ease-in-out infinite;
+              position: relative;
+              z-index: 2;
+            "
+          />
+          <div style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            border: 2px solid rgba(255, 204, 41, 0.3);
+            border-radius: 30px;
+            animation: pulseBorder 2s ease-in-out infinite;
+          "></div>
+        </div>
+        
+        <!-- Texto -->
+        <div style="margin-bottom: 2.5rem;">
+          <h2 style="
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 0 0 0.5rem 0;
+            letter-spacing: 0.5px;
+            animation: textGlow 2s ease-in-out infinite alternate;
+          ">SuperVia App</h2>
+          <p style="
+            font-size: 1rem;
+            color: #94a3b8;
+            margin: 0;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+          ">Engenharia & Sinalização</p>
+        </div>
+        
+        <!-- Barra de Progresso -->
+        <div style="margin-bottom: 2rem;">
+          <div style="
+            width: 250px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin: 0 auto 1rem auto;
+            overflow: hidden;
+            position: relative;
+          ">
+            <div style="
+              height: 100%;
+              background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+              background-size: 200% 100%;
+              border-radius: 2px;
+              animation: progressFill 2s ease-in-out infinite, gradientMove 3s linear infinite;
+            "></div>
+          </div>
+          <p style="
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            margin: 0;
+            animation: messageFade 2s ease-in-out infinite;
+          ">Inicializando...</p>
+        </div>
+        
+        <!-- Spinner -->
+        <div style="
+          width: 40px;
+          height: 40px;
+          border: 3px solid rgba(255, 255, 255, 0.1);
+          border-top: 3px solid #ffcc29;
+          border-radius: 50%;
+          margin: 0 auto;
+          animation: spin 1s linear infinite;
+        "></div>
+      </div>
+      
+      <!-- Efeitos de Fundo -->
+      <div style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      ">
+        <div style="
+          position: absolute;
+          width: 300px;
+          height: 300px;
+          top: -150px;
+          left: -150px;
+          border-radius: 50%;
+          background: radial-gradient(circle at center, rgba(255, 204, 41, 0.1) 0%, transparent 70%);
+          animation: float 6s ease-in-out infinite;
+        "></div>
+        <div style="
+          position: absolute;
+          width: 200px;
+          height: 200px;
+          bottom: -100px;
+          right: -100px;
+          border-radius: 50%;
+          background: radial-gradient(circle at center, rgba(255, 204, 41, 0.1) 0%, transparent 70%);
+          animation: float 6s ease-in-out infinite 2s;
+        "></div>
+      </div>
+    </div>
+  </div>
+  
+  <style>
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
+    }
+    
+    @keyframes pulseBorder {
+      0% { transform: translate(-50%, -50%) scale(0.8); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0; }
+    }
+    
+    @keyframes textGlow {
+      0% { text-shadow: 0 0 20px rgba(255, 204, 41, 0.5); }
+      100% { text-shadow: 0 0 30px rgba(255, 204, 41, 0.8), 0 0 40px rgba(255, 204, 41, 0.3); }
+    }
+    
+    @keyframes progressFill {
+      0% { width: 0%; }
+      50% { width: 70%; }
+      100% { width: 100%; }
+    }
+    
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    
+    @keyframes messageFade {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) scale(1); opacity: 0.3; }
+      50% { transform: translateY(-20px) scale(1.1); opacity: 0.1; }
+    }
+    
+    @media (max-width: 768px) {
+      #initial-splash img { width: 60px; height: 60px; }
+      #initial-splash h2 { font-size: 1.5rem; }
+      #initial-splash p { font-size: 0.9rem; }
+      #initial-splash div[style*="width: 250px"] { width: 200px !important; }
+    }
+  </style>
   <script>
     // Detecção básica de tema
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
