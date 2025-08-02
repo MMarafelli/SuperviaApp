@@ -1,4 +1,4 @@
-const CACHE_NAME = 'supervia-v1.0.5';
+const CACHE_NAME = 'supervia-v1.0.6';
 const urlsToCache = [
   '/',
   '/SuperviaApp/',
@@ -50,6 +50,11 @@ self.addEventListener('activate', (event) => {
 
 // Fetch event - serve from cache, fallback to network
 self.addEventListener('fetch', (event) => {
+  // Evita loop de fallback para recursos já em fallback
+  if (event.request.url.includes('fallback') || event.request.url.includes('data:image/svg')) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
@@ -70,16 +75,26 @@ self.addEventListener('fetch', (event) => {
           caches.open(CACHE_NAME)
             .then((cache) => {
               cache.put(event.request, responseToCache);
+            })
+            .catch((error) => {
+              console.debug('SW: Cache put error:', error);
             });
 
           return response;
         });
       })
       .catch(() => {
-        // Fallback page for offline navigation
-        if (event.request.destination === 'document') {
-          return caches.match('/SuperviaApp/');
+        // Fallback apenas para documentos HTML e apenas se não for já um fallback
+        if (event.request.destination === 'document' && !event.request.url.includes('/SuperviaApp/')) {
+          return caches.match('/SuperviaApp/').catch(() => {
+            // Se nem o fallback estiver em cache, retorna uma resposta básica
+            return new Response('<!DOCTYPE html><html><head><title>SuperVia App</title></head><body><h1>SuperVia App</h1><p>Aplicação offline</p></body></html>', {
+              headers: { 'Content-Type': 'text/html' }
+            });
+          });
         }
+        // Para outros recursos (imagens, CSS, JS), retorna erro
+        return new Response('Resource not available offline', { status: 404 });
       })
   );
 });
