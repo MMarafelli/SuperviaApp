@@ -2,6 +2,7 @@
 .update-notification-position {
   /* Desktop - posição normal */
   bottom: 1rem;
+  z-index: 99999 !important; /* Força ficar acima de tudo, incluindo navbar */
 }
 
 /* Mobile - acima da barra de navegação */

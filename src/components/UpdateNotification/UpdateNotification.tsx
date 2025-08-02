@@ -48,7 +48,7 @@ const UpdateNotification: React.FC = () => {
   }
 
   return (
-    <div className="fixed left-4 right-4 z-50 max-w-md mx-auto update-notification-position">
+    <div className="fixed left-4 right-4 max-w-md mx-auto update-notification-position" style={{zIndex: 99999}}>
       <div className="bg-blue-600 text-white p-4 rounded-lg shadow-lg border border-blue-500">
         <div className="flex items-start space-x-3">
           <div className="flex-shrink-0">

@@ -5,6 +5,23 @@
     gap: 0.125rem;
     width: 100%;
     box-sizing: border-box;
+    margin-bottom: 1rem; /* Espaçamento padrão entre campos */
+}
+
+/* RESPONSIVIDADE TABLET */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .sv-field-group {
+        margin-bottom: 0.75rem; /* Espaçamento adequado para tablet */
+        gap: 0.125rem;
+    }
+}
+
+/* RESPONSIVIDADE MOBILE - Campos com espaçamento melhorado */
+@media (max-width: 767px) {
+    .sv-field-group {
+        margin-bottom: 0.75rem; /* Melhor espaçamento para mobile */
+        gap: 0.125rem; /* Gap razoável */
+    }
 }
 
 .sv-label {
@@ -19,13 +36,24 @@
     text-overflow: ellipsis;
 }
 
-/* RESPONSIVIDADE MOBILE - Labels ainda menores */
-@media (max-width: 768px) {
+/* RESPONSIVIDADE TABLET */
+@media (min-width: 768px) and (max-width: 1023px) {
     .sv-label {
-        font-size: 0.75rem;
-        margin-top: 0.0625rem;
-        margin-bottom: 0.0625rem;
+        font-size: 0.8rem;
+        margin-top: 0.125rem;
+        margin-bottom: 0.125rem;
+        line-height: 1.2;
+    }
+}
+
+/* RESPONSIVIDADE MOBILE - Labels com tamanho legível */
+@media (max-width: 767px) {
+    .sv-label {
+        font-size: 0.75rem; /* Tamanho legível */
+        margin-top: 0.125rem; /* Espaçamento adequado */
+        margin-bottom: 0.125rem; /* Espaçamento adequado */
         max-width: 100%;
+        line-height: 1.2;
     }
 }
 
@@ -53,15 +81,27 @@
     box-sizing: border-box;
 }
 
-/* RESPONSIVIDADE MOBILE - Inputs compactos mas funcionais */
-@media (max-width: 768px) {
+/* RESPONSIVIDADE TABLET */
+@media (min-width: 768px) and (max-width: 1023px) {
     .sv-input {
-        padding: 6px 8px;
-        font-size: 12px;
-        min-height: 36px;
-        max-height: 36px;
-        height: 36px;
+        padding: 8px 10px;
+        font-size: 13px;
+        min-height: 2.5rem;
+        max-height: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+/* RESPONSIVIDADE MOBILE - Inputs com tamanho adequado */
+@media (max-width: 767px) {
+    .sv-input {
+        padding: 8px 10px; /* Padding adequado */
+        font-size: 12px; /* Tamanho legível */
+        min-height: 2.25rem; /* Altura adequada */
+        max-height: 2.25rem;
+        height: 2.25rem;
         border-width: 1px;
+        border-radius: 4px; /* Bordas menores */
     }
 }
 
@@ -173,17 +213,32 @@
     padding-right: 40px;
 }
 
-/* RESPONSIVIDADE MOBILE - Selects compactos */
-@media (max-width: 768px) {
+/* RESPONSIVIDADE TABLET */
+@media (min-width: 768px) and (max-width: 1023px) {
     .sv-select {
-        padding: 6px 8px;
-        font-size: 12px;
-        min-height: 36px;
-        max-height: 36px;
-        height: 36px;
-        padding-right: 28px;
+        padding: 8px 10px;
+        font-size: 13px;
+        min-height: 2.5rem;
+        max-height: 2.5rem;
+        height: 2.5rem;
+        padding-right: 30px;
+        background-position: right 8px center;
+    }
+}
+
+/* RESPONSIVIDADE MOBILE - Selects com tamanho adequado */
+@media (max-width: 767px) {
+    .sv-select {
+        padding: 8px 10px; /* Padding adequado */
+        font-size: 12px; /* Tamanho legível */
+        min-height: 2.25rem; /* Altura adequada */
+        max-height: 2.25rem;
+        height: 2.25rem;
+        padding-right: 28px; /* Espaço para seta */
         background-position: right 6px center;
         border-width: 1px;
+        border-radius: 4px; /* Bordas menores */
+        background-size: 0.875rem; /* Ícone menor */
     }
 }
 
@@ -244,6 +299,27 @@
     color: #111827;
     resize: vertical;
     min-height: 80px;
+}
+
+/* RESPONSIVIDADE TABLET */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .sv-textarea {
+        padding: 8px 10px;
+        font-size: 13px;
+        min-height: 70px;
+        border-radius: 6px;
+    }
+}
+
+/* RESPONSIVIDADE MOBILE - Textarea com tamanho adequado */
+@media (max-width: 767px) {
+    .sv-textarea {
+        padding: 8px 10px; /* Padding adequado */
+        font-size: 12px; /* Tamanho legível */
+        min-height: 65px; /* Altura adequada */
+        border-width: 1px;
+        border-radius: 4px;
+    }
 }
 
 .sv-textarea:focus {

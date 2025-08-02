@@ -66,6 +66,20 @@
   padding: 0 var(--sv-space-4);
 }
 
+/* RESPONSIVIDADE TABLET */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .sv-container {
+    padding: 0 1rem; /* Espaçamento adequado para tablet */
+  }
+}
+
+/* RESPONSIVIDADE MOBILE - Container com espaçamento mínimo */
+@media (max-width: 767px) {
+  .sv-container {
+    padding: 0 0.75rem; /* 12px - espaçamento mínimo mas legível */
+  }
+}
+
 /* Grid responsivo */
 .sv-grid {
   display: grid;

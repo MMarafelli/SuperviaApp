@@ -23,20 +23,18 @@
   background: #fff !important;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
   border: 1px solid #e5e7eb;
 }
 
-/* ===== ESPAÇAMENTO ESPECÍFICO PARA O ÚLTIMO CARD ===== */
-.calc-tinta-container .calculation-section:last-child {
-  margin-bottom: 1.25rem;
+/* ===== ESPAÇAMENTO ÚNICO E CONSISTENTE ===== */
+.calc-tinta-container > * {
+  margin-bottom: 1rem;
 }
 
-/* ===== ESPAÇAMENTO CONSISTENTE ENTRE TODOS OS ELEMENTOS ===== */
-.calc-tinta-container > .calculation-section,
-.calc-tinta-container > .divsSegundoQuadroTelaPequena,
-.calc-tinta-container > .levantamento-container {
-  margin-bottom: 1.25rem;
+/* ===== REMOVE MARGIN DO ÚLTIMO ELEMENTO ===== */
+.calc-tinta-container > *:last-child {
+  margin-bottom: 0;
 }
 
 .calc-tinta-container .calculation-section-content {
@@ -48,7 +46,7 @@
 .calc-tinta-container .divsSegundoQuadroTelaPequena {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
   padding: 0;
   background: transparent;
 }
@@ -360,29 +358,53 @@
   display: block;
 }
 
-/* ===== RESPONSIVIDADE MOBILE ===== */
-@media (max-width: 768px) {
+/* ===== RESPONSIVIDADE TABLET ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
   .calc-tinta-container {
-    padding: 0.5rem;
+    padding: 1rem;
   }
   
-  /* Título segue regra global em backgrounds.css */
+  .calc-tinta-container .calculation-section,
+  .calc-tinta-container .divsSegundoQuadroTelaPequena,
+  .calc-tinta-container .levantamento-container {
+    border-radius: 10px;
+  }
   
-  .calc-tinta-container .calculation-section {
-    margin-bottom: 1.25rem;
+  .calc-tinta-container .divsSegundoQuadroTelaPequena {
+    gap: 1rem;
+  }
+  
+  .calc-tinta-container .divsSegundoQuadroTelaPequena .grupo {
+    padding: 1.25rem;
+    border-radius: 10px;
+  }
+  
+  .calc-tinta-container .tituloDaDivBloco {
+    margin: -1.25rem -1.25rem 0.75rem -1.25rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+}
+
+/* ===== RESPONSIVIDADE MOBILE ===== */
+@media (max-width: 767px) {
+  .calc-tinta-container {
+    padding: 0.75rem;
+  }
+  
+  .calc-tinta-container .calculation-section,
+  .calc-tinta-container .divsSegundoQuadroTelaPequena,
+  .calc-tinta-container .levantamento-container {
     border-radius: 8px;
   }
   
   .calc-tinta-container .divsSegundoQuadroTelaPequena {
-    gap: 1.25rem;
+    gap: 1rem;
   }
   
   .calc-tinta-container .divsSegundoQuadroTelaPequena .grupo {
     padding: 1rem;
     border-radius: 8px;
-    width: 100%;
-    max-width: none;
-    box-sizing: border-box;
   }
   
   .calc-tinta-container .tituloDaDivBloco {
@@ -398,6 +420,13 @@
   gap: 1rem;
 }
 
+/* RESPONSIVIDADE MOBILE - Gap adequado para legibilidade */
+@media (max-width: 767px) {
+  .calc-tinta-container .sv-grid {
+    gap: 0.75rem;
+  }
+}
+
 .calc-tinta-container .sv-grid-cols-1 {
   grid-template-columns: 1fr;
 }
@@ -405,6 +434,13 @@
 @media (min-width: 768px) {
   .calc-tinta-container .md\:sv-grid-cols-2 {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* RESPONSIVIDADE TABLET - Gap para melhor legibilidade */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .calc-tinta-container .sv-grid {
+    gap: 1rem;
   }
 }
 
@@ -417,27 +453,48 @@
 /* ===== BOTÕES DE AÇÃO ===== */
 .calc-tinta-container .action-buttons {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
   justify-content: center;
   align-items: center;
   margin-top: 1rem;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
 }
 
 .calc-tinta-container .modern-button {
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1rem;
   border-radius: 8px;
   font-weight: 500;
   border: none;
   cursor: pointer;
   transition: all 0.2s;
-  min-width: 100px;
-  flex-shrink: 0;
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  min-width: 0;
+  flex: 0 1 auto;
 }
 
 .calc-tinta-container .modern-button:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* RESPONSIVIDADE PARA BOTÕES - Simples e eficaz */
+@media (max-width: 767px) {
+  .calc-tinta-container .action-buttons {
+    gap: 0.5rem;
+    padding: 0 0.25rem;
+  }
+  
+  .calc-tinta-container .modern-button {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+  }
 }
 
 /* ===== LEVANTAMENTO ===== */

@@ -1,12 +1,14 @@
-const CACHE_NAME = 'supervia-v1.0.0';
+const CACHE_NAME = 'supervia-v1.0.5';
 const urlsToCache = [
   '/',
   '/SuperviaApp/',
   '/assets/icons/favicon.png',
+  '/assets/icons/logo.png',
   '/assets/icons/logo-sv.png',
   '/assets/icons/apple-touch-icon.png',
   '/assets/icons/icon_192.png',
   '/assets/icons/icon_512.png',
+  '/assets/icons/192x192.png',
   '/manifest.json'
 ];
 
