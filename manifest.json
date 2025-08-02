@@ -1,22 +1,18 @@
 {
   "name": "SuperVia App - Engenharia & Sinalização",
   "short_name": "SuperVia",
-  "description": "Aplicativo para cálculos de pintura e sinalização viária.",
+  "description": "Aplicativo profissional para cálculos de pintura e sinalização viária com ferramentas avançadas de engenharia.",
   "theme_color": "#ffcc29",
-  "background_color": "#1e293b",
+  "background_color": "#ffffff",
   "display": "standalone",
   "id": "/SuperviaApp/",
   "scope": "/SuperviaApp/",
   "start_url": "/SuperviaApp/",
   "orientation": "portrait-primary",
-  "categories": ["productivity", "business"],
+  "categories": ["productivity", "business", "utilities"],
+  "lang": "pt-BR",
+  "dir": "ltr",
   "icons": [
-    {
-      "src": "assets/icons/favicon.png",
-      "sizes": "52x52",
-      "type": "image/png",
-      "purpose": "any"
-    },
     {
       "src": "assets/icons/sv_48x48.png",
       "sizes": "48x48",
@@ -42,16 +38,10 @@
       "purpose": "any"
     },
     {
-      "src": "assets/icons/icon_192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
       "src": "assets/icons/sv_192x192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "assets/icons/icon_512.png",
@@ -60,10 +50,26 @@
       "purpose": "any"
     },
     {
+      "src": "assets/icons/sv_192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/icons/icon_512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
       "src": "assets/icons/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png",
       "purpose": "any"
     }
-  ]
+  ],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  }
 }
