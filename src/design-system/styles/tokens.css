@@ -27,8 +27,8 @@
   --sv-gray-600: #4e4e4e;
   --sv-gray-800: #333333;
   
-  /* ===== BACKGROUNDS DA APLICAÇÃO - CORRIGINDO O PROBLEMA ===== */
-  --sv-bg-primary: #1e3a8a; /* Azul marinho principal */
+  /* ===== BACKGROUNDS DA APLICAÇÃO - AZUL MARINHO ESCURO ===== */
+  --sv-bg-primary: #0f172a; /* Azul marinho escuro mais elegante */
   --sv-bg-primary-dark: #1e40af;
   --sv-bg-primary-light: #3b82f6;
   --sv-bg-secondary: #374151;

@@ -190,8 +190,8 @@ body,
 /* Estilos específicos que não se encaixam no design system geral */
 
 .calc-tinta-container {
-  /* Mantém o background dark específico deste componente */
-  background-color: rgb(4, 1, 34);
+  /* Usa o background definido no design system */
+  background-color: var(--sv-bg-primary);
 }
 
 /* ===== RESPONSIVE UTILITIES LEGACY ===== */

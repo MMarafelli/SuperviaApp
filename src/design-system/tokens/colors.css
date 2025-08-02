@@ -55,7 +55,6 @@
   --sv-black: #000000;
   
   /* ===== BACKGROUND COLORS ===== */
-  --sv-bg-primary: var(--sv-gray-50);
   --sv-bg-secondary: var(--sv-white);
   --sv-bg-muted: var(--sv-gray-100);
   --sv-bg-dark: var(--sv-gray-900);

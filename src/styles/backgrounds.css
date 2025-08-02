@@ -5,13 +5,13 @@
  * para evitar conflitos entre páginas
  */
 
-/* ===== FORÇA GLOBAL: FUNDO AZUL MARINHO ===== */
+/* ===== FORÇA GLOBAL: FUNDO AZUL MARINHO ESCURO ===== */
 html {
-  background-color: #1e3a8a !important;
+  background-color: #0f172a !important;
 }
 
 body {
-  background-color: #1e3a8a !important;
+  background-color: #0f172a !important;
   color: #ffffff !important;
   margin: 0;
   padding: 0;
@@ -20,7 +20,7 @@ body {
 }
 
 #root {
-  background-color: #1e3a8a !important;
+  background-color: #0f172a !important;
   min-height: 100vh;
 }
 
@@ -92,13 +92,13 @@ button,
 }
 
 #root {
-  background-color: #1e3a8a !important;
+  background-color: #0f172a !important;
   min-height: 100vh;
 }
 
 /* ===== LAYOUT PRINCIPAL ===== */
 #base {
-  background-color: #1e3a8a !important;
+  background-color: #0f172a !important;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -106,7 +106,7 @@ button,
 }
 
 #content {
-  background-color: #1e3a8a !important;
+  background-color: #0f172a !important;
   flex: 1;
   min-height: calc(100vh - 140px); /* Header + Footer */
   margin-top: 80px; /* Altura exata do header */
@@ -173,7 +173,7 @@ button,
 .about-page,
 [data-page],
 .route-container {
-  background-color: #1e3a8a !important;
+  background-color: #0f172a !important;
   color: #ffffff !important;
   padding: 1rem;
   box-sizing: border-box;
@@ -518,5 +518,5 @@ h1:not(.page-title):not(.sv-page-title) {
 .home-container,
 .calc-container,
 .page-wrapper {
-  background-color: #1e3a8a !important;
+  background-color: #0f172a !important;
 }

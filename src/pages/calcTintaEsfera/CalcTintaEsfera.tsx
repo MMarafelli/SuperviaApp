@@ -13,7 +13,9 @@ import {
 } from '../../components/ui';
 import {
     CalculationSection,
-    ResultDisplay
+    ResultDisplay,
+    ResponsiveCalculationLayout,
+    CalculationTable
 } from '../../components/calculation/CalculationComponents';import BlocoDivCompVariavel from '../../components/blocosCalcTintaEsfera/blocoDivComprimento'
 import BlocoDivUnidVariavel from '../../components/blocosCalcTintaEsfera/blocoDivUnidade'
 
@@ -505,6 +507,363 @@ const Formulario = () => {
         const corDoSVG = theme == 'dark' ? 'white' : 'hsl(300, 1%, 30%)'; */
 
     // ---------------------------------------------------------------------------------------------
+    // Layouts Responsivos
+    // ---------------------------------------------------------------------------------------------
+    
+    // Converter opções para o formato do SVSelectField
+    const larguraOptions = opcoesDeSelectLargura.map(opcao => ({ value: opcao.valor, label: opcao.label }));
+    const tachaOptions = opcoesDeSelectTacha.map(opcao => ({ value: opcao.valor, label: opcao.label }));
+    
+    // Layout Mobile - Mantém os grupos separados como está
+    const MobileLayout = useCallback(() => (
+        <div className='divsSegundoQuadroTelaPequena'>
+            <BlocoDivCompVariavel
+                label="Bordo Direito"
+                valorX={campos.direitoX}
+                valorY={campos.direitoY}
+                valorZ={campos.direitoZ}
+                tipoTacha={campos.direitoTipoTacha}
+                qtdTacha={campos.direitoQtdTacha}
+                opcoesLargura={opcoesDeSelectLargura}
+                opcoesTacha={opcoesDeSelectTacha}
+                onChange={(campo, valor) => handleChange(`${'direito' + campo as keyof typeof campos}`, valor)}
+                onClickIcon={() => limparCampos('direito')}
+                editavel={editarDireito}
+                onEditToggle={handleEditDireito}
+            />
+
+            <BlocoDivCompVariavel
+                label="Bordo Esquerdo"
+                valorX={campos.esquerdoX}
+                valorY={campos.esquerdoY}
+                valorZ={campos.esquerdoZ}
+                tipoTacha={campos.esquerdoTipoTacha}
+                qtdTacha={campos.esquerdoQtdTacha}
+                opcoesLargura={opcoesDeSelectLargura}
+                opcoesTacha={opcoesDeSelectTacha}
+                onChange={(campo, valor) => handleChange(`${'esquerdo' + campo as keyof typeof campos}`, valor)}
+                onClickIcon={() => limparCampos('esquerdo')}
+                editavel={editarEsquerdo}
+                onEditToggle={handleEditEsquerdo}
+            />
+
+            <BlocoDivUnidVariavel
+                label="Eixo 4x12"
+                valorX={campos.eixo4x12X}
+                valorY={campos.eixo4x12Y}
+                valorZ={campos.eixo4x12Z}
+                tipoTacha={campos.eixo4x12TipoTacha}
+                qtdTacha={campos.eixo4x12QtdTacha}
+                opcoesLargura={opcoesDeSelectLargura}
+                opcoesTacha={opcoesDeSelectTacha}
+                onChange={(campo, valor) => handleChange(`${'eixo4x12' + campo as keyof typeof campos}`, valor)}
+                onClickIcon={() => limparCampos('eixo4x12')}
+                editavel={editarFundo}
+                onEditToggle={handleEditFundo}
+            />
+
+            <BlocoDivUnidVariavel
+                label="2x2"
+                valorX={campos.eixo2x2X}
+                valorY={campos.eixo2x2Y}
+                valorZ={campos.eixo2x2Z}
+                tipoTacha={campos.eixo2x2TipoTacha}
+                qtdTacha={campos.eixo2x2QtdTacha}
+                opcoesLargura={opcoesDeSelectLargura}
+                opcoesTacha={opcoesDeSelectTacha}
+                onChange={(campo, valor) => handleChange(`${'eixo2x2' + campo as keyof typeof campos}`, valor)}
+                onClickIcon={() => limparCampos('eixo2x2')}
+                editavel={editarFundo}
+                onEditToggle={handleEditFundo}
+            />
+
+            <BlocoDivCompVariavel
+                label="Alça"
+                valorX={campos.alcaX}
+                valorY={campos.alcaY}
+                valorZ={campos.alcaZ}
+                tipoTacha={campos.alcaTipoTacha}
+                qtdTacha={campos.alcaQtdTacha}
+                opcoesLargura={opcoesDeSelectLargura}
+                opcoesTacha={opcoesDeSelectTacha}
+                onChange={(campo, valor) => handleChange(`${'alca' + campo as keyof typeof campos}`, valor)}
+                onClickIcon={() => limparCampos('alca')}
+                editavel={editarAlca}
+                onEditToggle={handleEditAlca}
+            />
+        </div>
+    ), [campos, opcoesDeSelectLargura, opcoesDeSelectTacha, editarDireito, editarEsquerdo, editarFundo, editarAlca, handleChange, limparCampos, handleEditDireito, handleEditEsquerdo, handleEditFundo, handleEditAlca]);
+
+    // Layout Desktop - Tabela organizada
+    const DesktopLayout = useCallback(() => (
+        <CalculationSection 
+            title="📐 Medições de Pintura"
+        >
+            <CalculationTable 
+                headers={[
+                    'Material', 
+                    'Largura (m)', 
+                    'Comprimento/Unid.', 
+                    'Resultado (m²)', 
+                    'Tipo Tacha',
+                    'Qtd. Tacha'
+                ]}
+            >
+                <tr>
+                    <td style={{ 
+                        fontWeight: 'var(--sv-font-medium)',
+                        width: '15%'
+                    }}>
+                        🛣️ Bordo Direito
+                    </td>
+                    <td style={{ width: '15%' }}>
+                        <SVSelectField
+                            value={campos.direitoX}
+                            onChange={(e) => handleChange('direitoX', e.target.value)}
+                            options={larguraOptions}
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '15%' }}>
+                        <SVInputField
+                            value={campos.direitoY}
+                            onChange={(e) => handleChange('direitoY', e.target.value)}
+                            variant="calculation"
+                            placeholder="metros"
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '15%' }}>
+                        <SVInputField
+                            value={campos.direitoZ}
+                            readOnly
+                            variant="result"
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '20%' }}>
+                        <SVSelectField
+                            value={campos.direitoTipoTacha}
+                            onChange={(e) => handleChange('direitoTipoTacha', e.target.value)}
+                            options={tachaOptions}
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '20%' }}>
+                        <SVInputField
+                            value={campos.direitoQtdTacha}
+                            onChange={(e) => handleChange('direitoQtdTacha', e.target.value)}
+                            variant="calculation"
+                            placeholder="quantidade"
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td style={{ 
+                        fontWeight: 'var(--sv-font-medium)',
+                        width: '15%'
+                    }}>
+                        🛣️ Bordo Esquerdo
+                    </td>
+                    <td style={{ width: '15%' }}>
+                        <SVSelectField
+                            value={campos.esquerdoX}
+                            onChange={(e) => handleChange('esquerdoX', e.target.value)}
+                            options={larguraOptions}
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '15%' }}>
+                        <SVInputField
+                            value={campos.esquerdoY}
+                            onChange={(e) => handleChange('esquerdoY', e.target.value)}
+                            variant="calculation"
+                            placeholder="metros"
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '15%' }}>
+                        <SVInputField
+                            value={campos.esquerdoZ}
+                            readOnly
+                            variant="result"
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '20%' }}>
+                        <SVSelectField
+                            value={campos.esquerdoTipoTacha}
+                            onChange={(e) => handleChange('esquerdoTipoTacha', e.target.value)}
+                            options={tachaOptions}
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '20%' }}>
+                        <SVInputField
+                            value={campos.esquerdoQtdTacha}
+                            onChange={(e) => handleChange('esquerdoQtdTacha', e.target.value)}
+                            variant="calculation"
+                            placeholder="quantidade"
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td style={{ 
+                        fontWeight: 'var(--sv-font-medium)',
+                        width: '15%'
+                    }}>
+                        ⚡ Eixo 4x12
+                    </td>
+                    <td style={{ width: '15%' }}>
+                        <SVSelectField
+                            value={campos.eixo4x12X}
+                            onChange={(e) => handleChange('eixo4x12X', e.target.value)}
+                            options={larguraOptions}
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '15%' }}>
+                        <SVInputField
+                            value={campos.eixo4x12Y}
+                            onChange={(e) => handleChange('eixo4x12Y', e.target.value)}
+                            variant="calculation"
+                            placeholder="unidades"
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '15%' }}>
+                        <SVInputField
+                            value={campos.eixo4x12Z}
+                            readOnly
+                            variant="result"
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '20%' }}>
+                        <SVSelectField
+                            value={campos.eixo4x12TipoTacha}
+                            onChange={(e) => handleChange('eixo4x12TipoTacha', e.target.value)}
+                            options={tachaOptions}
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '20%' }}>
+                        <SVInputField
+                            value={campos.eixo4x12QtdTacha}
+                            onChange={(e) => handleChange('eixo4x12QtdTacha', e.target.value)}
+                            variant="calculation"
+                            placeholder="quantidade"
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td style={{ 
+                        fontWeight: 'var(--sv-font-medium)',
+                        width: '15%'
+                    }}>
+                        ⚡ 2x2
+                    </td>
+                    <td style={{ width: '15%' }}>
+                        <SVSelectField
+                            value={campos.eixo2x2X}
+                            onChange={(e) => handleChange('eixo2x2X', e.target.value)}
+                            options={larguraOptions}
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '15%' }}>
+                        <SVInputField
+                            value={campos.eixo2x2Y}
+                            onChange={(e) => handleChange('eixo2x2Y', e.target.value)}
+                            variant="calculation"
+                            placeholder="unidades"
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '15%' }}>
+                        <SVInputField
+                            value={campos.eixo2x2Z}
+                            readOnly
+                            variant="result"
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '20%' }}>
+                        <SVSelectField
+                            value={campos.eixo2x2TipoTacha}
+                            onChange={(e) => handleChange('eixo2x2TipoTacha', e.target.value)}
+                            options={tachaOptions}
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '20%' }}>
+                        <SVInputField
+                            value={campos.eixo2x2QtdTacha}
+                            onChange={(e) => handleChange('eixo2x2QtdTacha', e.target.value)}
+                            variant="calculation"
+                            placeholder="quantidade"
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td style={{ 
+                        fontWeight: 'var(--sv-font-medium)',
+                        width: '15%'
+                    }}>
+                        🔗 Alça
+                    </td>
+                    <td style={{ width: '15%' }}>
+                        <SVSelectField
+                            value={campos.alcaX}
+                            onChange={(e) => handleChange('alcaX', e.target.value)}
+                            options={larguraOptions}
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '15%' }}>
+                        <SVInputField
+                            value={campos.alcaY}
+                            onChange={(e) => handleChange('alcaY', e.target.value)}
+                            variant="calculation"
+                            placeholder="metros"
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '15%' }}>
+                        <SVInputField
+                            value={campos.alcaZ}
+                            readOnly
+                            variant="result"
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '20%' }}>
+                        <SVSelectField
+                            value={campos.alcaTipoTacha}
+                            onChange={(e) => handleChange('alcaTipoTacha', e.target.value)}
+                            options={tachaOptions}
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                    <td style={{ width: '20%' }}>
+                        <SVInputField
+                            value={campos.alcaQtdTacha}
+                            onChange={(e) => handleChange('alcaQtdTacha', e.target.value)}
+                            variant="calculation"
+                            placeholder="quantidade"
+                            containerClassName="!mb-0"
+                        />
+                    </td>
+                </tr>
+            </CalculationTable>
+        </CalculationSection>
+    ), [campos, larguraOptions, tachaOptions, handleChange]);
+
+    // ---------------------------------------------------------------------------------------------
     // Pagina
     // ---------------------------------------------------------------------------------------------
 
@@ -601,83 +960,12 @@ const Formulario = () => {
                 </div>
             </CalculationSection>
 
-            {/* Segundo quadro - Layout simples para match com a imagem */}
-            <div className='divsSegundoQuadroTelaPequena'>
-                        <BlocoDivCompVariavel
-                            label="Bordo Direito"
-                            valorX={campos.direitoX}
-                            valorY={campos.direitoY}
-                            valorZ={campos.direitoZ}
-                            tipoTacha={campos.direitoTipoTacha}
-                            qtdTacha={campos.direitoQtdTacha}
-                            opcoesLargura={opcoesDeSelectLargura}
-                            opcoesTacha={opcoesDeSelectTacha}
-                            onChange={(campo, valor) => handleChange(`${'direito' + campo as keyof typeof campos}`, valor)}
-                            onClickIcon={() => limparCampos('direito')}
-                            editavel={editarDireito}
-                            onEditToggle={handleEditDireito}
-                        />
-
-                        <BlocoDivCompVariavel
-                            label="Bordo Esquerdo"
-                            valorX={campos.esquerdoX}
-                            valorY={campos.esquerdoY}
-                            valorZ={campos.esquerdoZ}
-                            tipoTacha={campos.esquerdoTipoTacha}
-                            qtdTacha={campos.esquerdoQtdTacha}
-                            opcoesLargura={opcoesDeSelectLargura}
-                            opcoesTacha={opcoesDeSelectTacha}
-                            onChange={(campo, valor) => handleChange(`${'esquerdo' + campo as keyof typeof campos}`, valor)}
-                            onClickIcon={() => limparCampos('esquerdo')}
-                            editavel={editarEsquerdo}
-                            onEditToggle={handleEditEsquerdo}
-                        />
-
-                        <BlocoDivUnidVariavel
-                            label="Eixo 4x12"
-                            valorX={campos.eixo4x12X}
-                            valorY={campos.eixo4x12Y}
-                            valorZ={campos.eixo4x12Z}
-                            tipoTacha={campos.eixo4x12TipoTacha}
-                            qtdTacha={campos.eixo4x12QtdTacha}
-                            opcoesLargura={opcoesDeSelectLargura}
-                            opcoesTacha={opcoesDeSelectTacha}
-                            onChange={(campo, valor) => handleChange(`${'eixo4x12' + campo as keyof typeof campos}`, valor)}
-                            onClickIcon={() => limparCampos('eixo4x12')}
-                            editavel={editarFundo}
-                            onEditToggle={handleEditFundo}
-                        />
-
-                        <BlocoDivUnidVariavel
-                            label="2x2"
-                            valorX={campos.eixo2x2X}
-                            valorY={campos.eixo2x2Y}
-                            valorZ={campos.eixo2x2Z}
-                            tipoTacha={campos.eixo2x2TipoTacha}
-                            qtdTacha={campos.eixo2x2QtdTacha}
-                            opcoesLargura={opcoesDeSelectLargura}
-                            opcoesTacha={opcoesDeSelectTacha}
-                            onChange={(campo, valor) => handleChange(`${'eixo2x2' + campo as keyof typeof campos}`, valor)}
-                            onClickIcon={() => limparCampos('eixo2x2')}
-                            editavel={editarFundo}
-                            onEditToggle={handleEditFundo}
-                        />
-
-                        <BlocoDivCompVariavel
-                            label="Alça"
-                            valorX={campos.alcaX}
-                            valorY={campos.alcaY}
-                            valorZ={campos.alcaZ}
-                            tipoTacha={campos.alcaTipoTacha}
-                            qtdTacha={campos.alcaQtdTacha}
-                            opcoesLargura={opcoesDeSelectLargura}
-                            opcoesTacha={opcoesDeSelectTacha}
-                            onChange={(campo, valor) => handleChange(`${'alca' + campo as keyof typeof campos}`, valor)}
-                            onClickIcon={() => limparCampos('alca')}
-                            editavel={editarAlca}
-                            onEditToggle={handleEditAlca}
-                        />
-                    </div>
+            {/* Segundo quadro - Layout Responsivo */}
+            <ResponsiveCalculationLayout
+                mobileLayout={MobileLayout()}
+                desktopLayout={DesktopLayout()}
+                breakpoint={900}
+            />
 
             {/* Terceiro quadro - Migrado para Design System */}
             <CalculationSection 

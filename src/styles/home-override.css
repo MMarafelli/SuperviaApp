@@ -3,27 +3,27 @@
  * Força o background azul marinho na página inicial
  */
 
-/* Force background azul marinho na estrutura principal */
+/* Force background azul marinho escuro na estrutura principal */
 html {
-  background-color: #1e3a8a !important;
+  background-color: #0f172a !important;
 }
 
 body {
-  background-color: #1e3a8a !important;
+  background-color: #0f172a !important;
   color: #ffffff !important;
 }
 
 #root {
-  background-color: #1e3a8a !important;
+  background-color: #0f172a !important;
   min-height: 100vh !important;
 }
 
 #base {
-  background-color: #1e3a8a !important;
+  background-color: #0f172a !important;
 }
 
 #content {
-  background-color: #1e3a8a !important;
+  background-color: #0f172a !important;
 }
 
 /* Específico para a página HOME */
@@ -31,7 +31,7 @@ body {
 .home-page,
 [data-testid="home"],
 div[data-route="/SuperviaApp"] {
-  background-color: #1e3a8a !important;
+  background-color: #0f172a !important;
   color: #ffffff !important;
   min-height: 100vh !important;
 }
