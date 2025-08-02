@@ -332,6 +332,7 @@
 @media (min-width: 768px) and (max-width: 1023px) {
     .sv-field-group {
         gap: 0.125rem;
+        margin-bottom: 0.75rem; /* Espaçamento reduzido */
     }
     
     .sv-label {
@@ -372,6 +373,7 @@
     /* Field Groups */
     .sv-field-group {
         gap: 0.125rem;
+        margin: 0.5rem 0; /* Espaçamento reduzido */
     }
     
     /* Labels - ULTRA COMPACTOS */
