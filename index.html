@@ -56,7 +56,7 @@
               <!-- Logo com animação -->
               <div class="logo-container">
                 <img src="assets/icons/favicon.png" class="logo-loading" alt="SuperVia App" 
-                     onerror="this.src='./assets/icons/favicon.png'; this.onerror=function(){this.src='/assets/icons/logo.png'; this.onerror=function(){this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiByeD0iMjAiIGZpbGw9IiNmZmNjMjkiLz4KPHN2ZyB4PSIyMCIgeT0iMjAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjMGYxNzJhIj4KPHA+U1Y8L3A+CjwvZz4KPC9zdmc+'; console.log('Using fallback SVG');}};" />
+                     onerror="this.src='./assets/icons/favicon.png'; this.onerror=function(){this.src='/assets/icons/logo.png'; this.onerror=function(){this.style.display='none'; var fallbackDiv = document.createElement('div'); fallbackDiv.innerHTML='SV'; fallbackDiv.style.cssText='width:80px;height:80px;background:#ffcc29;border-radius:20px;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:24px;color:#0f172a;'; this.parentNode.insertBefore(fallbackDiv, this); console.log('Using fallback div');}};" />
                 <div class="logo-pulse"></div>
               </div>
               
