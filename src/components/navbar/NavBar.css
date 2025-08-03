@@ -1,7 +1,7 @@
 .navbar {
   position: fixed;
   transition: width 600ms ease;
-  background-color: hsl(0, 0%, 17%);
+  background-color: var(--sv-bg-navigation);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   overflow: hidden;
   z-index: 100;

@@ -275,10 +275,10 @@ const TabelaConsumo = () => {
     ), [campos, editarEsferas, editarTinta, handleChange, handleEditEsfera, handleEditTinta]);
 
     return (
-        <div className="sv-container sv-fade-in">
+        <div className="sv-calc-container sv-fade-in">
             <PageTitle title="CÁLCULO DE CONSUMO" />
             
-            <div className="calc-tinta-container">
+            {/* Container com padrão exato da home */}
                 <ResponsiveCalculationLayout
                     mobileLayout={MobileLayout()}
                     desktopLayout={DesktopLayout()}
@@ -316,7 +316,6 @@ const TabelaConsumo = () => {
                         </SVButton>
                     </ActionButtons>
                 </CalculationSection>
-            </div>
         </div>
     );
 };

@@ -10,6 +10,7 @@
     width: 100%;
     box-sizing: border-box;
     display: block;
+    overflow: visible;
 }
 
 /* RESPONSIVIDADE MOBILE */
@@ -28,6 +29,7 @@
     min-height: 2.5rem;
     width: 100%;
     flex-wrap: nowrap;
+    overflow: visible;
 }
 
 /* RESPONSIVIDADE MOBILE */
@@ -36,12 +38,14 @@
         gap: var(--sv-space-2);
         min-height: auto;
         flex-direction: row;
-        align-items: stretch;
-        flex-wrap: wrap;
+        align-items: center;
+        flex-wrap: nowrap;
+        overflow: visible;
     }
     
     .result-row .result-label {
-        flex-basis: 100%;
+        min-width: 80px;
+        flex-shrink: 0;
         order: 1;
     }
     
@@ -49,6 +53,7 @@
         flex: 1;
         order: 2;
         margin-right: var(--sv-space-2);
+        text-align: left;
     }
     
     .result-row .result-edit {
@@ -61,6 +66,7 @@
         flex-shrink: 0;
         order: 3;
         align-self: center;
+        min-width: auto;
     }
     
     .result-row .result-action button,
@@ -131,6 +137,9 @@
     flex-shrink: 0;
     display: flex;
     gap: var(--sv-space-1);
+    align-items: center;
+    justify-content: flex-end;
+    min-width: fit-content;
 }
 
 .result-action button,

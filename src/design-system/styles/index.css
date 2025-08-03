@@ -1,111 +1,176 @@
 /**
- * DESIGN SYSTEM - CSS ENTRY POINT
+ * =====================================================================
+ * DESIGN SYSTEM - CSS ENTRY POINT REFATORADO (FASE 1)
+ * =====================================================================
  * 
- * Imports devem estar no topo, antes de qualquer outro CSS
+ * REFATORAÇÃO COMPLETA:
+ * ✅ Eliminados !important desnecessários
+ * ✅ Ativados imports essenciais do design system
+ * ✅ Utilizando tokens do design system (--sv-*)
+ * ✅ Especificidade natural otimizada
+ * 
+ * FUNCIONALIDADES PRESERVADAS:
+ * - Componentes calculation-section como cards brancos
+ * - Estilização de formulários integrada
+ * - Sistema de cards e layout mantido
  */
 
 /* ===== 1. TOKENS E VARIÁVEIS ===== */
 @import './tokens.css';
 
 /* ===== 2. BASE E RESET ===== */
-/* @import './base.css'; */
+@import './base.css';
 
-/* ===== 3. ANIMAÇÕES ===== */
-/* @import '../../styles/animations.css'; */
+/* ===== 3. UTILITÁRIOS E HELPERS ===== */
+@import './utilities.css';
 
 /* ===== 4. COMPONENTES BASE ===== */
 @import '../components/base/PageTitle/PageTitle.css';
-/* @import '../components/base/Section/Section.css'; */
+@import '../components/layout.css';
+@import '../components/forms.css';
+@import '../components/button.css';
 
-/* ===== 4. COMPONENTES ESPECÍFICOS ===== */
-/* @import '../components/forms.css'; */
-/* @import '../components/calculation-layouts.css'; */
-/* @import '../components/layout.css'; */
-/* @import '../components/button.css'; */
+/* ===== 5. COMPONENTES ESPECÍFICOS ===== */
+@import '../components/calculation-layouts.css';
 
-/* ===== 5. UTILITÁRIOS E HELPERS ===== */
-/* @import './utilities.css'; */
-
-/* ===== ESTILOS INLINE (TEMPORÁRIOS) ===== */
-
-/* FORÇA calculation-section COMO CARD BRANCO */
+/* ===== COMPONENTES CALCULATION SECTION ===== */
+/* Cards brancos para seções de cálculo usando tokens do design system */
+/* PADRÃO UNIFICADO baseado na home page */
 .calculation-section {
-  background: #fff !important;
-  border-radius: 14px !important;
-  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.07) !important;
-  padding: 1.5rem 1.5rem !important;
-  border: 1.5px solid #e5e7eb !important;
-  margin-bottom: 2rem !important;
+  background: var(--sv-white);
+  border-radius: var(--sv-radius-xl); /* 16px - padrão da home */
+  box-shadow: var(--shadow-md);
+  padding: var(--sv-space-5); /* 20px - padrão da home */
+  border: var(--sv-border-1) solid var(--sv-border-light);
+  margin-bottom: var(--sv-space-6); /* 24px - gap da home */
 }
 
-/* QUADROS/CARDS - FUNDO BRANCO, SOMBRA LEVE, BORDAS ARREDONDADAS, ESPAÇAMENTO INTERNO */
+/* ===== SISTEMA DE CARDS ===== */
+/* Quadros/Cards - fundo branco, sombra leve, bordas arredondadas */
+/* PADRÃO UNIFICADO baseado na home page */
 .sv-card {
-  background: #fff !important;
-  border-radius: 14px !important;
-  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.07);
-  padding: 1.5rem 1.5rem !important;
-  border: 1.5px solid #e5e7eb;
-  margin-bottom: 2rem;
+  background: var(--sv-white);
+  border-radius: var(--sv-radius-xl); /* 16px - padrão da home */
+  box-shadow: var(--shadow-md);
+  padding: var(--sv-space-5); /* 20px - padrão da home */
+  border: var(--sv-border-1) solid var(--sv-border-light);
+  margin-bottom: var(--sv-space-6); /* 24px - gap da home */
 }
 
 .sv-card-content {
-  padding: 0 !important;
+  padding: 0;
 }
 
-/* Espaçamento entre cards/quadro */
-.sv-page-container {
-  background: none !important;
-  padding: 2rem 0 2rem 0;
-  max-width: 900px;
+/* ===== CONTAINER DE PÁGINA ===== */
+/* PADRÃO OTIMIZADO BASEADO NA HOME PAGE para todas as páginas */
+.sv-page-container,
+.sv-calc-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Gap aumentado para melhor espaçamento */
+  padding: 1rem 1.5rem 2rem; /* Padding exato da home */
+  justify-content: flex-start;
+  max-width: 1200px; /* Max-width exato da home */
   margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
-/* PADRÃO GLOBAL DE FORMULÁRIO - VISUAL CLARO, CLEAN, INTEGRADO AOS CARDS */
+
+/* Responsividade mobile igual à home */
+@media (max-width: 768px) {
+  .sv-page-container,
+  .sv-calc-container {
+    padding: 1rem; /* Mobile padding da home */
+    gap: 1.5rem; /* Gap menor para mobile */
+  }
+}
+
+/* ===== FORMULÁRIOS INTEGRADOS ===== */
+/* Padrão global de formulário - visual claro, clean, integrado aos cards */
 .sv-input,
 .sv-select,
 .sv-textarea {
-  background: #fff !important;
-  border: 1.5px solid #d1d5db !important;
-  border-radius: 8px !important;
-  color: #222;
-  font-size: 1.32rem;
-  padding: 1.32rem 1.44rem !important;
-  box-shadow: none !important;
+  background: var(--sv-white);
+  border: var(--sv-border-1) solid var(--sv-border-light);
+  border-radius: var(--sv-radius-md);
+  color: var(--sv-text-primary);
+  font-size: var(--sv-text-lg);
+  padding: var(--sv-space-4) var(--sv-space-5);
+  box-shadow: none;
   transition: border-color 0.2s, box-shadow 0.2s;
-  outline: none !important;
+  outline: none;
+}
+
+/* ===== RESPONSIVIDADE MOBILE - INPUTS ===== */
+/* MÁXIMA ESPECIFICIDADE PARA GARANTIR APLICAÇÃO */
+@media (max-width: 767px) {
+  /* FIELD GROUPS */
+  body .sv-field-group,
+  body .calc-tinta-container .sv-field-group,
+  body .sv-container .sv-field-group,
+  .sv-calc-container .sv-field-group {
+    margin-bottom: 10px !important; /* 10px conforme especificado */
+    gap: var(--sv-space-1);
+  }
+  
+  /* INPUTS COM MÁXIMA ESPECIFICIDADE */
+  body .sv-input,
+  body .sv-select,
+  body .sv-textarea,
+  body .calc-tinta-container .sv-input,
+  body .calc-tinta-container .sv-select,
+  body .calc-tinta-container input,
+  body .calc-tinta-container select,
+  body .calc-tinta-container input[type="text"],
+  body .calc-tinta-container input[type="number"],
+  body .calc-tinta-container input[type="date"],
+  body .sv-container .sv-input,
+  body .sv-container .calculation-section .sv-input,
+  .sv-calc-container .sv-input,
+  .sv-calc-container input {
+    font-size: 0.75rem !important; /* 12px conforme especificado */
+    padding: 8px 12px !important; /* Padding ajustado para mobile */
+    height: 2rem !important;
+    min-height: 2rem !important;
+    border-radius: var(--sv-radius-sm);
+    line-height: 1.2 !important;
+  }
 }
 
 .sv-input:focus,
 .sv-select:focus,
 .sv-textarea:focus {
-  border-color: #a0aec0 !important;
-  outline: none !important;
-  box-shadow: 0 0 0 2px #e5e7eb;
+  border-color: var(--sv-border-focus);
+  outline: none;
+  box-shadow: var(--shadow-focus);
 }
 
+/* ===== ESTADOS DE FORMULÁRIO ===== */
 .sv-input.sv-valid,
 .sv-select.sv-valid,
 .sv-textarea.sv-valid {
-  border-color: #d1d5db !important;
-  box-shadow: none !important;
+  border-color: var(--sv-border-light);
+  box-shadow: none;
 }
 
 .sv-input.sv-invalid,
 .sv-select.sv-invalid,
 .sv-textarea.sv-invalid {
-  border-color: #e57373 !important;
-  box-shadow: none !important;
+  border-color: var(--sv-error);
+  box-shadow: none;
 }
 
 .sv-input::placeholder,
 .sv-select::placeholder,
 .sv-textarea::placeholder {
-  color: #bdbdbd;
+  color: var(--sv-text-muted);
   opacity: 0.9;
 }
 
+/* ===== LABELS INTEGRADOS ===== */
 .sv-label {
-  color: #222;
-  font-weight: 500;
-  margin-bottom: 0.25rem;
+  color: var(--sv-text-primary);
+  font-weight: var(--sv-font-medium);
+  margin-bottom: var(--sv-space-1);
 }
 

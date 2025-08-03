@@ -84,7 +84,7 @@ const BlocoDivCompVariavel: React.FC<BlocoDivVariavelProps> = ({
                 
                 <div className="sv-field-group">
                     <label className="sv-label">Resultado (m²)</label>
-                    <div className="sv-input-container">
+                    <div className="sv-input-container" style={{ position: 'relative', overflow: 'visible' }}>
                         <input 
                             className="sv-input"
                             value={`${valorZ} m²`}

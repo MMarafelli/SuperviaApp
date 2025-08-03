@@ -35,6 +35,10 @@
   --sv-bg-dark: #111827;
   --sv-bg-light: #f8fafc;
   
+  /* ===== BACKGROUNDS DE NAVEGAÇÃO ===== */
+  --sv-bg-navigation: hsl(0, 0%, 17%); /* Cinza escuro para header e navbar */
+  --sv-bg-navigation-hover: hsl(0, 0%, 25%); /* Estado hover para navegação */
+  
   /* ===== BORDAS ===== */
   --sv-border-light: #e0e0e0;
   --sv-border-medium: #d0d0d0;

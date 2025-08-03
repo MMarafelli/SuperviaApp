@@ -33,13 +33,13 @@
   background: var(--sv-white);
   border-radius: var(--sv-radius-lg);
   box-shadow: var(--shadow-md);
-  margin-bottom: var(--sv-space-4);
   border: var(--sv-border-1) solid var(--sv-border-light);
+  margin-bottom: 0; /* Remove margin, deixa o gap do container controlar */
 }
 
 /* ===== ESPAÇAMENTO PADRONIZADO ===== */
 .calc-tinta-container > * {
-  margin-bottom: var(--sv-space-4);
+  margin-bottom: 0; /* Remove margin, deixa o gap do container controlar */
 }
 
 /* ===== REMOVE MARGIN DO ÚLTIMO ELEMENTO ===== */

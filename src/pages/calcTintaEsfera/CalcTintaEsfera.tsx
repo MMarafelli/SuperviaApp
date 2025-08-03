@@ -868,10 +868,11 @@ const Formulario = () => {
     // ---------------------------------------------------------------------------------------------
 
     return (
-        <div className="sv-container sv-fade-in">
+        <div className="sv-calc-container sv-fade-in">
             <PageTitle title="PINTURA AUTOMÁTICA" />
             
-            <div className="calc-tinta-container">{/* Conteúdo dos formulários */}
+            {/* Container com padrão exato da home */}
+            {/* Conteúdo dos formulários */}
 
             {/* Primeiro quadro - Migrado para Design System */}
             <CalculationSection 
@@ -1065,8 +1066,7 @@ const Formulario = () => {
                     </button>
                 </div>
             </CalculationSection>
-            </div>{/* fim calc-tinta-container */}
-        </div >
+        </div>
     );
 };
 
