@@ -9,7 +9,7 @@ export async function loader() {
 
 export function Component() {
   return (
-    <div className="sv-container sv-fade-in">
+    <div className="sv-calc-container sv-fade-in">
       <PageTitle title="SOBRE O SUPERVIA APP" />
       
       <div className="calc-tinta-container">

@@ -1,24 +1,10 @@
 .carousel {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  padding: 1rem 1.5rem 2rem;
+  gap: 1.25rem;
   justify-content: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-@media (max-width: 768px) {
-  .carousel {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-  }
-  
-  .card {
-    width: 100%;
-    max-width: 280px;
-  }
+  /* REMOVIDO padding - sv-calc-container já controla */
+  /* REMOVIDO max-width e margin - sv-calc-container já controla */
 }
 
 .card {
@@ -28,7 +14,7 @@
   border-radius: 1rem;
   box-shadow: var(--sv-shadow-md, 0 4px 16px rgba(0, 0, 0, 0.1));
   border: 1px solid var(--sv-border-light, #e5e7eb);
-  padding: 1.25rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -71,6 +57,7 @@
   box-shadow: 0 2px 4px rgba(var(--sv-primary-rgb, 255, 204, 41), 0.2);
   font-size: 0.875rem;
 }
+
 .edit-btn:hover {
   background-color: var(--sv-primary-hover, #ffd952);
   border-color: var(--sv-primary-hover, #ffd952);
@@ -85,6 +72,7 @@
   box-shadow: 0 2px 4px rgba(var(--sv-error-rgb, 239, 68, 68), 0.1);
   font-size: 0.875rem;
 }
+
 .delete-btn:hover {
   background: var(--sv-error, #ef4444);
   color: var(--sv-white, #fff);
@@ -93,42 +81,34 @@
   box-shadow: 0 4px 8px rgba(var(--sv-error-rgb, 239, 68, 68), 0.2);
 }
 
+/* RESPONSIVIDADE MOBILE ÚNICA E LIMPA */
 @media (max-width: 768px) {
   .carousel {
     flex-direction: column;
-    gap: 0.75rem;
-    padding: 0.75rem;
-    overflow-x: hidden;
-    overflow-y: auto;
+    align-items: center;
+    gap: 1rem;
   }
+  
   .card {
     width: 100%;
-    min-width: unset;
     max-width: 100%;
     min-height: 240px;
-    margin: 0;
-    padding: 1rem;
+    padding: 1.25rem;
   }
+  
   .card-content {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
+  
   .card-actions {
-    flex-direction: row;
     justify-content: space-between;
-    width: 100%;
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
+  
   .edit-btn, .delete-btn {
     flex: 1;
     text-align: center;
-    padding: 0.6rem;
-    font-size: 0.75rem;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .card {
-    min-width: 220px;
-    max-width: 260px;
+    padding: 0.75rem;
+    font-size: 0.875rem;
   }
 }

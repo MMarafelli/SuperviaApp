@@ -440,7 +440,7 @@ h1.sv-page-title,
   color: #ffcc29 !important;
   font-size: 1.75rem !important;
   font-weight: 600 !important;
-  margin: 1rem 0 2rem 0 !important;
+  margin: 0 0 2rem 0 !important; /* MARGEM CONSISTENTE FORÇADA */
   padding: 0 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
@@ -457,6 +457,10 @@ h1.sv-page-title,
   text-decoration: none !important;
   line-height: 1.2 !important;
   font-family: inherit !important;
+  /* POSICIONAMENTO ABSOLUTO CONSISTENTE */
+  top: 0 !important;
+  left: 0 !important;
+  transform: none !important;
 }
 
 /* ===== RESPONSIVIDADE MOBILE PARA TÍTULOS - MÁXIMA ESPECIFICIDADE ===== */
@@ -484,7 +488,7 @@ h1.sv-page-title,
   .calc-tinta-container h1.page-title,
   .calc-tinta-container .page-title {
     font-size: 1.25rem !important;
-    margin: 1rem 0 1.5rem 0 !important;
+    margin: 0 0 1.5rem 0 !important; /* MARGEM MOBILE CONSISTENTE FORÇADA */
     letter-spacing: 0.03em !important;
   }
 }

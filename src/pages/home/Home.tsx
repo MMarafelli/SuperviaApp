@@ -89,7 +89,7 @@ const Home = () => {
   };
 
   return (
-    <div className="sv-container sv-fade-in">
+    <div className="sv-calc-container sv-fade-in">
       <PageTitle title="SEUS CÁLCULOS SALVOS" />
       {cards.length === 0 ? (
         <div className="mt-8 text-center text-gray-500 px-4">

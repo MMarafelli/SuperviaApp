@@ -23,9 +23,8 @@
   /* Mantém o background específico deste componente */
   background-color: var(--sv-bg-primary);
   min-height: 100vh;
-  /* REMOVENDO TODO PADDING - deixando o sv-container controlar */
-  max-width: 1200px;
-  margin: 0 auto;
+  /* REMOVENDO QUALQUER INTERFERÊNCIA NO LAYOUT DE CONTAINERS */
+  /* O sv-calc-container que controla tudo agora */
 }
 
 /* ===== LAYOUT DOS CARDS PRINCIPAIS ===== */

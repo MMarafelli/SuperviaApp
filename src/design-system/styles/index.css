@@ -63,8 +63,10 @@
 
 /* ===== CONTAINER DE PÁGINA ===== */
 /* PADRÃO OTIMIZADO BASEADO NA HOME PAGE para todas as páginas */
+/* UNIFICAÇÃO TOTAL - todas as páginas usam sv-calc-container */
 .sv-page-container,
-.sv-calc-container {
+.sv-calc-container,
+.sv-container {
   display: flex;
   flex-direction: column;
   gap: 2rem; /* Gap aumentado para melhor espaçamento */
@@ -74,14 +76,40 @@
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
+  /* GARANTINDO POSICIONAMENTO CONSISTENTE DOS TÍTULOS */
+  position: relative;
+}
+
+/* POSICIONAMENTO DOS TÍTULOS - ESPECIFICIDADE NATURAL */
+.sv-calc-container .page-title,
+.sv-calc-container .sv-page-title,
+.sv-page-container .page-title,
+.sv-page-container .sv-page-title,
+.sv-container .page-title,
+.sv-container .sv-page-title {
+  margin: 0 0 2rem 0;
+  padding: 0;
+  position: relative;
+  display: block;
 }
 
 /* Responsividade mobile igual à home */
 @media (max-width: 768px) {
   .sv-page-container,
-  .sv-calc-container {
-    padding: 1rem; /* Mobile padding da home */
-    gap: 1.5rem; /* Gap menor para mobile */
+  .sv-calc-container,
+  .sv-container {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+  
+  /* TÍTULO MOBILE */
+  .sv-calc-container .page-title,
+  .sv-calc-container .sv-page-title,
+  .sv-page-container .page-title,
+  .sv-page-container .sv-page-title,
+  .sv-container .page-title,
+  .sv-container .sv-page-title {
+    margin: 0 0 1.5rem 0;
   }
 }
 
@@ -101,52 +129,55 @@
   outline: none;
 }
 
-/* ===== RESPONSIVIDADE MOBILE - INPUTS ===== */
-/* MÁXIMA ESPECIFICIDADE PARA GARANTIR APLICAÇÃO */
+/* ===== RESPONSIVIDADE MOBILE CENTRALIZADA ===== */
+/* Toda a responsividade mobile em um único local para evitar conflitos */
 @media (max-width: 767px) {
   /* FIELD GROUPS */
-  body .sv-field-group,
-  body .calc-tinta-container .sv-field-group,
-  body .sv-container .sv-field-group,
+  .sv-field-group,
+  .calc-tinta-container .sv-field-group,
+  .sv-container .sv-field-group,
   .sv-calc-container .sv-field-group {
-    margin-bottom: 10px !important; /* 10px conforme especificado */
+    margin-bottom: 10px;
     gap: var(--sv-space-1);
   }
   
-  /* INPUTS COM MÁXIMA ESPECIFICIDADE */
-  body .sv-input,
-  body .sv-select,
-  body .sv-textarea,
-  body .calc-tinta-container .sv-input,
-  body .calc-tinta-container .sv-select,
-  body .calc-tinta-container input,
-  body .calc-tinta-container select,
-  body .calc-tinta-container input[type="text"],
-  body .calc-tinta-container input[type="number"],
-  body .calc-tinta-container input[type="date"],
-  body .sv-container .sv-input,
-  body .sv-container .calculation-section .sv-input,
+  /* INPUTS - ESPECIFICIDADE NATURAL SEM !important */
+  .sv-input,
+  .sv-select,
+  .sv-textarea,
+  .calc-tinta-container .sv-input,
+  .calc-tinta-container .sv-select,
+  .calc-tinta-container input,
+  .calc-tinta-container select,
+  .calc-tinta-container input[type="text"],
+  .calc-tinta-container input[type="number"],
+  .calc-tinta-container input[type="date"],
+  .sv-container .sv-input,
+  .sv-container .calculation-section .sv-input,
   .sv-calc-container .sv-input,
-  .sv-calc-container input {
-    font-size: 0.75rem !important; /* 12px conforme especificado */
-    padding: 8px 12px !important; /* Padding ajustado para mobile */
-    height: 2rem !important;
-    min-height: 2rem !important;
+  .sv-calc-container input,
+  input,
+  textarea,
+  select {
+    font-size: 0.9rem; /* 12px conforme especificado */
+    padding: 10px 12px;
+    height: 3rem;
+    min-height: 3rem;
     border-radius: var(--sv-radius-sm);
-    line-height: 1.2 !important;
+    line-height: 1.2;
   }
   
-  /* BOTÕES MOBILE - TAMANHO AUMENTADO E HARMÔNICO */
-  body .calc-tinta-container .modern-button,
-  body .action-buttons button,
-  body .sv-btn {
-    padding: 12px 16px !important; /* Padding aumentado para melhor toque */
-    font-size: 0.875rem !important; /* 14px - tamanho legível */
-    min-height: 44px !important; /* Altura padrão iOS para toque */
-    border-radius: 8px !important;
-    font-weight: 500 !important;
-    line-height: 1.2 !important;
-    white-space: nowrap !important; /* Sem quebras de linha */
+  /* BOTÕES MOBILE */
+  .calc-tinta-container .modern-button,
+  .action-buttons button,
+  .sv-btn {
+    padding: 12px 16px;
+    font-size: 0.875rem; /* 14px */
+    min-height: 44px;
+    border-radius: 8px;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
   }
 }
 
