@@ -1,0 +1,386 @@
+/**
+ * ABOUT PAGE - ESTILOS CORRIGIDOS
+ * 
+ * Seguindo exatamente o padrão visual das outras páginas:
+ * - Background azul escuro da aplicação
+ * - Cards brancos com sombra sobre o fundo escuro
+ * - Tokens corretos do design system
+ * - Layout consistente com CalcTintaEsfera
+ */
+
+/* Container principal - seguindo EXATAMENTE o padrão sv-calc-container */
+.aboutContainer {
+  /* Herda estilos do sv-calc-container mas pode adicionar específicos */
+  background-color: var(--sv-bg-primary);
+  min-height: 100vh;
+}
+
+/* Força consistência com o padrão do design system */
+.aboutContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Gap exato igual às outras páginas */
+  padding: 1rem 1.5rem 2rem; /* Padding exato igual às outras páginas */
+  justify-content: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Seções como cards brancos sobre fundo escuro - padrão exato */
+.infoSection,
+.featuresSection,
+.techSection,
+.devSection,
+.pwaSection {
+  background: var(--sv-white);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--sv-border-light);
+  padding: 1.5rem;
+  margin: 0; /* Margin zerado - gap do container controla espaçamento */
+}
+
+/* Informações do App */
+.appInfo {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.logoContainer {
+  flex-shrink: 0;
+}
+
+.logoPlaceholder {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  background: linear-gradient(135deg, var(--sv-primary), var(--sv-primary-hover));
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.appLogo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.appDetails {
+  flex: 1;
+  min-width: 250px;
+}
+
+.appName {
+  color: var(--sv-primary);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 0.02em;
+}
+
+.appDescription {
+  color: var(--sv-text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+.versionInfo {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.version,
+.buildDate {
+  color: var(--sv-text-muted);
+  font-size: 0.875rem;
+  background: var(--sv-gray-100);
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--sv-border-light);
+}
+
+/* Títulos de seção */
+.sectionTitle {
+  color: var(--sv-text-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  border-bottom: 2px solid var(--sv-primary);
+  padding-bottom: 0.5rem;
+}
+
+/* Grid de funcionalidades */
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.featureCard {
+  background: var(--sv-gray-50);
+  border: 1px solid var(--sv-border-light);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.featureCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(255, 204, 41, 0.15);
+  border-color: var(--sv-primary);
+  background: var(--sv-white);
+}
+
+.featureIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.featureTitle {
+  color: var(--sv-text-primary);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+}
+
+.featureDescription {
+  color: var(--sv-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Lista de tecnologias */
+.techList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.techItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--sv-gray-50);
+  border-radius: 6px;
+  border-left: 4px solid var(--sv-primary);
+}
+
+.techName {
+  color: var(--sv-text-primary);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.techDescription {
+  color: var(--sv-text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Informações de desenvolvimento */
+.devInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.devItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--sv-gray-50);
+  border-radius: 6px;
+  border: 1px solid var(--sv-border-light);
+}
+
+.devItem strong {
+  color: var(--sv-text-primary);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.devItem span {
+  color: var(--sv-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Recursos PWA */
+.pwaFeatures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.pwaFeature {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--sv-gray-50);
+  border-radius: 8px;
+  border: 1px solid var(--sv-border-light);
+  transition: all 0.2s ease;
+}
+
+.pwaFeature:hover {
+  background: var(--sv-white);
+  border-color: var(--sv-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(255, 204, 41, 0.1);
+}
+
+.pwaIcon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sv-primary-light);
+  border-radius: 50%;
+}
+
+.pwaContent {
+  flex: 1;
+}
+
+.pwaContent h4 {
+  color: var(--sv-text-primary);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.pwaContent p {
+  color: var(--sv-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsividade seguindo padrão do design system */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem 1rem 1.5rem; /* Padrão mobile do design system */
+    gap: 1.5rem; /* Gap reduzido no mobile */
+  }
+  
+  .infoSection,
+  .featuresSection,
+  .techSection,
+  .devSection,
+  .pwaSection {
+    padding: 1rem; /* Padding interno reduzido no mobile */
+  }
+  
+  .appInfo {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .appDetails {
+    min-width: auto;
+  }
+  
+  .featureGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .techItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .pwaFeatures {
+    grid-template-columns: 1fr;
+  }
+  
+  .versionInfo {
+    justify-content: center;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .container {
+    padding: 0.75rem 0.75rem 1rem; /* Ainda mais compacto no mobile pequeno */
+    gap: 1rem;
+  }
+  
+  .infoSection,
+  .featuresSection,
+  .techSection,
+  .devSection,
+  .pwaSection {
+    padding: 0.75rem;
+  }
+  
+  .appName {
+    font-size: 1.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.125rem;
+  }
+  
+  .featureCard {
+    padding: 1.25rem;
+  }
+  
+  .featureIcon {
+    font-size: 2rem;
+  }
+  
+  .pwaFeature {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  
+  .pwaIcon {
+    font-size: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  .devItem {
+    padding: 0.75rem;
+  }
+}
+
+/* Layout grande para desktop */
+@media (min-width: 1024px) {
+  .container {
+    padding: 1rem 1.5rem 2rem; /* Padding desktop padrão */
+    gap: 2rem;
+  }
+  
+  .featureGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .pwaFeatures {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

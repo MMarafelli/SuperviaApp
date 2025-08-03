@@ -42,7 +42,7 @@ export const FieldGroup: React.FC<FieldGroupProps> = ({
   columns = 1
 }) => {
   const gridClass = columns > 1 ? `sv-grid sv-grid-cols-${columns} sv-gap-4` : '';
-  
+
   return (
     <div className={`field-group ${className}`}>
       {title && <h4 className="field-group-title">{title}</h4>}
@@ -101,31 +101,33 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({
   };
 
   return (
-    <div className={`result-display ${className} ${editable ? 'editable' : ''}`}>
-      <div className="result-row">
-        <span className="result-label">{label}:</span>
-        {shouldShowInput ? (
-          <div className="result-edit">
-            <input
-              type="text"
-              value={editValue}
-              onChange={(e) => setEditValue(e.target.value)}
-              onBlur={actionButton ? handleEditToggle : handleInternalEditToggle}
-              onKeyPress={(e) => e.key === 'Enter' && (actionButton ? handleEditToggle() : handleInternalEditToggle())}
-              autoFocus
-            />
-          </div>
-        ) : (
-          <span className="result-value" onClick={actionButton ? undefined : handleInternalEditToggle}>
-            {value} {unit}
-            {editable && !actionButton && <span className="edit-indicator">✏️</span>}
-          </span>
-        )}
-        {actionButton && (
-          <div className="result-action">
-            {actionButton}
-          </div>
-        )}
+    <div className='sv-field-group'>
+      <div className={`result-display ${className} ${editable ? 'editable' : ''}`}>
+        <div className="result-row">
+          <span className="result-label">{label}:</span>
+          {shouldShowInput ? (
+            <div className="result-edit">
+              <input
+                type="text"
+                value={editValue}
+                onChange={(e) => setEditValue(e.target.value)}
+                onBlur={actionButton ? handleEditToggle : handleInternalEditToggle}
+                onKeyPress={(e) => e.key === 'Enter' && (actionButton ? handleEditToggle() : handleInternalEditToggle())}
+                autoFocus
+              />
+            </div>
+          ) : (
+            <span className="result-value" onClick={actionButton ? undefined : handleInternalEditToggle}>
+              {value} {unit}
+              {editable && !actionButton && <span className="edit-indicator">✏️</span>}
+            </span>
+          )}
+          {actionButton && (
+            <div className="result-action">
+              {actionButton}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -151,10 +153,10 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
   align = 'left',
   children
 }) => {
-  const alignClass = align === 'stretch' ? 'sv-flex sv-flex-col sv-gap-2' : 
-                    align === 'center' ? 'sv-flex sv-justify-center sv-gap-2' :
-                    align === 'right' ? 'sv-flex sv-justify-end sv-gap-2' :
-                    'sv-flex sv-justify-start sv-gap-2';
+  const alignClass = align === 'stretch' ? 'sv-flex sv-flex-col sv-gap-2' :
+    align === 'center' ? 'sv-flex sv-justify-center sv-gap-2' :
+      align === 'right' ? 'sv-flex sv-justify-end sv-gap-2' :
+        'sv-flex sv-justify-start sv-gap-2';
 
   return (
     <div className={`action-buttons ${alignClass} ${className}`}>

@@ -11,7 +11,9 @@
   /* ===== CORES PRIMÁRIAS ===== */
   --sv-primary: #ffcc29;
   --sv-primary-hover: #e6b324;
+  --sv-primary-light: #fff9e6;
   --sv-primary-alpha-10: rgba(255, 204, 41, 0.1);
+  --sv-primary-rgb: 255, 204, 41;
   
   /* ===== CORES DE TEXTO ===== */
   --sv-text-primary: #1a1a1a;
@@ -31,7 +33,7 @@
   --sv-bg-primary: #0f172a; /* Azul marinho escuro mais elegante */
   --sv-bg-primary-dark: #1e40af;
   --sv-bg-primary-light: #3b82f6;
-  --sv-bg-secondary: #374151;
+  --sv-bg-secondary: #f8fafc; /* Cinza claro para cards secundários */
   --sv-bg-dark: #111827;
   --sv-bg-light: #f8fafc;
   
@@ -53,11 +55,18 @@
   --sv-info-hover: #2563eb;
   
   /* ===== ESPAÇAMENTOS ===== */
+  --sv-space-1: 4px;
+  --sv-space-2: 8px;  
+  --sv-space-3: 12px;
+  --sv-space-4: 16px;
+  --sv-space-5: 20px;
+  --sv-space-6: 24px;
   --sv-space-xs: 4px;
   --sv-space-sm: 8px;
   --sv-space-md: 16px;
   --sv-space-lg: 24px;
   --sv-space-xl: 32px;
+  --sv-space-2xl: 48px;
   --sv-space-2xl: 48px;
   
   /* ===== TIPOGRAFIA ===== */
@@ -83,7 +92,14 @@
   --sv-radius-lg: 12px;
   --sv-radius-xl: 16px;
   
+  /* ===== SOMBRAS ===== */
+  --sv-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --sv-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --sv-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --sv-shadow-focus: 0 0 0 3px rgba(255, 204, 41, 0.1);
+  
   /* ===== TRANSIÇÕES ===== */
+  --sv-transition: all 0.2s ease;
   --sv-transition-fast: 150ms;
   --sv-transition-normal: 300ms;
   --sv-transition-slow: 500ms;

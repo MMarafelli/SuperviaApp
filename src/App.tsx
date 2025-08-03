@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       {
         path: "about",
         // Single route in lazy file
-        lazy: () => import("./pages/About"),
+        lazy: () => import("./pages/about"),
       },
       {
         path: "*",

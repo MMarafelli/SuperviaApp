@@ -1,6 +1,5 @@
 import React from 'react';
 import { SVInputField, SVSelectField, SVButton } from '../ui';
-import '../../design-system/styles/index.css';
 
 interface OpcaoSelect {
     valor: string;
