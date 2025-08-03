@@ -135,6 +135,19 @@
     border-radius: var(--sv-radius-sm);
     line-height: 1.2 !important;
   }
+  
+  /* BOTÕES MOBILE - TAMANHO AUMENTADO E HARMÔNICO */
+  body .calc-tinta-container .modern-button,
+  body .action-buttons button,
+  body .sv-btn {
+    padding: 12px 16px !important; /* Padding aumentado para melhor toque */
+    font-size: 0.875rem !important; /* 14px - tamanho legível */
+    min-height: 44px !important; /* Altura padrão iOS para toque */
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important; /* Sem quebras de linha */
+  }
 }
 
 .sv-input:focus,

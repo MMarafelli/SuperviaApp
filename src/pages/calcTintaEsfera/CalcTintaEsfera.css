@@ -275,7 +275,7 @@
 }
 
 .calc-tinta-container .modern-button {
-  padding: 0.75rem 1rem;
+  padding: 12px 20px; /* Padding aumentado para melhor aparência */
   border-radius: 8px;
   font-weight: 500;
   border: none;
@@ -284,10 +284,11 @@
   text-align: center;
   white-space: nowrap;
   box-sizing: border-box;
-  font-size: 0.875rem;
+  font-size: 1rem; /* Tamanho da fonte aumentado */
   line-height: 1.2;
   min-width: 0;
   flex: 0 1 auto;
+  min-height: 48px; /* Altura mínima confortável */
 }
 
 .calc-tinta-container .modern-button:hover {
