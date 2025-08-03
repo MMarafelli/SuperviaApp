@@ -514,7 +514,7 @@ h1:not(.page-title):not(.sv-page-title) {
 }
 
 /* Remove background inherit problemático */
-*:not(.sv-card):not(.calculation-section):not(.form-container):not(.card):not(.modal) {
+*:not(.sv-card):not(.calculation-section):not(.form-container):not(.card):not(.modal):not(.navbar):not(.header):not(.modern-header) {
   background-color: inherit;
 }
 

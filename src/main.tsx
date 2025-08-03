@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 
 // CSS Entry Point - Ordem importante para precedência
-import './styles/backgrounds.css'; // PRIMEIRO: Sistema centralizado de backgrounds
+import './design-system/styles/index.css'; // PRIMEIRO: Tokens e design system
 import './index.css';
-import './design-system/styles/index.css';
+import './styles/backgrounds.css'; // ÚLTIMO: Sistema centralizado de backgrounds
 
 import App from './App';
 
