@@ -1,154 +1,105 @@
 /**
  * =====================================================================
- * CALC CONSUMO - CSS REFATORADO (FASE 1 - LIMPEZA CRÍTICA)
+ * CALC CONSUMO - CSS PADRONIZADO COM CALC TINTA ESFERA
  * =====================================================================
  * 
- * REFATORAÇÃO COMPLETA:
- * ✅ Eliminados 100% dos !important desnecessários
- * ✅ Removida neutralização de variáveis CSS
- * ✅ Utilizando tokens do design system (--sv-*)
- * ✅ Especificidade natural otimizada
- * ✅ Mantido layout móvel funcional
- * 
- * FUNCIONALIDADES PRESERVADAS:
- * - Otimização móvel específica para calc consumo
- * - Layout responsivo para inputs e formulários
- * - Compatibilidade com design system
+ * PADRONIZAÇÃO COMPLETA:
+ * ✅ ResultDisplay idêntico ao calcTintaEsfera
+ * ✅ Botões de ação padronizados
+ * ✅ Sem duplicação de CSS nem !important
+ * ✅ Responsividade centralizada no index.css
  */
 
-/* ===== RESPONSIVIDADE MOBILE ESPECÍFICA ===== */
+/* ===== RESULT DISPLAY - PADRÃO EXATO DO CALCTINAESFERA ===== */
+.calc-consumo-container .result-display .result-value,
+.calc-consumo-container .result-display .result-edit input {
+  background: transparent;
+  color: var(--sv-text-primary);
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.calc-consumo-container .result-display {
+  background: var(--sv-gray-50);
+  padding: var(--sv-space-3);
+  border: var(--sv-border-1) solid var(--sv-border-light);
+  border-radius: var(--sv-radius-md);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--sv-space-2);
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.calc-consumo-container .result-display .result-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: var(--sv-space-3);
+  flex-wrap: nowrap;
+  min-height: auto;
+}
+
+.calc-consumo-container .result-display .result-label {
+  display: none; /* Esconder o label pois já temos um acima */
+}
+
+.calc-consumo-container .result-display .result-value {
+  flex: 1;
+  background: transparent;
+  color: var(--sv-text-primary);
+  font-weight: var(--sv-font-semibold);
+  border: none;
+  padding: 0;
+  font-size: var(--sv-text-base);
+}
+
+.calc-consumo-container .result-display .result-action {
+  flex-shrink: 0;
+}
+
+/* ===== BOTÕES MODERNOS - PADRÃO EXATO DO CALCTINAESFERA ===== */
+.calc-consumo-container .modern-button {
+  padding: 12px 20px; /* Padding aumentado para melhor aparência */
+  border-radius: 8px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  min-width: 120px;
+}
+
+.calc-consumo-container .modern-button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+/* ===== LABELS E TEXTOS - PADRÃO EXATO DO CALCTINAESFERA ===== */
+.calc-consumo-container .sv-label {
+  font-weight: var(--sv-font-medium);
+  color: var(--sv-text-secondary);
+  margin-bottom: var(--sv-space-2);
+  display: block;
+}
+
+/* ===== ESPAÇAMENTO ENTRE BLOCOS - PADRÃO CALCTINAESFERA ===== */
+.calc-consumo-container .calculation-section .bloco {
+  margin-bottom: var(--sv-space-4);
+}
+
+/* ===== RESPONSIVIDADE - BREAKPOINTS CONSOLIDADOS ===== */
 @media (max-width: 767px) {
-    /* Container específico para calc consumo */
-    .calc-consumo-container {
-        padding: var(--sv-space-3);
-    }
-    
-    /* Inputs e campos de formulário - Tamanho otimizado */
-    .calc-consumo-container .sv-input,
-    .calc-consumo-container input,
-    .calc-consumo-container textarea,
-    .calc-consumo-container select {
-        font-size: var(--sv-text-xs);
-        padding: 0.25rem var(--sv-space-1);
-        min-height: 1.5rem;
-        max-height: 1.5rem;
-        height: 1.5rem;
-        line-height: var(--sv-leading-tight);
-        border-radius: var(--sv-radius-sm);
-        margin: 0;
-        border-width: var(--sv-border-1);
-        box-sizing: border-box;
-    }
-    
-    /* Labels e títulos menores usando tokens */
-    .calc-consumo-container .sv-label,
-    .calc-consumo-container label {
-        font-size: var(--sv-text-xs);
-        margin-bottom: var(--sv-space-1);
-        line-height: var(--sv-leading-normal);
-    }
-    /* Select fields otimizados */
-    .calc-consumo-container .sv-select,
-    .calc-consumo-container select {
-        font-size: var(--sv-text-xs);
-        padding: 0.25rem var(--sv-space-1);
-        min-height: 1.5rem;
-        max-height: 1.5rem;
-        height: 1.5rem;
-        line-height: var(--sv-leading-tight);
-    }
-    
-    /* Field groups usando tokens */
-    .calc-consumo-container .field-group {
-        margin-bottom: var(--sv-space-2);
-    }
-    
-    .calc-consumo-container .field-group-title {
-        font-size: var(--sv-text-sm);
-        margin-bottom: var(--sv-space-1);
-    }
-    
-    .calc-consumo-container .field-group-content {
-        gap: var(--sv-space-2);
-    }
-    
-    /* Botões menores usando tokens */
-    .calc-consumo-container .action-buttons .sv-button,
-    .calc-consumo-container .action-buttons button,
-    .calc-consumo-container .sv-button,
-    .calc-consumo-container button {
-        padding: var(--sv-space-1) var(--sv-space-2);
-        font-size: var(--sv-text-sm);
-        border-radius: var(--sv-radius-sm);
-        margin: 0;
-    }
-    
-    /* Espaçamento geral das seções */
-    .calc-consumo-container .calculation-section {
-        padding: var(--sv-space-2);
-        margin-bottom: var(--sv-space-2);
-    }
-    
-    /* Reduzir gap entre campos inline */
-    .calc-consumo-container .field-inline {
-        gap: var(--sv-space-1);
-        margin-bottom: var(--sv-space-2);
-    }
-    }
-    
-    /* Títulos de seção menores */
-    .calculation-section h2,
-    .calculation-section h3,
-    .section-title {
-        font-size: 13.8px !important; /* 12px + 15% = 13.8px */
-        margin-bottom: 6px !important;
-    }
-    
-    /* FORÇA PADRONIZAÇÃO EM TODOS OS INPUTS - incluindo result-edit */
-    .result-edit input,
-    .result-display input,
-    .resultado-input-container input,
-    .calculation-section .result-edit input,
-    .calculation-section .result-display input,
-    /* SELETORES MAIS ESPECÍFICOS PARA O SEGUNDO QUADRO */
-    div[class*="result"] input,
-    div[class*="resultado"] input,
-    [class*="bordo"] input,
-    [class*="Bordo"] input,
-    *[class*="edit"] input {
-        font-size: 10.35px !important; /* Mesma fonte dos outros inputs */
-        padding: 3px 5px !important; /* Mesmo padding dos outros inputs */
-        height: 1.5rem !important; /* Mesma altura dos outros inputs */
-        min-height: 1.5rem !important;
-        max-height: 1.5rem !important;
-        line-height: 1.2 !important;
-        border-radius: 2px !important;
-        margin: 0 !important;
-        border-width: 1px !important;
-        box-sizing: border-box !important;
-        /* NEUTRALIZA TODAS AS VARIÁVEIS DESIGN SYSTEM */
-        --sv-space-1: 0 !important;
-        --sv-space-2: 0 !important;
-        --sv-space-3: 0 !important;
-        --sv-radius-md: 2px !important;
-        --sv-radius-sm: 2px !important;
-        --sv-text-sm: 10.35px !important;
-        --sv-text-base: 10.35px !important;
-    /* Labels de resultado usando tokens */
-    .calc-consumo-container .result-label,
-    .calc-consumo-container .result-display label,
-    .calc-consumo-container .resultado-input-container label {
-        font-size: var(--sv-text-xs);
-        margin-bottom: var(--sv-space-1);
-        line-height: var(--sv-leading-normal);
-    }
-    
-    /* Containers de resultado padronizados usando tokens */
-    .calc-consumo-container .result-display,
-    .calc-consumo-container .result-row,
-    .calc-consumo-container .resultado-input-container {
-        padding: var(--sv-space-2);
-        margin-bottom: var(--sv-space-2);
-        gap: var(--sv-space-2);
-    }
+  .calc-consumo-container .modern-button {
+    padding: var(--sv-space-3) var(--sv-space-4);
+    font-size: var(--sv-text-sm);
+  }
 }

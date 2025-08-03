@@ -135,6 +135,7 @@
   /* FIELD GROUPS */
   .sv-field-group,
   .calc-tinta-container .sv-field-group,
+  .calc-consumo-container .sv-field-group,
   .sv-container .sv-field-group,
   .sv-calc-container .sv-field-group {
     margin-bottom: 10px;
@@ -152,6 +153,13 @@
   .calc-tinta-container input[type="text"],
   .calc-tinta-container input[type="number"],
   .calc-tinta-container input[type="date"],
+  .calc-consumo-container .sv-input,
+  .calc-consumo-container .sv-select,
+  .calc-consumo-container input,
+  .calc-consumo-container select,
+  .calc-consumo-container input[type="text"],
+  .calc-consumo-container input[type="number"],
+  .calc-consumo-container input[type="date"],
   .sv-container .sv-input,
   .sv-container .calculation-section .sv-input,
   .sv-calc-container .sv-input,
@@ -169,6 +177,7 @@
   
   /* BOTÕES MOBILE */
   .calc-tinta-container .modern-button,
+  .calc-consumo-container .modern-button,
   .action-buttons button,
   .sv-btn {
     padding: 12px 16px;

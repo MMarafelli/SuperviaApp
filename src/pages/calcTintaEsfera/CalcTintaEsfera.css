@@ -153,9 +153,6 @@
 }
 
 /* ===== DISPLAY DE RESULTADOS ===== */
-.calc-tinta-container .resultado-input-container .result-display,
-.calc-tinta-container .resultado-input-container .result-display-value,
-.calc-tinta-container .result-display,
 .calc-tinta-container .result-display .result-value,
 .calc-tinta-container .result-display .result-edit input {
   background: transparent;
@@ -166,15 +163,17 @@
 }
 
 .calc-tinta-container .result-display {
-  background: transparent;
-  padding: 0;
-  border: none;
+  background: var(--sv-gray-50); /* FUNDO CINZA IGUAL AO CALCCONSUMO */
+  padding: var(--sv-space-3); /* PADDING IGUAL AO CALCCONSUMO */
+  border: var(--sv-border-1) solid var(--sv-border-light); /* BORDA IGUAL AO CALCCONSUMO */
+  border-radius: var(--sv-radius-md); /* BORDER-RADIUS IGUAL AO CALCCONSUMO */
   margin: 0;
   display: flex;
   align-items: center;
   gap: var(--sv-space-2);
   flex: 1;
   width: 100%;
+  box-sizing: border-box; /* GARANTIR BOX-SIZING */
 }
 
 .calc-tinta-container .result-display .result-row {

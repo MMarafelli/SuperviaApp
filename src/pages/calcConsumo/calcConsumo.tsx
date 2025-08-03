@@ -14,7 +14,6 @@ import {
     CalculationSection,
     FieldGroup,
     ResultDisplay,
-    ActionButtons,
     ResponsiveCalculationLayout,
     CalculationTable
 } from '../../components/calculation/CalculationComponents';
@@ -110,65 +109,65 @@ const TabelaConsumo = () => {
                 <div className="sv-space-y-6">
                     {/* Grupo Esfera */}
                     <FieldGroup title="⚪ Cálculo de Esfera" columns={1}>
-                        <SVInputField
-                            label="Esfera (kg)"
-                            value={campos.esfera}
-                            onChange={(e) => handleChange('esfera', e.target.value)}
-                            variant="calculation"
-                            placeholder="Digite a quantidade em kg"
-                        />
+                        <div className='bloco'>
+                            <SVInputField
+                                label="Esfera (kg)"
+                                value={campos.esfera}
+                                onChange={(e) => handleChange('esfera', e.target.value)}
+                                variant="calculation"
+                                placeholder="Digite a quantidade em kg"
+                            />
+                        </div>
                         <div className='bloco'>
                             <label className='sv-label'>Resultado (kg/m²):</label>
-                            <div className='resultado-input-container'>
-                                <ResultDisplay
-                                    label=""
-                                    value={campos.resultadoEsferas}
-                                    unit="kg/m²"
-                                    editable={editarEsferas}
-                                    onEdit={(newValue) => handleChange('resultadoEsferas', newValue)}
-                                    actionButton={
-                                        <SVButton
-                                            variant={editarEsferas ? "success" : "info"}
-                                            size="sm"
-                                            onClick={handleEditEsfera}
-                                        >
-                                            {editarEsferas ? "🔒 Bloquear" : "✏️ Editar"}
-                                        </SVButton>
-                                    }
-                                />
-                            </div>
+                            <ResultDisplay
+                                label=""
+                                value={campos.resultadoEsferas}
+                                unit="kg/m²"
+                                editable={editarEsferas}
+                                onEdit={(newValue) => handleChange('resultadoEsferas', newValue)}
+                                actionButton={
+                                    <SVButton
+                                        variant={editarEsferas ? "success" : "info"}
+                                        size="sm"
+                                        onClick={handleEditEsfera}
+                                    >
+                                        {editarEsferas ? "🔒 Bloquear" : "✏️ Editar"}
+                                    </SVButton>
+                                }
+                            />
                         </div>
                     </FieldGroup>
 
                     {/* Grupo Tinta */}
                     <FieldGroup title="🎨 Cálculo de Tinta" columns={1}>
-                        <SVInputField
-                            label="Tinta (baldes)"
-                            value={campos.tinta}
-                            onChange={(e) => handleChange('tinta', e.target.value)}
-                            variant="calculation"
-                            placeholder="Digite a quantidade em baldes"
-                        />
+                        <div className='bloco'>
+                            <SVInputField
+                                label="Tinta (baldes)"
+                                value={campos.tinta}
+                                onChange={(e) => handleChange('tinta', e.target.value)}
+                                variant="calculation"
+                                placeholder="Digite a quantidade em baldes"
+                            />
+                        </div>
                         <div className='bloco'>
                             <label className='sv-label'>Resultado (m²/balde):</label>
-                            <div className='resultado-input-container'>
-                                <ResultDisplay
-                                    label=""
-                                    value={campos.resultadoTinta}
-                                    unit="m²/balde"
-                                    editable={editarTinta}
-                                    onEdit={(newValue) => handleChange('resultadoTinta', newValue)}
-                                    actionButton={
-                                        <SVButton
-                                            variant={editarTinta ? "success" : "info"}
-                                            size="sm"
-                                            onClick={handleEditTinta}
-                                        >
-                                            {editarTinta ? "🔒 Bloquear" : "✏️ Editar"}
-                                        </SVButton>
-                                    }
-                                />
-                            </div>
+                            <ResultDisplay
+                                label=""
+                                value={campos.resultadoTinta}
+                                unit="m²/balde"
+                                editable={editarTinta}
+                                onEdit={(newValue) => handleChange('resultadoTinta', newValue)}
+                                actionButton={
+                                    <SVButton
+                                        variant={editarTinta ? "success" : "info"}
+                                        size="sm"
+                                        onClick={handleEditTinta}
+                                    >
+                                        {editarTinta ? "🔒 Bloquear" : "✏️ Editar"}
+                                    </SVButton>
+                                }
+                            />
                         </div>
                     </FieldGroup>
                 </div>
@@ -275,7 +274,7 @@ const TabelaConsumo = () => {
     ), [campos, editarEsferas, editarTinta, handleChange, handleEditEsfera, handleEditTinta]);
 
     return (
-        <div className="sv-calc-container sv-fade-in">
+        <div className="sv-calc-container calc-consumo-container sv-fade-in">
             <PageTitle title="CÁLCULO DE CONSUMO" />
             
             {/* Container com padrão exato da home */}
@@ -286,36 +285,50 @@ const TabelaConsumo = () => {
                 />
 
                 {/* Seção de Ações */}
-                <CalculationSection 
-                    title=""
-                >
-                    <ActionButtons align="stretch">
-                        <SVButton 
-                            variant="error" 
-                            size="lg" 
-                            onClick={limparTudo}
-                            className="modern-button"
-                            style={{
-                                border: '2px solid #ef4444',
-                                boxShadow: '0 2px 4px rgba(239,68,68,0.1)'
-                            }}
-                        >
-                            🗑️ Limpar Tudo
-                        </SVButton>
-                        <SVButton 
-                            variant="info" 
-                            size="lg" 
-                            onClick={compartilharDados}
-                            className="modern-button"
-                            style={{
-                                border: '2px solid #3b82f6',
-                                boxShadow: '0 2px 4px rgba(59, 130, 246, 0.2)'
-                            }}
-                        >
-                            📤 Compartilhar
-                        </SVButton>
-                    </ActionButtons>
-                </CalculationSection>
+            {/* Botões de ação - PADRÃO EXATO DO CALCTINAESFERA */}
+            <CalculationSection 
+                title=""
+            >
+                <div style={{ 
+                    display: 'flex', 
+                    gap: '1rem', 
+                    justifyContent: 'center', 
+                    alignItems: 'center',
+                    width: '100%'
+                }}>
+                    <button
+                        className="modern-button"
+                        onClick={limparTudo}
+                        type="button"
+                        aria-label="Limpar todos os dados"
+                        style={{
+                            background: '#fff',
+                            color: '#ef4444',
+                            border: '2px solid #ef4444',
+                            boxShadow: '0 2px 4px rgba(239,68,68,0.1)',
+                            fontSize: '0.875rem'
+                        }}
+                    >
+                        🗑️ Limpar
+                    </button>
+
+                    <button
+                        className="modern-button"
+                        onClick={compartilharDados}
+                        type="button"
+                        aria-label="Compartilhar cálculo"
+                        style={{
+                            backgroundColor: '#3b82f6',
+                            color: '#ffffff',
+                            border: '2px solid #3b82f6',
+                            boxShadow: '0 2px 4px rgba(59, 130, 246, 0.2)',
+                            fontSize: '0.875rem'
+                        }}
+                    >
+                        📤 Compartilhar
+                    </button>
+                </div>
+            </CalculationSection>
         </div>
     );
 };
