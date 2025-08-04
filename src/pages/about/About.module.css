@@ -279,7 +279,7 @@
 /* Responsividade seguindo padrão do design system */
 
 /* Tablets */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .container {
     padding: 1rem 1rem 1.5rem; /* Padrão mobile do design system */
     gap: 1.5rem; /* Gap reduzido no mobile */

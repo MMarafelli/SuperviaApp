@@ -1,9 +1,11 @@
 /**
  * DESIGN SYSTEM - LAYOUT COMPONENTS
- * Container, Grid e Layout utilities
+ * Container, Grid e Layout utilities unificados
  */
 
-/* ===== CONTAINER SYSTEM ===== */
+/* ===== CONTAINERS UNIFICADOS ===== */
+
+/* Container base - usado em todas as páginas */
 .sv-container {
   width: 100%;
   max-width: var(--sv-max-width-default);
@@ -12,19 +14,50 @@
   padding-right: var(--sv-container-padding);
 }
 
-.sv-container--narrow {
-  max-width: var(--sv-max-width-narrow);
+/* Container para páginas de cálculo - layout específico */
+.sv-page-container,
+.sv-calc-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sv-space-8);
+  padding: var(--sv-space-4) var(--sv-space-6) var(--sv-space-8);
+  justify-content: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
 }
 
-.sv-container--wide {
-  max-width: var(--sv-max-width-wide);
+/* Títulos de página - especificidade natural */
+.sv-page-container .page-title,
+.sv-page-container .sv-page-title,
+.sv-calc-container .page-title,
+.sv-calc-container .sv-page-title {
+  margin: 0 0 var(--sv-space-8) 0;
+  padding: 0;
+  position: relative;
+  display: block;
 }
 
-/* ===== RESPONSIVE CONTAINERS ===== */
+/* ===== RESPONSIVIDADE ===== */
 @media (max-width: 767px) {
   .sv-container {
     padding-left: var(--sv-mobile-container-padding);
     padding-right: var(--sv-mobile-container-padding);
+  }
+  
+  .sv-page-container,
+  .sv-calc-container {
+    padding: var(--sv-space-4);
+    gap: var(--sv-space-6);
+  }
+  
+  .sv-page-container .page-title,
+  .sv-page-container .sv-page-title,
+  .sv-calc-container .page-title,
+  .sv-calc-container .sv-page-title {
+    margin: 0 0 var(--sv-space-6) 0;
   }
 }
 

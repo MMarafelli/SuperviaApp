@@ -19,7 +19,7 @@
 }
 
 /* ===== RESPONSIVIDADE MOBILE PARA DECORAÇÃO ===== */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .page-title::after,
   .sv-page-title::after {
     width: 40px;
@@ -50,7 +50,7 @@
 }
 
 /* ===== RESPONSIVIDADE ===== */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .sv-unified-page-title {
     margin: var(--sv-space-3) auto var(--sv-space-3);
     gap: var(--sv-space-2);

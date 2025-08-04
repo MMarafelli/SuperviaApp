@@ -14,7 +14,7 @@
 }
 
 /* RESPONSIVIDADE MOBILE */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .result-display {
         margin-bottom: var(--sv-space-2);
         padding: var(--sv-space-2);
@@ -33,7 +33,7 @@
 }
 
 /* RESPONSIVIDADE MOBILE */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .result-row {
         gap: var(--sv-space-2);
         min-height: auto;

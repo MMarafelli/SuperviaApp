@@ -1,37 +1,35 @@
 /**
- * DESIGN TOKENS - BREAKPOINTS
+ * DESIGN TOKENS - BREAKPOINTS UNIFICADOS
  * 
- * Definindo breakpoints responsivos baseados no que já está sendo usado.
+ * Padrão Mobile-First Consistente
  */
 
 export const breakpoints = {
-  // Breakpoints em pixels (baseados no sistema atual)
-  mobile: '600px',      // Usado no navbar e layout geral
-  tablet: '768px',      // Usado em vários componentes
-  tabletLg: '900px',    // Usado na calcTintaEsfera
-  desktop: '1024px',    // Usado em media queries
-  desktopLg: '1200px',  // Usado na calcTintaEsfera
-  wide: '1400px'        // Usado no header
+  // Breakpoints principais (padronizados)
+  mobile: '767px',      // Mobile máximo
+  tablet: '768px',      // Tablet início  
+  desktop: '1024px',    // Desktop início
+  wide: '1200px',       // Wide desktop
+  ultrawide: '1400px'   // Ultra wide
 };
 
-// Queries pré-definidas para facilitar uso
+// Queries pré-definidas unificadas
 export const mediaQueries = {
-  // Mobile first approach
+  // Padrão principal
   mobile: `@media (max-width: ${breakpoints.mobile})`,
-  tablet: `@media (min-width: ${breakpoints.mobile}) and (max-width: ${breakpoints.desktop})`,
+  tablet: `@media (min-width: ${breakpoints.tablet}) and (max-width: 1023px)`,
   desktop: `@media (min-width: ${breakpoints.desktop})`,
   
   // Queries específicas já usadas
   mobileOnly: `@media only screen and (max-width: ${breakpoints.mobile})`,
-  desktopOnly: `@media only screen and (min-width: ${breakpoints.mobile})`,
+  desktopOnly: `@media only screen and (min-width: ${breakpoints.tablet})`,
   
-  // Breakpoints específicos do projeto
-  calcTintaMobile: `@media (max-width: ${breakpoints.tabletLg})`,     // 900px
-  calcTintaTablet: `@media (min-width: ${breakpoints.tabletLg}) and (max-width: ${breakpoints.desktopLg})`,  // 900px-1200px
-  calcTintaDesktop: `@media (min-width: ${breakpoints.desktopLg})`,   // 1200px+
+  // Breakpoints específicos mantidos
+  smallMobile: `@media (max-width: 480px)`,
+  tinyMobile: `@media (max-width: 280px)`,
   
   // Query para navbar hover (telas grandes)
-  navbarHover: `@media only screen and (min-width: ${breakpoints.mobile})`,
+  navbarHover: `@media only screen and (min-width: ${breakpoints.tablet})`,
   
   // Queries para header responsivo
   headerMobile: `@media (max-width: ${breakpoints.tablet})`,
@@ -76,7 +74,7 @@ export const cssVariables = {
   '--breakpoint-tablet': breakpoints.tablet,
   '--breakpoint-desktop': breakpoints.desktop,
   
-  // Variáveis específicas do projeto atual (preservando)
-  '--breakpoint-calc-mobile': breakpoints.tabletLg,      // 900px usado na calcTinta
-  '--breakpoint-calc-tablet': breakpoints.desktopLg      // 1200px usado na calcTinta
+  // Variáveis específicas do projeto atual (atualizadas para padrão)
+  '--breakpoint-calc-mobile': breakpoints.mobile,        // 767px mobile
+  '--breakpoint-calc-tablet': breakpoints.wide           // 1200px desktop
 };

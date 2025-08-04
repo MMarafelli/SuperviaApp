@@ -111,20 +111,20 @@
 .update-notification-card .update-content .update-title {
   font-size: 18px;
   font-weight: 700;
-  color: var(--sv-text-primary) !important; /* Usa cor do design system */
+  color: var(--sv-text-primary);
   margin: 0 0 8px 0;
   letter-spacing: -0.02em;
   line-height: 1.2;
-  opacity: 1 !important; /* Força opacidade total */
+  opacity: 1;
 }
 
 .update-notification-card .update-content .update-description {
   font-size: 15px;
-  color: var(--sv-text-secondary) !important; /* Usa cor do design system */
+  color: var(--sv-text-secondary);
   margin: 0;
   line-height: 1.5;
   font-weight: 500;
-  opacity: 1 !important; /* Força opacidade total */
+  opacity: 1;
 }
 
 .update-close-btn {
@@ -219,9 +219,9 @@
 }
 
 .update-btn-secondary {
-  background: var(--sv-bg-muted) !important; /* Usa cor do design system */
-  color: var(--sv-text-primary) !important; /* Usa cor do design system */
-  border: 1px solid var(--sv-border-medium); /* Usa borda do design system */
+  background: var(--sv-bg-muted);
+  color: var(--sv-text-primary);
+  border: 1px solid var(--sv-border-medium);
   border-radius: 14px;
   padding: 16px 24px;
   font-size: 15px;
@@ -232,8 +232,8 @@
 }
 
 .update-btn-secondary:hover {
-  background: var(--sv-gray-200) !important; /* Usa cor do design system */
-  color: var(--sv-text-primary) !important;
+  background: var(--sv-gray-200);
+  color: var(--sv-text-primary);
   border-color: var(--sv-border-dark);
   transform: translateY(-1px);
 }
@@ -297,7 +297,7 @@
 }
 
 /* ===== RESPONSIVIDADE ===== */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 767px) {
   .update-notification-container {
     bottom: 6.5rem;
     width: calc(100% - 1.5rem);
@@ -339,7 +339,7 @@
   }
 }
 
-@media only screen and (min-width: 601px) and (max-width: 1024px) {
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
   .update-notification-container {
     bottom: 2.5rem;
     max-width: 400px;
@@ -358,13 +358,13 @@
   }
   
   .update-notification-card .update-content .update-title {
-    color: var(--sv-text-primary) !important; /* Usa cor do design system para dark mode */
-    opacity: 1 !important; /* Força opacidade total */
+    color: var(--sv-text-primary);
+    opacity: 1;
   }
   
   .update-notification-card .update-content .update-description {
-    color: var(--sv-text-secondary) !important; /* Usa cor do design system para dark mode */
-    opacity: 1 !important; /* Força opacidade total */
+    color: var(--sv-text-secondary);
+    opacity: 1;
   }
   
   .update-close-btn {
@@ -378,14 +378,14 @@
   }
   
   .update-btn-secondary {
-    background: var(--sv-bg-muted) !important; /* Usa cor do design system para dark mode */
-    color: var(--sv-text-primary) !important; /* Usa cor do design system para dark mode */
+    background: var(--sv-bg-muted);
+    color: var(--sv-text-primary);
     border-color: var(--sv-border-medium);
   }
   
   .update-btn-secondary:hover {
-    background: var(--sv-gray-600) !important; /* Usa cor do design system para dark mode */
-    color: var(--sv-text-primary) !important;
+    background: var(--sv-gray-600);
+    color: var(--sv-text-primary);
     border-color: var(--sv-border-dark);
   }
 }

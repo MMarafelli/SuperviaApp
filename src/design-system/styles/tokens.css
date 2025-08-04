@@ -61,6 +61,10 @@
   --sv-space-4: 16px;
   --sv-space-5: 20px;
   --sv-space-6: 24px;
+  --sv-space-7: 28px;
+  --sv-space-8: 32px;
+  --sv-space-9: 36px;
+  --sv-space-10: 40px;
   --sv-space-xs: 4px;
   --sv-space-sm: 8px;
   --sv-space-md: 16px;
@@ -97,11 +101,17 @@
   --sv-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
   --sv-shadow-focus: 0 0 0 3px rgba(255, 204, 41, 0.1);
   
+  /* Aliases para compatibilidade */
+  --shadow-sm: var(--sv-shadow-sm);
+  --shadow-md: var(--sv-shadow-md);
+  --shadow-lg: var(--sv-shadow-lg);
+  
   /* ===== TRANSIÇÕES ===== */
   --sv-transition: all 0.2s ease;
-  --sv-transition-fast: 150ms;
-  --sv-transition-normal: 300ms;
-  --sv-transition-slow: 500ms;
+  --sv-transition-fast: 150ms ease-in-out;
+  --sv-transition-normal: 300ms ease-in-out;
+  --sv-transition-slow: 500ms ease-in-out;
+  --sv-transition-base: all 0.2s ease;
   
   /* ===== TIPOGRAFIA ADICIONAL ===== */
   --sv-heading-font: var(--sv-font-sans);

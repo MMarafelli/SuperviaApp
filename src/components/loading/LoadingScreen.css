@@ -265,7 +265,7 @@
 
 /* ===== RESPONSIVIDADE ===== */
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .loading-title {
     font-size: 1.5rem;
   }

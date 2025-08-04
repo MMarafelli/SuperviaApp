@@ -205,8 +205,8 @@
 
 /* ===== RESPONSIVIDADE (preservando comportamentos existentes) ===== */
 
-/* Mobile (preservando comportamento dos grupos) */
-@media (max-width: 900px) {
+/* Mobile */
+@media (max-width: 767px) {
   .segundoQuadro {
     /* Em mobile, grupos ficam com fundo branco */
     background: var(--color-bg-white);
@@ -219,7 +219,7 @@
 }
 
 /* Tablet */
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .segundoQuadro {
     /* Em tablets, também fica com fundo branco */
     background: var(--color-bg-white);
@@ -232,7 +232,7 @@
 }
 
 /* Desktop - preserva transparência do segundo quadro */
-@media (min-width: 1025px) {
+@media (min-width: 1024px) {
   .segundoQuadro {
     background: transparent;
     border: none;
