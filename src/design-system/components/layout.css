@@ -21,7 +21,7 @@
 }
 
 /* ===== RESPONSIVE CONTAINERS ===== */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .sv-container {
     padding-left: var(--sv-mobile-container-padding);
     padding-right: var(--sv-mobile-container-padding);
@@ -44,7 +44,7 @@
   padding-bottom: var(--sv-space-16);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .sv-section {
     padding-top: var(--sv-mobile-section-gap);
     padding-bottom: var(--sv-mobile-section-gap);
@@ -83,7 +83,7 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .sv-grid--2,
   .sv-grid--3,
   .sv-grid--4 {
@@ -227,7 +227,7 @@
   display: block;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .sv-hidden-mobile {
     display: none;
   }
@@ -237,7 +237,7 @@
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   .sv-hidden-desktop {
     display: none;
   }

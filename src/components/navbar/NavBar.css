@@ -1,7 +1,7 @@
 .navbar {
   position: fixed;
   transition: width 600ms ease;
-  background-color: var(--sv-bg-navigation) !important; /* Garantindo precedência igual ao header */
+  background-color: var(--sv-bg-navigation);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   overflow: hidden;
   z-index: 100;
@@ -92,7 +92,7 @@
 
 
 /* Small screens */
-@media only screen and (max-width: 1023px) {
+@media only screen and (max-width: 767px) {
   .navbar {
     bottom: 0;
     width: 100vw;
@@ -118,7 +118,7 @@
 }
 
 /* Large screens */
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 768px) {
   .navbar {
     top: 70px;
     width: 5rem;

@@ -62,16 +62,6 @@
 
 /* ===== ESTILOS DO DESIGN SYSTEM ATUAL (preservando) ===== */
 
-/* Card base */
-.sv-card {
-  background: var(--sv-white);
-  border-radius: var(--sv-radius-lg);
-  box-shadow: var(--sv-shadow-lg);
-  padding: var(--sv-space-4);
-  margin-bottom: var(--sv-space-4);
-  transition: var(--sv-transition);
-}
-
 /* Seção de cálculo */
 .sv-calculation-section {
   background: var(--sv-white);
@@ -126,39 +116,39 @@
 
 /* Background variants */
 .sv-section--bg-transparent {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .sv-section--bg-gradient {
-  background: linear-gradient(135deg, var(--sv-primary-light), var(--sv-white)) !important;
+  background: linear-gradient(135deg, var(--sv-primary-light), var(--sv-white));
 }
 
 /* Padding variants */
 .sv-section--padding-none {
-  padding: 0 !important;
+  padding: 0;
 }
 
 .sv-section--padding-sm {
-  padding: var(--sv-space-2) !important;
+  padding: var(--sv-space-2);
 }
 
 .sv-section--padding-lg {
-  padding: var(--sv-space-6) !important;
+  padding: var(--sv-space-6);
 }
 
 /* Margin variants */
 .sv-section--margin-none {
-  margin: 0 !important;
+  margin: 0;
 }
 
 .sv-section--margin-sm {
-  margin-bottom: var(--sv-space-2) !important;
+  margin-bottom: var(--sv-space-2);
 }
 
 .sv-section--margin-lg {
-  margin-bottom: var(--sv-space-6) !important;
+  margin-bottom: var(--sv-space-6);
 }
 
 /* ===== HEADER E CONTEÚDO ===== */
@@ -270,8 +260,8 @@
   .quartoQuadro,
   .sv-card,
   .sv-calculation-section {
-    background: var(--color-bg-white) !important;
-    color: var(--color-text-primary) !important;
+    background: var(--sv-white);
+    color: var(--sv-text-primary);
     border-color: var(--color-border-light);
   }
   

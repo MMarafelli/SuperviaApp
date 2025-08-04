@@ -10,7 +10,7 @@
 .card {
   width: 280px;
   min-height: 260px;
-  background: #ffffff !important;
+  background: var(--sv-white);
   border-radius: 1rem;
   box-shadow: var(--sv-shadow-md, 0 4px 16px rgba(0, 0, 0, 0.1));
   border: 1px solid var(--sv-border-light, #e5e7eb);

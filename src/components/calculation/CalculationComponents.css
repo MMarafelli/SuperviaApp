@@ -11,7 +11,7 @@
 }
 
 /* RESPONSIVIDADE MOBILE - Padding menor nas seções */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .calculation-section {
         margin-bottom: 1rem;
         border-radius: 8px;
@@ -32,7 +32,7 @@
 }
 
 /* RESPONSIVIDADE MOBILE - Título menor */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .calculation-section-title {
         font-size: 1rem;
         padding: 0.75rem 1rem;
@@ -48,7 +48,7 @@
     margin: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .calculation-section-content {
         padding: 1rem;
     }
@@ -97,7 +97,7 @@
 }
 
 /* RESPONSIVIDADE MOBILE - Mantém layout horizontal mas compacto */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .field-inline {
         gap: 0.375rem;
         margin-bottom: 0.5rem;
@@ -148,7 +148,7 @@
     margin-bottom: 0.0625rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .calculation-section .bloco {
         margin-bottom: 0.5rem;
         gap: 0.0625rem;
@@ -217,7 +217,7 @@
 }
 
 /* RESPONSIVIDADE MOBILE - Botões menores e espaçamento reduzido */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .action-buttons {
         gap: 0.125rem;
         margin-top: 0.125rem;
@@ -233,7 +233,7 @@
     }
 }
 
-/* MOBILE OVERRIDE ESPECÍFICO - Força aplicação em todos os inputs dos cálculos */
+/* MOBILE OVERRIDE ESPECÍFICO - Responsividade otimizada */
 @media (max-width: 767px) {
     .calculation-section .sv-input,
     .calculation-section input,
@@ -241,29 +241,30 @@
     .calculation-section .field-group input,
     .calculation-section .sv-select,
     .calculation-section select {
-        font-size: 12px !important; /* 10.35px + 15% = 11.9px */
-        padding: 15px 5px !important;
-        height: 1.5rem !important; /* REVERTIDO - volta ao original */
-        min-height: 1.5rem !important;
-        line-height: 1.2 !important;
+        font-size: var(--sv-text-xs);
+        padding: var(--sv-space-2) var(--sv-space-1);
+        height: 2.5rem;
+        min-height: 2.5rem;
+        line-height: 1.2;
+        border-radius: var(--sv-radius-sm);
     }
     
     .calculation-section .sv-label,
     .calculation-section label {
-        font-size: 12px !important; /* 10px + 15% = 11.5px */
-        margin-bottom: 2px !important;
+        font-size: var(--sv-text-xs);
+        margin-bottom: var(--sv-space-1);
     }
     
     .calculation-section .field-group-title {
-        font-size: 12.65px !important; /* 11px + 15% = 12.65px */
-        margin-bottom: 4px !important;
+        font-size: var(--sv-text-sm);
+        margin-bottom: var(--sv-space-1);
     }
     
     .calculation-section .field-group {
-        margin-bottom: 6px !important;
+        margin-bottom: var(--sv-space-2);
     }
     
     .calculation-section .field-group-content {
-        gap: 6px !important;
+        gap: var(--sv-space-2);
     }
 }

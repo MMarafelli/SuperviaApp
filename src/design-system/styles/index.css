@@ -46,20 +46,7 @@
 }
 
 /* ===== SISTEMA DE CARDS ===== */
-/* Quadros/Cards - fundo branco, sombra leve, bordas arredondadas */
-/* PADRÃO UNIFICADO baseado na home page */
-.sv-card {
-  background: var(--sv-white);
-  border-radius: var(--sv-radius-xl); /* 16px - padrão da home */
-  box-shadow: var(--shadow-md);
-  padding: var(--sv-space-5); /* 20px - padrão da home */
-  border: var(--sv-border-1) solid var(--sv-border-light);
-  margin-bottom: var(--sv-space-6); /* 24px - gap da home */
-}
-
-.sv-card-content {
-  padding: 0;
-}
+/* Cards unificados importados de CardComponents.css */
 
 /* ===== CONTAINER DE PÁGINA ===== */
 /* PADRÃO OTIMIZADO BASEADO NA HOME PAGE para todas as páginas */
@@ -94,7 +81,7 @@
 }
 
 /* Responsividade mobile igual à home */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .sv-page-container,
   .sv-calc-container,
   .sv-container {

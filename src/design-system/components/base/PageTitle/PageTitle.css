@@ -13,7 +13,7 @@
     bottom: -4px;
     width: 60px;
     height: 4px;
-    background: #ffcc29 !important;
+    background: var(--sv-primary);
     border-radius: 2px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

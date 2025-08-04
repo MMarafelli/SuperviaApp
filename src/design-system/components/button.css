@@ -265,7 +265,8 @@
 }
 
 /* ===== RESPONSIVE ADJUSTMENTS - SUPER COMPACTO ===== */
-@media (max-width: 768px) {
+/* Mobile responsiveness */
+@media (max-width: 767px) {
   .sv-btn {
     min-height: 1.75rem; /* Reduzido de 2.25rem */
     padding: 6px 8px; /* Reduzido significativamente */

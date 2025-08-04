@@ -110,7 +110,7 @@
 
 /* ===== RESPONSIVIDADE DE CÁLCULO ===== */
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .sv-calc-container .calculation-section {
     padding: 0.375rem;
     margin-bottom: 0.375rem;

@@ -1,33 +1,23 @@
 /**
  * =====================================================================
- * SISTEMA CENTRALIZADO DE BACKGROUNDS - REFATORADO (FASE 1)
+ * SISTEMA CONSOLIDADO DE BACKGROUNDS E LAYOUT
  * =====================================================================
  * 
- * REFATORAÇÃO COMPLETA:
- * ✅ Eliminados !important desnecessários
- * ✅ Utilizando tokens do design system (--sv-*)
- * ✅ Especificidade natural sem forçar estilos
- * ✅ Mantido comportamento visual idêntico
- * 
- * FUNCIONALIDADES PRESERVADAS:
- * - Background azul marinho escuro da aplicação
- * - Exceções para elementos que devem ser brancos
- * - Compatibilidade com todos os componentes existentes
+ * REFATORAÇÃO HOLÍSTICA FINAL:
+ * ✅ Eliminados TODOS os !important
+ * ✅ Especificidade natural e limpa
+ * ✅ Breakpoints padronizados (767px para mobile)
+ * ✅ Sistema unificado sem duplicações
+ * ✅ Uso exclusivo de tokens do design system
  */
 
-/* ===== BACKGROUND GLOBAL: AZUL MARINHO ESCURO ===== */
-/* Usando especificidade natural ao invés de !important */
-html {
-  background-color: var(--sv-bg-primary);
-}
-
-body {
+/* ===== LAYOUT GLOBAL ===== */
+html, body {
   background-color: var(--sv-bg-primary);
   color: var(--sv-text-white);
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  /* Permite scroll no body mas remove scrollbar visual em mobile */
 }
 
 #root {
@@ -35,111 +25,172 @@ body {
   min-height: 100vh;
 }
 
-/* ===== EXCEÇÕES: ELEMENTOS COM BACKGROUND BRANCO ===== */
-/* Usando especificidade natural para elementos que precisam ser brancos */
+#base {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-/* Seções de cálculo e cards principais */
+#content {
+  flex: 1;
+  overflow-y: auto;
+  background-color: var(--sv-bg-primary);
+}
+
+/* ===== LAYOUT RESPONSIVO ===== */
+@media (max-width: 767px) {
+  #content {
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  #content::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  #content {
+    margin-top: 80px;
+    margin-left: 5rem;
+    height: calc(100vh - 80px);
+  }
+}
+
+/* ===== COMPONENTES BRANCOS ===== */
 .calculation-section,
-.calculation-section-content {
-  background-color: var(--sv-white);
-  color: var(--sv-text-primary);
-  display: block;
-  visibility: visible;
-  opacity: 1;
-}
-
-/* Grupos e blocos de formulário */
+.calculation-section-content,
+.sv-card,
+.form-container,
+.card,
+.modal,
+.popup,
+.dropdown-menu,
+.div-geral-bloco-de-notas,
+.input-group,
+.form-section,
+.info-card,
+.result-card,
+.calculation-card,
 .grupo,
-.grupo > div,
 .bloco,
-.field-inline {
-  background-color: var(--sv-white);
-  color: var(--sv-text-primary);
-  display: block;
-  visibility: visible;
-  opacity: 1;
-}
-
-/* Componentes do design system */
 .sv-field-group,
-.sv-input-container {
+.result-display,
+.modern-card {
   background-color: var(--sv-white);
   color: var(--sv-text-primary);
-  display: block;
-  visibility: visible;
-  opacity: 1;
 }
 
-/* Inputs e elementos de formulário */
+/* ===== INPUTS E FORMULÁRIOS ===== */
 .sv-input,
 .sv-select,
-.sv-textarea {
-  background-color: var(--sv-white);
-  color: var(--sv-text-primary);
-  display: block;
-  visibility: visible;
-  opacity: 1;
-}
-
-/* Inputs nativos */
-input,
+.sv-textarea,
+input:not([type="checkbox"]):not([type="radio"]),
 select,
 textarea {
   background-color: var(--sv-white);
   color: var(--sv-text-primary);
-  display: block;
-  visibility: visible;
-  opacity: 1;
-}
-
-/* Inputs específicos por tipo */
-input[type="text"],
-input[type="number"],
-input[type="date"] {
-  background-color: var(--sv-white);
-  color: var(--sv-text-primary);
-}
-
-/* ===== ESTILIZAÇÃO PADRÃO DE INPUTS ===== */
-/* Definindo aparência padrão sem forçar com !important */
-.sv-input,
-input,
-select {
-  min-height: 40px;
-  padding: var(--sv-space-3) var(--sv-space-4);
   border: var(--sv-border-1) solid var(--sv-border-light);
   border-radius: var(--sv-radius-md);
+  padding: var(--sv-space-3) var(--sv-space-4);
+  min-height: 40px;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* ===== COMPONENTES DE RESULTADO E CARDS ===== */
-.result-display,
-.result-value,
-.result-edit,
-.result-edit input,
-.modern-card,
-.levantamento-container,
-.levantamento-textarea {
-  background-color: var(--sv-white);
-  color: var(--sv-text-primary);
+/* ===== NAVEGAÇÃO ===== */
+.header,
+.modern-header,
+.navbar,
+.nav-bar,
+.bottom-nav {
+  background-color: var(--sv-bg-navigation);
+  color: var(--sv-text-white);
 }
 
-/* ===== TÍTULOS E CONTAINERS ESPECIAIS ===== */
-.calculation-section-title,
-.tituloDaDivBloco,
-.resultado-input-container {
-  background-color: var(--sv-gray-50);
-  color: var(--sv-text-primary);
+/* Posicionamento navbar */
+@media (max-width: 767px) {
+  .navbar {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 4rem;
+    z-index: 999;
+  }
 }
 
-/* ===== LABELS E TEXTOS ===== */
-.sv-label,
-label {
-  color: var(--sv-text-primary);
+@media (min-width: 768px) {
+  .navbar {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 5rem;
+    height: calc(100vh - 80px);
+    z-index: 999;
+  }
 }
 
-/* ===== BOTÕES MANTÊM SUAS CORES ORIGINAIS ===== */
+/* ===== TÍTULOS DE PÁGINA ===== */
+.page-title,
+.sv-page-title {
+  color: var(--sv-primary);
+  font-size: var(--sv-text-2xl);
+  font-weight: var(--sv-font-bold);
+  margin: 0 0 var(--sv-space-8) 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 767px) {
+  .page-title,
+  .sv-page-title {
+    font-size: var(--sv-text-xl);
+    margin-bottom: var(--sv-space-6);
+    letter-spacing: 0.03em;
+  }
+}
+
+/* ===== BOTÕES ===== */
+.btn-primary {
+  background-color: var(--sv-primary);
+  color: var(--sv-text-primary);
+  border: none;
+  border-radius: var(--sv-radius-md);
+  padding: var(--sv-space-3) var(--sv-space-6);
+  font-weight: var(--sv-font-medium);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--sv-text-white);
+  border: var(--sv-border-1) solid var(--sv-text-white);
+  border-radius: var(--sv-radius-md);
+  padding: var(--sv-space-3) var(--sv-space-6);
+}
+
+/* ===== SCROLLBAR CUSTOMIZADA (DESKTOP) ===== */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--sv-gray-600);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: var(--sv-gray-800);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--sv-primary);
+  }
+}
+
 /* Botões não devem ser afetados pelo sistema de backgrounds */
 .sv-button,
 button,
@@ -215,361 +266,4 @@ button,
     display: block;
     width: 8px;
   }
-}
-
-/* ===== TODAS AS PÁGINAS: FUNDO AZUL ===== */
-.page-container,
-.home-page,
-.calc-page,
-.about-page,
-[data-page],
-.route-container {
-  background-color: var(--sv-bg-primary);
-  color: var(--sv-text-white);
-  padding: var(--sv-space-4) var(--sv-space-6) var(--sv-space-8); /* Padrão unificado */
-  box-sizing: border-box;
-  height: 100%; /* Ocupa toda altura disponível */
-  overflow-y: scroll; /* Scroll funcional */
-  scrollbar-width: none; /* Firefox - sem scrollbar */
-  -ms-overflow-style: none; /* IE/Edge - sem scrollbar */
-}
-
-/* Esconde scrollbar nas páginas - WebKit */
-.page-container::-webkit-scrollbar,
-.home-page::-webkit-scrollbar,
-.calc-page::-webkit-scrollbar,
-.about-page::-webkit-scrollbar,
-[data-page]::-webkit-scrollbar,
-.route-container::-webkit-scrollbar {
-  display: none;
-}
-
-/* Ajustes específicos para páginas com scroll baseado no tamanho da tela */
-.calc-tinta-esfera,
-.calc-consumo,
-.calculation-page {
-  height: 100%;
-  box-sizing: border-box;
-  overflow-y: scroll; /* Scroll sempre funcional */
-  scrollbar-width: none; /* Sem scrollbar visual */
-  -ms-overflow-style: none;
-}
-
-/* Esconde scrollbar nas páginas de cálculo */
-.calc-tinta-esfera::-webkit-scrollbar,
-.calc-consumo::-webkit-scrollbar,
-.calculation-page::-webkit-scrollbar {
-  display: none;
-}
-
-/* Ajustes responsivos específicos para scroll */
-@media only screen and (max-width: 1023px) {
-  /* MOBILE E TABLET - SCROLL SEM SCROLLBAR VISUAL */
-  .page-container,
-  .home-page,
-  .calc-page,
-  .about-page,
-  .calc-tinta-esfera,
-  .calc-consumo,
-  .calculation-page {
-    overflow-y: scroll; /* SCROLL FUNCIONAL */
-    scrollbar-width: none; /* SEM SCROLLBAR VISUAL */
-    -ms-overflow-style: none;
-    height: 100%;
-    max-height: none;
-    padding: var(--sv-space-3) var(--sv-space-4) var(--sv-space-6); /* Mobile: spacing compacto */
-    padding-bottom: 1rem;
-  }
-}
-
-@media only screen and (min-width: 1024px) {
-  /* DESKTOP - SCROLL COM SCROLLBAR CUSTOMIZADA */
-  .calc-tinta-esfera,
-  .calc-consumo,
-  .calculation-page {
-    overflow-y: scroll; /* SCROLL FUNCIONAL */
-    max-height: calc(100vh - 80px); /* Altura máxima */
-    padding-bottom: 2rem; /* Espaço extra no final */
-    scrollbar-width: thin; /* Firefox - scrollbar fina */
-    -ms-overflow-style: auto; /* IE/Edge - scrollbar padrão */
-  }
-  
-  /* Scrollbar customizada para desktop */
-  .calc-tinta-esfera::-webkit-scrollbar,
-  .calc-consumo::-webkit-scrollbar,
-  .calculation-page::-webkit-scrollbar {
-    display: block;
-    width: 8px;
-  }
-}
-
-/* ===== COMPONENTES BRANCOS ===== */
-/* Cards, formulários e componentes que devem ter fundo branco */
-/* PADRÃO UNIFICADO baseado na home page */
-.sv-card,
-.calculation-section,
-.form-container,
-.card,
-.modal,
-.popup,
-.dropdown-menu,
-.div-geral-bloco-de-notas,
-.input-group,
-.form-section,
-.info-card,
-.result-card,
-.calculation-card {
-  background-color: var(--sv-white);
-  color: var(--sv-text-primary);
-  border-radius: var(--sv-radius-xl); /* 16px - padrão da home */
-  box-shadow: var(--shadow-md);
-  padding: var(--sv-space-5); /* 20px - padrão da home */
-  margin-bottom: var(--sv-space-6); /* 24px - padrão da home */
-  border: var(--sv-border-1) solid var(--sv-border-light);
-}
-
-/* ===== CARDS DA HOME - FORÇAR BACKGROUND BRANCO ===== */
-[class*="HomeCarousel_card"],
-.HomeCarousel_card,
-div[class*="card"] {
-  background-color: var(--sv-white);
-  color: var(--sv-text-primary);
-}
-
-/* ===== INPUTS E FORMULÁRIOS ===== */
-.sv-input,
-.sv-select,
-.sv-textarea,
-input,
-select,
-textarea {
-  background-color: var(--sv-white);
-  color: var(--sv-text-primary);
-  border: var(--sv-border-1) solid var(--sv-border-light);
-  border-radius: var(--sv-radius-md);
-  padding: var(--sv-space-4) var(--sv-space-5);
-}
-
-/* ===== HEADER E NAVEGAÇÃO ===== */
-/* Definição centralizada usando tokens do design system */
-.header,
-.modern-header,
-header.modern-header {
-  background: var(--sv-bg-navigation); /* Token do design system para navegação */
-  color: var(--sv-text-white);
-  /* Propriedades de layout específicas ficam nos componentes */
-}
-
-.navbar,
-.nav-bar,
-.bottom-nav {
-  background-color: var(--sv-bg-navigation); /* Mesmo token para consistência */
-  color: var(--sv-text-white);
-  position: fixed;
-  z-index: 999; /* Abaixo do header mas acima do conteúdo */
-}
-
-/* Garantir que navbar mobile fica no bottom */
-@media only screen and (max-width: 1023px) {
-  .navbar {
-    bottom: 0 !important;
-    top: auto !important;
-    width: 100vw !important;
-    height: 4rem !important;
-  }
-}
-
-/* Garantir que navbar desktop fica na lateral */
-@media only screen and (min-width: 1024px) {
-  .navbar {
-    top: 80px !important; /* Abaixo do header */
-    left: 0 !important;
-    width: 5rem !important;
-    height: calc(100vh - 80px) !important;
-    bottom: auto !important;
-  }
-}
-
-/* ===== BOTÕES ===== */
-.btn-primary {
-  background-color: #ffcc29 !important; /* Amarelo SuperVia */
-  color: #1a1a1a !important;
-  border: none;
-  border-radius: 8px;
-  padding: 0.75rem 1.5rem;
-  font-weight: 500;
-}
-
-.btn-secondary {
-  background-color: transparent !important;
-  color: #ffffff !important;
-  border: 1px solid #ffffff;
-  border-radius: 8px;
-  padding: 0.75rem 1.5rem;
-}
-
-/* ===== TEXTOS ===== */
-.section-title,
-h2, h3 {
-  color: #ffffff !important;
-}
-
-/* ===== TÍTULOS PRINCIPAIS DAS PÁGINAS - REGRA GLOBAL DEFINITIVA COM MÁXIMA ESPECIFICIDADE ===== */
-html body #root #base #content h1.page-title,
-html body #root #base #content .page-title,
-html body #root #base #content h1.sv-page-title,
-html body #root #base #content .sv-page-title,
-html body #root #base #content .sv-container h1.page-title,
-html body #root #base #content .sv-container .page-title,
-html body #root #base #content .sv-calc-container h1.page-title,
-html body #root #base #content .sv-calc-container .page-title,
-html body #root #base #content .calc-tinta-container h1.page-title,
-html body #root #base #content .calc-tinta-container .page-title,
-div.sv-calc-container.calc-tinta-container.sv-container h1.page-title,
-div.sv-calc-container.calc-tinta-container.sv-container .page-title,
-h1.page-title,
-.page-title,
-h1.sv-page-title,
-.sv-page-title,
-.sv-container h1.page-title,
-.sv-container .page-title,
-.sv-calc-container h1.page-title,
-.sv-calc-container .page-title,
-.calc-tinta-container h1.page-title,
-.calc-tinta-container .page-title {
-  color: #ffcc29 !important;
-  font-size: 1.75rem !important;
-  font-weight: 600 !important;
-  margin: 0 0 2rem 0 !important; /* MARGEM CONSISTENTE FORÇADA */
-  padding: 0 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.05em !important;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3) !important;
-  position: relative !important;
-  display: block !important;
-  text-align: left !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  /* FORÇANDO ESPECIFICIDADE MÁXIMA PARA EVITAR QUALQUER CONFLITO */
-  background: transparent !important;
-  border: none !important;
-  outline: none !important;
-  text-decoration: none !important;
-  line-height: 1.2 !important;
-  font-family: inherit !important;
-  /* POSICIONAMENTO ABSOLUTO CONSISTENTE */
-  top: 0 !important;
-  left: 0 !important;
-  transform: none !important;
-}
-
-/* ===== RESPONSIVIDADE MOBILE PARA TÍTULOS - MÁXIMA ESPECIFICIDADE ===== */
-@media (max-width: 768px) {
-  html body #root #base #content h1.page-title,
-  html body #root #base #content .page-title,
-  html body #root #base #content h1.sv-page-title,
-  html body #root #base #content .sv-page-title,
-  html body #root #base #content .sv-container h1.page-title,
-  html body #root #base #content .sv-container .page-title,
-  html body #root #base #content .sv-calc-container h1.page-title,
-  html body #root #base #content .sv-calc-container .page-title,
-  html body #root #base #content .calc-tinta-container h1.page-title,
-  html body #root #base #content .calc-tinta-container .page-title,
-  div.sv-calc-container.calc-tinta-container.sv-container h1.page-title,
-  div.sv-calc-container.calc-tinta-container.sv-container .page-title,
-  h1.page-title,
-  .page-title,
-  h1.sv-page-title,
-  .sv-page-title,
-  .sv-container h1.page-title,
-  .sv-container .page-title,
-  .sv-calc-container h1.page-title,
-  .sv-calc-container .page-title,
-  .calc-tinta-container h1.page-title,
-  .calc-tinta-container .page-title {
-    font-size: 1.25rem !important;
-    margin: 0 0 1.5rem 0 !important; /* MARGEM MOBILE CONSISTENTE FORÇADA */
-    letter-spacing: 0.03em !important;
-  }
-}
-
-/* ===== OUTROS TÍTULOS (H1 que não são page-title) ===== */
-h1:not(.page-title):not(.sv-page-title) {
-  color: #ffcc29 !important;
-}
-
-.card-title,
-.form-label,
-.calculation-section h1,
-.calculation-section h2,
-.calculation-section h3,
-.calculation-section label {
-  color: #1a1a1a !important;
-}
-
-/* ===== OVERRIDE PARA CASOS ESPECÍFICOS ===== */
-/* Remove qualquer herança problemática */
-* {
-  box-sizing: border-box;
-}
-
-/* Remove background inherit problemático */
-*:not(.sv-card):not(.calculation-section):not(.form-container):not(.card):not(.modal):not(.navbar):not(.header):not(.modern-header) {
-  background-color: inherit;
-}
-
-/* ===== SCROLLBAR CONTROL ===== */
-/* Mobile e Tablet - SCROLL SEM SCROLLBAR VISUAL */
-@media only screen and (max-width: 1023px) {
-  /* Remove scrollbar visual mas mantém funcionalidade */
-  * {
-    scrollbar-width: none !important; /* Firefox */
-    -ms-overflow-style: none !important; /* IE/Edge */
-  }
-  
-  /* WebKit - esconde scrollbar mas mantém scroll */
-  *::-webkit-scrollbar {
-    display: none !important;
-  }
-  
-  /* Exceções para inputs que precisam de scroll interno com scrollbar */
-  input, textarea, select {
-    scrollbar-width: auto !important;
-    -ms-overflow-style: auto !important;
-  }
-  
-  input::-webkit-scrollbar, 
-  textarea::-webkit-scrollbar, 
-  select::-webkit-scrollbar {
-    display: block !important;
-    width: 4px !important;
-  }
-}
-
-/* Desktop - COM SCROLLBAR CUSTOMIZADA */
-@media only screen and (min-width: 1024px) {
-  /* Scrollbar customizada apenas para desktop */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: var(--sv-gray-600, #4e4e4e);
-    border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: var(--sv-gray-800, #333);
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--sv-primary, #ffcc29);
-  }
-}
-
-/* Força específicos que podem estar sendo sobrescritos */
-.home-container,
-.calc-container,
-.page-wrapper {
-  background-color: #0f172a !important;
 }
